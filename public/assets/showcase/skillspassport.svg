@@ -1,0 +1,36 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="54" x2="1140" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161228"/>
+      <stop offset="0.5" stop-color="#312061"/>
+      <stop offset="1" stop-color="#16A34A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(830 286) rotate(135) scale(410 320)">
+      <stop stop-color="#A78BFA" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#090611"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#0F0B1B" fill-opacity="0.92"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">skillspassportsa.co.za</text>
+  <rect x="60" y="120" width="1080" height="586" fill="url(#glow)"/>
+  <text x="112" y="198" fill="#C4B5FD" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">EDUCATION &amp; CAREERS</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="900">SkillsPassport</text>
+  <text x="116" y="344" fill="#E9D5FF" font-family="Inter, Arial, sans-serif" font-size="24">Guidance for learners, schools, parents and sponsors.</text>
+  <rect x="116" y="418" width="258" height="58" rx="18" fill="#A78BFA"/>
+  <text x="154" y="454" fill="#140E24" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Find pathways</text>
+  <rect x="706" y="206" width="330" height="366" rx="32" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  <rect x="754" y="258" width="112" height="112" rx="26" fill="#22C55E" fill-opacity="0.86"/>
+  <rect x="888" y="258" width="96" height="112" rx="26" fill="#FFFFFF" fill-opacity="0.18"/>
+  <rect x="754" y="404" width="230" height="18" rx="9" fill="#FFFFFF" fill-opacity="0.48"/>
+  <rect x="754" y="448" width="188" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.24"/>
+  <rect x="754" y="484" width="132" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.18"/>
+</svg>

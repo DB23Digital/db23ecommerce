@@ -1,0 +1,37 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="58" y1="54" x2="1140" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172018"/>
+      <stop offset="0.45" stop-color="#24442A"/>
+      <stop offset="1" stop-color="#C2843A"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(823 254) scale(280)">
+      <stop stop-color="#F7C46A" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#F7C46A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#070C08"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#0A130D" fill-opacity="0.9"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">insight2afrika.com</text>
+  <rect x="60" y="120" width="1080" height="586" fill="url(#sun)"/>
+  <path d="M60 546C226 440 350 454 506 538C674 628 850 574 1140 430V706H60V546Z" fill="#09120B" fill-opacity="0.58"/>
+  <path d="M60 604C270 502 484 554 638 620C790 686 952 620 1140 510V706H60V604Z" fill="#050805" fill-opacity="0.76"/>
+  <text x="112" y="198" fill="#FBD38D" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">TRAVEL &amp; SAFARIS</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="900">Insight2Afrika</text>
+  <text x="116" y="344" fill="#E5E7EB" font-family="Inter, Arial, sans-serif" font-size="24">Curated African journeys with immersive storytelling.</text>
+  <rect x="116" y="418" width="254" height="58" rx="18" fill="#F4B860"/>
+  <text x="154" y="454" fill="#10140E" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Explore safaris</text>
+  <rect x="728" y="190" width="310" height="390" rx="34" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.2"/>
+  <rect x="766" y="236" width="234" height="154" rx="26" fill="#0D1D10" fill-opacity="0.55"/>
+  <rect x="766" y="420" width="176" height="18" rx="9" fill="#FFFFFF" fill-opacity="0.52"/>
+  <rect x="766" y="462" width="222" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.25"/>
+  <rect x="766" y="492" width="186" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.18"/>
+</svg>

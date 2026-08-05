@@ -1,0 +1,47 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="54" x2="1140" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06222E"/>
+      <stop offset="0.48" stop-color="#0E5660"/>
+      <stop offset="1" stop-color="#D6A85C"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="566" y1="365" x2="1076" y2="626" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5EEAD4" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#0F766E" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(920 242) scale(230)">
+      <stop stop-color="#FDE68A" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#FDE68A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#031018"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#04131D" fill-opacity="0.92"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">db23.co.za/mar-a-largo</text>
+  <rect x="60" y="120" width="1080" height="586" fill="url(#sun)"/>
+  <path d="M548 451C680 380 822 364 1028 404C1071 412 1102 438 1122 474V706H548V451Z" fill="url(#sea)" fill-opacity="0.95"/>
+  <path d="M578 500C702 467 814 470 932 506C980 521 1036 528 1092 510" stroke="#CCFBF1" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round"/>
+  <path d="M610 560C730 528 840 533 958 565C1003 577 1050 578 1096 562" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="7" stroke-linecap="round"/>
+  <path d="M606 640C721 611 831 616 934 642C980 653 1035 654 1094 638" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="7" stroke-linecap="round"/>
+  <text x="112" y="198" fill="#FDE68A" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">LIFESTYLE ESTATE LIVING</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="900">Mar a Largo</text>
+  <text x="116" y="344" fill="#DFFCF6" font-family="Inter, Arial, sans-serif" font-size="24">Coastal-inspired estate living with refined digital presence.</text>
+  <rect x="116" y="418" width="250" height="58" rx="18" fill="#FBBF24"/>
+  <text x="153" y="454" fill="#08111C" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Explore estate</text>
+  <g opacity="0.96">
+    <rect x="656" y="262" width="312" height="230" rx="18" fill="#E5E7EB"/>
+    <rect x="682" y="293" width="260" height="74" rx="10" fill="#0F766E"/>
+    <rect x="682" y="389" width="74" height="103" fill="#164E63"/>
+    <rect x="781" y="389" width="161" height="103" fill="#FFFFFF"/>
+    <path d="M626 294L812 178L998 294H626Z" fill="#D6A85C"/>
+    <path d="M699 266L812 195L925 266H699Z" fill="#FDE68A" fill-opacity="0.55"/>
+  </g>
+  <path d="M627 516C720 491 861 492 965 519" stroke="#FDE68A" stroke-opacity="0.34" stroke-width="12" stroke-linecap="round"/>
+</svg>

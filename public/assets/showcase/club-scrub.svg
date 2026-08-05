@@ -1,0 +1,34 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="54" x2="1140" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07140D"/>
+      <stop offset="0.52" stop-color="#14532D"/>
+      <stop offset="1" stop-color="#A3E635"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(862 292) rotate(136) scale(420 310)">
+      <stop stop-color="#BEF264" stop-opacity="0.68"/>
+      <stop offset="1" stop-color="#BEF264" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#040A06"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#07120A" fill-opacity="0.92"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">db23.co.za/club-scrub</text>
+  <rect x="60" y="120" width="1080" height="586" fill="url(#glow)"/>
+  <text x="112" y="198" fill="#D9F99D" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">SPORTS INDUSTRY</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="86" font-weight="900">Club Scrub</text>
+  <text x="116" y="344" fill="#DCFCE7" font-family="Inter, Arial, sans-serif" font-size="24">Service packages, pricing and booking-focused CTAs.</text>
+  <rect x="116" y="418" width="236" height="58" rx="18" fill="#BEF264"/>
+  <text x="154" y="454" fill="#07120A" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">See packages</text>
+  <rect x="704" y="214" width="334" height="356" rx="34" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  <rect x="754" y="264" width="234" height="62" rx="18" fill="#BEF264" fill-opacity="0.9"/>
+  <rect x="754" y="358" width="234" height="62" rx="18" fill="#FFFFFF" fill-opacity="0.16"/>
+  <rect x="754" y="452" width="234" height="62" rx="18" fill="#FFFFFF" fill-opacity="0.1"/>
+</svg>

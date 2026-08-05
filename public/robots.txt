@@ -1,0 +1,28 @@
+# AI Search crawlers — explicitly welcomed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Training-only crawlers — blocked (search AI remains open above)
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# General crawlers
+User-agent: *
+Allow: /
+
+Sitemap: https://db23.co.za/sitemap.xml

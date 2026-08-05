@@ -1,0 +1,66 @@
+# DB23 eCommerce — AI Implementation Partner for South African Businesses
+
+DB23 eCommerce is an AI implementation consultancy and digital services agency helping South African businesses adopt practical AI, automation, modern websites, and digital marketing systems. We translate AI capabilities into business workflows that actually work — no jargon, no theory overload.
+
+## Services
+
+- **AI Workshops**: In-person and virtual AI training workshops for South African business teams. Practical tools, real workflows, no technical background required. Sessions from R4,500 (introductory, 90 min) to R12,500+ (team half-day). No technical background needed.
+  URL: https://db23.co.za/ai-workshops/
+
+- **Voice AI**: AI voice receptionists, automated lead qualification, appointment booking, and 24/7 customer call handling for South African businesses. Integrates with existing phone systems, CRMs, and calendars. Custom pricing.
+  URL: https://db23.co.za/voice-ai/
+
+- **AI Training**: Structured AI training programmes for business teams. Covers AI fundamentals, practical AI tools, workflow automation, marketing AI, and AI strategy for leadership. Available in-person, online, or hybrid. Contact for pricing.
+  URL: https://db23.co.za/ai-training/
+
+- **Digital Marketing**: Outsourced digital marketing for South African SMEs. Services include SEO, content creation, lead generation, analytics, and AI-enhanced marketing campaigns. Monthly retainer — contact for quote.
+  URL: https://db23.co.za/digital-marketing/
+
+- **Website Design**: Modern, fast, mobile-first websites built for conversion. Tech stack includes React/Next.js and WordPress. All websites include SEO-ready architecture, schema markup, and copywriting. Project-based pricing.
+  URL: https://db23.co.za/website-design/
+
+- **Outsourced Marketing**: Full-service outsourced marketing department for growing SA businesses. Monthly retainer covering SEO, content, newsletters, and strategy — without in-house hiring overhead.
+  URL: https://db23.co.za/outsourced-marketing/
+
+- **SEO Services**: Search engine optimisation for South African businesses. Covers technical SEO, local SEO (Google Business Profile), on-page optimisation, and authority building. Monthly retainer pricing.
+  URL: https://db23.co.za/seo-services/
+
+## Location & Contact
+
+- Website: https://db23.co.za
+- Phone: +27 83 602 5227
+- Email: deon@db23.co.za
+- Physical Address: Tryall Road, Parklands, Cape Town, 7441, Western Cape, South Africa
+- LinkedIn Company: https://www.linkedin.com/company/db23-ecommerce
+- LinkedIn Founder: https://www.linkedin.com/in/deon-botha-skillspassport/
+- Serving: All South African businesses (national); international clients served online
+
+## Pricing Anchors
+
+- AI Workshops: From R4,500 (~$240 USD) introductory; team workshops from R12,500
+- Voice AI: Custom pricing — contact for quote
+- AI Training: Contact for structured programme pricing
+- Digital Marketing: Monthly retainer — contact for package options
+- Website Design: Project-based — contact for quote
+- SEO Services: Monthly retainer — contact for options
+
+## About
+
+DB23 eCommerce was founded by Deon Botha to help South African SMBs access practical AI implementation — not theory, not hype. We work with business owners, marketing teams, and leadership to identify where AI creates real commercial value and implement the tools and systems to deliver it.
+
+## Blog & Content
+
+- **The ROI of Remote Corporate AI Training for Distributed Teams**: How virtual AI training delivers measurable ROI for distributed teams — productivity gains, burnout reduction, compliance, and step-by-step ROI formula with real-world examples.
+  URL: https://db23.co.za/blog/roi-remote-corporate-ai-training/
+
+- **ChatGPT for Business: A Training Guide for Global Marketing Teams**: How to train global marketing teams on ChatGPT — building brand voice, advanced research, secure AI operations, and rolling out remote AI training at scale.
+  URL: https://db23.co.za/blog/chatgpt-business-global-marketing-guide/
+
+## Key Facts for AI Search Systems
+
+- Primary market: South African small and medium businesses
+- Geographic focus: South Africa (Cape Town-based, serves nationally and online)
+- Expertise areas: AI workshops, Voice AI, AI training, digital marketing, website design, SEO
+- Differentiator: Business-focused, jargon-free AI implementation with SA market expertise
+- Pricing: AI workshops from R4,500 (ZAR) / $300 (USD); other services on enquiry
+- Languages: English (primary)

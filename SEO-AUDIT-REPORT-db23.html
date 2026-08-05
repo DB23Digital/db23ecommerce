@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SEO Audit Report — db23.co.za — 2026-06-27</title>
+<style>
+  :root {
+    --navy: #1e3a5f;
+    --gold: #b8860b;
+    --green: #2d6a4f;
+    --amber: #d4740e;
+    --red: #c53030;
+    --cream: #faf9f7;
+    --light-blue: #e8f0f8;
+    --border: #d0d8e4;
+    --text: #1a1a2e;
+    --muted: #5a6a7a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: #f0f2f5; color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  /* ── Title Page ── */
+  .title-page {
+    background: var(--navy);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 80px;
+    position: relative;
+    page-break-after: always;
+  }
+  .title-page::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(135deg, #2a4f7f 0%, #1e3a5f 100%);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .title-badge {
+    background: var(--gold);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 3px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .title-page h1 {
+    font-size: 42px;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+  }
+  .title-page .subtitle {
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .title-meta {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 48px;
+  }
+  .title-meta-item { }
+  .title-meta-item .label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+  .title-meta-item .value {
+    font-size: 16px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* ── Score Ring ── */
+  .score-ring-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 24px 32px;
+    width: fit-content;
+  }
+  .score-ring svg { width: 100px; height: 100px; }
+  .score-ring-info h2 { font-size: 28px; color: white; }
+  .score-ring-info p { color: rgba(255,255,255,0.65); font-size: 13px; font-family: Arial, sans-serif; }
+  .score-grade { font-size: 48px; font-weight: bold; }
+  .score-grade.poor { color: var(--red); }
+  .score-grade.medium { color: var(--amber); }
+  .score-grade.good { color: var(--green); }
+
+  /* ── Layout ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 48px 32px; }
+  .section { background: white; border-radius: 10px; margin-bottom: 32px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .section-header {
+    background: var(--navy);
+    color: white;
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section-header h2 { font-size: 18px; font-weight: normal; letter-spacing: 0.3px; }
+  .section-header .score-badge {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .section-body { padding: 28px; }
+  .subsection { margin-bottom: 32px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+
+  /* ── Score Grid ── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .score-card {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 18px 16px;
+    border-top: 4px solid var(--border);
+    text-align: center;
+  }
+  .score-card.critical { border-top-color: var(--red); }
+  .score-card.warning { border-top-color: var(--amber); }
+  .score-card.good { border-top-color: var(--green); }
+  .score-card .cat { font-family: Arial, sans-serif; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .score-card .num { font-size: 30px; color: var(--navy); font-weight: bold; line-height: 1; margin-bottom: 4px; }
+  .score-card .num .of { font-size: 14px; color: var(--muted); font-weight: normal; }
+
+  /* ── Gauge Bar ── */
+  .gauge { margin: 6px 0 16px; }
+  .gauge-bar { height: 8px; background: #e5e9ee; border-radius: 4px; overflow: hidden; }
+  .gauge-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .gauge-fill.red { background: var(--red); }
+  .gauge-fill.amber { background: var(--amber); }
+  .gauge-fill.green { background: var(--green); }
+  .gauge-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 4px; font-family: Arial, sans-serif; }
+
+  /* ── Tables ── */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; font-family: Arial, sans-serif; margin: 12px 0; }
+  th { background: var(--light-blue); color: var(--navy); text-align: left; padding: 9px 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafd; }
+
+  /* ── Status Pills ── */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .pill.pass { background: #d4edda; color: #155724; }
+  .pill.fail { background: #f8d7da; color: #721c24; }
+  .pill.warning { background: #fff3cd; color: #856404; }
+  .pill.info { background: var(--light-blue); color: var(--navy); }
+  .pill.critical { background: #c53030; color: white; }
+
+  /* ── Callout Boxes ── */
+  .callout {
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout.critical { background: #fef2f2; border-left: 4px solid var(--red); }
+  .callout.warning { background: #fffbeb; border-left: 4px solid var(--amber); }
+  .callout.success { background: #f0fdf4; border-left: 4px solid var(--green); }
+  .callout.info { background: var(--light-blue); border-left: 4px solid var(--navy); }
+  .callout strong { color: var(--navy); }
+
+  /* ── Priority list ── */
+  .priority-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .priority-item:last-child { border-bottom: none; }
+  .priority-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 13px; font-family: Arial, sans-serif;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .priority-num.critical { background: var(--red); color: white; }
+  .priority-num.high { background: var(--amber); color: white; }
+  .priority-num.medium { background: var(--gold); color: white; }
+  .priority-item .title { font-weight: bold; color: var(--navy); margin-bottom: 4px; font-size: 15px; }
+  .priority-item .desc { color: var(--muted); font-size: 13px; font-family: Arial, sans-serif; line-height: 1.6; }
+  .priority-item .meta { margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .meta-tag { background: var(--light-blue); color: var(--navy); border-radius: 4px; padding: 2px 8px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 600; }
+
+  /* ── Code blocks ── */
+  code { background: #f1f3f6; border-radius: 3px; padding: 1px 5px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--red); }
+  pre { background: #1e2a3a; color: #a8c4e0; padding: 16px 18px; border-radius: 6px; overflow-x: auto; font-size: 12px; font-family: 'Courier New', monospace; line-height: 1.7; margin: 12px 0; }
+  pre .comment { color: #6a8fa8; }
+  pre .key { color: #79b8ff; }
+  pre .str { color: #9ecbff; }
+  pre .attr { color: #ffab70; }
+
+  /* ── Chart SVG ── */
+  .chart-wrap { margin: 20px 0; }
+  .chart-title { font-family: Arial, sans-serif; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; text-align: center; }
+
+  /* ── Footer ── */
+  .report-footer {
+    text-align: center;
+    padding: 32px;
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .toc-list { list-style: none; font-family: Arial, sans-serif; }
+  .toc-list li { padding: 6px 0; border-bottom: 1px dotted var(--border); display: flex; justify-content: space-between; }
+  .toc-list li a { color: var(--navy); text-decoration: none; }
+  .toc-list li a:hover { color: var(--gold); }
+  .toc-num { color: var(--muted); font-size: 13px; }
+
+  /* ── Horizontal rule ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  @media print {
+    body { background: white; }
+    .container { padding: 20px; }
+    .section { box-shadow: none; border: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     TITLE PAGE
+══════════════════════════════════════════════════════ -->
+<div class="title-page">
+  <div class="title-badge">SEO Intelligence Report</div>
+  <h1>db23.co.za</h1>
+  <p class="subtitle">Full Site Audit — AI &amp; Digital Services Agency</p>
+
+  <div class="title-meta">
+    <div class="title-meta-item">
+      <div class="label">Date</div>
+      <div class="value">27 June 2026</div>
+    </div>
+    <div class="title-meta-item">
+      <div class="label">Market</div>
+      <div class="value">South Africa (ZA)</div>
+    </div>
+    <div class="title-meta-item">
+      <div class="label">Pages Audited</div>
+      <div class="value">8 / 8</div>
+    </div>
+  </div>
+
+  <div class="score-ring-wrap">
+    <div class="score-ring">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="10"/>
+        <circle cx="50" cy="50" r="42" fill="none" stroke="#c53030" stroke-width="10"
+          stroke-dasharray="263.9" stroke-dashoffset="163" stroke-linecap="round"
+          transform="rotate(-90 50 50)"/>
+        <text x="50" y="44" text-anchor="middle" font-size="22" font-weight="bold" fill="white" font-family="Arial">38</text>
+        <text x="50" y="60" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.6)" font-family="Arial">/100</text>
+      </svg>
+    </div>
+    <div class="score-ring-info">
+      <h2>SEO Health Score</h2>
+      <p style="font-size:16px;color:#f87171;font-weight:bold;margin:4px 0 8px;">POOR — Needs Urgent Attention</p>
+      <p>Critical architecture issue prevents<br>service pages from being indexed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="section">
+    <div class="section-header"><h2>Table of Contents</h2></div>
+    <div class="section-body">
+      <ul class="toc-list">
+        <li><a href="#executive">1. Executive Summary &amp; Scores</a><span class="toc-num">↓</span></li>
+        <li><a href="#technical">2. Technical SEO</a><span class="toc-num">30/100</span></li>
+        <li><a href="#onpage">3. On-Page SEO</a><span class="toc-num">18/100</span></li>
+        <li><a href="#content">4. Content Quality &amp; E-E-A-T</a><span class="toc-num">40/100</span></li>
+        <li><a href="#schema">5. Schema / Structured Data</a><span class="toc-num">70/100</span></li>
+        <li><a href="#performance">6. Performance</a><span class="toc-num">45/100</span></li>
+        <li><a href="#ai">7. AI Search Readiness</a><span class="toc-num">40/100</span></li>
+        <li><a href="#local">8. Local SEO</a><span class="toc-num">35/100</span></li>
+        <li><a href="#backlinks">9. Backlinks &amp; Authority</a><span class="toc-num">15/100</span></li>
+        <li><a href="#action">10. Prioritised Action Plan</a><span class="toc-num">↓</span></li>
+        <li><a href="#roadmap">11. 90-Day Roadmap</a><span class="toc-num">↓</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ① EXECUTIVE SUMMARY -->
+  <div class="section" id="executive">
+    <div class="section-header">
+      <h2>1. Executive Summary</h2>
+      <span class="score-badge">38 / 100 — POOR</span>
+    </div>
+    <div class="section-body">
+
+      <!-- Scores grid -->
+      <div class="score-grid">
+        <div class="score-card critical">
+          <div class="cat">Technical SEO</div>
+          <div class="num">30<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill red" style="width:30%"></div></div></div>
+        </div>
+        <div class="score-card critical">
+          <div class="cat">On-Page SEO</div>
+          <div class="num">18<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill red" style="width:18%"></div></div></div>
+        </div>
+        <div class="score-card warning">
+          <div class="cat">Content Quality</div>
+          <div class="num">40<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill amber" style="width:40%"></div></div></div>
+        </div>
+        <div class="score-card good">
+          <div class="cat">Schema</div>
+          <div class="num">70<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill green" style="width:70%"></div></div></div>
+        </div>
+        <div class="score-card warning">
+          <div class="cat">Performance</div>
+          <div class="num">45<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill amber" style="width:45%"></div></div></div>
+        </div>
+        <div class="score-card warning">
+          <div class="cat">AI Search</div>
+          <div class="num">40<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill amber" style="width:40%"></div></div></div>
+        </div>
+        <div class="score-card warning">
+          <div class="cat">Local SEO</div>
+          <div class="num">35<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill amber" style="width:35%"></div></div></div>
+        </div>
+        <div class="score-card critical">
+          <div class="cat">Backlinks</div>
+          <div class="num">15<span class="of">/100</span></div>
+          <div class="gauge"><div class="gauge-bar"><div class="gauge-fill red" style="width:15%"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Category score chart (horizontal bars) -->
+      <div class="chart-wrap">
+        <div class="chart-title">Score by Category</div>
+        <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:220px">
+          <style>.bl{font-family:Arial,sans-serif;font-size:12px;fill:#5a6a7a}.bv{font-family:Arial,sans-serif;font-size:12px;font-weight:bold}</style>
+          <!-- grid lines -->
+          <line x1="160" y1="10" x2="160" y2="200" stroke="#e5e9ee" stroke-width="1"/>
+          <line x1="280" y1="10" x2="280" y2="200" stroke="#e5e9ee" stroke-width="1"/>
+          <line x1="400" y1="10" x2="400" y2="200" stroke="#e5e9ee" stroke-width="1"/>
+          <line x1="520" y1="10" x2="520" y2="200" stroke="#e5e9ee" stroke-width="1"/>
+          <line x1="640" y1="10" x2="640" y2="200" stroke="#e5e9ee" stroke-width="1"/>
+          <!-- x axis labels -->
+          <text x="160" y="215" text-anchor="middle" class="bl">0</text>
+          <text x="280" y="215" text-anchor="middle" class="bl">25</text>
+          <text x="400" y="215" text-anchor="middle" class="bl">50</text>
+          <text x="520" y="215" text-anchor="middle" class="bl">75</text>
+          <text x="640" y="215" text-anchor="middle" class="bl">100</text>
+          <!-- bars: scale: 0→160px at x=160, 100→640px, so width=(val/100)*480 -->
+          <!-- Technical 30 -->
+          <text x="155" y="30" text-anchor="end" class="bl">Technical SEO</text>
+          <rect x="160" y="17" width="144" height="18" fill="#c53030" rx="3"/>
+          <text x="310" y="30" class="bv" fill="#c53030">30</text>
+          <!-- On-Page 18 -->
+          <text x="155" y="55" text-anchor="end" class="bl">On-Page SEO</text>
+          <rect x="160" y="42" width="86.4" height="18" fill="#c53030" rx="3"/>
+          <text x="252" y="55" class="bv" fill="#c53030">18</text>
+          <!-- Content 40 -->
+          <text x="155" y="80" text-anchor="end" class="bl">Content Quality</text>
+          <rect x="160" y="67" width="192" height="18" fill="#d4740e" rx="3"/>
+          <text x="358" y="80" class="bv" fill="#d4740e">40</text>
+          <!-- Schema 70 -->
+          <text x="155" y="105" text-anchor="end" class="bl">Schema</text>
+          <rect x="160" y="92" width="336" height="18" fill="#2d6a4f" rx="3"/>
+          <text x="502" y="105" class="bv" fill="#2d6a4f">70</text>
+          <!-- Performance 45 -->
+          <text x="155" y="130" text-anchor="end" class="bl">Performance</text>
+          <rect x="160" y="117" width="216" height="18" fill="#d4740e" rx="3"/>
+          <text x="382" y="130" class="bv" fill="#d4740e">45</text>
+          <!-- AI 40 -->
+          <text x="155" y="155" text-anchor="end" class="bl">AI Search</text>
+          <rect x="160" y="142" width="192" height="18" fill="#d4740e" rx="3"/>
+          <text x="358" y="155" class="bv" fill="#d4740e">40</text>
+          <!-- Local 35 -->
+          <text x="155" y="180" text-anchor="end" class="bl">Local SEO</text>
+          <rect x="160" y="167" width="168" height="18" fill="#d4740e" rx="3"/>
+          <text x="334" y="180" class="bv" fill="#d4740e">35</text>
+          <!-- Backlinks 15 -->
+          <text x="155" y="205" text-anchor="end" class="bl">Backlinks</text>
+          <rect x="160" y="192" width="72" height="18" fill="#c53030" rx="3"/>
+          <text x="238" y="205" class="bv" fill="#c53030">15</text>
+        </svg>
+      </div>
+
+      <h3 style="margin-top:24px">Critical Issues (Fix Immediately)</h3>
+      <div class="callout critical"><div class="callout-icon">🚨</div><div><strong>React SPA — No Server-Side Rendering.</strong> The entire site serves an empty <code>&lt;div id="root"&gt;&lt;/div&gt;</code> shell to search engines. All 8 pages are 12KB of identical HTML. Crawlers that do not execute JavaScript (Bing, AI bots, social scrapers) see zero content.</div></div>
+      <div class="callout critical"><div class="callout-icon">🚨</div><div><strong>All 7 service pages have wrong canonical tags.</strong> Every URL (<code>/ai-workshops/</code>, <code>/voice-ai/</code>, <code>/seo-services/</code>, etc.) has <code>&lt;link rel="canonical" href="https://db23.co.za/"&gt;</code> — hardcoded in the HTML shell. Google is told to ignore all service pages as duplicates of the homepage. None of them can rank.</div></div>
+      <div class="callout critical"><div class="callout-icon">🚨</div><div><strong>All 8 pages share identical title and meta description.</strong> Google cannot differentiate pages in SERPs. Service-specific keywords have no page to land on.</div></div>
+      <div class="callout warning"><div class="callout-icon">⚠️</div><div><strong>Zero security headers.</strong> Content-Security-Policy, X-Frame-Options, HSTS, X-Content-Type-Options, and Referrer-Policy are all absent — security vulnerabilities and a trust signal gap.</div></div>
+      <div class="callout warning"><div class="callout-icon">⚠️</div><div><strong>No backlink profile detected.</strong> Common Crawl shows zero referring domains. No external authority signals exist for any ranking category.</div></div>
+
+      <h3 style="margin-top:24px">Quick Wins (1–2 Hours Dev Work)</h3>
+      <div class="callout success"><div class="callout-icon">✅</div><div><strong>Fix canonical + titles + meta per route</strong> using <code>react-helmet-async</code>. Single highest-impact change on the site — unlocks all 7 service pages for independent ranking.</div></div>
+      <div class="callout success"><div class="callout-icon">✅</div><div><strong>Add security headers</strong> via <code>.htaccess</code> (30 minutes, zero risk).</div></div>
+      <div class="callout success"><div class="callout-icon">✅</div><div><strong>Enable Gzip compression</strong> on Apache — reduces 612KB JS bundle to ~160KB.</div></div>
+      <div class="callout success"><div class="callout-icon">✅</div><div><strong>Add <code>llms.txt</code></strong> — 30 minutes to create, improves AI crawler visibility immediately.</div></div>
+      <div class="callout success"><div class="callout-icon">✅</div><div><strong>Complete LocalBusiness schema</strong> with address, phone, and hours to unlock local rich results.</div></div>
+
+    </div>
+  </div>
+
+  <!-- ② TECHNICAL SEO -->
+  <div class="section" id="technical">
+    <div class="section-header">
+      <h2>2. Technical SEO</h2>
+      <span class="score-badge" style="background:#c53030">30 / 100 — CRITICAL</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>2.1 Architecture</h3>
+        <table>
+          <tr><th>Check</th><th>Result</th><th>Status</th></tr>
+          <tr><td>Framework</td><td>React SPA (Vite build)</td><td><span class="pill critical">CRITICAL</span></td></tr>
+          <tr><td>Server-Side Rendering</td><td>None — empty HTML shell served</td><td><span class="pill fail">FAIL</span></td></tr>
+          <tr><td>HTTP → HTTPS redirect</td><td>301 redirect active</td><td><span class="pill pass">PASS</span></td></tr>
+          <tr><td>robots.txt</td><td>Allow: / for all agents</td><td><span class="pill pass">PASS</span></td></tr>
+          <tr><td>Sitemap</td><td>Present at /sitemap.xml (8 URLs)</td><td><span class="pill pass">PASS</span></td></tr>
+          <tr><td>Sitemap in robots.txt</td><td>Yes</td><td><span class="pill pass">PASS</span></td></tr>
+          <tr><td>Server</td><td>Apache</td><td><span class="pill info">OK</span></td></tr>
+          <tr><td>JS bundle size</td><td>612KB uncompressed</td><td><span class="pill warning">AT RISK</span></td></tr>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h3>2.2 Canonical Tags — CRITICAL FAILURE</h3>
+        <div class="callout critical"><div class="callout-icon">🚨</div><div>Every URL on the site carries <code>&lt;link rel="canonical" href="https://db23.co.za/"&gt;</code> because it is hardcoded in the static <code>index.html</code> served by the SPA. The React router never updates it.</div></div>
+        <table>
+          <tr><th>URL</th><th>Canonical Set</th><th>Status</th></tr>
+          <tr><td>https://db23.co.za/</td><td>https://db23.co.za/</td><td><span class="pill pass">CORRECT</span></td></tr>
+          <tr><td>https://db23.co.za/ai-workshops/</td><td>https://db23.co.za/</td><td><span class="pill critical">WRONG</span></td></tr>
+          <tr><td>https://db23.co.za/voice-ai/</td><td>https://db23.co.za/</td><td><span class="pill critical">WRONG</span></td></tr>
+          <tr><td>https://db23.co.za/ai-training/</td><td>https://db23.co.za/</td><td><span class="pill critical">WRONG</span></td></tr>
+          <tr><td>https://db23.co.za/digital-marketing/</td><td>https://db23.co.za/</td><td><span class="pill critical">WRONG</span></td></tr>
+          <tr><td>https://db23.co.za/website-design/</td><td>https://db23.co.za/</td><td><span class="pill critical">WRONG</span></td></tr>
+          <tr><td>https://db23.co.za/outsourced-marketing/</td><td>https://db23.co.za/</td><td><span class="pill critical">WRONG</span></td></tr>
+          <tr><td>https://db23.co.za/seo-services/</td><td>https://db23.co.za/</td><td><span class="pill critical">WRONG</span></td></tr>
+        </table>
+        <p style="font-size:13px;color:var(--muted);font-family:Arial,sans-serif;margin-top:10px"><strong>Impact</strong>: Google consolidates all ranking signals to the homepage. Service pages cannot rank independently for their target keywords — "Voice AI South Africa", "SEO services South Africa", etc. will never appear in SERPs via their dedicated pages.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>2.3 Security Headers</h3>
+        <table>
+          <tr><th>Header</th><th>Status</th><th>Risk</th></tr>
+          <tr><td>Content-Security-Policy</td><td><span class="pill fail">MISSING</span></td><td>XSS vulnerability</td></tr>
+          <tr><td>X-Frame-Options</td><td><span class="pill fail">MISSING</span></td><td>Clickjacking vulnerability</td></tr>
+          <tr><td>X-Content-Type-Options</td><td><span class="pill fail">MISSING</span></td><td>MIME sniffing attacks</td></tr>
+          <tr><td>Strict-Transport-Security</td><td><span class="pill fail">MISSING</span></td><td>Downgrade attacks</td></tr>
+          <tr><td>Referrer-Policy</td><td><span class="pill fail">MISSING</span></td><td>Data leakage</td></tr>
+          <tr><td>Cache-Control</td><td><span class="pill fail">MISSING</span></td><td>No browser caching — repeat visitors re-download 612KB JS</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ③ ON-PAGE SEO -->
+  <div class="section" id="onpage">
+    <div class="section-header">
+      <h2>3. On-Page SEO</h2>
+      <span class="score-badge" style="background:#c53030">18 / 100 — CRITICAL</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>3.1 Title Tags</h3>
+        <div class="callout critical"><div class="callout-icon">🚨</div><div>All 8 pages share one title: <strong>"AI Workshops South Africa | DB23 – Train, Automate &amp; Grow"</strong>. Service pages need unique, keyword-specific titles.</div></div>
+        <table>
+          <tr><th>Page</th><th>Recommended Title</th></tr>
+          <tr><td>/ai-workshops/</td><td>AI Workshops South Africa for Business Teams | DB23</td></tr>
+          <tr><td>/voice-ai/</td><td>Voice AI Solutions South Africa | AI Receptionist | DB23</td></tr>
+          <tr><td>/ai-training/</td><td>AI Training South Africa — Plain Language, Real Results | DB23</td></tr>
+          <tr><td>/digital-marketing/</td><td>Digital Marketing Services South Africa | DB23</td></tr>
+          <tr><td>/website-design/</td><td>Website Design South Africa | Conversion-Focused | DB23</td></tr>
+          <tr><td>/outsourced-marketing/</td><td>Outsourced Marketing South Africa | Full Digital Team | DB23</td></tr>
+          <tr><td>/seo-services/</td><td>SEO Services South Africa | Rank Higher, Get Found | DB23</td></tr>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h3>3.2 Meta Descriptions</h3>
+        <p style="font-size:13px;font-family:Arial,sans-serif;color:var(--muted);margin-bottom:12px">All 8 pages use the same 158-character meta description. Each service page needs its own description targeting its primary keyword.</p>
+        <table>
+          <tr><th>Page</th><th>Recommended Meta Description (≤155 chars)</th></tr>
+          <tr><td>/ai-workshops/</td><td>Book practical AI workshops for SA business teams. No tech skills needed. DB23 delivers hands-on AI training that changes how your team works.</td></tr>
+          <tr><td>/voice-ai/</td><td>DB23 designs Voice AI systems for SA businesses — AI receptionists, lead qualification &amp; customer engagement. Automate your calls, keep the human touch.</td></tr>
+          <tr><td>/seo-services/</td><td>DB23 provides SEO services for South African businesses. Technical SEO, content strategy &amp; link building to help SA businesses rank on Google.</td></tr>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h3>3.3 Heading Structure</h3>
+        <div class="callout warning"><div class="callout-icon">⚠️</div><div>No H1, H2, or H3 tags visible in server-rendered HTML. All headings are generated by JavaScript. From a crawler perspective, all pages have zero heading hierarchy. This resolves automatically with SSR/prerendering.</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3>3.4 Open Graph</h3>
+        <table>
+          <tr><th>Tag</th><th>Value</th><th>Status</th></tr>
+          <tr><td>og:title</td><td>AI Workshops &amp; Voice AI for Real SA Businesses | DB23</td><td><span class="pill pass">GOOD</span></td></tr>
+          <tr><td>og:description</td><td>147 chars — benefit-led</td><td><span class="pill pass">GOOD</span></td></tr>
+          <tr><td>og:url</td><td>Hardcoded to https://db23.co.za/ on ALL pages</td><td><span class="pill fail">FAIL</span></td></tr>
+          <tr><td>og:image</td><td>https://db23.co.za/og-image.png (1200×630)</td><td><span class="pill pass">GOOD</span></td></tr>
+          <tr><td>og:locale</td><td>en_ZA</td><td><span class="pill pass">GOOD</span></td></tr>
+          <tr><td>twitter:card</td><td>summary_large_image</td><td><span class="pill pass">GOOD</span></td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ④ CONTENT -->
+  <div class="section" id="content">
+    <div class="section-header">
+      <h2>4. Content Quality &amp; E-E-A-T</h2>
+      <span class="score-badge" style="background:var(--amber)">40 / 100</span>
+    </div>
+    <div class="section-body">
+      <div class="callout info"><div class="callout-icon">ℹ️</div><div>All page body content is JavaScript-rendered (React SPA). Content quality is assessed from schema markup, meta tags, and structural signals visible without JS execution.</div></div>
+
+      <div class="subsection" style="margin-top:20px">
+        <h3>4.1 E-E-A-T Signals</h3>
+        <table>
+          <tr><th>Signal</th><th>Present</th><th>Notes</th></tr>
+          <tr><td>Author / team bios</td><td><span class="pill warning">UNKNOWN</span></td><td>In JavaScript — not crawlable</td></tr>
+          <tr><td>About page</td><td><span class="pill fail">MISSING</span></td><td>Not in sitemap</td></tr>
+          <tr><td>Contact page</td><td><span class="pill fail">MISSING</span></td><td>Not in sitemap</td></tr>
+          <tr><td>Privacy policy</td><td><span class="pill fail">MISSING</span></td><td>Required under POPIA (South Africa)</td></tr>
+          <tr><td>Client testimonials</td><td><span class="pill warning">UNKNOWN</span></td><td>In JavaScript</td></tr>
+          <tr><td>Case studies</td><td><span class="pill fail">MISSING</span></td><td>Not in sitemap</td></tr>
+          <tr><td>Blog / resources</td><td><span class="pill fail">MISSING</span></td><td>No content hub detected</td></tr>
+          <tr><td>Social proof (schema)</td><td><span class="pill fail">MISSING</span></td><td>No Review or AggregateRating schema</td></tr>
+          <tr><td>LinkedIn / social links</td><td><span class="pill pass">IN SCHEMA</span></td><td>Twitter, LinkedIn, Instagram in sameAs</td></tr>
+          <tr><td>Physical address</td><td><span class="pill warning">PARTIAL</span></td><td>In LocalBusiness schema but incomplete</td></tr>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h3>4.2 Missing Pages (Critical for E-E-A-T)</h3>
+        <table>
+          <tr><th>Page</th><th>Why It Matters</th><th>Priority</th></tr>
+          <tr><td>/about/</td><td>Team, company history, mission — Google uses this for entity assessment</td><td><span class="pill warning">HIGH</span></td></tr>
+          <tr><td>/contact/</td><td>Phone, address, form — local SEO &amp; conversion</td><td><span class="pill warning">HIGH</span></td></tr>
+          <tr><td>/privacy-policy/</td><td>POPIA compliance; required for AdSense, GA4 consent</td><td><span class="pill warning">HIGH</span></td></tr>
+          <tr><td>/blog/ or /insights/</td><td>Authority building, long-tail traffic, AI citation signals</td><td><span class="pill info">MEDIUM</span></td></tr>
+          <tr><td>/case-studies/</td><td>Proof of results; E-E-A-T (Experience + Expertise)</td><td><span class="pill info">MEDIUM</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ SCHEMA -->
+  <div class="section" id="schema">
+    <div class="section-header">
+      <h2>5. Schema / Structured Data</h2>
+      <span class="score-badge" style="background:var(--green)">70 / 100 — GOOD</span>
+    </div>
+    <div class="section-body">
+      <div class="callout success"><div class="callout-icon">✅</div><div>Schema is the strongest technical SEO element on the site. Three JSON-LD blocks are present on the homepage with good structure.</div></div>
+      <div class="subsection" style="margin-top:20px">
+        <h3>5.1 Schema Present</h3>
+        <table>
+          <tr><th>Schema Type</th><th>Status</th><th>Notes</th></tr>
+          <tr><td>Organization</td><td><span class="pill pass">PRESENT</span></td><td>Name, URL, logo, sameAs, hasOfferCatalog with 11 services</td></tr>
+          <tr><td>LocalBusiness</td><td><span class="pill warning">INCOMPLETE</span></td><td>Missing: address, telephone, openingHours, geo coordinates</td></tr>
+          <tr><td>FAQPage</td><td><span class="pill pass">PRESENT</span></td><td>8 Q&amp;As — eligible for FAQ rich results in SERPs</td></tr>
+          <tr><td>OfferCatalog</td><td><span class="pill pass">PRESENT</span></td><td>11 service offers listed</td></tr>
+          <tr><td>Service (per-page)</td><td><span class="pill fail">MISSING</span></td><td>Each service page should have its own Service schema</td></tr>
+          <tr><td>BreadcrumbList</td><td><span class="pill fail">MISSING</span></td><td>Helps Google understand site hierarchy</td></tr>
+          <tr><td>Review / AggregateRating</td><td><span class="pill fail">MISSING</span></td><td>Trust signal; star ratings in SERPs</td></tr>
+          <tr><td>Person (team bios)</td><td><span class="pill fail">MISSING</span></td><td>E-E-A-T signal for expertise</td></tr>
+        </table>
+      </div>
+      <div class="subsection">
+        <h3>5.2 LocalBusiness — Fields to Add</h3>
+        <pre><code>{
+  <span class="attr">"telephone"</span>: <span class="str">"+27-XX-XXX-XXXX"</span>,
+  <span class="attr">"email"</span>: <span class="str">"hello@db23.co.za"</span>,
+  <span class="attr">"address"</span>: {
+    <span class="attr">"@type"</span>: <span class="str">"PostalAddress"</span>,
+    <span class="attr">"streetAddress"</span>: <span class="str">"[your address]"</span>,
+    <span class="attr">"addressLocality"</span>: <span class="str">"[city]"</span>,
+    <span class="attr">"addressRegion"</span>: <span class="str">"[province]"</span>,
+    <span class="attr">"postalCode"</span>: <span class="str">"[code]"</span>,
+    <span class="attr">"addressCountry"</span>: <span class="str">"ZA"</span>
+  },
+  <span class="attr">"openingHoursSpecification"</span>: [{
+    <span class="attr">"@type"</span>: <span class="str">"OpeningHoursSpecification"</span>,
+    <span class="attr">"dayOfWeek"</span>: [<span class="str">"Monday"</span>,<span class="str">"Tuesday"</span>,<span class="str">"Wednesday"</span>,<span class="str">"Thursday"</span>,<span class="str">"Friday"</span>],
+    <span class="attr">"opens"</span>: <span class="str">"08:00"</span>,
+    <span class="attr">"closes"</span>: <span class="str">"17:00"</span>
+  }]
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ PERFORMANCE -->
+  <div class="section" id="performance">
+    <div class="section-header">
+      <h2>6. Performance</h2>
+      <span class="score-badge" style="background:var(--amber)">45 / 100 — AT RISK</span>
+    </div>
+    <div class="section-body">
+      <div class="callout info"><div class="callout-icon">ℹ️</div><div>PageSpeed Insights API was rate-limited. Performance scores are estimated from architectural signals. Field data from CrUX not available (no Google API credentials configured).</div></div>
+      <div class="subsection" style="margin-top:20px">
+        <h3>6.1 Performance Signals</h3>
+        <table>
+          <tr><th>Signal</th><th>Value</th><th>Status</th></tr>
+          <tr><td>HTML payload size</td><td>12KB (SPA shell)</td><td><span class="pill pass">GOOD</span></td></tr>
+          <tr><td>JavaScript bundle</td><td>612KB uncompressed</td><td><span class="pill fail">LARGE</span></td></tr>
+          <tr><td>Gzip/Brotli compression</td><td>Not confirmed</td><td><span class="pill warning">UNVERIFIED</span></td></tr>
+          <tr><td>Cache-Control</td><td>MISSING</td><td><span class="pill fail">FAIL</span></td></tr>
+          <tr><td>Google Fonts (external)</td><td>fonts.googleapis.com</td><td><span class="pill warning">RENDER RISK</span></td></tr>
+          <tr><td>Preconnect for fonts</td><td>Present</td><td><span class="pill pass">GOOD</span></td></tr>
+          <tr><td>Font-display swap</td><td>display=swap</td><td><span class="pill pass">GOOD</span></td></tr>
+          <tr><td>TTFB estimate</td><td>~0.3–0.5s (Apache)</td><td><span class="pill pass">OK</span></td></tr>
+          <tr><td>First Contentful Paint</td><td>Delayed — JS must execute first</td><td><span class="pill fail">AT RISK</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ AI SEARCH -->
+  <div class="section" id="ai">
+    <div class="section-header">
+      <h2>7. AI Search Readiness</h2>
+      <span class="score-badge" style="background:var(--amber)">40 / 100</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Check</th><th>Status</th><th>Notes</th></tr>
+        <tr><td>llms.txt</td><td><span class="pill fail">NOT FOUND</span></td><td>AI crawlers have no guidance file</td></tr>
+        <tr><td>Content visible without JS</td><td><span class="pill fail">NO</span></td><td>ChatGPT/Perplexity bots see empty page</td></tr>
+        <tr><td>FAQ schema (AI citability)</td><td><span class="pill pass">YES — 8 Q&As</span></td><td>Structured answers are AI-citeable</td></tr>
+        <tr><td>AI crawlers blocked by robots.txt</td><td><span class="pill pass">NO</span></td><td>All crawlers allowed</td></tr>
+        <tr><td>Brand mention signals</td><td><span class="pill fail">LOW</span></td><td>Zero backlinks; no publications</td></tr>
+        <tr><td>Google AI Overviews eligibility</td><td><span class="pill warning">PARTIAL</span></td><td>Google renders JS; canonical issue limits page authority</td></tr>
+      </table>
+      <div class="callout info" style="margin-top:16px"><div class="callout-icon">💡</div><div>The 8-Q&amp;A FAQPage schema is the site's strongest AI citation asset. AI systems can extract these structured answers even without rendering the JS bundle. Expand these to 15–20 Q&As covering each service.</div></div>
+    </div>
+  </div>
+
+  <!-- ⑧ LOCAL SEO -->
+  <div class="section" id="local">
+    <div class="section-header">
+      <h2>8. Local SEO</h2>
+      <span class="score-badge" style="background:var(--amber)">35 / 100</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Check</th><th>Status</th></tr>
+        <tr><td>LocalBusiness schema</td><td><span class="pill warning">INCOMPLETE</span></td></tr>
+        <tr><td>Physical address in schema</td><td><span class="pill fail">MISSING</span></td></tr>
+        <tr><td>Phone number in schema</td><td><span class="pill fail">MISSING</span></td></tr>
+        <tr><td>Opening hours</td><td><span class="pill fail">MISSING</span></td></tr>
+        <tr><td>Google Business Profile</td><td><span class="pill warning">UNVERIFIED</span></td></tr>
+        <tr><td>City-specific landing pages</td><td><span class="pill fail">NONE</span></td></tr>
+        <tr><td>Review schema</td><td><span class="pill fail">MISSING</span></td></tr>
+        <tr><td>NAP consistency</td><td><span class="pill warning">UNKNOWN</span></td></tr>
+      </table>
+      <div class="callout warning" style="margin-top:16px"><div class="callout-icon">⚠️</div><div>Without a complete address in LocalBusiness schema and a verified Google Business Profile, the site cannot appear in Google's local pack (map results) for queries like "AI workshops Cape Town" or "SEO services Johannesburg".</div></div>
+    </div>
+  </div>
+
+  <!-- ⑨ BACKLINKS -->
+  <div class="section" id="backlinks">
+    <div class="section-header">
+      <h2>9. Backlinks &amp; Authority</h2>
+      <span class="score-badge" style="background:var(--red)">15 / 100 — LOW</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Source</th><th>Result</th></tr>
+        <tr><td>Common Crawl referring domains</td><td><span class="pill fail">0 domains found</span></td></tr>
+        <tr><td>Moz DA / PA</td><td><span class="pill info">Not available (no API key)</span></td></tr>
+        <tr><td>Bing Webmaster API</td><td><span class="pill info">Not available (no API key)</span></td></tr>
+      </table>
+      <div class="callout warning" style="margin-top:16px"><div class="callout-icon">⚠️</div><div>No external backlinks detected. This is expected for a new or recently launched site but must be addressed. Even with all technical issues fixed, the site will struggle to rank without external authority signals. Begin link acquisition from SA business directories, industry publications (ITWeb, Bizcommunity), and LinkedIn content.</div></div>
+    </div>
+  </div>
+
+  <!-- ⑩ ACTION PLAN -->
+  <div class="section" id="action">
+    <div class="section-header"><h2>10. Prioritised Action Plan</h2></div>
+    <div class="section-body">
+
+      <div class="priority-item">
+        <div class="priority-num critical">C1</div>
+        <div>
+          <div class="title">Fix canonical tags — dynamic per route</div>
+          <div class="desc">Remove the hardcoded canonical from <code>index.html</code>. Use <code>react-helmet-async</code> to set a unique canonical in each page component. This is the single highest-impact change on the site — it unlocks all 7 service pages for independent indexation and ranking.</div>
+          <div class="meta"><span class="meta-tag">2–4 hrs dev</span><span class="meta-tag">Impact: VERY HIGH</span><span class="meta-tag">Fix within 48h</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num critical">C2</div>
+        <div>
+          <div class="title">Add unique titles &amp; meta descriptions per route</div>
+          <div class="desc">Each of the 7 service pages needs a distinct, keyword-targeted title (≤60 chars) and meta description (≤155 chars). Done in the same Helmet change as C1. See Section 3.1 for recommended copy.</div>
+          <div class="meta"><span class="meta-tag">2 hrs dev</span><span class="meta-tag">Impact: HIGH</span><span class="meta-tag">Fix within 48h</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num critical">C3</div>
+        <div>
+          <div class="title">Fix og:url per page</div>
+          <div class="desc">OG URL is hardcoded to the homepage on all pages. When service pages are shared on LinkedIn or WhatsApp they show the wrong URL. Set dynamically alongside C1/C2.</div>
+          <div class="meta"><span class="meta-tag">Included in C1</span><span class="meta-tag">Impact: MEDIUM</span><span class="meta-tag">Fix within 48h</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num high">H1</div>
+        <div>
+          <div class="title">Add security headers via .htaccess</div>
+          <div class="desc">Add X-Content-Type-Options, X-Frame-Options, HSTS, Referrer-Policy, and Cache-Control headers to Apache config. Zero risk, 30 minutes. Also adds Cache-Control for the hashed JS bundle (immutable, 1 year).</div>
+          <div class="meta"><span class="meta-tag">30 min</span><span class="meta-tag">Impact: MEDIUM</span><span class="meta-tag">Week 1</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num high">H2</div>
+        <div>
+          <div class="title">Enable Gzip/Brotli compression</div>
+          <div class="desc">The 612KB JS bundle is likely served uncompressed. Enabling compression on Apache reduces transfer to ~160KB — a 4× improvement in download time for first-time visitors.</div>
+          <div class="meta"><span class="meta-tag">15 min</span><span class="meta-tag">Impact: HIGH (performance)</span><span class="meta-tag">Week 1</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num high">H3</div>
+        <div>
+          <div class="title">Evaluate SSR / prerendering strategy</div>
+          <div class="desc">The canonical/title fix (C1/C2) buys time, but the long-term solution is Server-Side Rendering or Static Site Generation. Options: migrate to Next.js (best), use vite-plugin-ssr, or add a prerendering tool. Resolves the JS-rendering issue for all crawlers and dramatically improves Core Web Vitals.</div>
+          <div class="meta"><span class="meta-tag">1–2 days (Next.js)</span><span class="meta-tag">Impact: VERY HIGH</span><span class="meta-tag">Week 2–3</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num high">H4</div>
+        <div>
+          <div class="title">Create About, Contact &amp; Privacy Policy pages</div>
+          <div class="desc">Three critical trust pages are missing from the sitemap. About page (team, mission), Contact page (address, phone, map, form), Privacy Policy (required by POPIA). Add to sitemap after publishing.</div>
+          <div class="meta"><span class="meta-tag">4–8 hrs content</span><span class="meta-tag">Impact: HIGH (E-E-A-T)</span><span class="meta-tag">Week 2</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num high">H5</div>
+        <div>
+          <div class="title">Complete LocalBusiness schema + verify Google Business Profile</div>
+          <div class="desc">Add address, phone, email, openingHours, and geo coordinates to LocalBusiness JSON-LD. Then claim/verify GBP to enable local pack visibility for city-level queries.</div>
+          <div class="meta"><span class="meta-tag">1 hr schema</span><span class="meta-tag">2 hrs GBP setup</span><span class="meta-tag">Week 1–2</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num medium">M1</div>
+        <div>
+          <div class="title">Add llms.txt for AI crawler guidance</div>
+          <div class="desc">Create a structured llms.txt at https://db23.co.za/llms.txt listing all services with URLs, a short description of DB23, and contact info. This signals to ChatGPT, Perplexity, and Bing Copilot what the site offers and how to cite it.</div>
+          <div class="meta"><span class="meta-tag">30 min</span><span class="meta-tag">Impact: MEDIUM</span><span class="meta-tag">Month 1</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num medium">M2</div>
+        <div>
+          <div class="title">Add Service schema to each service page</div>
+          <div class="desc">Each service page needs its own Service JSON-LD with name, description, provider, areaServed, and offers. Done after C1/C2 give each page a unique identity.</div>
+          <div class="meta"><span class="meta-tag">2–3 hrs</span><span class="meta-tag">Impact: MEDIUM</span><span class="meta-tag">Month 1</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num medium">M3</div>
+        <div>
+          <div class="title">Start a blog / insights section</div>
+          <div class="desc">In the AI consulting space, content authority is critical. Begin with 2 posts/month: "How to use AI in your SA small business" and "Voice AI for SA businesses: what it is and how it works". Each post builds topical authority and creates internal linking opportunities.</div>
+          <div class="meta"><span class="meta-tag">Ongoing</span><span class="meta-tag">Impact: HIGH (long-term)</span><span class="meta-tag">Month 2+</span></div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-num medium">M4</div>
+        <div>
+          <div class="title">Begin link acquisition</div>
+          <div class="desc">Target: SA business directories (Yell.co.za, Hotfrog, SA Yellow Pages), industry media (ITWeb, Bizcommunity, TechCentral SA), LinkedIn articles, and local chamber of commerce listings. Even 10–15 quality links will move the needle significantly from a zero baseline.</div>
+          <div class="meta"><span class="meta-tag">Ongoing</span><span class="meta-tag">Impact: HIGH (long-term)</span><span class="meta-tag">Month 2+</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ⑪ ROADMAP -->
+  <div class="section" id="roadmap">
+    <div class="section-header"><h2>11. 90-Day Roadmap</h2></div>
+    <div class="section-body">
+      <table>
+        <tr><th>Timeframe</th><th>Actions</th><th>Expected Score</th></tr>
+        <tr>
+          <td><strong>Week 1</strong><br><small style="color:var(--muted)">48 hrs critical</small></td>
+          <td>C1 Fix canonicals · C2 Unique titles/meta · C3 OG:URL · H1 Security headers · H2 Gzip · H5 LocalBusiness schema · Fix favicon filename</td>
+          <td style="text-align:center"><strong style="color:var(--amber)">~60/100</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Week 2–3</strong></td>
+          <td>H3 SSR/prerendering evaluation &amp; start · H4 About, Contact, Privacy pages · H5 Google Business Profile</td>
+          <td style="text-align:center"><strong style="color:var(--amber)">~65/100</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Month 2</strong></td>
+          <td>M1 llms.txt · M2 Service schema · M3 First 2 blog posts · M4 Directory link acquisition begins · BreadcrumbList schema</td>
+          <td style="text-align:center"><strong style="color:var(--gold)">~70/100</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Month 3</strong></td>
+          <td>City landing pages (Cape Town, Johannesburg) · Self-host fonts · Ongoing blog (4+ posts) · 10–15 quality backlinks · Google Search Console monitoring</td>
+          <td style="text-align:center"><strong style="color:var(--green)">~74/100</strong></td>
+        </tr>
+      </table>
+
+      <!-- Score trajectory chart -->
+      <div class="chart-wrap" style="margin-top:24px">
+        <div class="chart-title">Projected Score Trajectory</div>
+        <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:180px">
+          <style>.gl{stroke:#e5e9ee;stroke-width:1}.ax{font-family:Arial,sans-serif;font-size:11px;fill:#5a6a7a}.lbl{font-family:Arial,sans-serif;font-size:12px;font-weight:bold}</style>
+          <!-- Y axis gridlines -->
+          <line x1="60" y1="20" x2="580" y2="20" class="gl"/>
+          <line x1="60" y1="57" x2="580" y2="57" class="gl"/>
+          <line x1="60" y1="94" x2="580" y2="94" class="gl"/>
+          <line x1="60" y1="131" x2="580" y2="131" class="gl"/>
+          <line x1="60" y1="160" x2="580" y2="160" class="gl"/>
+          <!-- Y labels (0,25,50,75,100 mapped to 160,131,94,57,20) -->
+          <text x="55" y="164" text-anchor="end" class="ax">0</text>
+          <text x="55" y="135" text-anchor="end" class="ax">25</text>
+          <text x="55" y="98" text-anchor="end" class="ax">50</text>
+          <text x="55" y="61" text-anchor="end" class="ax">75</text>
+          <text x="55" y="24" text-anchor="end" class="ax">100</text>
+          <!-- Data points: x positions 100,240,380,500,580
+               y formula: 160 - (score/100)*140
+               Scores: 38, 60, 65, 70, 74 -->
+          <!-- Shaded area under line -->
+          <polygon points="100,107 240,76 380,69 500,62 580,56.4 580,160 100,160" fill="rgba(30,58,95,0.08)"/>
+          <!-- Line -->
+          <polyline points="100,107 240,76 380,69 500,62 580,56.4" fill="none" stroke="var(--navy)" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- Dots -->
+          <circle cx="100" cy="107" r="5" fill="var(--red)" stroke="white" stroke-width="2"/>
+          <circle cx="240" cy="76" r="5" fill="var(--amber)" stroke="white" stroke-width="2"/>
+          <circle cx="380" cy="69" r="5" fill="var(--amber)" stroke="white" stroke-width="2"/>
+          <circle cx="500" cy="62" r="5" fill="var(--gold)" stroke="white" stroke-width="2"/>
+          <circle cx="580" cy="56.4" r="5" fill="var(--green)" stroke="white" stroke-width="2"/>
+          <!-- Labels -->
+          <text x="100" y="100" text-anchor="middle" class="lbl" fill="var(--red)">38</text>
+          <text x="240" y="69" text-anchor="middle" class="lbl" fill="var(--amber)">60</text>
+          <text x="380" y="62" text-anchor="middle" class="lbl" fill="var(--amber)">65</text>
+          <text x="500" y="55" text-anchor="middle" class="lbl" fill="var(--gold)">70</text>
+          <text x="580" y="49" text-anchor="middle" class="lbl" fill="var(--green)">74</text>
+          <!-- X labels -->
+          <text x="100" y="175" text-anchor="middle" class="ax">Now</text>
+          <text x="240" y="175" text-anchor="middle" class="ax">Week 1</text>
+          <text x="380" y="175" text-anchor="middle" class="ax">Week 3</text>
+          <text x="500" y="175" text-anchor="middle" class="ax">Month 2</text>
+          <text x="580" y="175" text-anchor="middle" class="ax">Month 3</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <p><strong>db23.co.za SEO Intelligence Report</strong> · Generated 27 June 2026</p>
+    <p style="margin-top:6px">Auditor: Claude SEO v1.9.8 · Pages crawled: 8/8 · Methodology: Technical crawl (Googlebot UA) + Schema validation + Security header inspection + Common Crawl backlink analysis</p>
+    <p style="margin-top:6px">Saved to: C:\Users\Deon\Documents\DB23 eCommerce\DB23 Website</p>
+  </div>
+
+</div>
+</body>
+</html>

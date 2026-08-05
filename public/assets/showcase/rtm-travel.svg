@@ -1,0 +1,36 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="54" x2="1132" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071421"/>
+      <stop offset="0.48" stop-color="#0E3150"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(878 260) rotate(140) scale(390 300)">
+      <stop stop-color="#67E8F9" stop-opacity="0.64"/>
+      <stop offset="1" stop-color="#67E8F9" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#050A12"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#06101B" fill-opacity="0.92"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">rtmtravel.co.za</text>
+  <rect x="60" y="120" width="1080" height="586" fill="url(#glow)"/>
+  <text x="112" y="198" fill="#7DD3FC" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">CORPORATE TRAVEL</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="82" font-weight="900">RTM Travel</text>
+  <text x="116" y="344" fill="#D8EEF8" font-family="Inter, Arial, sans-serif" font-size="24">Travel coordination, reporting and executive support.</text>
+  <rect x="116" y="418" width="246" height="58" rx="18" fill="#22D3EE"/>
+  <text x="154" y="454" fill="#06101B" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Plan smarter</text>
+  <rect x="702" y="198" width="340" height="360" rx="32" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.2"/>
+  <path d="M770 458L940 258" stroke="#67E8F9" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="770" cy="458" r="28" fill="#FFFFFF" fill-opacity="0.28"/>
+  <circle cx="940" cy="258" r="34" fill="#22D3EE"/>
+  <rect x="748" y="502" width="236" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.35"/>
+  <rect x="748" y="532" width="162" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.18"/>
+</svg>

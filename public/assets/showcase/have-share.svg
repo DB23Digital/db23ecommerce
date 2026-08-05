@@ -1,0 +1,36 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="54" x2="1120" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101827"/>
+      <stop offset="0.52" stop-color="#18213A"/>
+      <stop offset="1" stop-color="#916F37"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(852 300) rotate(132) scale(420 320)">
+      <stop stop-color="#DAB66E" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#DAB66E" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#080A10"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#0B1020" fill-opacity="0.9"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">haveandshare.co.za</text>
+  <rect x="60" y="120" width="1080" height="586" rx="0" fill="url(#glow)"/>
+  <text x="112" y="198" fill="#F6D991" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">BUSINESS COACHING</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="900">Have &amp; Share</text>
+  <text x="116" y="344" fill="#D5DBE8" font-family="Inter, Arial, sans-serif" font-size="24">Authority, transformation and professional growth.</text>
+  <rect x="116" y="418" width="250" height="58" rx="18" fill="#E7C06E"/>
+  <text x="155" y="454" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Start growing</text>
+  <rect x="706" y="212" width="322" height="388" rx="36" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  <rect x="746" y="262" width="242" height="18" rx="9" fill="#FFFFFF" fill-opacity="0.55"/>
+  <rect x="746" y="306" width="166" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.25"/>
+  <rect x="746" y="374" width="236" height="88" rx="22" fill="#0B1020" fill-opacity="0.45"/>
+  <circle cx="808" cy="508" r="44" fill="#E7C06E" fill-opacity="0.92"/>
+  <circle cx="902" cy="508" r="44" fill="#FFFFFF" fill-opacity="0.2"/>
+</svg>

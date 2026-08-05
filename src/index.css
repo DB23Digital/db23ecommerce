@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #1d4ed8; /* Blue-700 — passes WCAG AA contrast on dark bg */
+  --color-accent-hover: #1e40af;
+  
+  --color-background: #09090b; /* Very dark gray almost black */
+  --color-card: #18181b;       /* Slightly lighter gray */
+  --color-card-hover: #27272a; /* Even lighter gray */
+  
+  --color-text-main: #fafafa;
+  --color-text-muted: #a1a1aa;
+}
+
+/* Base resets */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  /* Apply Google font later, but standard sans-serif for now */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,35 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="54" x2="1140" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="0.48" stop-color="#1E3A8A"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(862 292) rotate(138) scale(420 310)">
+      <stop stop-color="#FDBA74" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#FDBA74" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#070A12"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#0B1020" fill-opacity="0.92"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">mudbusters.co.za</text>
+  <rect x="60" y="120" width="1080" height="586" fill="url(#glow)"/>
+  <text x="112" y="198" fill="#FDBA74" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">SPORTS SERVICES</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="86" font-weight="900">Mud Busters</text>
+  <text x="116" y="344" fill="#DBEAFE" font-family="Inter, Arial, sans-serif" font-size="24">Sports equipment cleaning, hygiene and restoration.</text>
+  <rect x="116" y="418" width="240" height="58" rx="18" fill="#FB923C"/>
+  <text x="154" y="454" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Book a clean</text>
+  <rect x="724" y="212" width="308" height="338" rx="38" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.2"/>
+  <circle cx="878" cy="344" r="92" fill="#FFFFFF" fill-opacity="0.14"/>
+  <path d="M806 344H950M878 272V416" stroke="#FB923C" stroke-width="12" stroke-linecap="round"/>
+  <rect x="766" y="474" width="224" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.42"/>
+  <rect x="766" y="506" width="150" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.2"/>
+</svg>

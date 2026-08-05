@@ -1,0 +1,37 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="54" x2="1140" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071D1A"/>
+      <stop offset="0.48" stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#FACC15"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(862 300) rotate(136) scale(430 320)">
+      <stop stop-color="#FDE68A" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#FDE68A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="34" y="30" width="1132" height="704" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="#04110F"/>
+  <rect x="60" y="54" width="1080" height="652" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="54" width="1080" height="66" rx="34" fill="#051412" fill-opacity="0.92"/>
+  <circle cx="104" cy="87" r="8" fill="#F87171"/>
+  <circle cx="130" cy="87" r="8" fill="#FBBF24"/>
+  <circle cx="156" cy="87" r="8" fill="#34D399"/>
+  <rect x="196" y="75" width="590" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="226" y="92" fill="#D1D5DB" font-family="Inter, Arial, sans-serif" font-size="13">farmina-store-training.vercel.app</text>
+  <rect x="60" y="120" width="1080" height="586" fill="url(#glow)"/>
+  <text x="112" y="198" fill="#FEF3C7" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="4">EDUCATION &amp; TRAINING</text>
+  <text x="112" y="286" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="900">Farmina Training</text>
+  <text x="116" y="344" fill="#CCFBF1" font-family="Inter, Arial, sans-serif" font-size="24">Interactive product learning for retail staff.</text>
+  <rect x="116" y="418" width="242" height="58" rx="18" fill="#FACC15"/>
+  <text x="154" y="454" fill="#051412" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Start lesson</text>
+  <rect x="718" y="210" width="316" height="364" rx="34" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  <circle cx="796" cy="300" r="40" fill="#FACC15"/>
+  <rect x="858" y="278" width="126" height="18" rx="9" fill="#FFFFFF" fill-opacity="0.46"/>
+  <rect x="858" y="314" width="92" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.22"/>
+  <rect x="764" y="398" width="220" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.44"/>
+  <rect x="764" y="454" width="176" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.23"/>
+  <rect x="764" y="508" width="132" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.17"/>
+</svg>

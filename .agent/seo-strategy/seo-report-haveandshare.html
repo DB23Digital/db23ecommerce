@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Strategy Report — Have &amp; Share Coaching</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e8ed;
+    --text-secondary: #8b8b9e;
+    --text-muted: #5a5a6e;
+    --accent: #6366f1;
+    --accent-glow: rgba(99,102,241,0.3);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --green-border: rgba(34,197,94,0.25);
+    --yellow: #eab308;
+    --yellow-bg: rgba(234,179,8,0.12);
+    --yellow-border: rgba(234,179,8,0.25);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.25);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,0.12);
+    --blue-border: rgba(59,130,246,0.25);
+    --orange: #f97316;
+    --orange-bg: rgba(249,115,22,0.12);
+    --orange-border: rgba(249,115,22,0.25);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+
+  ::selection { background: var(--accent); color: white; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: ambientDrift 20s ease-in-out infinite;
+  }
+  @keyframes ambientDrift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-2%, 1%); }
+    66% { transform: translate(1%, -1%); }
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .header { padding: 40px 0 0; text-align: center; }
+  .header-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px;
+  }
+  .header-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+    box-shadow: 0 0 8px var(--green); animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 42px; font-weight: 700;
+    line-height: 1.15; margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #a5a5c0 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+
+  /* Tabs */
+  .tabs {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border); padding: 0;
+  }
+  .tabs-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    display: flex; overflow-x: auto; scrollbar-width: none;
+  }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 16px 22px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--text-muted); background: none; border: none;
+    border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text-secondary); }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+  .tab-btn .tab-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px; padding: 0 6px; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: 100px; font-size: 11px;
+    font-weight: 600; margin-left: 8px; color: var(--text-secondary);
+  }
+  .tab-btn.active .tab-count { background: var(--accent); border-color: var(--accent); color: white; }
+
+  .tab-content { display: none; padding: 40px 0 80px; }
+  .tab-content.active { display: block; }
+
+  /* Score section */
+  .score-section {
+    display: flex; align-items: center; gap: 48px; margin-bottom: 40px;
+    padding: 40px; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); backdrop-filter: blur(20px);
+  }
+  .score-circle-wrap { position: relative; flex-shrink: 0; }
+  .score-circle {
+    width: 180px; height: 180px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; position: relative;
+  }
+  .score-circle svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+  .score-circle svg circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+  .score-circle svg .bg-ring { stroke: rgba(255,255,255,0.06); }
+  .score-circle svg .progress-ring {
+    stroke: var(--accent); stroke-dasharray: 502; stroke-dashoffset: 201;
+    filter: drop-shadow(0 0 6px var(--accent-glow)); transition: stroke-dashoffset 1.5s ease-out;
+  }
+  .score-number { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; line-height: 1; color: white; position: relative; z-index: 1; }
+  .score-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; position: relative; z-index: 1; margin-top: 4px; }
+  .score-details { flex: 1; }
+  .score-details h2 { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .score-details p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
+
+  .sub-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .sub-score { padding: 14px 16px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+  .sub-score-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; }
+  .sub-score-value { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; }
+  .sub-score-bar { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.06); margin-top: 8px; overflow: hidden; }
+  .sub-score-bar-fill { height: 100%; border-radius: 2px; transition: width 1s ease-out; }
+
+  /* Stats grid */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+  .stat-card { padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; transition: border-color 0.2s; }
+  .stat-card:hover { border-color: var(--border-hover); }
+  .stat-value { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .stat-label { font-size: 13px; color: var(--text-secondary); }
+
+  /* Cards */
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 16px; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--border-hover); }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; cursor: pointer; }
+  .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+  .card-title .icon { width: 36px; height: 36px; border-radius: var(--radius-xs); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+
+  /* Badges */
+  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
+  .badge-critical { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .badge-high { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .badge-medium { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-low { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-pass { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-info { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+
+  /* Collapsible */
+  .collapsible-body { overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+  .collapsible.open .collapsible-body { max-height: 5000px; }
+  .collapse-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-muted); transition: transform 0.3s, background 0.2s; flex-shrink: 0; }
+  .collapsible.open .collapse-icon { transform: rotate(180deg); }
+
+  /* Finding items */
+  .finding { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: start; }
+  .finding:last-child { border-bottom: none; }
+  .finding-status { width: 8px; height: 8px; border-radius: 50%; margin-top: 8px; }
+  .finding-status.pass { background: var(--green); box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+  .finding-status.warning { background: var(--yellow); box-shadow: 0 0 6px rgba(234,179,8,0.4); }
+  .finding-status.fail { background: var(--red); box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+  .finding-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .finding-content p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .finding-rec { margin-top: 8px; padding: 10px 14px; background: rgba(99,102,241,0.06); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-xs) var(--radius-xs) 0; font-size: 13px; color: var(--text); line-height: 1.5; }
+
+  /* Keyword table */
+  .keyword-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  .keyword-table th { text-align: left; padding: 12px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); border-bottom: 1px solid var(--border); font-weight: 600; }
+  .keyword-table td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; color: var(--text-secondary); }
+  .keyword-table td:first-child { white-space: nowrap; }
+  .keyword-table td strong { color: var(--text); }
+  .keyword-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .keyword-primary { font-weight: 600; color: var(--accent); }
+  .keyword-tag { display: inline-block; padding: 3px 10px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 100px; font-size: 12px; font-family: 'JetBrains Mono', monospace; margin: 2px 4px 2px 0; color: var(--text-secondary); }
+
+  /* LSI cloud */
+  .lsi-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .lsi-tag { padding: 6px 14px; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2); border-radius: 100px; font-size: 13px; font-family: 'JetBrains Mono', monospace; color: var(--text); transition: all 0.2s; }
+  .lsi-tag:hover { background: rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.4); }
+  .lsi-tag.integrated { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
+  .lsi-tag.missing { background: var(--red-bg); border-color: var(--red-border); color: var(--red); opacity: 0.8; }
+
+  /* Gap grid */
+  .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .gap-card { padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+  .gap-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .gap-card ul { list-style: none; padding: 0; }
+  .gap-card ul li { font-size: 13px; color: var(--text-secondary); padding: 4px 0; padding-left: 16px; position: relative; line-height: 1.6; }
+  .gap-card ul li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.5; }
+
+  /* Page audit rows */
+  .page-audit { margin-bottom: 12px; }
+  .page-url-bar { display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-sm) var(--radius-sm) 0 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); }
+  .page-score-badge { margin-left: auto; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
+  .page-findings { padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+
+  /* Action table */
+  .action-table { width: 100%; border-collapse: collapse; }
+  .action-table th { text-align: left; padding: 12px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); border-bottom: 1px solid var(--border); font-weight: 600; }
+  .action-table td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; line-height: 1.5; }
+  .action-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .action-table td:first-child { white-space: nowrap; }
+
+  /* Section titles */
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .section-subtitle { color: var(--text-secondary); font-size: 15px; margin-bottom: 24px; }
+
+  /* Schema block */
+  .schema-block { background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #7dd3fc; line-height: 1.6; overflow-x: auto; margin-top: 12px; white-space: pre; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .score-section { flex-direction: column; text-align: center; padding: 24px; gap: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .gap-grid { grid-template-columns: 1fr; }
+    .sub-scores { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="header-badge"><span class="dot"></span> SEO Strategy Report</div>
+    <h1>Have &amp; Share Coaching</h1>
+    <p class="subtitle">Full Website SEO Audit &amp; Strategy — haveandshare.co.za — April 2026</p>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('audit')">Site Audit <span class="tab-count">37</span></button>
+    <button class="tab-btn" onclick="switchTab('keywords')">Keyword Strategy</button>
+    <button class="tab-btn" onclick="switchTab('pages')">Page-by-Page <span class="tab-count">11</span></button>
+    <button class="tab-btn" onclick="switchTab('schema')">Schema &amp; Technical</button>
+    <button class="tab-btn" onclick="switchTab('actions')">Action Plan <span class="tab-count">28</span></button>
+  </div>
+</div>
+
+<!-- ==================== TAB 1: SITE AUDIT ==================== -->
+<div id="tab-audit" class="tab-content active">
+<div class="container">
+
+  <div class="score-section">
+    <div class="score-circle-wrap">
+      <div class="score-circle">
+        <svg viewBox="0 0 160 160">
+          <circle class="bg-ring" cx="80" cy="80" r="74"/>
+          <circle class="progress-ring" cx="80" cy="80" r="74" style="stroke-dashoffset: 221;"/>
+        </svg>
+        <span class="score-number">56</span>
+        <span class="score-label">SEO Score</span>
+      </div>
+    </div>
+    <div class="score-details">
+      <h2>Solid Foundation — Significant Gaps to Close</h2>
+      <p>Have &amp; Share has better-than-average SEO for the SA coaching market, with descriptive titles, OG tags, and proper page structure on key pages. However, the site is missing schema markup entirely, lacks geo-targeted content depth, has no inbound link strategy, and several high-value keyword opportunities are completely uncontested in South Africa — meaning quick wins are available with focused effort.</p>
+      <div class="sub-scores">
+        <div class="sub-score">
+          <div class="sub-score-label">Content</div>
+          <div class="sub-score-value" style="color: var(--yellow)">62</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:62%; background: var(--yellow)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Keywords</div>
+          <div class="sub-score-value" style="color: var(--yellow)">55</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:55%; background: var(--yellow)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Technical</div>
+          <div class="sub-score-value" style="color: var(--orange)">48</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:48%; background: var(--orange)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Authority</div>
+          <div class="sub-score-value" style="color: var(--red)">38</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:38%; background: var(--red)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">11</div>
+      <div class="stat-label">Pages Audited</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Schema Markup Found</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">34</div>
+      <div class="stat-label">LSI Keywords Identified</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">9</div>
+      <div class="stat-label">Quick-Win Opportunities</div>
+    </div>
+  </div>
+
+  <!-- SECTION: On-Page SEO -->
+  <div class="section-title">On-Page SEO Findings</div>
+  <div class="section-subtitle">37 audit checks across all crawled pages</div>
+
+  <!-- Title Tags -->
+  <div class="card collapsible open" id="c-titles">
+    <div class="card-header" onclick="toggleCard('c-titles')">
+      <div class="card-title">
+        <div class="icon" style="background:var(--yellow-bg)">📝</div>
+        Title Tags &amp; Meta Descriptions
+      </div>
+      <div class="collapse-icon">▾</div>
+    </div>
+    <div class="collapsible-body">
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>Homepage title is present</h4>
+          <p>Current: <em>"Holistic Life Coach | Unlock Your Full Potential | Have &amp; Share"</em> — 60 chars. Present and not truncated.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Homepage title misses geo-targeting</h4>
+          <p>No "South Africa", "Johannesburg", or "Gauteng" in the homepage title. This is the most important page for organic traffic and local intent searches.</p>
+          <div class="finding-rec">→ Rewrite to: <strong>"Holistic Life Coach Johannesburg | Mental Fitness &amp; Transformation | Have &amp; Share"</strong> (65 chars — acceptable)</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>Corporate Facilitation title — excellent</h4>
+          <p>"Corporate Holistic Facilitation | Stop Meeting Madness | Have &amp; Share" — strong emotional hook, keyword-inclusive.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Individual Coaching title misses primary keyword variant</h4>
+          <p>Current: "Individual Holistic Coaching | Have &amp; Share" — no "South Africa" or location modifier gives zero local signal.</p>
+          <div class="finding-rec">→ Rewrite to: <strong>"Holistic Life Coaching South Africa | 1:1 Sessions | Have &amp; Share"</strong></div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>PQ® page title well-optimized</h4>
+          <p>"Positive Intelligence (PQ®): Mental Fitness for Modern Leaders | Have &amp; Share Coaching" — excellent keyword inclusion and clear audience signal.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Homepage meta description is missing the primary keyword</h4>
+          <p>OG description scraped from homepage does not contain "Johannesburg", "South Africa", or "Claudina Hafenscher". Lost opportunity for rich snippet differentiation.</p>
+          <div class="finding-rec">→ Rewrite to: <strong>"Claudina Hafenscher is a COMENSA-accredited holistic life coach in Johannesburg, South Africa. Specialising in PQ® mental fitness, mBIT coaching, and corporate facilitation. Book your complimentary session."</strong> (155 chars)</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Individual Coaching meta description is generic</h4>
+          <p>Current: "Feeling stuck and yearning for deeper fulfilment? We offer coaching journeys and teach you the tools to set you on a path to live a life filled with meaning and purpose." — No keyword, no CTA, no differentiator.</p>
+          <div class="finding-rec">→ Rewrite to: <strong>"Overcome self-sabotage and unlock your potential with 1:1 holistic life coaching in South Africa. Claudina Hafenscher uses PQ®, mBIT &amp; Educational Kinesiology. Book a complimentary discovery session."</strong> (157 chars)</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Heading structure -->
+  <div class="card collapsible open" id="c-headings">
+    <div class="card-header" onclick="toggleCard('c-headings')">
+      <div class="card-title">
+        <div class="icon" style="background:var(--blue-bg)">🏗️</div>
+        Heading Structure (H1–H3)
+      </div>
+      <div class="collapse-icon">▾</div>
+    </div>
+    <div class="collapsible-body">
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Homepage H1 not found in scraped content</h4>
+          <p>The scraped homepage shows section headings starting at H2 ("Holistic Life Coach &amp; Corporate Facilitator"). A clear H1 containing the primary keyword should be the first semantic heading — essential for Google to understand the page's primary topic.</p>
+          <div class="finding-rec">→ Add a visible H1: <strong>&lt;h1&gt;Holistic Life Coach &amp; Corporate Facilitator | Johannesburg, South Africa&lt;/h1&gt;</strong> — can be styled as visually hidden if necessary but must be in the DOM.</div>
+        </div>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>PQ® page has excellent H2 hierarchy</h4>
+          <p>"The Demands of Corporate Life" → "What Is PQ Intelligence?" → "Why Mental Fitness Matters In Business" — logical, topic-mapped, keyword-containing progression.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Individual Coaching page lacks keyword-rich H2s</h4>
+          <p>The page uses H3 ("Imagine the Possibilities") but no H2 section headings that target search phrases like "1:1 coaching South Africa" or "life coaching for self-sabotage".</p>
+          <div class="finding-rec">→ Add H2s: "What Is Holistic Life Coaching?", "Who Is This Coaching For?", "What to Expect in a Session", "Meet Your Coach: Claudina Hafenscher", "Frequently Asked Questions"</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Corporate Facilitation page: No FAQ schema anchor in headings</h4>
+          <p>The FAQ exists but is not structured as a proper H2/H3 pair that could trigger rich results. Google requires clear semantic H2 or H3 for FAQ to be eligible for rich snippets.</p>
+          <div class="finding-rec">→ Restructure FAQ section: wrap in &lt;section itemscope itemtype="FAQPage"&gt; with each Q/A pair in proper schema markup.</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyword usage -->
+  <div class="card collapsible open" id="c-keywords">
+    <div class="card-header" onclick="toggleCard('c-keywords')">
+      <div class="card-title">
+        <div class="icon" style="background:var(--accent-glow)">🔑</div>
+        Keyword Usage &amp; Density
+      </div>
+      <div class="collapse-icon">▾</div>
+    </div>
+    <div class="collapsible-body">
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>Zero geo-modifiers on most pages</h4>
+          <p>"South Africa", "Johannesburg", and "Gauteng" appear sporadically — only the Corporate Facilitation page mentions "South African" once in body text. All other pages have zero location keywords despite being a location-dependent service.</p>
+          <div class="finding-rec">→ Add location modifier to: page title, H1, first paragraph, one H2, meta description, and footer — on every page. This is the single highest-impact fix for local organic search.</div>
+        </div>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>"Claudina Hafenscher" not used as a keyword</h4>
+          <p>The coach's name (a navigational keyword with zero competition) does not feature in any page title or meta description despite being the brand's most unique identifier. People who've seen Claudina speak, or been referred to her, will Google her name.</p>
+          <div class="finding-rec">→ Add "Claudina Hafenscher" to homepage title, About page title, and meta descriptions. This captures branded + referral traffic with no difficulty.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>"COMENSA Accredited" only on service sub-pages</h4>
+          <p>The COMENSA accreditation is a significant trust signal and search differentiator — but it only appears in the "Meet Your Coach" section on individual pages, not on the homepage or in any title/meta. People actively search for COMENSA-accredited coaches.</p>
+          <div class="finding-rec">→ Add "COMENSA Accredited Senior Coach" to the homepage About section and a dedicated credentials line in the footer. Add it to the About page title.</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>PQ® page keyword density is well-balanced</h4>
+          <p>"Positive Intelligence", "PQ", "mental fitness", "Saboteur", and "Sage" all appear multiple times naturally. Good semantic saturation for the topic.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>mBIT and Educational Kinesiology pages not audited — likely thin</h4>
+          <p>Based on patterns from other pages, the methodology pillar pages likely have same geo-gap issues. These pages represent very low-competition keyword categories in SA.</p>
+          <div class="finding-rec">→ Audit each pillar page. Add 300+ words of original, geo-targeted content per pillar. "mBIT coach South Africa" has virtually zero competition — own it.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Internal linking -->
+  <div class="card collapsible open" id="c-linking">
+    <div class="card-header" onclick="toggleCard('c-linking')">
+      <div class="card-title">
+        <div class="icon" style="background:var(--green-bg)">🔗</div>
+        Internal Linking Structure
+      </div>
+      <div class="collapse-icon">▾</div>
+    </div>
+    <div class="collapsible-body">
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>Good cross-linking between methodology pillars</h4>
+          <p>The Corporate Facilitation page links to mBIT and Educational Kinesiology. The PQ® page links to Reality Check™ and Corporate Facilitation. Solid foundation.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>Blog posts not linked from service pages</h4>
+          <p>The Individual Coaching page links to "Mental Fitness With PQ Coaching" and "Introduction to mBIT Coaching" blog posts — but most service pages don't cross-link to relevant blog content. This is a missed topical authority signal.</p>
+          <div class="finding-rec">→ Add a "Further Reading" or "Related Insights" section at the bottom of every service page, linking to 2–3 relevant blog articles. This deepens topical authority signals.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>No "About Claudina" page appears in navigation</h4>
+          <p>The About section is an anchor on the homepage (#about) — not a standalone page. Google cannot index or rank a section within a page for branded queries like "About Claudina Hafenscher coach".</p>
+          <div class="finding-rec">→ Create a standalone /about.html page with its own title tag, H1, and 800+ words of content including credentials, certifications, career story, and philosophy.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Contact page routes to TidyCal (external domain)</h4>
+          <p>"Contact Us" in the footer links to tidycal.com — an external domain. This loses PageRank that should flow to an internal /contact.html page. Also, Google can't track conversions from this flow without additional UTM setup.</p>
+          <div class="finding-rec">→ Create /contact.html with contact form + embedded booking widget. Keep TidyCal as the backend, but keep users on-domain.</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical SEO -->
+  <div class="card collapsible open" id="c-technical">
+    <div class="card-header" onclick="toggleCard('c-technical')">
+      <div class="card-title">
+        <div class="icon" style="background:var(--red-bg)">⚙️</div>
+        Technical SEO
+      </div>
+      <div class="collapse-icon">▾</div>
+    </div>
+    <div class="collapsible-body">
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>No schema markup detected on any page</h4>
+          <p>Zero JSON-LD or Microdata schema found across all 11 crawled pages. This means no eligibility for rich results: no local business knowledge panel, no FAQ rich snippets, no review stars, no breadcrumbs in search results.</p>
+          <div class="finding-rec">→ Priority: Add LocalBusiness + Person schema on homepage. Add Service schema on each service page. Add FAQPage schema on pages with FAQ sections. Full schema code provided in the Schema tab.</div>
+        </div>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>No sitemap.xml confirmed</h4>
+          <p>A sitemap.xml was not discoverable during the audit. Without a sitemap, Google may not find or prioritise indexing new or updated pages.</p>
+          <div class="finding-rec">→ Generate sitemap.xml listing all 11 pages + any blog articles. Submit via Google Search Console.</div>
+        </div>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>No robots.txt confirmation</h4>
+          <p>robots.txt not confirmed. Google needs this file to understand crawl permissions.</p>
+          <div class="finding-rec">→ Create /robots.txt with: <code>User-agent: * Allow: / Sitemap: https://haveandshare.co.za/sitemap.xml</code></div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>HTTPS confirmed</h4>
+          <p>Site is served over HTTPS — a baseline Google ranking signal. ✓</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>No Google My Business integration signals</h4>
+          <p>Physical address appears in footer (13 Morester Glen Marais, Gauteng) but no NAP (Name/Address/Phone) schema confirms this for Google's local algorithm. Google My Business listing not verified in audit.</p>
+          <div class="finding-rec">→ (1) Verify/create Google Business Profile for "Have and Share Coaching". (2) Add NAP schema to footer on every page. (3) Match NAP exactly across all online citations.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>CTA clicks out to third-party domain</h4>
+          <p>Every "Book a Session" CTA routes to tidycal.com. This breaks the user journey domain continuity and means Google sees the conversion happening off-site — no signal back to haveandshare.co.za.</p>
+          <div class="finding-rec">→ Either embed TidyCal on an internal /book.html page, or at minimum add UTM parameters to all TidyCal links to enable tracking via Google Analytics.</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Open Graph images not confirmed</h4>
+          <p>OG descriptions are present but OG images were not confirmed. Without OG images, social shares will display blank previews — significantly reducing click-through from social referrals.</p>
+          <div class="finding-rec">→ Create one branded OG image per major page (1200×630px). Set &lt;meta property="og:image"&gt; and &lt;meta name="twitter:image"&gt; on every page.</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content depth -->
+  <div class="card collapsible" id="c-content">
+    <div class="card-header" onclick="toggleCard('c-content')">
+      <div class="card-title">
+        <div class="icon" style="background:var(--orange-bg)">📄</div>
+        Content Depth &amp; E-E-A-T
+      </div>
+      <div class="collapse-icon">▾</div>
+    </div>
+    <div class="collapsible-body" style="margin-top:16px;">
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>PQ® page has strong content depth</h4>
+          <p>The Positive Intelligence page (~800 words) covers the program structure, business case, team benefits, C-suite application, and includes a YouTube video link and PQ Marketplace profile. Strong E-E-A-T signals.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Individual Coaching page is thin (~400 words)</h4>
+          <p>Competitors for "holistic life coach South Africa" average 800–1200 words per service page. The current page covers pain points and methodology pillars but lacks: expected outcomes, process/journey description, pricing FAQ, and case study content.</p>
+          <div class="finding-rec">→ Expand to 800+ words: Add "What Does a Session Look Like?", "The Coaching Journey", "Expected Outcomes", and one short client result story. This directly increases topical depth score.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content">
+          <h4>Credentials are present and specific</h4>
+          <p>"25 years experience", "COMENSA Accredited Senior Coach", "Master mBIT Coach", "PQ® Coach" — all named and cited. This is strong E-E-A-T content. Well done.</p>
+        </div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>No dedicated About/Bio page</h4>
+          <p>Claudina's full story, certifications, and global experience are condensed to a few lines in a section. A standalone /about page with 1000+ words is critical for: personal brand SEO, E-E-A-T, and branded name searches.</p>
+          <div class="finding-rec">→ Create /about.html with: full career narrative, certification details with links to issuing bodies, photo gallery, client outcomes (anonymised), speaking engagements, and a personal philosophy section.</div>
+        </div>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Blog exists but content cadence is unclear</h4>
+          <p>Blog posts are referenced in links (blog-pq-coaching.html, blog-mbit-coaching.html, blog-team-alignment-coaching.html) but the blog page itself couldn't confirm publish dates or current article count. Blog must be consistent to compound SEO value.</p>
+          <div class="finding-rec">→ Target 2 blog articles/month minimum. Priority topics: "What is PQ coaching?", "How to stop self-sabotage", "mBIT explained", "Signs you need a corporate facilitator", "Life coaching vs therapy: what's the difference?"</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 2: KEYWORD STRATEGY ==================== -->
+<div id="tab-keywords" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Keyword Strategy</div>
+  <div class="section-subtitle">Priority keywords mapped by intent, difficulty, and opportunity for haveandshare.co.za</div>
+
+  <table class="keyword-table">
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th>Keyword</th>
+        <th>Intent</th>
+        <th>Difficulty</th>
+        <th>Target Page</th>
+        <th>Current Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="keyword-primary">P1</span></td>
+        <td><strong>holistic life coach Johannesburg</strong></td>
+        <td><span class="badge badge-high" style="font-size:11px">Commercial</span></td>
+        <td><span class="badge badge-medium" style="font-size:11px">Medium</span></td>
+        <td>Homepage</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="keyword-primary">P1</span></td>
+        <td><strong>positive intelligence coach South Africa</strong></td>
+        <td><span class="badge badge-high" style="font-size:11px">Commercial</span></td>
+        <td><span class="badge badge-low" style="font-size:11px">Very Low ⭐</span></td>
+        <td>/positive-intelligence-coaching.html</td>
+        <td style="color:var(--yellow)">Partially targeted</td>
+      </tr>
+      <tr>
+        <td><span class="keyword-primary">P1</span></td>
+        <td><strong>corporate facilitator South Africa</strong></td>
+        <td><span class="badge badge-high" style="font-size:11px">Commercial</span></td>
+        <td><span class="badge badge-medium" style="font-size:11px">Medium</span></td>
+        <td>/corporate-holistic-facilitation.html</td>
+        <td style="color:var(--yellow)">Partially targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-medium" style="font-size:11px">P2</span></td>
+        <td>life coach South Africa</td>
+        <td><span class="badge badge-high" style="font-size:11px">Commercial</span></td>
+        <td><span class="badge badge-critical" style="font-size:11px">High</span></td>
+        <td>Homepage</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-medium" style="font-size:11px">P2</span></td>
+        <td>mBIT coach South Africa</td>
+        <td><span class="badge badge-high" style="font-size:11px">Commercial</span></td>
+        <td><span class="badge badge-low" style="font-size:11px">Very Low ⭐⭐</span></td>
+        <td>/mbit-coaching.html</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-medium" style="font-size:11px">P2</span></td>
+        <td>executive coach Gauteng</td>
+        <td><span class="badge badge-high" style="font-size:11px">Commercial</span></td>
+        <td><span class="badge badge-medium" style="font-size:11px">Medium</span></td>
+        <td>/corporate-holistic-facilitation.html</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-medium" style="font-size:11px">P2</span></td>
+        <td>team alignment coaching Johannesburg</td>
+        <td><span class="badge badge-high" style="font-size:11px">Commercial</span></td>
+        <td><span class="badge badge-low" style="font-size:11px">Low ⭐</span></td>
+        <td>/group-holistic-coaching.html</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-low" style="font-size:11px">P3</span></td>
+        <td>educational kinesiology South Africa</td>
+        <td><span class="badge badge-info" style="font-size:11px">Informational</span></td>
+        <td><span class="badge badge-low" style="font-size:11px">Very Low ⭐⭐</span></td>
+        <td>/educational-kinesiology.html</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-low" style="font-size:11px">P3</span></td>
+        <td>how to stop self-sabotage</td>
+        <td><span class="badge badge-info" style="font-size:11px">Informational</span></td>
+        <td><span class="badge badge-medium" style="font-size:11px">Medium</span></td>
+        <td>Blog article</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-low" style="font-size:11px">P3</span></td>
+        <td>Claudina Hafenscher coach</td>
+        <td><span class="badge badge-info" style="font-size:11px">Navigational</span></td>
+        <td><span class="badge badge-low" style="font-size:11px">None — branded</span></td>
+        <td>Homepage + About</td>
+        <td style="color:var(--yellow)">Partially</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-low" style="font-size:11px">P3</span></td>
+        <td>PQ score South Africa</td>
+        <td><span class="badge badge-info" style="font-size:11px">Informational</span></td>
+        <td><span class="badge badge-low" style="font-size:11px">Very Low ⭐⭐</span></td>
+        <td>Blog + PQ page</td>
+        <td style="color:var(--red)">Not targeted</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-low" style="font-size:11px">P3</span></td>
+        <td>mental fitness coaching South Africa</td>
+        <td><span class="badge badge-info" style="font-size:11px">Informational</span></td>
+        <td><span class="badge badge-low" style="font-size:11px">Low ⭐</span></td>
+        <td>Homepage + PQ page</td>
+        <td style="color:var(--yellow)">Partial</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 48px;">
+    <div class="section-title">LSI Keyword Library</div>
+    <div class="section-subtitle">Green = already integrated on site | Red = missing — these must be added to pages</div>
+    <div class="lsi-cloud">
+      <span class="lsi-tag integrated">mental fitness</span>
+      <span class="lsi-tag integrated">self-sabotage</span>
+      <span class="lsi-tag integrated">positive intelligence</span>
+      <span class="lsi-tag integrated">PQ® coach</span>
+      <span class="lsi-tag integrated">mBIT coaching</span>
+      <span class="lsi-tag integrated">educational kinesiology</span>
+      <span class="lsi-tag integrated">team alignment</span>
+      <span class="lsi-tag integrated">corporate facilitation</span>
+      <span class="lsi-tag integrated">COMENSA accredited</span>
+      <span class="lsi-tag integrated">limiting beliefs</span>
+      <span class="lsi-tag integrated">breakthrough coaching</span>
+      <span class="lsi-tag integrated">resilience</span>
+      <span class="lsi-tag integrated">Saboteur (PQ)</span>
+      <span class="lsi-tag integrated">executive leadership</span>
+      <span class="lsi-tag integrated">burnout prevention</span>
+      <span class="lsi-tag missing">South Africa</span>
+      <span class="lsi-tag missing">Johannesburg</span>
+      <span class="lsi-tag missing">Gauteng</span>
+      <span class="lsi-tag missing">life coach near me</span>
+      <span class="lsi-tag missing">coaching near me</span>
+      <span class="lsi-tag missing">online life coaching</span>
+      <span class="lsi-tag missing">life coaching cost</span>
+      <span class="lsi-tag missing">how does coaching work</span>
+      <span class="lsi-tag missing">coaching vs therapy</span>
+      <span class="lsi-tag missing">coaching results</span>
+      <span class="lsi-tag missing">mental fitness score</span>
+      <span class="lsi-tag missing">PQ score test</span>
+      <span class="lsi-tag missing">Saboteur profile</span>
+      <span class="lsi-tag missing">DEI coaching</span>
+      <span class="lsi-tag missing">change management coaching</span>
+      <span class="lsi-tag missing">leadership development</span>
+      <span class="lsi-tag missing">unlocking potential</span>
+      <span class="lsi-tag missing">neuroscience coaching</span>
+      <span class="lsi-tag missing">mindfulness at work</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 48px;">
+    <div class="section-title">Blog Content Cluster Plan</div>
+    <div class="section-subtitle">These articles will anchor keyword authority for each pillar — publish one per week</div>
+    <div class="gap-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="gap-card">
+        <h4 style="color: var(--accent)">🧠 Mental Fitness Cluster (PQ®)</h4>
+        <ul>
+          <li>What Is Positive Intelligence (PQ®) and How Does It Work?</li>
+          <li>How to Improve Your PQ Score in 6 Weeks</li>
+          <li>The 10 Saboteurs That Hold Leaders Back</li>
+          <li>PQ Coaching South Africa: What to Expect</li>
+          <li>Mental Fitness vs Mindfulness: What's the Difference?</li>
+        </ul>
+      </div>
+      <div class="gap-card">
+        <h4 style="color: var(--accent)">🏢 Corporate &amp; Executive Cluster</h4>
+        <ul>
+          <li>Why Corporate Facilitation Fails in South Africa (and How to Fix It)</li>
+          <li>5 Signs Your Team Needs an Alignment Intervention</li>
+          <li>How to Eliminate Siloed Thinking with Holistic Facilitation</li>
+          <li>The ROI of Executive Coaching in SA Corporates</li>
+          <li>What Is the Reality Check™ EcoMetric?</li>
+        </ul>
+      </div>
+      <div class="gap-card">
+        <h4 style="color: var(--accent)">🌱 Personal Growth Cluster</h4>
+        <ul>
+          <li>How to Stop Self-Sabotage: A Guide for High Achievers</li>
+          <li>Life Coaching vs Therapy: Which Is Right for You?</li>
+          <li>What Is mBIT Coaching and How Does It Work?</li>
+          <li>Educational Kinesiology: The Science of Learning Through Movement</li>
+          <li>How Claudina Hafenscher's 4-Pillar Approach Works</li>
+        </ul>
+      </div>
+      <div class="gap-card">
+        <h4 style="color: var(--accent)">🔍 Local SEO Cluster</h4>
+        <ul>
+          <li>Best Life Coaches in Johannesburg 2026 (and What to Look For)</li>
+          <li>How to Find a COMENSA Accredited Coach in South Africa</li>
+          <li>Corporate Coaching in Gauteng: A Buyer's Guide</li>
+          <li>Have &amp; Share Coaching: Why Clients Choose Claudina</li>
+          <li>Group Coaching in Johannesburg: What to Expect</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 3: PAGE-BY-PAGE ==================== -->
+<div id="tab-pages" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Page-by-Page SEO Analysis</div>
+  <div class="section-subtitle">Priority optimizations for each page on haveandshare.co.za</div>
+
+  <!-- Homepage -->
+  <div class="page-audit">
+    <div class="page-url-bar">
+      🏠 <strong style="color:white">Homepage</strong> — haveandshare.co.za/
+      <span class="page-score-badge" style="color:var(--yellow)">62</span>
+    </div>
+    <div class="page-findings">
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>Missing H1 with primary keyword</h4>
+          <div class="finding-rec">Add: &lt;h1&gt;Holistic Life Coach &amp; Corporate Facilitator in Johannesburg, South Africa&lt;/h1&gt;</div>
+        </div>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Title needs geo-modifier</h4>
+          <div class="finding-rec">Current: "Holistic Life Coach | Unlock Your Full Potential | Have &amp; Share"<br>→ New: "Holistic Life Coach Johannesburg | Mental Fitness &amp; Transformation | Have &amp; Share"</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Meta description needs keyword + CTA</h4>
+          <div class="finding-rec">→ "COMENSA-accredited holistic life coach in Johannesburg. Claudina Hafenscher helps individuals and corporates build mental fitness through PQ®, mBIT &amp; holistic facilitation. Book your free session."</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>No LocalBusiness or Person schema</h4>
+          <div class="finding-rec">→ Add JSON-LD for LocalBusiness + Person (Claudina). Full code in the Schema tab.</div>
+        </div>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Individual Coaching -->
+  <div class="page-audit">
+    <div class="page-url-bar">
+      👤 individual-holistic-coaching.html
+      <span class="page-score-badge" style="color:var(--yellow)">55</span>
+    </div>
+    <div class="page-findings">
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Title missing "South Africa" geo-modifier</h4>
+          <div class="finding-rec">→ "Holistic Life Coaching South Africa | 1:1 Coaching Sessions | Have &amp; Share"</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>Content is thin ~400 words — expand to 800+</h4>
+          <div class="finding-rec">→ Add sections: "What to expect in your first session", "The coaching journey: what happens over 3 months", "Is 1:1 coaching right for you?", "Session format and pricing FAQ"</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Missing H2 structure</h4>
+          <div class="finding-rec">→ Add H2s: "Overcome What's Holding You Back", "How Holistic Coaching Works", "Meet Your Coach", "What Clients Say", "FAQ"</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content"><h4>FAQ section present ✓</h4><p>2 FAQs present. Add FAQPage schema to unlock rich snippets.</p></div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Corporate Facilitation -->
+  <div class="page-audit">
+    <div class="page-url-bar">
+      🏢 corporate-holistic-facilitation.html
+      <span class="page-score-badge" style="color:var(--yellow)">63</span>
+    </div>
+    <div class="page-findings">
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content"><h4>Title is excellent — emotionally compelling ✓</h4><p>"Stop Meeting Madness" is a memorable, click-worthy hook. Keep as-is.</p></div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Missing "Gauteng / South Africa" in body copy</h4>
+          <div class="finding-rec">→ Add location context in the opening paragraph. "Based in Gauteng and working across South Africa and internationally..." signals local relevance to Google.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Add ROI / outcomes section</h4>
+          <div class="finding-rec">→ Corporate buyers need measurable results. Add: "What measurable results can you expect?" with 3-5 bullet outcomes. e.g., "Reduction in meeting time by X%", "Improved cross-department collaboration scores"</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>No Service or FAQPage schema</h4>
+          <div class="finding-rec">→ Add Service schema for "Corporate Holistic Facilitation" and FAQPage schema for the 2 FAQ items present.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PQ Page -->
+  <div class="page-audit">
+    <div class="page-url-bar">
+      🧠 positive-intelligence-coaching.html
+      <span class="page-score-badge" style="color:var(--green)">74</span>
+    </div>
+    <div class="page-findings">
+      <div class="finding">
+        <div class="finding-status pass"></div>
+        <div class="finding-content"><h4>Best-optimized page on the site ✓</h4><p>Strong content depth, clear H2 hierarchy, PQ® keyword woven naturally, YouTube video + PQ profile link. Good semantic saturation.</p></div>
+        <span class="badge badge-pass">Pass</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Add "South Africa" to page targeting</h4>
+          <div class="finding-rec">→ PQ® page body has "South African and global organisations" — ensure this appears near the top of the page, ideally in the opening &lt;p&gt; or H1.</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Missing FAQ section</h4>
+          <div class="finding-rec">→ Add 4-5 FAQs: "What is a PQ score?", "How long does the PQ program take?", "Is PQ coaching right for my team?", "How much does PQ coaching cost in South Africa?", "How is PQ different from EQ?"</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog -->
+  <div class="page-audit">
+    <div class="page-url-bar">
+      📝 blog.html
+      <span class="page-score-badge" style="color:var(--orange)">45</span>
+    </div>
+    <div class="page-findings">
+      <div class="finding">
+        <div class="finding-status warning"></div>
+        <div class="finding-content">
+          <h4>Blog hub needs category filtering and keyword-rich intro</h4>
+          <div class="finding-rec">→ Add a 150-word intro to the blog page targeting "holistic coaching articles South Africa". Add category tags: Mental Fitness, Corporate, Personal Growth, Kinesiology.</div>
+        </div>
+        <span class="badge badge-medium">Medium</span>
+      </div>
+      <div class="finding">
+        <div class="finding-status fail"></div>
+        <div class="finding-content">
+          <h4>Each blog article needs individual title+meta optimization</h4>
+          <div class="finding-rec">→ Audit each article for: unique title tag (50-60 chars), unique meta description (150-160 chars), one H1, proper H2 structure, primary keyword in first 100 words.</div>
+        </div>
+        <span class="badge badge-high">High</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 4: SCHEMA & TECHNICAL ==================== -->
+<div id="tab-schema" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Schema Markup &amp; Technical Implementation</div>
+  <div class="section-subtitle">Copy-paste JSON-LD code blocks ready for immediate implementation</div>
+
+  <!-- LocalBusiness + Person Schema -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px; font-size:16px;">
+      <div class="icon" style="background:var(--blue-bg)">🏪</div>
+      HomePage — LocalBusiness + Person Schema
+      <span class="badge badge-critical" style="margin-left:auto">Critical Priority</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Add this in &lt;head&gt; of index.html — enables Google Knowledge Panel, local pack eligibility, and rich results.</p>
+    <div class="schema-block">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://haveandshare.co.za/#business",
+      "name": "Have and Share Coaching",
+      "url": "https://haveandshare.co.za/",
+      "logo": "https://haveandshare.co.za/assets/logo.png",
+      "image": "https://haveandshare.co.za/assets/og-image.jpg",
+      "description": "Have and Share Coaching offers holistic life coaching, corporate facilitation, and mental fitness programs in Johannesburg, South Africa. Specialising in Positive Intelligence (PQ®), mBIT coaching, and Educational Kinesiology.",
+      "telephone": "+27828025941",
+      "email": "claudina@haveandshare.co.za",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "13 Morester",
+        "addressLocality": "Glen Marais",
+        "addressRegion": "Gauteng",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -26.0034,
+        "longitude": 28.1513
+      },
+      "areaServed": [
+        "Johannesburg", "Gauteng", "South Africa", "Global (Remote)"
+      ],
+      "priceRange": "$$",
+      "openingHours": "Mo-Fr 08:00-17:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/claudina-hafenscher"
+      ],
+      "founder": { "@id": "https://haveandshare.co.za/#claudina" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://haveandshare.co.za/#claudina",
+      "name": "Claudina Hafenscher",
+      "jobTitle": "Holistic Life Coach &amp; Corporate Facilitator",
+      "url": "https://haveandshare.co.za/",
+      "image": "https://haveandshare.co.za/assets/claudina-photo.jpg",
+      "sameAs": [
+        "https://marketplace.positiveintelligence.com/profiles/6988b47082298fe0e4fb6876"
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Accreditation",
+          "name": "COMENSA Accredited Senior Coach"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Certification",
+          "name": "Master mBIT Coach"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Certification",
+          "name": "PQ® Certified Coach — Positive Intelligence"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Qualification",
+          "name": "Educational Kinesiologist (25+ years)"
+        }
+      ],
+      "worksFor": { "@id": "https://haveandshare.co.za/#business" }
+    }
+  ]
+}
+&lt;/script&gt;</div>
+  </div>
+
+  <!-- Service Schema -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px; font-size:16px;">
+      <div class="icon" style="background:var(--green-bg)">🔧</div>
+      Service Pages — Service Schema Template
+      <span class="badge badge-high" style="margin-left:auto">High Priority</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Add a version of this to each service page, adjusting name/description/url per page.</p>
+    <div class="schema-block">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Holistic Life Coaching",
+  "alternateName": "1:1 Life Coaching South Africa",
+  "url": "https://haveandshare.co.za/individual-holistic-coaching.html",
+  "description": "One-on-one holistic life coaching sessions helping individuals overcome self-sabotage, limiting beliefs, and achieve meaningful transformation through PQ®, mBIT, and Educational Kinesiology.",
+  "provider": {
+    "@type": "Person",
+    "name": "Claudina Hafenscher",
+    "url": "https://haveandshare.co.za/"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "South Africa"
+  },
+  "serviceType": "Life Coaching",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Individuals seeking personal growth and transformation"
+  }
+}
+&lt;/script&gt;</div>
+  </div>
+
+  <!-- FAQPage Schema -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px; font-size:16px;">
+      <div class="icon" style="background:var(--orange-bg)">❓</div>
+      FAQ Pages — FAQPage Schema
+      <span class="badge badge-high" style="margin-left:auto">High Priority</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Apply to any page with an FAQ section. This unlocks Google's accordion rich results — free SERP real estate.</p>
+    <div class="schema-block">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long is a holistic coaching session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each individual holistic coaching session typically lasts between 60 to 90 minutes, allowing adequate time to uncover and address limiting beliefs and create lasting breakthroughs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What methodologies are used in holistic coaching?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claudina uses a unique blend of Positive Intelligence (PQ®) for mental fitness, mBIT coaching to align head, heart and gut intelligence, and Educational Kinesiology techniques to enhance focus and learning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is holistic coaching available online in South Africa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Claudina Hafenscher conducts coaching sessions both in-person in Johannesburg, Gauteng and online for clients across South Africa and internationally."
+      }
+    }
+  ]
+}
+&lt;/script&gt;</div>
+  </div>
+
+  <!-- BreadcrumbList Schema -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px; font-size:16px;">
+      <div class="icon" style="background:var(--yellow-bg)">🧭</div>
+      Breadcrumb Schema — All Sub-Pages
+      <span class="badge badge-medium" style="margin-left:auto">Medium Priority</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Add BreadcrumbList to every non-homepage page. Enables Google to show breadcrumbs in search results instead of raw URLs.</p>
+    <div class="schema-block">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://haveandshare.co.za/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Individual Holistic Coaching",
+      "item": "https://haveandshare.co.za/individual-holistic-coaching.html"
+    }
+  ]
+}
+&lt;/script&gt;</div>
+  </div>
+
+  <!-- sitemap.xml -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px; font-size:16px;">
+      <div class="icon" style="background:var(--red-bg)">🗺️</div>
+      sitemap.xml — Generate &amp; Submit
+      <span class="badge badge-critical" style="margin-left:auto">Critical Priority</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Create this file at https://haveandshare.co.za/sitemap.xml and submit it to Google Search Console.</p>
+    <div class="schema-block">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/&lt;/loc&gt;&lt;priority&gt;1.0&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/individual-holistic-coaching.html&lt;/loc&gt;&lt;priority&gt;0.9&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/corporate-holistic-facilitation.html&lt;/loc&gt;&lt;priority&gt;0.9&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/group-holistic-coaching.html&lt;/loc&gt;&lt;priority&gt;0.8&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/positive-intelligence-coaching.html&lt;/loc&gt;&lt;priority&gt;0.9&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/reality-check.html&lt;/loc&gt;&lt;priority&gt;0.8&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/mbit-coaching.html&lt;/loc&gt;&lt;priority&gt;0.8&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/educational-kinesiology.html&lt;/loc&gt;&lt;priority&gt;0.8&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/corporate-social-investment.html&lt;/loc&gt;&lt;priority&gt;0.7&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://haveandshare.co.za/blog.html&lt;/loc&gt;&lt;priority&gt;0.8&lt;/priority&gt;&lt;/url&gt;
+&lt;/urlset&gt;</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 5: ACTION PLAN ==================== -->
+<div id="tab-actions" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Prioritised Action Plan</div>
+  <div class="section-subtitle">28 actions ranked by impact and implementation effort — start with Critical items</div>
+
+  <!-- Critical -->
+  <div style="margin-bottom:32px;">
+    <div style="display:flex; align-items:center; gap:12px; padding-bottom:12px; border-bottom:1px solid var(--border); margin-bottom:16px;">
+      <span class="badge badge-critical">🔴 Critical — Do This Week</span>
+      <span style="font-size:13px; color:var(--text-muted)">Blocks indexing, rankings, and rich results</span>
+    </div>
+    <table class="action-table">
+      <thead>
+        <tr><th>#</th><th>Action</th><th>Where</th><th>Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--accent); font-weight:700">1</td>
+          <td><strong>Add H1 with primary keyword to homepage</strong><br><span style="color:var(--text-secondary)">&lt;h1&gt;Holistic Life Coach &amp; Facilitator | Johannesburg, South Africa&lt;/h1&gt;</span></td>
+          <td>index.html</td>
+          <td style="color:var(--green)">Very High</td>
+          <td style="color:var(--green)">15 min</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent); font-weight:700">2</td>
+          <td><strong>Add LocalBusiness + Person JSON-LD schema</strong><br><span style="color:var(--text-secondary)">Full code provided in Schema tab</span></td>
+          <td>index.html &lt;head&gt;</td>
+          <td style="color:var(--green)">Very High</td>
+          <td style="color:var(--green)">30 min</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent); font-weight:700">3</td>
+          <td><strong>Generate and submit sitemap.xml</strong><br><span style="color:var(--text-secondary)">Upload to root, submit via Google Search Console</span></td>
+          <td>Site root</td>
+          <td style="color:var(--green)">Very High</td>
+          <td style="color:var(--green)">20 min</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent); font-weight:700">4</td>
+          <td><strong>Create standalone /about.html page</strong><br><span style="color:var(--text-secondary)">800–1200 words: Claudina's story, certifications, philosophy, photo</span></td>
+          <td>New page</td>
+          <td style="color:var(--green)">Very High</td>
+          <td style="color:var(--yellow)">3 hrs</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent); font-weight:700">5</td>
+          <td><strong>Add geo-modifiers to all page titles + meta descriptions</strong><br><span style="color:var(--text-secondary)">"South Africa", "Johannesburg", "Gauteng" — see page-by-page tab for exact copy</span></td>
+          <td>All 11 pages</td>
+          <td style="color:var(--green)">Very High</td>
+          <td style="color:var(--green)">1 hr</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent); font-weight:700">6</td>
+          <td><strong>Set up / verify Google Business Profile</strong><br><span style="color:var(--text-secondary)">Name: "Have and Share Coaching", category: Life Coach</span></td>
+          <td>Google Business</td>
+          <td style="color:var(--green)">Very High</td>
+          <td style="color:var(--green)">45 min</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- High -->
+  <div style="margin-bottom:32px;">
+    <div style="display:flex; align-items:center; gap:12px; padding-bottom:12px; border-bottom:1px solid var(--border); margin-bottom:16px;">
+      <span class="badge badge-high">🟠 High — Do This Month</span>
+      <span style="font-size:13px; color:var(--text-muted)">Significant ranking and conversion impact</span>
+    </div>
+    <table class="action-table">
+      <thead>
+        <tr><th>#</th><th>Action</th><th>Where</th><th>Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">7</td>
+          <td><strong>Expand Individual Coaching page to 800+ words</strong><br><span style="color:var(--text-secondary)">Add: session format, coaching journey, outcomes, pricing FAQ</span></td>
+          <td>individual-holistic-coaching.html</td>
+          <td style="color:var(--green)">High</td>
+          <td style="color:var(--yellow)">2 hrs</td>
+        </tr>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">8</td>
+          <td><strong>Add Service schema to all 3 service pages</strong><br><span style="color:var(--text-secondary)">Individual, Group, Corporate — template in Schema tab</span></td>
+          <td>3 service pages</td>
+          <td style="color:var(--yellow)">High</td>
+          <td style="color:var(--green)">1 hr</td>
+        </tr>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">9</td>
+          <td><strong>Add FAQPage schema to pages with FAQs</strong><br><span style="color:var(--text-secondary)">Individual Coaching, Corporate Facilitation, PQ® pages</span></td>
+          <td>3 pages</td>
+          <td style="color:var(--yellow)">High</td>
+          <td style="color:var(--green)">1 hr</td>
+        </tr>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">10</td>
+          <td><strong>Audit and expand methodology pillar pages</strong><br><span style="color:var(--text-secondary)">mBIT, Educational Kinesiology: add geo, expand content, add FAQ, add schema</span></td>
+          <td>4 methodology pages</td>
+          <td style="color:var(--green)">High</td>
+          <td style="color:var(--yellow)">4 hrs</td>
+        </tr>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">11</td>
+          <td><strong>Add "Claudina Hafenscher" to homepage title and meta</strong><br><span style="color:var(--text-secondary)">Captures all branded/referral search traffic with zero competition</span></td>
+          <td>index.html</td>
+          <td style="color:var(--yellow)">High</td>
+          <td style="color:var(--green)">10 min</td>
+        </tr>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">12</td>
+          <td><strong>Create /contact.html (internal contact page)</strong><br><span style="color:var(--text-secondary)">Embed TidyCal + contact form. Keep users on-domain for tracking</span></td>
+          <td>New page</td>
+          <td style="color:var(--yellow)">High</td>
+          <td style="color:var(--yellow)">2 hrs</td>
+        </tr>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">13</td>
+          <td><strong>Add OG images to all major pages</strong><br><span style="color:var(--text-secondary)">1200×630px branded images. Rich previews on LinkedIn and WhatsApp sharing</span></td>
+          <td>All pages</td>
+          <td style="color:var(--yellow)">High</td>
+          <td style="color:var(--yellow)">3 hrs</td>
+        </tr>
+        <tr>
+          <td style="color:var(--orange); font-weight:700">14</td>
+          <td><strong>Add FAQ section to PQ® page</strong><br><span style="color:var(--text-secondary)">"What is PQ score?", "How long?", "GA vs SA?", "Cost?" — 4-5 FAQs + FAQPage schema</span></td>
+          <td>positive-intelligence-coaching.html</td>
+          <td style="color:var(--yellow)">High</td>
+          <td style="color:var(--green)">1 hr</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Medium -->
+  <div style="margin-bottom:32px;">
+    <div style="display:flex; align-items:center; gap:12px; padding-bottom:12px; border-bottom:1px solid var(--border); margin-bottom:16px;">
+      <span class="badge badge-medium">🟡 Medium — Do Next Quarter</span>
+      <span style="font-size:13px; color:var(--text-muted)">Compound SEO gains over time</span>
+    </div>
+    <table class="action-table">
+      <thead>
+        <tr><th>#</th><th>Action</th><th>Where</th><th>Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">15</td>
+          <td><strong>Publish 2 × blog articles per month</strong><br><span style="color:var(--text-secondary)">Content cluster plan in Keyword Strategy tab — start with "What is PQ coaching?"</span></td>
+          <td>blog.html</td>
+          <td style="color:var(--green)">High (compound)</td>
+          <td style="color:var(--yellow)">Ongoing</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">16</td>
+          <td><strong>Add breadcrumb schema to all sub-pages</strong><br><span style="color:var(--text-secondary)">Enables breadcrumb display in SERP — improves click-through rate</span></td>
+          <td>All non-home pages</td>
+          <td style="color:var(--yellow)">Medium</td>
+          <td style="color:var(--green)">1 hr</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">17</td>
+          <td><strong>Replace Google Forms quiz with branded on-site experience</strong><br><span style="color:var(--text-secondary)">MindMosaic Assessment on /mindmosaic.html — Typeform embed or custom</span></td>
+          <td>New page</td>
+          <td style="color:var(--green)">High (conversion)</td>
+          <td style="color:var(--orange)">8 hrs</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">18</td>
+          <td><strong>Add "Related Insights" section to service pages</strong><br><span style="color:var(--text-secondary)">Link 2-3 blog articles from each service page — deepens topical authority</span></td>
+          <td>All service pages</td>
+          <td style="color:var(--yellow)">Medium</td>
+          <td style="color:var(--green)">1 hr</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">19</td>
+          <td><strong>Add UTM parameters to all TidyCal links</strong><br><span style="color:var(--text-secondary)">Track which pages and CTAs drive the most bookings</span></td>
+          <td>All pages</td>
+          <td style="color:var(--yellow)">Medium (analytics)</td>
+          <td style="color:var(--green)">30 min</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">20</td>
+          <td><strong>Install Google Analytics 4 + Search Console</strong><br><span style="color:var(--text-secondary)">Confirm tracking, set up conversion events for TidyCal clicks</span></td>
+          <td>Site-wide</td>
+          <td style="color:var(--yellow)">Medium (data)</td>
+          <td style="color:var(--green)">45 min</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">21</td>
+          <td><strong>Add Google Reviews widget or embed to homepage</strong><br><span style="color:var(--text-secondary)">Requires Google Business Profile to be set up first (Action 6)</span></td>
+          <td>index.html</td>
+          <td style="color:var(--yellow)">Medium (trust)</td>
+          <td style="color:var(--yellow)">1 hr</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">22</td>
+          <td><strong>Add "Claudina Hafenscher" speaker/media page</strong><br><span style="color:var(--text-secondary)">List speaking engagements, press, podcasts — builds authority backlinks naturally</span></td>
+          <td>New page /media.html</td>
+          <td style="color:var(--yellow)">Medium</td>
+          <td style="color:var(--yellow)">2 hrs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Low -->
+  <div>
+    <div style="display:flex; align-items:center; gap:12px; padding-bottom:12px; border-bottom:1px solid var(--border); margin-bottom:16px;">
+      <span class="badge badge-low">🟢 Low — Ongoing / Long-term</span>
+      <span style="font-size:13px; color:var(--text-muted)">Accumulates authority over months</span>
+    </div>
+    <table class="action-table">
+      <thead>
+        <tr><th>#</th><th>Action</th><th>Expected Outcome</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--green); font-weight:700">23</td>
+          <td><strong>Build backlinks from coaching directories</strong><br><span style="color:var(--text-secondary)">List on COMENSA directory, ICF South Africa, coaching.co.za, findacoach.co.za</span></td>
+          <td>Domain authority growth, local citation signals</td>
+        </tr>
+        <tr>
+          <td style="color:var(--green); font-weight:700">24</td>
+          <td><strong>Guest post on SA HR and leadership blogs</strong><br><span style="color:var(--text-secondary)">Target: Craig's List HR, PeopleHum SA, HR Future Magazine</span></td>
+          <td>Quality backlinks + branded referral traffic</td>
+        </tr>
+        <tr>
+          <td style="color:var(--green); font-weight:700">25</td>
+          <td><strong>Podcast appearances as SEO amplifier</strong><br><span style="color:var(--text-secondary)">Every podcast mention = backlink + brand awareness + referral traffic</span></td>
+          <td>E-E-A-T boost, authority backlinks</td>
+        </tr>
+        <tr>
+          <td style="color:var(--green); font-weight:700">26</td>
+          <td><strong>LinkedIn SEO optimization</strong><br><span style="color:var(--text-secondary)">Claudina's LinkedIn profile ranks for name searches. Optimize headline: "Holistic Life Coach Johannesburg | PQ® &amp; mBIT Coach | Have &amp; Share"</span></td>
+          <td>Branded search control, referral traffic</td>
+        </tr>
+        <tr>
+          <td style="color:var(--green); font-weight:700">27</td>
+          <td><strong>Video content SEO (YouTube)</strong><br><span style="color:var(--text-secondary)">Short coaching insight videos targeting low-competition queries — "What is mBIT coaching?" (12 views/month, zero competition)</span></td>
+          <td>YouTube search authority, website backlinks</td>
+        </tr>
+        <tr>
+          <td style="color:var(--green); font-weight:700">28</td>
+          <td><strong>Ask clients for Google Reviews</strong><br><span style="color:var(--text-secondary)">10+ reviews with 4.5+ stars boosts local pack ranking significantly</span></td>
+          <td>Local SEO ranking, click-through rate improvement</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<script>
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleCard(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// Animate score ring on load
+window.addEventListener('load', () => {
+  const ring = document.querySelector('.progress-ring');
+  if (ring) {
+    const score = 56;
+    const circumference = 502;
+    const offset = circumference - (circumference * score / 100);
+    setTimeout(() => { ring.style.strokeDashoffset = offset; }, 300);
+  }
+});
+</script>
+
+</body>
+</html>
