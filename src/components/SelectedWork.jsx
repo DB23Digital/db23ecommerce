@@ -17,7 +17,8 @@ const showcaseItems = [
         category: 'Business Coaching',
         summary:
             'A premium business coaching and personal development website designed to communicate authority, transformation, and professional growth through elegant branding and clear service positioning.',
-        url: 'https://haveandshare.co.za?utm_source=chatgpt.com',
+        url: 'https://haveandshare.co.za',
+        external: true,
         image: '/assets/showcase/haveandshare.webp',
         alt: 'Have and Share business coaching website landing page',
     },
@@ -26,7 +27,8 @@ const showcaseItems = [
         category: 'Travel & Safaris',
         summary:
             'A luxury African safari and travel website built around immersive destination storytelling, curated travel experiences, and high-end visual presentation.',
-        url: 'https://insight2afrika.com/?utm_source=chatgpt.com',
+        url: 'https://insight2afrika.com/',
+        external: true,
         image: '/assets/showcase/insight2afrika.webp',
         alt: 'Insight2Afrika luxury African safari website landing page',
     },
@@ -53,7 +55,8 @@ const showcaseItems = [
         category: 'Corporate Travel',
         summary:
             'A modern corporate travel management website positioning RTM as a trusted travel coordination partner for business travel, executive support, reporting, and logistics management.',
-        url: 'https://rtmtravel.co.za?utm_source=chatgpt.com',
+        url: 'https://rtmtravel.co.za',
+        external: true,
         image: '/assets/showcase/rtmtravel.webp',
         alt: 'RTM Travel corporate travel management website',
     },
@@ -62,7 +65,8 @@ const showcaseItems = [
         category: 'Education & Career Guidance',
         summary:
             'A comprehensive South African career guidance platform helping learners, schools, parents, sponsors, and employers navigate subject choices, career pathways, and future opportunities.',
-        url: 'https://skillspassportsa.co.za?utm_source=chatgpt.com',
+        url: 'https://skillspassportsa.co.za',
+        external: true,
         image: '/assets/showcase/skillspassport.webp',
         alt: 'SkillsPassport career guidance platform website',
     },
@@ -71,7 +75,7 @@ const showcaseItems = [
         category: 'Pool Technology',
         summary:
             'A high-tech product landing page for an intelligent swimming pool cleaning and navigation device using premium visuals, technical storytelling, and modern feature presentation.',
-        url: 'https://db23.co.za/otrum/?utm_source=chatgpt.com',
+        url: 'https://db23.co.za/otrum/',
         image: '/assets/showcase/otrum.webp',
         alt: 'Otrum intelligent swimming pool cleaning device landing page',
     },
@@ -80,7 +84,8 @@ const showcaseItems = [
         category: 'Sports Equipment Cleaning',
         summary:
             'A sports equipment cleaning and sanitization brand website focused on hygiene, restoration, and convenience for athletes, schools, sports clubs, and parents.',
-        url: 'https://mudbusters.co.za?utm_source=chatgpt.com',
+        url: 'https://mudbusters.co.za',
+        external: true,
         image: '/assets/showcase/mudbusters.webp',
         alt: 'Mud Busters sports equipment cleaning website',
     },
@@ -89,7 +94,7 @@ const showcaseItems = [
         category: 'Sports Industry',
         summary:
             'A conversion-focused sports gear cleaning landing page featuring service packages, process explanations, FAQs, pricing structures, and booking-driven calls to action.',
-        url: 'https://db23.co.za/club-scrub/index.html?utm_source=chatgpt.com',
+        url: 'https://db23.co.za/club-scrub/',
         image: '/assets/showcase/clubscrub.webp',
         alt: 'Club Scrub sports gear cleaning service website',
     },
@@ -98,7 +103,8 @@ const showcaseItems = [
         category: 'Education & Training',
         summary:
             'An interactive education and product training platform helping retail staff better understand product benefits, improve customer conversations, and support more informed in-store recommendations.',
-        url: 'https://farmina-store-training.vercel.app/?utm_source=chatgpt.com',
+        url: 'https://farmina-store-training.vercel.app/',
+        external: true,
         image: '/assets/showcase/farmina-store-training.webp',
         alt: 'Farmina Store Training education platform website',
     },
@@ -107,7 +113,7 @@ const showcaseItems = [
         category: 'Outsourced Marketing & AI Services',
         summary:
             'A high-tech digital growth platform helping small and medium businesses with outsourced marketing, AI-powered customer engagement, website modernization, automation, lead generation, and digital support services.',
-        url: 'https://www.db23.co.za/takeittomarket/?utm_source=chatgpt.com',
+        url: 'https://www.db23.co.za/takeittomarket/',
         image: '/assets/showcase/take-it-to-market.webp',
         alt: 'Take It To Market outsourced marketing and AI services website',
     },
@@ -116,7 +122,7 @@ const showcaseItems = [
         category: 'Lifestyle Estate Living',
         summary:
             'A polished lifestyle estate website presenting Mar a Largo through premium coastal living, estate positioning, visual storytelling, and clear property-focused calls to action.',
-        url: 'https://db23.co.za/mar-a-largo/index.html?utm_source=chatgpt.com',
+        url: 'https://db23.co.za/mar-a-largo/index.html',
         image: '/assets/showcase/mar-a-largo.webp',
         alt: 'Mar a Largo lifestyle estate living website',
     },
@@ -125,8 +131,8 @@ const showcaseItems = [
         category: 'Engineering & Construction',
         summary:
             'A premium civil construction and industrial real estate website designed with a tactical drafting theme, interactive geographic D3 globe hub navigation, inline HTML5 media popups, and robust cPanel integrated leasing proposals.',
-        url: 'https://db23.co.za/arehm-dev/',
-        image: '/assets/showcase/ahrem-dev.webp',
+        url: 'https://db23.co.za/aremh-dev/',
+        image: '/assets/showcase/aremh-dev.webp',
         alt: 'AREMH Developments engineering and civil construction website',
     },
     {
@@ -134,7 +140,8 @@ const showcaseItems = [
         category: 'Industrial Safety',
         summary:
             'A reliable fire detection and suppression systems website that positions industrial safety solutions clearly for commercial, manufacturing, and infrastructure clients.',
-        url: 'https://fire-detection.co.za/?utm_source=chatgpt.com',
+        url: 'https://fire-detection.co.za/',
+        external: true,
         image: '/assets/showcase/fire-detection.webp',
         alt: 'Fire Detection SA industrial fire safety systems website',
     },
@@ -162,6 +169,7 @@ const showcaseItems = [
         summary:
             'A corporate group website for Apex Pet Group, unifying brand presence, product lines, and business positioning across the pet industry.',
         url: 'https://apexpetgroup.co.za',
+        external: true,
         image: '/assets/showcase/apexpetgroup.jpg',
         alt: 'Apex Pet Group corporate pet industry website',
     },
@@ -190,7 +198,8 @@ const card = {
     },
 };
 
-export function SelectedWork() {
+export function SelectedWork({ limit }) {
+    const items = limit ? showcaseItems.slice(0, limit) : showcaseItems;
     return (
         <section
             id="work-showcase"
@@ -237,7 +246,7 @@ export function SelectedWork() {
                     viewport={{ once: true, margin: '-80px' }}
                     className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
                 >
-                    {showcaseItems.map((item) => (
+                    {items.map((item) => (
                         <Motion.article
                             key={item.project}
                             variants={card}
@@ -274,7 +283,7 @@ export function SelectedWork() {
                                 <a
                                     href={item.url}
                                     target="_blank"
-                                    rel="noopener noreferrer"
+                                    rel={item.external ? 'nofollow noopener' : 'noopener noreferrer'}
                                     className="inline-flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition hover:border-accent/50 hover:bg-accent/15 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                                     aria-label={`View ${item.project} project`}
                                 >

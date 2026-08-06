@@ -14,12 +14,20 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-# Training-only crawlers — blocked (search AI remains open above)
+# Training-only crawlers — blocked (search AI remains open above).
+# Deliberate: allow AI search crawling (ClaudeBot, GPTBot, PerplexityBot,
+# etc. above) while blocking pure-training crawlers. Leave as-is unless
+# Deon says otherwise. llms.txt is fine to keep but Google Search doesn't
+# read it — don't treat it as a ranking lever.
 User-agent: CCBot
 Disallow: /
 
 User-agent: anthropic-ai
 Disallow: /
+
+# NOTE: client microsites (/safik-wanza/, /aremh-dev/, /mar-a-largo/, /otrum/,
+# /club-scrub/, /takeittomarket/, /kenya/) are de-indexed via X-Robots-Tag in
+# .htaccess. They MUST stay crawlable — do not add Disallow rules for them.
 
 # General crawlers
 User-agent: *

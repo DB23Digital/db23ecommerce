@@ -7,16 +7,16 @@ import { Button } from '../components/ui/Button';
 import { SelectedWork } from '../components/SelectedWork';
 
 const features = [
-    { icon: <LayoutTemplate className="h-6 w-6" />, title: 'Conversion-Focused Design', desc: 'Beautiful designs are useless if they don\'t convert. We design user journeys that guide visitors toward contacting you or buying your products globally.' },
+    { icon: <LayoutTemplate className="h-6 w-6" />, title: 'Conversion-Focused Design', desc: 'Beautiful designs are useless if they don\'t convert. We design user journeys that guide South African visitors toward contacting you or buying your products.' },
     { icon: <Smartphone className="h-6 w-6" />, title: 'Mobile-First Experience', desc: 'With the majority of web traffic coming from mobile devices, we ensure your website looks and functions perfectly on all screen sizes everywhere.' },
-    { icon: <Zap className="h-6 w-6" />, title: 'Ultra-Fast Performance', desc: 'Slow websites kill conversions and SEO. We build lightweight, highly-optimised websites that load in milliseconds across the world.' },
+    { icon: <Zap className="h-6 w-6" />, title: 'Ultra-Fast Performance', desc: 'Slow websites kill conversions and SEO. We build lightweight, highly-optimised websites that load in milliseconds for South African visitors.' },
     { icon: <Search className="h-6 w-6" />, title: 'SEO-Ready Architecture', desc: 'Proper heading structures, schema markup, and clean code so Google can easily crawl, understand, and rank your site from day one.' },
-    { icon: <Code2 className="h-6 w-6" />, title: 'Modern Tech Stack', desc: 'We build using modern React/Next.js frameworks or optimised WordPress, depending on what your specific business needs to scale internationally.' },
+    { icon: <Code2 className="h-6 w-6" />, title: 'Modern Tech Stack', desc: 'We build using modern React/Next.js frameworks or optimised WordPress, depending on what your specific South African business needs to scale.' },
     { icon: <PenTool className="h-6 w-6" />, title: 'Copywriting Included', desc: 'A great website needs great words. We don\'t just give you empty templates; we help craft the messaging that sells your services.' },
 ];
 
 const faqs = [
-    { q: 'How much does a new website cost?', a: 'Website pricing depends on complexity, the number of pages, and required features (like eCommerce or custom portals). Our professional business sites typically start from a competitive baseline suited for SMEs worldwide. Contact us for a precise quote.' },
+    { q: 'How much does a new website cost?', a: 'Website pricing depends on complexity, the number of pages, and required features (like eCommerce or custom portals). Our professional business sites typically start from a competitive baseline suited for South African SMEs. Contact us for a precise quote.' },
     { q: 'How long does it take to build a website?', a: 'A standard 5-page business website usually takes 3 to 5 days from the initial kickoff to launch, provided we have all the necessary branding assets and information from you.' },
     { q: 'Do you offer eCommerce website design?', a: 'Yes. We build robust eCommerce platforms using Shopify or WooCommerce, fully integrated with global payment gateways like Stripe and PayPal, as well as localized gateways based on your target market.' },
     { q: 'Will I be able to update the website myself?', a: 'Yes. We build sites with user-friendly Content Management Systems (CMS) and provide remote training so your team can easily update text, add blog posts, or change images without needing a developer.' },
@@ -102,7 +102,7 @@ export function WebsiteDesignPage() {
                                 <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">SA Businesses</span>
                             </h1>
                             <p className="mb-10 text-lg leading-relaxed text-text-muted md:text-xl max-w-xl">
-                                Your website is your 24/7 digital storefront. We build ultra-fast, mobile-optimised websites designed specifically to capture leads and drive sales for modern businesses worldwide.
+                                Your website is your 24/7 digital storefront. We build ultra-fast, mobile-optimised websites designed specifically to capture leads and drive sales for South African businesses.
                             </p>
                             <div className="flex flex-col gap-4 sm:flex-row">
                                 <Button href="/#contact" size="lg" className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white border-purple-500">Get a Web Design Quote</Button>
@@ -138,7 +138,7 @@ export function WebsiteDesignPage() {
             </section>
 
             {/* Work Showcase */}
-            <SelectedWork />
+            <SelectedWork limit={3} />
 
             {/* FAQ */}
             <section className="bg-background py-24 md:py-32" aria-labelledby="faq-heading">

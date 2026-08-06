@@ -20,8 +20,8 @@ export function CurrencyProvider({ children }) {
             }
         }
 
-        // C. Fallback default
-        return 'USD';
+        // C. Fallback default — site targets South Africa
+        return 'ZAR';
     });
 
     // 2. Client-Side Geolocation Fallback (Only if cookie/localStorage not yet established)
@@ -47,8 +47,8 @@ export function CurrencyProvider({ children }) {
                     document.cookie = `user_region=${country}; max-age=${86400 * 30}; path=/; SameSite=Lax`;
                 })
                 .catch(() => {
-                    // Fail gracefully to USD
-                    setCurrency('USD');
+                    // Fail gracefully to ZAR — site targets South Africa
+                    setCurrency('ZAR');
                 });
         }
     }, []);

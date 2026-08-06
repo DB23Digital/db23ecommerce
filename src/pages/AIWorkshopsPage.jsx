@@ -5,6 +5,7 @@ import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import { Button } from '../components/ui/Button';
 import { useCurrency } from '../components/CurrencyContext';
+import { FounderBio } from '../components/FounderBio';
 
 const modules = [
     { icon: <Brain className="h-6 w-6" />, title: 'AI Fundamentals', desc: 'What AI actually is, how it works, and what it means for your business — in plain language.' },
@@ -39,7 +40,7 @@ const faqs = [
     { q: 'Who should attend an AI business workshop?', a: 'Anyone who makes decisions, manages processes, or leads teams will benefit — owners, managers, marketing teams, sales staff, operations leads, and executive teams.' },
     { q: 'Do we need technical skills to attend?', a: 'No. DB23 explains everything in plain business language with practical examples. The workshops are designed for people who want to understand and use AI — not build it.' },
     { q: 'How much does an AI workshop cost?', a: 'DB23 introductory virtual workshops start from R4,500 (ZAR). Team workshops start from R12,500 (ZAR). Leadership and full-day strategic sessions are custom-priced based on your specific requirements. International equivalent pricing is provided upon inquiry.' },
-    { q: 'Are AI workshops available online?', a: 'Yes. DB23 delivers workshops globally online via video call, accommodating different time zones. We also offer in-person sessions at your premises across South Africa upon request.' },
+    { q: 'Are AI workshops available online?', a: 'Yes. DB23 delivers workshops online via video call to teams anywhere in South Africa. We also offer in-person sessions at your premises in Cape Town, Johannesburg, Durban and other major centres upon request.' },
     { q: 'What happens after an AI workshop?', a: 'You receive an opportunity map highlighting your biggest AI and automation opportunities. From there you can implement specific tools, engage DB23 for automation, or continue with further training.' },
     { q: 'Are AI workshops worth it for small businesses?', a: 'Yes — especially now. AI tools are accessible and affordable for SMEs. A workshop helps your team understand what\'s possible before spending on tools, making your investment far more targeted.' },
     { q: 'How long does an AI workshop take?', a: 'Introductory sessions run 90 minutes to 2 hours. Team workshops are half-day. Strategic leadership sessions are full-day. Custom durations are available on request.' },
@@ -139,14 +140,14 @@ export function AIWorkshopsPage() {
                             <span className="bg-gradient-to-r from-accent to-cyan-400 bg-clip-text text-transparent">South African Business Teams</span>
                         </h1>
                         <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-text-muted md:text-xl">
-                            DB23 delivers hands-on AI workshops that help global business teams understand AI tools, automate workflows, and identify real opportunities — in plain language, no technical background needed.
+                            DB23 delivers hands-on AI workshops that help South African business teams understand AI tools, automate workflows, and identify real opportunities — in plain language, no technical background needed.
                         </p>
                         <div className="flex flex-col gap-4 sm:flex-row justify-center">
                             <Button href="/#contact" size="lg" className="w-full sm:w-auto">Book Your AI Workshop</Button>
                             <Button href="#workshop-packages" variant="outline" size="lg" className="w-full sm:w-auto">View Packages & Pricing</Button>
                         </div>
                         <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-text-muted">
-                            {['No tech skills required', 'Virtual & online sessions', 'Tailored to your business', 'Global availability'].map(t => (
+                            {['No tech skills required', 'Virtual & online sessions', 'Tailored to your business', 'Nationwide availability'].map(t => (
                                 <span key={t} className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" /> {t}</span>
                             ))}
                         </div>
@@ -159,7 +160,7 @@ export function AIWorkshopsPage() {
                 <div className="container mx-auto px-4 md:px-8 max-w-3xl">
                     <h2 id="answer-what-is-workshop" className="mb-4 text-2xl font-black text-white">What is an AI workshop for business?</h2>
                     <p className="text-lg leading-relaxed text-text-muted mb-4">
-                        An AI workshop for business is a structured training session — typically 90 minutes to a full day — where employees learn to use AI tools in their actual daily job roles. Unlike academic AI courses, DB23 workshops skip theory and mathematics to focus entirely on practical application: using ChatGPT to draft communications, automating repetitive data tasks, or building AI into customer engagement workflows. Sessions run online for distributed teams across South Africa and globally, or in-person at your premises. The introductory workshop format starts from R4,500 and runs 90 minutes to 2 hours. Team workshops run half a day from R12,500. No technical background is required from attendees. The goal is one clear outcome: each participant leaves with at least one AI workflow they can use the very next working day.
+                        An AI workshop for business is a structured training session — typically 90 minutes to a full day — where employees learn to use AI tools in their actual daily job roles. Unlike academic AI courses, DB23 workshops skip theory and mathematics to focus entirely on practical application: using ChatGPT to draft communications, automating repetitive data tasks, or building AI into customer engagement workflows. Sessions run online for distributed teams across South Africa, or in-person at your premises. The introductory workshop format starts from R4,500 and runs 90 minutes to 2 hours. Team workshops run half a day from R12,500. No technical background is required from attendees. The goal is one clear outcome: each participant leaves with at least one AI workflow they can use the very next working day.
                     </p>
                     <p className="text-sm leading-relaxed text-text-muted border-l-2 border-accent/40 pl-4">
                         A 2024 Deloitte Africa Digital Skills survey found 71% of South African business owners want to adopt AI but cite a skills gap as the primary barrier. AI workshops directly close that gap — turning intent into practical capability.
@@ -219,7 +220,7 @@ export function AIWorkshopsPage() {
                     <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
                         <div>
                             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">Who It's For</p>
-                            <h2 id="audience-heading" className="mb-5 text-3xl font-black leading-tight text-white md:text-5xl">Built for Global Business Teams, Not Technologists</h2>
+                            <h2 id="audience-heading" className="mb-5 text-3xl font-black leading-tight text-white md:text-5xl">Built for South African Business Teams, Not Technologists</h2>
                             <p className="mb-8 text-lg leading-relaxed text-text-muted">You don't need a software background to benefit from AI. These workshops are designed for the people who run, lead, and grow modern businesses every day.</p>
                             <Button href="/#contact" size="lg">Book Your Workshop Today</Button>
                         </div>
@@ -271,6 +272,8 @@ export function AIWorkshopsPage() {
                     </div>
                 </div>
             </section>
+
+            <FounderBio />
 
             {/* CTA */}
             <section className="relative overflow-hidden bg-background py-24 md:py-32">

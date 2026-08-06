@@ -4,6 +4,7 @@ import { ArrowRight, BadgeCheck, Bot, BrainCircuit, BriefcaseBusiness, CheckCirc
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import { Button } from '../components/ui/Button';
+import { FounderBio } from '../components/FounderBio';
 
 const modules = [
     { icon: <BrainCircuit className="h-6 w-6" />, title: 'AI Fundamentals for Business', desc: 'What AI is, how it works, and what it means practically for your business operations, team, and competitive landscape.' },
@@ -42,7 +43,6 @@ const faqs = [
     { q: 'What do teams learn in AI training?', a: 'Teams learn how AI tools work, which tools are most useful for their role, how to automate repetitive tasks, how to use AI for marketing and content, and how to identify AI opportunities in their specific workflows.' },
     { q: 'How long does AI training take?', a: 'DB23 AI training ranges from 90-minute introductory sessions to full-day programmes. Multi-session programmes spread over several weeks are also available for deeper capability building.' },
     { q: 'Is AI training suitable for non-technical staff?', a: 'Absolutely. DB23 AI training is built specifically for business people — not developers or engineers. We explain AI in plain language with practical examples that make sense for your team\'s day-to-day work.' },
-    { q: 'What is the difference between AI training and an AI workshop?', a: 'AI workshops are typically one-off, focused sessions exploring AI concepts and opportunities. AI training is a more structured learning programme designed to build practical skills and confidence over time. Both approaches are available through DB23.' },
     { q: 'Can AI training be customised for our industry?', a: 'Yes. DB23 tailors AI training content to your industry, team roles, and specific business challenges. Training for a marketing team looks very different from training for an operations team.' },
     { q: 'What AI tools do you cover in training?', a: 'DB23 training covers a range of practical AI tools including AI writing assistants, image generation, automation platforms, AI customer engagement tools, workflow tools, and voice AI systems — selected based on your team\'s needs.' },
     { q: 'Does DB23 offer ongoing AI training support?', a: 'Yes. After initial training, DB23 can provide follow-up sessions, implementation support, and ongoing access to new AI tools and techniques as the AI landscape evolves.' },
@@ -235,6 +235,8 @@ export function AITrainingPage() {
                     </div>
                 </div>
             </section>
+
+            <FounderBio />
 
             {/* CTA */}
             <section className="relative overflow-hidden bg-background py-24 md:py-32">

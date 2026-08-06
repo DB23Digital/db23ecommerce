@@ -7,7 +7,7 @@ export function ProposalPage() {
     return (
         <PageLayout>
             <SEOHead
-                title="Proposal: Safi-Kwanza & Ahrem Developments | DB23 Ecommerce"
+                title="Proposal: Safi-Kwanza & AREMH Developments | DB23 Ecommerce"
                 description="Digital proposal for web design and development services from DB23 Ecommerce."
                 canonical="https://db23.co.za/proposal"
             />
@@ -21,7 +21,7 @@ export function ProposalPage() {
                         Project Proposal
                     </h1>
                     <p className="text-lg text-text-muted max-w-2xl mx-auto">
-                        Prepared by DB23 Ecommerce for Safi-Kwanza and Ahrem Developments.
+                        Prepared by DB23 Ecommerce for Safi-Kwanza and AREMH Developments.
                     </p>
                 </div>
 
@@ -70,17 +70,17 @@ export function ProposalPage() {
                             </div>
                         </div>
 
-                        {/* Ahrem Developments Card */}
+                        {/* AREMH Developments Card */}
                         <div className="bg-surface/50 border border-white/5 rounded-2xl p-10 backdrop-blur-sm flex flex-col hover:bg-surface transition-colors shadow-2xl">
                             <div className="mb-8 h-48 flex items-center justify-center bg-white/5 rounded-xl p-2 overflow-hidden">
-                                <img 
-                                    src="/assets/showcase/ahrem-dev.webp" 
-                                    alt="Ahrem Developments Logo" 
+                                <img
+                                    src="/assets/showcase/aremh-dev.webp"
+                                    alt="AREMH Developments Logo"
                                     className="w-full h-full object-cover rounded-lg"
                                 />
                             </div>
-                            
-                            <h2 className="text-2xl font-bold text-white mb-2">Ahrem Developments</h2>
+
+                            <h2 className="text-2xl font-bold text-white mb-2">AREMH Developments</h2>
                             <p className="text-text-muted mb-6">Website Design & Development</p>
                             
                             <div className="space-y-4 mb-8 flex-grow">
@@ -88,7 +88,7 @@ export function ProposalPage() {
                                     <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                                     <div>
                                         <h3 className="font-semibold text-white">Website Build & Deployment</h3>
-                                        <p className="text-sm text-text-muted mt-1">Complete design, development, and launch of the Ahrem Developments website.</p>
+                                        <p className="text-sm text-text-muted mt-1">Complete design, development, and launch of the AREMH Developments website.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">

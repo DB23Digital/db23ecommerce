@@ -7,11 +7,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$smtpHost = 'mail.db23.co.za';
-$smtpPort = 465;
-$smtpUsername = 'deon@db23.co.za';
-$smtpPassword = 'Flugelbind23#';
-$toEmail = 'deon@db23.co.za';
+// Credentials read from the server's PHP environment — set these in
+// cPanel (Setup Node.js App / MultiPHP INI Editor / domain env vars),
+// never hardcode them here. See DB23_SMTP_PASSWORD.
+$smtpHost = getenv('DB23_SMTP_HOST') ?: 'mail.db23.co.za';
+$smtpPort = (int) (getenv('DB23_SMTP_PORT') ?: 465);
+$smtpUsername = getenv('DB23_SMTP_USERNAME') ?: 'deon@db23.co.za';
+$smtpPassword = getenv('DB23_SMTP_PASSWORD') ?: '';
+$toEmail = getenv('DB23_SMTP_TO_EMAIL') ?: 'deon@db23.co.za';
 $toName = 'DB23';
 
 function json_response($statusCode, $payload)
@@ -102,7 +105,7 @@ if (!in_array($selectedSubject, $allowedSubjects, true)) {
     $selectedSubject = 'Website Contact Form';
 }
 
-if ($smtpPassword === 'SMTP_PASSWORD_HERE') {
+if ($smtpPassword === '') {
     json_response(500, ['ok' => false, 'message' => 'SMTP password has not been configured.']);
 }
 

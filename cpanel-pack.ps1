@@ -41,11 +41,17 @@ if (!isset($_COOKIE['user_region'])) {
 
 # 3. Convert ALL dist/**/index.html to index.php (root + every pre-rendered route dir)
 $htmlFiles = Get-ChildItem -Path "dist" -Recurse -Filter "index.html"
+$utf8NoBom = New-Object System.Text.UTF8Encoding $false
 foreach ($htmlFile in $htmlFiles) {
-    $htmlContent = Get-Content -Raw -Path $htmlFile.FullName
+    # Must read as UTF-8 explicitly — PowerShell 5.1's Get-Content default
+    # (system ANSI codepage) mangles non-ASCII bytes (en-dashes, emoji),
+    # which then get double-encoded back to UTF-8 on write. Write without a
+    # BOM too: a leading BOM in the .php file is output before <?php, which
+    # breaks setcookie() ("headers already sent").
+    $htmlContent = Get-Content -Raw -Encoding UTF8 -Path $htmlFile.FullName
     $phpContent  = $phpHeader + "`n" + $htmlContent
     $phpPath     = Join-Path $htmlFile.DirectoryName "index.php"
-    Set-Content -Path $phpPath -Value $phpContent -Encoding UTF8
+    [System.IO.File]::WriteAllText($phpPath, $phpContent, $utf8NoBom)
     Remove-Item -Path $htmlFile.FullName -Force
     $relPath = $htmlFile.FullName -replace [regex]::Escape((Resolve-Path dist).Path), 'dist'
     Write-Host "  -> $relPath -> index.php" -ForegroundColor DarkGray

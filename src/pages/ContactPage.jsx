@@ -151,7 +151,7 @@ export function ContactPage() {
                     <div className="mb-8 text-center">
                         <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-2">Find Us</p>
                         <h2 className="text-2xl font-black text-white">Tryall Road, Parklands, Cape Town</h2>
-                        <p className="text-text-muted text-sm mt-1">Western Cape, 7146, South Africa</p>
+                        <p className="text-text-muted text-sm mt-1">Western Cape, 7441, South Africa</p>
                     </div>
                     <div className="rounded-2xl overflow-hidden" style={{ height: '400px' }}>
                         <iframe
