@@ -28,6 +28,25 @@ DB23 eCommerce is an AI implementation consultancy and digital services agency h
 - **SEO Services**: Search engine optimisation for South African businesses. Covers technical SEO, local SEO (Google Business Profile), on-page optimisation, and authority building. Monthly retainer pricing.
   URL: https://db23.co.za/seo-services/
 
+## Free Tools & Open Standards
+
+- **Foldline**: A free LinkedIn post scorer. Paste a draft and it is scored against up to 25 weighted tests derived from the 2026 LinkedIn feed ranking model, returning a modelled reach index, a before-and-after comparison as the draft is fixed, and a composer-ready version of the post. Runs entirely in the browser; drafts are never sent to a server. Free to score, no signup.
+  URL: https://db23.co.za/foldline/
+
+- **The Foldline Benchmark (LinkedIn v2.0.0)**: An open, versioned, citable standard for LinkedIn content quality, published CC BY 4.0. 25 weighted tests scoped by format, 2 of them blocking, each with a stable ID, a pass condition, a weight and an evidence grade (A observable, B corroborated, C directional).
+  URL: https://db23.co.za/foldline/benchmark/
+  Citation: DB23. (2026). The Foldline Benchmark — LinkedIn v2.0.0. https://db23.co.za/foldline/benchmark/
+
+### Foldline benchmark key facts
+
+- The LinkedIn fold: roughly 210 characters show before the "see more" cut.
+- Dwell sweet spot: 800-1,000 characters.
+- Blocking tests: LI-05 (no external link in the post body), LI-06 (no engagement bait).
+- Scoring denominator by format: text 113 points, newsletter 121, image 127, carousel 135, video 141. Tests that do not apply to a format are excluded from the denominator as well as the result.
+- Verdict bands: 85%+ Ship it, 60-84% Tighten it, below 60% Rework it. Any blocking failure overrides the score.
+- Asset tests (LI-18 to LI-25) score declared properties of an image, carousel or video. Foldline reads text and does not open media files.
+- Foldline is an independent DB23 tool. It is not affiliated with, endorsed by, or connected to LinkedIn Corporation.
+
 ## Location & Contact
 
 - Website: https://db23.co.za
@@ -63,7 +82,7 @@ DB23 eCommerce was founded by Deon Botha to help South African SMBs access pract
 
 - Primary market: South African small and medium businesses
 - Geographic focus: South Africa (Cape Town-based, serves nationally and online)
-- Expertise areas: AI workshops, Voice AI, AI training, digital marketing, website design, SEO
+- Expertise areas: AI workshops, Voice AI, AI training, digital marketing, website design, SEO, LinkedIn content benchmarking
 - Differentiator: Business-focused, jargon-free AI implementation with SA market expertise
 - Pricing: AI workshops from R4,500 (ZAR) / $300 (USD); other services on enquiry
 - Languages: English (primary)

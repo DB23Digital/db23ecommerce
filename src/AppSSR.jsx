@@ -19,6 +19,8 @@ import { BlogPage }               from './pages/BlogPage';
 import { BlogPostPage }           from './pages/BlogPostPage';
 import { WorkIndexPage }          from './pages/WorkIndexPage';
 import { WorkCaseStudyPage }      from './pages/WorkCaseStudyPage';
+import { FoldlinePage }           from './pages/FoldlinePage';
+import { FoldlineBenchmarkPage }  from './pages/FoldlineBenchmarkPage';
 
 export function AppSSR() {
     return (
@@ -55,6 +57,10 @@ export function AppSSR() {
                 <Route path="/work/"                   element={<WorkIndexPage />} />
                 <Route path="/work/:slug"              element={<WorkCaseStudyPage />} />
                 <Route path="/work/:slug/"             element={<WorkCaseStudyPage />} />
+                <Route path="/foldline"                element={<FoldlinePage />} />
+                <Route path="/foldline/"               element={<FoldlinePage />} />
+                <Route path="/foldline/benchmark"      element={<FoldlineBenchmarkPage />} />
+                <Route path="/foldline/benchmark/"     element={<FoldlineBenchmarkPage />} />
                 <Route path="/home"                    element={<Navigate to="/" replace />} />
                 <Route path="/home/"                   element={<Navigate to="/" replace />} />
             </Routes>

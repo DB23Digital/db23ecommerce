@@ -35,6 +35,8 @@ const routes = [
     { url: '/blog/chatgpt-workshop-south-africa/',            outDir: 'dist/blog/chatgpt-workshop-south-africa' },
     { url: '/blog/roi-remote-corporate-ai-training/',         outDir: 'dist/blog/roi-remote-corporate-ai-training' },
     { url: '/blog/chatgpt-business-global-marketing-guide/',  outDir: 'dist/blog/chatgpt-business-global-marketing-guide' },
+    { url: '/foldline/',                                      outDir: 'dist/foldline' },
+    { url: '/foldline/benchmark/',                            outDir: 'dist/foldline/benchmark' },
 ];
 
 const template = fs.readFileSync(path.join(__dirname, 'dist/index.html'), 'utf-8');
