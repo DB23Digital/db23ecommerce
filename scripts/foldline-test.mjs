@@ -52,11 +52,11 @@ What's the first line of the last post you published - and would you have clicke
 
 console.log('\nplatform definition');
 const def = F.platform('linkedin');
-is('25 tests in the catalogue', def.tests.length, 25);
-is('161 catalogue points', def.tests.reduce((s, t) => s + t.weight, 0), 161);
-is('17 apply to every post', def.tests.filter((t) => !t.appliesTo).length, 17);
-is('113 always-on points', def.tests.filter((t) => !t.appliesTo).reduce((s, t) => s + t.weight, 0), 113);
-is('two blocking', def.tests.filter((t) => t.blocking).map((t) => t.id), ['LI-05', 'LI-06']);
+is('26 tests in the catalogue', def.tests.length, 26);
+is('167 catalogue points', def.tests.reduce((s, t) => s + t.weight, 0), 167);
+is('18 apply to every post', def.tests.filter((t) => !t.appliesTo).length, 18);
+is('119 always-on points', def.tests.filter((t) => !t.appliesTo).reduce((s, t) => s + t.weight, 0), 119);
+is('three blocking', def.tests.filter((t) => t.blocking).map((t) => t.id), ['LI-05', 'LI-06', 'LI-26']);
 ok('ids are LI- prefixed and unique', new Set(def.tests.map((t) => t.id)).size === def.tests.length
     && def.tests.every((t) => /^LI-\d\d$/.test(t.id)));
 ok('every test documented', def.tests.every((t) => def.docs[t.id]
@@ -103,12 +103,12 @@ is('promised but missing warns',
 
 console.log('\nformat scoping');
 const asText = run({ draft: STRONG });
-is('text post is scored out of 113', asText.total, 113);
+is('text post is scored out of 119', asText.total, 119);
 ok('no media tests on a text post', !asText.results.some((r) => r.group === 'media'));
 
 const asVideo = run({ draft: STRONG, format: 'video', aspect: 'vertical916', altText: 'A founder explaining the fix at a desk.', videoSeconds: '60', videoHook3s: true, captions: true });
 is('video adds five media tests', asVideo.results.filter((r) => r.group === 'media').length, 5);
-is('video is scored out of 141', asVideo.total, 141);
+is('video is scored out of 147', asVideo.total, 147);
 ok('a fully declared video passes its media tests', asVideo.results.filter((r) => r.group === 'media').every((r) => r.status === 'pass'));
 
 const badVideo = run({ draft: STRONG, format: 'video', aspect: 'landscape169', altText: '', videoSeconds: '400' });
@@ -120,10 +120,10 @@ ok('undeclared video scores below a declared one', badVideo.pct < asVideo.pct);
 
 const asCarousel = run({ draft: STRONG, format: 'carousel', slideCount: '8', aspect: 'portrait45', altText: 'Eight slides on rewriting post openings.', coverHook: true, slidesOneIdea: true });
 is('carousel adds four media tests', asCarousel.results.filter((r) => r.group === 'media').length, 4);
-is('carousel is scored out of 135', asCarousel.total, 135);
+is('carousel is scored out of 141', asCarousel.total, 141);
 ok('carousel has no video tests', !asCarousel.results.some((r) => ['LI-23', 'LI-24', 'LI-25'].includes(r.id)));
-is('image is scored out of 127', run({ draft: STRONG, format: 'image' }).total, 127);
-is('newsletter is scored out of 121', run({ draft: STRONG, format: 'newsletter' }).total, 121);
+is('image is scored out of 133', run({ draft: STRONG, format: 'image' }).total, 133);
+is('newsletter is scored out of 127', run({ draft: STRONG, format: 'newsletter' }).total, 127);
 
 console.log('\nbefore / after');
 const b0 = state({ draft: WEAK, oneIdea: false, replyPlan: false });
@@ -185,6 +185,18 @@ const t0 = Date.now();
 const trimmed = F.applyFix('linkedin', 'trim', state({ draft: long }));
 ok('trim finishes under a second', Date.now() - t0 < 1000);
 ok('trim shortens the draft', trimmed.patch.draft.length < long.length);
+
+console.log('\nhard character limit');
+const overLimit = run({ draft: 'a'.repeat(3504), cadence: 'strong' });
+ok('over 3,000 characters is blocked', overLimit.blocked);
+is('over-limit verdict', overLimit.verdict.label, 'Fix before publishing');
+is('LI-26 fails over the limit', byId(overLimit, 'LI-26').status, 'fail');
+ok('the note says how much to cut', /cut 504 characters/.test(byId(overLimit, 'LI-26').note));
+is('exactly 3,000 passes', byId(run({ draft: 'a'.repeat(3000) }), 'LI-26').status, 'pass');
+is('3,001 fails', byId(run({ draft: 'a'.repeat(3001) }), 'LI-26').status, 'fail');
+is('an over-long first comment warns',
+    byId(run({ draft: 'A normal post for founders. What would you change?', comment: 'x'.repeat(1300) }), 'LI-26').status, 'warn');
+is('LI-26 offers the trim fix', byId(overLimit, 'LI-26').fix, 'trim');
 
 console.log('\nvalidation');
 let threw = false;

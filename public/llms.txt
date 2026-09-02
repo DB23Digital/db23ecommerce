@@ -30,19 +30,19 @@ DB23 eCommerce is an AI implementation consultancy and digital services agency h
 
 ## Free Tools & Open Standards
 
-- **Foldline**: A free LinkedIn post scorer. Paste a draft and it is scored against up to 25 weighted tests derived from the 2026 LinkedIn feed ranking model, returning a modelled reach index, a before-and-after comparison as the draft is fixed, and a composer-ready version of the post. Runs entirely in the browser; drafts are never sent to a server. Free to score, no signup.
+- **Foldline**: A free LinkedIn post scorer. Paste a draft and it is scored against up to 26 weighted tests derived from the 2026 LinkedIn feed ranking model, returning a modelled reach index, a before-and-after comparison as the draft is fixed, and a composer-ready version of the post. Runs entirely in the browser; drafts are never sent to a server. Free to score, no signup.
   URL: https://db23.co.za/foldline/
 
-- **The Foldline Benchmark (LinkedIn v2.0.0)**: An open, versioned, citable standard for LinkedIn content quality, published CC BY 4.0. 25 weighted tests scoped by format, 2 of them blocking, each with a stable ID, a pass condition, a weight and an evidence grade (A observable, B corroborated, C directional).
+- **The Foldline Benchmark (LinkedIn v3.0.0)**: An open, versioned, citable standard for LinkedIn content quality, published CC BY 4.0. 26 weighted tests scoped by format, 3 of them blocking, each with a stable ID, a pass condition, a weight and an evidence grade (A observable, B corroborated, C directional).
   URL: https://db23.co.za/foldline/benchmark/
-  Citation: DB23. (2026). The Foldline Benchmark — LinkedIn v2.0.0. https://db23.co.za/foldline/benchmark/
+  Citation: DB23. (2026). The Foldline Benchmark - LinkedIn v3.0.0. https://db23.co.za/foldline/benchmark/
 
 ### Foldline benchmark key facts
 
 - The LinkedIn fold: roughly 210 characters show before the "see more" cut.
-- Dwell sweet spot: 800-1,000 characters.
-- Blocking tests: LI-05 (no external link in the post body), LI-06 (no engagement bait).
-- Scoring denominator by format: text 113 points, newsletter 121, image 127, carousel 135, video 141. Tests that do not apply to a format are excluded from the denominator as well as the result.
+- Dwell sweet spot: 800-1,000 characters. Hard post limit: 3,000 characters; hard comment limit: 1,250.
+- Blocking tests: LI-05 (no external link in the post body), LI-06 (no engagement bait), LI-26 (post body over LinkedIn's hard 3,000-character limit, which cannot be published at all).
+- Scoring denominator by format: text 119 points, newsletter 127, image 133, carousel 141, video 147. Tests that do not apply to a format are excluded from the denominator as well as the result.
 - Verdict bands: 85%+ Ship it, 60-84% Tighten it, below 60% Rework it. Any blocking failure overrides the score.
 - Asset tests (LI-18 to LI-25) score declared properties of an image, carousel or video. Foldline reads text and does not open media files.
 - Foldline is an independent DB23 tool. It is not affiliated with, endorsed by, or connected to LinkedIn Corporation.

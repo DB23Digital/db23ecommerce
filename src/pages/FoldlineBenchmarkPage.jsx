@@ -69,8 +69,8 @@ export function FoldlineBenchmarkPage() {
         {
             '@context': 'https://schema.org', '@type': 'FAQPage',
             mainEntity: [
-                ['What is the Foldline Benchmark?', `The Foldline Benchmark is an open, versioned standard for judging whether a LinkedIn post is ready to publish. Version LI v${def.version} defines ${def.tests.length} weighted tests. ${ALWAYS.length} apply to every post and are worth ${ALWAYS_POINTS} points; the remaining ${SCOPED.length} are scoped to the format being posted, so a video is scored out of 141 points and a text post out of 113. Two tests are blocking: fail either and the post is not ready regardless of the score.`],
-                ['What are the two blocking tests?', 'LI-05, external link discipline: no external link in the post body. LI-06, no engagement bait: no phrasing such as "comment YES" or "agree?". Both are behaviours LinkedIn suppresses directly, so no amount of craft elsewhere compensates.'],
+                ['What is the Foldline Benchmark?', `The Foldline Benchmark is an open, versioned standard for judging whether a LinkedIn post is ready to publish. Version LI v${def.version} defines ${def.tests.length} weighted tests. ${ALWAYS.length} apply to every post and are worth ${ALWAYS_POINTS} points; the remaining ${SCOPED.length} are scoped to the format being posted, so a video is scored out of ${scopeFor('video').points} points and a text post out of ${ALWAYS_POINTS}. ${BLOCKING.length} tests are blocking: fail any one and the post is not ready regardless of the score.`],
+                ['What are the blocking tests?', 'LI-05, external link discipline: no external link in the post body. LI-06, no engagement bait: no phrasing such as "comment YES" or "agree?". LI-26, character limit: a post over 3,000 characters cannot be published at all. The first two are behaviours LinkedIn suppresses directly; the third is a hard platform limit. No amount of craft elsewhere compensates for any of them.'],
                 ['What do the evidence grades A, B and C mean?', 'Grade A means the test measures something directly observable, such as character count before the fold. Grade B means the rule is corroborated across multiple published 2026 breakdowns. Grade C means the rule is directional: the direction is agreed, the magnitude is not.'],
                 ['How is the Foldline score calculated?', 'Each applicable test returns pass, warn or fail. A pass earns full weight, a warn earns half, a fail earns none. The total earned is divided by the points that apply to that format, not the whole catalogue, and expressed as a percentage. 85 percent or above is Ship it, 60 to 84 is Tighten it, below 60 is Rework it, and any blocking failure overrides all of them.'],
             ].map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
@@ -100,9 +100,9 @@ export function FoldlineBenchmarkPage() {
                             <h1>The Foldline Benchmark &mdash; LinkedIn v{def.version}</h1>
                             <p className="fl-answer">
                                 The Foldline Benchmark is an open, versioned standard for judging whether a LinkedIn post is ready to
-                                publish. Version LI&nbsp;v{def.version} defines <b>{def.tests.length} weighted tests</b>. Seventeen apply to
-                                every post; eight more are scoped to the format you are actually posting. Two are <b>blocking</b>: fail
-                                either and the post is not ready, whatever the score.
+                                publish. Version LI&nbsp;v{def.version} defines <b>{def.tests.length} weighted tests</b>. {ALWAYS.length} apply to
+                                every post; {SCOPED.length} more are scoped to the format you are actually posting.
+                                {BLOCKING.length} are <b>blocking</b>: fail any one and the post is not ready, whatever the score.
                             </p>
                             <dl className="fl-meta">
                                 {[
@@ -375,10 +375,23 @@ export function FoldlineBenchmarkPage() {
                             </p>
                             <div className="fl-changelog">
                                 <div>
+                                    <h4>LI v3.0.0 <span>2026-09-01</span></h4>
+                                    <ul>
+                                        <li>Added <b>LI-26, the character limit</b>, as a third blocking test. LinkedIn refuses a post
+                                            over 3,000 characters outright, so an over-long draft can never be publishable however well
+                                            it scores elsewhere.</li>
+                                        <li>Until this version the limit was only a warning shown when copying, so a 3,500-character
+                                            post could return a passing verdict for something the composer would not accept. A defect,
+                                            found by a reader running real content through the tool.</li>
+                                        <li>LI-26 also warns when the first comment exceeds its own 1,250-character limit.</li>
+                                        <li>Major bump: the catalogue gained a test and every denominator moved up by 6 points.</li>
+                                    </ul>
+                                </div>
+                                <div>
                                     <h4>LI v2.0.0 <span>2026-09-01</span></h4>
                                     <ul>
                                         <li>Added the <b>asset</b> group: LI-18 to LI-25, covering alt text, aspect ratio, image purpose, carousel cover and slide discipline, video hook, captions and length.</li>
-                                        <li>Tests are now <b>scoped by format</b>, and non-applicable tests are excluded from the denominator as well as the result. Text-post scores are unchanged and remain out of {ALWAYS_POINTS}.</li>
+                                        <li>Tests are now <b>scoped by format</b>, and non-applicable tests are excluded from the denominator as well as the result. Text-post scores were unchanged at that version and remained out of 113.</li>
                                         <li>Major bump, per the policy above: the catalogue gained tests, and carousel and video scores from v1.0.0 are not comparable to v2.0.0. Text-only scores are.</li>
                                         <li>Asset tests are marked as declarations throughout. Foldline does not read media files and does not claim to.</li>
                                     </ul>

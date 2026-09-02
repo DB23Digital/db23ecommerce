@@ -1,6 +1,6 @@
-/* Foldline — LinkedIn platform definition. Benchmark LI v2.0.0 (2026).
+/* Foldline — LinkedIn platform definition. Benchmark LI v3.0.0 (2026).
  *
- * Test IDs are stable and citable: LI-01 … LI-25. Never renumber them.
+ * Test IDs are stable and citable: LI-01 … LI-26. Never renumber them.
  * A retired test keeps its ID and is marked retired; new tests take new IDs.
  */
 import F from "../engine.js";
@@ -42,6 +42,8 @@ var MODELWORDS = /\b(delve|landscape|seamless|robust|elevate|testament|tapestry|
 var FOLD = 210;            /* characters visible before "…see more" */
 var DWELL = [800, 1000];   /* character sweet spot */
 var DWELL_OK = [500, 1600];
+var MAX_CHARS = 3000;      /* LinkedIn's hard post limit - the composer refuses more */
+var COMMENT_MAX = 1250;    /* hard limit on a single comment */
 
 /* ---------------- context ---------------- */
 function context(draft, state, text) {
@@ -89,6 +91,9 @@ function modelTells(d, words, text) {
   if (sd !== null && sd < 3.5) tells.push("every sentence the same length");
   return tells;
 }
+
+/* the rest of the product copy writes 1,000 not 1 000 - keep one convention */
+var comma = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); };
 
 var ok = function (note) { return { status: "pass", note: note }; };
 var meh = function (note) { return { status: "warn", note: note }; };
@@ -253,7 +258,7 @@ var tests = [
     fix: function (c) { return c.chars > DWELL[1] ? "trim" : "proof"; },
     run: function (c) {
       if (!c.words) return bad("Nothing to measure.");
-      var note = c.chars + " characters. The 2026 sweet spot is " + DWELL[0] + "-" + DWELL[1].toLocaleString("en-ZA") +
+      var note = comma(c.chars) + " characters. The 2026 sweet spot is " + comma(DWELL[0]) + "-" + comma(DWELL[1]) +
         " - long enough to earn dwell, short enough to finish.";
       if (c.chars >= DWELL[0] && c.chars <= DWELL[1]) return ok(note);
       if (c.chars >= DWELL_OK[0] && c.chars <= DWELL_OK[1]) return meh(note);
@@ -276,6 +281,27 @@ var tests = [
       if (s.cadence === "strong") return ok("3+ posts a week for 8+ weeks on the same pillars - the consistency that lifts baseline reach per post.");
       if (s.cadence === "mid") return meh("1-2 posts a week. Authority compounds from about three a week held for two months.");
       return bad("Sporadic posting keeps resetting the account's topic authority. Consistency is worth more than any single post.");
+    }
+  },
+  {
+    /* A hard platform limit, not a guideline: over this the composer refuses
+       the post outright, so nothing else about the draft matters. Blocking. */
+    id: "LI-26", n: 26, group: "craft", weight: 6, evidence: "A", blocking: true, fix: "trim",
+    label: "Within LinkedIn's character limit",
+    run: function (c, s) {
+      if (!c.chars) return ok("Nothing to measure yet.");
+      if (c.chars > MAX_CHARS) {
+        return bad("The post is " + comma(c.chars) + " characters against a hard limit of " +
+          comma(MAX_CHARS) + ". LinkedIn will not accept it, so it cannot be published at all - cut " +
+          (c.chars - MAX_CHARS) + " characters.");
+      }
+      var cmt = (s.comment || "").trim().length;
+      if (cmt > COMMENT_MAX) {
+        return meh("The post fits, but the first comment is " + comma(cmt) +
+          " characters against a " + comma(COMMENT_MAX) + " limit - that comment will not post.");
+      }
+      return ok(comma(c.chars) + " characters, inside the " +
+        comma(MAX_CHARS) + " limit.");
     }
   }
 ];
@@ -538,7 +564,7 @@ var fixes = {
     }
     return {
       patch: { draft: out.join("\n\n") },
-      notice: "Trimmed toward the " + DWELL[0] + "-" + DWELL[1].toLocaleString("en-ZA") + " character dwell band by cutting the last sentence off the longest blocks - read it back before posting."
+      notice: "Trimmed toward the " + comma(DWELL[0]) + "-" + comma(DWELL[1]) + " character dwell band by cutting the last sentence off the longest blocks - read it back before posting."
     };
   },
 
@@ -830,6 +856,10 @@ var DOCS = {
     pass: "No obvious model tells.",
     fail: "Three or more tells: em-dash rhythm, “not X, it's Y”, model vocabulary, no numbers, uniform sentence length.",
     why: "Generic model prose earns no dwell, so the feed stops distributing it — and the account's authority erodes with it." },
+  "LI-26": { short: "Blocking. Over 3,000 characters cannot be posted at all",
+    pass: "The post body is 3,000 characters or fewer.",
+    fail: "The body exceeds 3,000 characters.",
+    why: "A hard platform limit, not a guideline. The composer refuses a longer post outright, so no other score means anything." },
   "LI-18": { short: "Alt text is the only part of the asset the model reads",
     pass: "Alt text of five words or more describing what the asset shows.",
     fail: "No alt text at all.",
@@ -897,7 +927,7 @@ export default F.register({
   docs: DOCS,
   id: "linkedin",
   name: "LinkedIn",
-  version: "2.0.0",
+  version: "3.0.0",
   released: "2026-09-01",
   status: "live",
   fold: FOLD,

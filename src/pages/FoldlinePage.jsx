@@ -269,7 +269,7 @@ export function FoldlinePage() {
             '@id': 'https://db23.co.za/foldline/#app', name: 'Foldline',
             applicationCategory: 'BusinessApplication', operatingSystem: 'Any modern browser',
             url: 'https://db23.co.za/foldline/', inLanguage: 'en-ZA',
-            description: 'Scores a LinkedIn draft against up to 25 weighted tests derived from the 2026 feed ranking model — scoped to text, image, carousel or video — and returns a modelled reach index, a before-and-after comparison, and a composer-ready post.',
+            description: 'Scores a LinkedIn draft against up to 26 weighted tests derived from the 2026 feed ranking model — scoped to text, image, carousel or video — and returns a modelled reach index, a before-and-after comparison, and a composer-ready post.',
             offers: [
                 { '@type': 'Offer', name: 'Free score', price: '0', priceCurrency: 'ZAR' },
                 { '@type': 'Offer', name: 'Single post report', price: '49', priceCurrency: 'ZAR' },
@@ -290,7 +290,7 @@ export function FoldlinePage() {
             mainEntity: [
                 ['Can Foldline predict my LinkedIn reach?', 'No. Foldline returns a relative reach index comparing your draft to a clean baseline post from the same account. It is a diagnosis of what is costing you distribution, not a forecast of impressions.'],
                 ['Why does a link in the LinkedIn post body reduce reach?', 'A body link sends the reader off-platform, and the feed is built to keep them on it. Published estimates of the penalty range from roughly a fifth to about half of median reach. Put the link in your own first comment and write "link in the comments" in the post instead.'],
-                ['Does Foldline score images, carousels and video?', 'Yes. Eight of the twenty-five tests score the asset: alt text, aspect ratio, whether the image carries meaning, the carousel cover and slide discipline, the video hook, burned-in captions and video length. They apply only to the format being posted, and they score what you declare — Foldline reads text and does not open media files.'],
+                ['Does Foldline score images, carousels and video?', 'Yes. Eight of the twenty-six tests score the asset: alt text, aspect ratio, whether the image carries meaning, the carousel cover and slide discipline, the video hook, burned-in captions and video length. They apply only to the format being posted, and they score what you declare — Foldline reads text and does not open media files.'],
                 ['How do I paste a post into LinkedIn without losing formatting?', 'The LinkedIn composer accepts plain text only. Strip markdown before pasting, because asterisks and hashes render literally; convert dash bullets to real bullet characters; remove non-breaking and zero-width characters; and copy as plain text so no styling rides along. LinkedIn has no bold — the Unicode substitute cannot be read by screen readers and is not indexed by LinkedIn search.'],
                 ['How long should a LinkedIn post be in 2026?', 'Roughly 800 to 1,000 characters is the dwell sweet spot: long enough to earn reading time, short enough that readers finish. Only about 210 characters show before the "see more" fold, so the hook must land in the first one or two lines.'],
                 ['Is Foldline affiliated with LinkedIn?', 'No. Foldline is an independent tool built by DB23 in Cape Town. It is not affiliated with, endorsed by, or connected to LinkedIn Corporation, and it never connects to your account.'],
@@ -302,7 +302,7 @@ export function FoldlinePage() {
         <PageLayout>
             <SEOHead
                 title="Foldline — score your LinkedIn post before you publish | DB23"
-                description="Paste a LinkedIn draft and score it against 25 weighted tests from the 2026 feed algorithm — text, image, carousel and video. See where the fold cuts, what costs you reach, and copy a corrected post. Free score, no signup."
+                description="Paste a LinkedIn draft and score it against 26 weighted tests from the 2026 feed algorithm — text, image, carousel and video. See where the fold cuts, what costs you reach, and copy a corrected post. Free score, no signup."
                 canonical="https://db23.co.za/foldline/"
                 keywords="linkedin post checker, linkedin algorithm 2026, linkedin content score, linkedin post analyser south africa"
                 schema={schema}
@@ -316,7 +316,7 @@ export function FoldlinePage() {
                             <span className="fl-pill">LinkedIn benchmark v{def.version} &middot; {def.tests.length} tests</span>
                             <h1 style={{ margin: '18px 0' }}>Know what your post will do before the feed does.</h1>
                             <p className="fl-lede">
-                                Paste a draft. Foldline scores it against up to twenty-five weighted tests drawn from how the 2026
+                                Paste a draft. Foldline scores it against up to twenty-six weighted tests drawn from how the 2026
                                 LinkedIn feed actually ranks &mdash; semantic relevance, dwell, saves, suppression &mdash; and hands back a
                                 modelled reach index, the exact lines costing you distribution, a before-and-after as you fix it, and a
                                 corrected version that pastes into the composer clean.
@@ -672,8 +672,10 @@ export function FoldlinePage() {
                                 Eleven tests cover craft and the suppression behaviours LinkedIn penalises outright. Six come from the
                                 2026 interest-graph rebuild, where an in-house ranking model reads the post for meaning and matches it
                                 to specific readers. Eight more score the asset &mdash; image, carousel or video &mdash; and apply only to the
-                                format you are posting, so a text post is never marked down for lacking a video hook. Two are blocking:
-                                fail either and the verdict is <em>Fix before publishing</em> no matter how well the rest scores.{' '}
+                                format you are posting, so a text post is never marked down for lacking a video hook. Three are
+                                blocking &mdash; a link in the body, engagement bait, or a post over LinkedIn's 3,000-character limit
+                                &mdash; and failing any one makes the verdict <em>Fix before publishing</em> no matter how well the
+                                rest scores.{' '}
                                 <a href="/foldline/benchmark/">Full benchmark, with weights and evidence grades &rarr;</a>
                             </p>
                         </div>
@@ -743,7 +745,8 @@ export function FoldlinePage() {
                         <div style={{ maxWidth: '78ch' }}>
                             {[
                                 ['Can you actually predict my reach?', <>No, and anyone selling you a number is guessing. Foldline gives you a <em>relative</em> index: how this draft compares to a clean baseline post from the same account, based on the format, suppression and quality signals that published 2026 breakdowns agree on directionally. The value is the diagnosis &mdash; the specific line costing you the fold, the link halving your distribution &mdash; not the decimal place.</>, true],
-                                ['Why does my carousel score out of a different number to my text post?', <>Because eight of the twenty-five tests only apply to the asset. A text post is scored out of 113 points, a carousel out of 135, a video out of 141 &mdash; tests that do not apply are dropped from the denominator as well as the result, so the percentage stays comparable. A text post is never marked down for lacking burned-in captions.</>],
+                                ['What happens if my post is too long?', <>LinkedIn's hard limit is 3,000 characters and the composer simply refuses anything longer, so test LI-26 treats it as blocking: the verdict becomes <em>Fix before publishing</em> and the note tells you exactly how many characters to cut. Length also affects LI-15 separately, which is about the 800&ndash;1,000 character dwell band &mdash; that one costs you reach, this one stops you posting at all.</>],
+                                ['Why does my carousel score out of a different number to my text post?', <>Because eight of the twenty-six tests only apply to the asset. A text post is scored out of 119 points, a carousel out of 141, a video out of 147 &mdash; tests that do not apply are dropped from the denominator as well as the result, so the percentage stays comparable. A text post is never marked down for lacking burned-in captions.</>],
                                 ['Can Foldline actually see my image or video?', <>No. It reads text. The asset tests score what you declare &mdash; that captions are burned in, that the cover slide carries the claim, that the alt text is written. They are stated intentions, and the report labels them that way. The one thing it does read is your alt text, which is also the only part of the asset the ranking model reads.</>],
                                 ['Will the copied post keep its formatting on LinkedIn?', <>That is what the copy button is for. The composer takes plain text only, so before copying, Foldline strips markdown that would show up literally, converts <code>- </code> bullets to real &bull; characters, removes any unresolved <code>[rewrite:]</code> markers left over from a fix, collapses runs of blank lines, deletes invisible non-breaking and zero-width characters, and writes to the clipboard as plain text so no styling rides along. It tells you everything it changed.</>],
                                 ['Why is a link in the post body such a big deal?', <>Because it sends the reader off-platform, and the feed is built to keep them on it. Published estimates for the penalty range from roughly a fifth to about half of median reach. Foldline treats it as blocking and shows the fix: strip it from the body, signpost &ldquo;link in the comments&rdquo;, and park the URL in your own first comment the moment you publish.</>],
