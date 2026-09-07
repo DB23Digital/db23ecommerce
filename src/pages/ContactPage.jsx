@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import { BadgeCheck, Bot, BrainCircuit, Globe, Mail, MapPin, Sparkles } from 'lucide-react';
+import { BadgeCheck, Bot, BrainCircuit, Globe, Mail, MapPin, MessageCircle, Sparkles } from 'lucide-react';
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import { ContactForm } from '../components/ContactForm';
@@ -26,7 +26,7 @@ export function ContactPage() {
                 canonical="https://db23.co.za/contact/"
                 keywords="contact DB23 eCommerce, book AI workshop South Africa, AI consulting enquiry, digital marketing quote South Africa"
                 ogTitle="Contact DB23 eCommerce | South Africa"
-                ogDescription="Book an AI workshop or discuss digital services with DB23. We respond within one business day."
+                ogDescription="Book an AI workshop or discuss digital services with DB23. We reply within the hour on WhatsApp, business hours."
                 schema={[
                     {
                         "@context": "https://schema.org",
@@ -54,7 +54,7 @@ export function ContactPage() {
                     <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mx-auto max-w-3xl text-center">
                         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
                             <Sparkles className="h-4 w-4" aria-hidden="true" />
-                            We respond within one business day
+                            We reply within the hour, business hours
                         </div>
                         <h1 id="contact-h1" className="mb-6 text-4xl font-black leading-[1.05] tracking-tight text-white md:text-6xl text-balance">
                             Let's Talk About{' '}
@@ -95,10 +95,27 @@ export function ContactPage() {
                         <div className="lg:col-span-2">
                             <h2 id="form-heading" className="mb-6 text-3xl font-black text-white">Get in Touch</h2>
                             <p className="mb-8 text-lg leading-relaxed text-text-muted">
-                                Fill in the form and we'll get back to you within one South African business day. No sales pressure — just a practical conversation about what we can do for your business.
+                                Fill in the form, or message us on WhatsApp for the fastest reply — within the hour during business hours. No sales pressure, just a practical conversation about what we can do for your business.
                             </p>
 
                             <address className="not-italic space-y-6">
+                                <div className="flex items-start gap-4">
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                                        <MessageCircle className="h-5 w-5" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-widest text-white/50 mb-1">WhatsApp</p>
+                                        <a
+                                            href="https://wa.me/27836025227?text=Hi%20DB23%2C%20I%20would%20like%20to%20talk%20about%20"
+                                            rel="noopener"
+                                            className="text-white hover:text-accent transition-colors font-semibold"
+                                        >
+                                            +27 83 602 5227
+                                        </a>
+                                        <p className="text-text-muted text-sm">Fastest reply — within the hour, business hours</p>
+                                    </div>
+                                </div>
+
                                 <div className="flex items-start gap-4">
                                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                                         <Mail className="h-5 w-5" />
@@ -124,10 +141,10 @@ export function ContactPage() {
 
                             <div className="mt-10 space-y-3">
                                 {[
-                                    'AI workshops from R4,500 (ZAR) / $300 (USD)',
+                                    'AI workshops: Tier 1 from R4,500, Tier 2 from R12,500, Tier 3 custom',
                                     'Voice AI custom-quoted per project',
                                     'Free initial consultation call',
-                                    'Response within 1 business day',
+                                    'WhatsApp reply within the hour',
                                 ].map(point => (
                                     <div key={point} className="flex items-center gap-3">
                                         <BadgeCheck className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />

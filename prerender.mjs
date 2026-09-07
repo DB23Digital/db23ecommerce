@@ -17,7 +17,6 @@ const routes = [
     { url: '/about/',                outDir: 'dist/about' },
     { url: '/contact/',              outDir: 'dist/contact' },
     { url: '/club-scrub/',                                    outDir: 'dist/club-scrub' },
-    { url: '/work/',                                          outDir: 'dist/work' },
     { url: '/blog/',                                          outDir: 'dist/blog' },
     { url: '/blog/ai-strategy-south-africa/',                 outDir: 'dist/blog/ai-strategy-south-africa' },
     { url: '/blog/how-to-implement-ai-south-africa/',         outDir: 'dist/blog/how-to-implement-ai-south-africa' },

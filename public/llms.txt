@@ -10,7 +10,7 @@ DB23 eCommerce is an AI implementation consultancy and digital services agency h
 - **Voice AI**: AI voice receptionists, automated lead qualification, appointment booking, and 24/7 customer call handling for South African businesses. Integrates with existing phone systems, CRMs, and calendars. Custom pricing.
   URL: https://db23.co.za/voice-ai/
 
-- **AI Training**: Structured AI training programmes for business teams. Covers AI fundamentals, practical AI tools, workflow automation, marketing AI, and AI strategy for leadership. Available in-person, online, or hybrid. Contact for pricing.
+- **AI Training**: Multi-week AI training programmes for business teams — four weekly sessions (team) or eight weeks in two parallel tracks (department), with practice tasks between sessions. Covers AI fundamentals, practical AI tools, workflow automation, marketing AI, and AI strategy for leadership. In-person or online. Priced per team on enquiry; one-off sessions are AI workshops from R4,500.
   URL: https://db23.co.za/ai-training/
 
 - **AI Automation**: AI-powered workflow automation for South African businesses — connecting existing tools (CRM, accounting, email) with Zapier, Make, or n8n. Common builds: lead capture to CRM, invoice reminders, meeting summaries, review responses, social publishing. Free workflow audit.

@@ -8,7 +8,7 @@ const showcaseItems = [
         category: 'Travel & Hospitality',
         summary:
             'An elegant and modern luxury resort website along the Kwanza River, featuring immersive safari storytelling, architectural design presentation, and 5-star booking integration.',
-        url: 'https://db23.co.za/safik-wanza/index1.html',
+        url: 'https://db23.co.za/safik-wanza/',
         image: '/assets/showcase/safi-kwanza.jpg',
         alt: 'Safi Kwanza Resort luxury riverside holiday destination website',
     },
@@ -113,7 +113,7 @@ const showcaseItems = [
         category: 'Outsourced Marketing & AI Services',
         summary:
             'A high-tech digital growth platform helping small and medium businesses with outsourced marketing, AI-powered customer engagement, website modernization, automation, lead generation, and digital support services.',
-        url: 'https://www.db23.co.za/takeittomarket/',
+        url: 'https://db23.co.za/takeittomarket/',
         image: '/assets/showcase/take-it-to-market.webp',
         alt: 'Take It To Market outsourced marketing and AI services website',
     },
@@ -280,10 +280,12 @@ export function SelectedWork({ limit }) {
                                 </span>
                                 <h3 className="mb-3 text-xl font-bold text-white">{item.project}</h3>
                                 <p className="mb-6 flex-1 text-sm leading-relaxed text-text-muted">{item.summary}</p>
+                                {/* Hosted client microsites carry X-Robots-Tag: noindex, so every
+                                    showcase link is nofollow — none should collect crawl equity. */}
                                 <a
                                     href={item.url}
                                     target="_blank"
-                                    rel={item.external ? 'nofollow noopener' : 'noopener noreferrer'}
+                                    rel="nofollow noopener noreferrer"
                                     className="inline-flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition hover:border-accent/50 hover:bg-accent/15 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                                     aria-label={`View ${item.project} project`}
                                 >

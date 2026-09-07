@@ -57,6 +57,16 @@ export function Footer() {
                                 <a href="tel:+27836025227" className="hover:text-white transition-colors">+27 83 602 5227</a>
                             </p>
                             <p>
+                                <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">WhatsApp</span>
+                                <a
+                                    href="https://wa.me/27836025227?text=Hi%20DB23%2C%20I%20would%20like%20to%20talk%20about%20"
+                                    rel="noopener"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    Message us — reply within the hour
+                                </a>
+                            </p>
+                            <p>
                                 <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">Email</span>
                                 <a href="mailto:deon@db23.co.za" className="hover:text-white transition-colors">deon@db23.co.za</a>
                             </p>

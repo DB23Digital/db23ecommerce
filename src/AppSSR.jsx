@@ -17,8 +17,6 @@ import { ContactPage }            from './pages/ContactPage';
 import { ClubScrubPage }          from './pages/ClubScrubPage';
 import { BlogPage }               from './pages/BlogPage';
 import { BlogPostPage }           from './pages/BlogPostPage';
-import { WorkIndexPage }          from './pages/WorkIndexPage';
-import { WorkCaseStudyPage }      from './pages/WorkCaseStudyPage';
 import { FoldlinePage }           from './pages/FoldlinePage';
 import { FoldlineBenchmarkPage }  from './pages/FoldlineBenchmarkPage';
 
@@ -53,10 +51,6 @@ export function AppSSR() {
                 <Route path="/blog/"                   element={<BlogPage />} />
                 <Route path="/blog/:slug"              element={<BlogPostPage />} />
                 <Route path="/blog/:slug/"             element={<BlogPostPage />} />
-                <Route path="/work"                    element={<WorkIndexPage />} />
-                <Route path="/work/"                   element={<WorkIndexPage />} />
-                <Route path="/work/:slug"              element={<WorkCaseStudyPage />} />
-                <Route path="/work/:slug/"             element={<WorkCaseStudyPage />} />
                 <Route path="/foldline"                element={<FoldlinePage />} />
                 <Route path="/foldline/"               element={<FoldlinePage />} />
                 <Route path="/foldline/benchmark"      element={<FoldlineBenchmarkPage />} />

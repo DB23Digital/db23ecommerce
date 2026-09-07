@@ -20,8 +20,6 @@ const ProposalPage          = lazy(() => import('./pages/ProposalPage').then(m =
 const BlogPage              = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogPostPage          = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const ClubScrubPage         = lazy(() => import('./pages/ClubScrubPage').then(m => ({ default: m.ClubScrubPage })));
-const WorkIndexPage         = lazy(() => import('./pages/WorkIndexPage').then(m => ({ default: m.WorkIndexPage })));
-const WorkCaseStudyPage     = lazy(() => import('./pages/WorkCaseStudyPage').then(m => ({ default: m.WorkCaseStudyPage })));
 const FoldlinePage          = lazy(() => import('./pages/FoldlinePage').then(m => ({ default: m.FoldlinePage })));
 const FoldlineBenchmarkPage = lazy(() => import('./pages/FoldlineBenchmarkPage').then(m => ({ default: m.FoldlineBenchmarkPage })));
 
@@ -69,10 +67,6 @@ function App() {
                         <Route path="/blog/:slug"              element={<BlogPostPage />} />
                         <Route path="/club-scrub/"             element={<ClubScrubPage />} />
                         <Route path="/club-scrub"              element={<ClubScrubPage />} />
-                        <Route path="/work/"                   element={<WorkIndexPage />} />
-                        <Route path="/work"                    element={<WorkIndexPage />} />
-                        <Route path="/work/:slug/"             element={<WorkCaseStudyPage />} />
-                        <Route path="/work/:slug"              element={<WorkCaseStudyPage />} />
                         <Route path="/foldline/"               element={<FoldlinePage />} />
                         <Route path="/foldline"                element={<FoldlinePage />} />
                         <Route path="/foldline/benchmark/"     element={<FoldlineBenchmarkPage />} />

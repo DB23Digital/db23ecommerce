@@ -25,11 +25,11 @@ $pages = [
         'og_description' => 'DB23 helps South African businesses implement AI, automate marketing, and grow online. AI workshops, Voice AI, SEO and website design.',
     ],
     '/ai-workshops' => [
-        'title'          => 'AI Workshops South Africa – Business Training | DB23',
-        'description'    => 'Practical AI workshops for SA business teams. Hands-on training, real tools, no jargon. Book your session today.',
+        'title'          => 'AI Workshops for SME Owners | From R4,500 | Cape Town & Online',
+        'description'    => 'Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon.',
         'canonical'      => 'https://db23.co.za/ai-workshops/',
-        'og_title'       => 'AI Workshops South Africa – Business Training | DB23',
-        'og_description' => 'Practical AI workshops for SA business teams. Hands-on training, real tools, no jargon. Book your session today.',
+        'og_title'       => 'AI Workshops for SME Owners | From R4,500 | Cape Town & Online',
+        'og_description' => 'Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon.',
     ],
     '/voice-ai' => [
         'title'          => 'Voice AI South Africa – AI Receptionists | DB23',
@@ -67,11 +67,11 @@ $pages = [
         'og_description' => 'Modern websites built for clarity, trust and conversion. Part of a broader digital growth system for SA businesses.',
     ],
     '/outsourced-marketing' => [
-        'title'          => 'Outsourced Marketing South Africa | DB23',
-        'description'    => 'Full-service digital marketing team without the overhead of in-house hiring. Built for growing SA businesses.',
+        'title'          => 'Outsourced Marketing Team, South Africa | DB23',
+        'description'    => 'A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included.',
         'canonical'      => 'https://db23.co.za/outsourced-marketing/',
-        'og_title'       => 'Outsourced Marketing South Africa | DB23',
-        'og_description' => 'Full-service digital marketing team without the overhead of in-house hiring. Built for growing SA businesses.',
+        'og_title'       => 'Outsourced Marketing Team, South Africa | DB23',
+        'og_description' => 'A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included.',
     ],
     '/seo-services' => [
         'title'          => 'SEO Services South Africa – Rank on Google | DB23',
@@ -79,13 +79,6 @@ $pages = [
         'canonical'      => 'https://db23.co.za/seo-services/',
         'og_title'       => 'SEO Services South Africa – Rank on Google | DB23',
         'og_description' => 'Search engine optimisation for South African businesses. Technical SEO, content, local search and ranking strategy.',
-    ],
-    '/work' => [
-        'title'          => 'Our Work | Case Studies | DB23 eCommerce',
-        'description'    => 'Real projects DB23 has built for South African businesses — the problem, what we built, and what changed, in detail.',
-        'canonical'      => 'https://db23.co.za/work/',
-        'og_title'       => 'Our Work | Case Studies | DB23 eCommerce',
-        'og_description' => 'Real projects DB23 has built for South African businesses — the problem, what we built, and what changed, in detail.',
     ],
     '/blog' => [
         'title'          => 'AI & Digital Business Insights | DB23 eCommerce Blog',
@@ -206,6 +199,20 @@ $pages = [
         'og_title'       => 'AI for SMEs in South Africa: Five Practical Starting Points | DB23 Insights',
         'og_description' => 'How South African SMEs are using AI in 2026 — five high-ROI starting points, what each costs, POPIA considerations, and what to avoid in your first 90 days.',
     ],
+    '/foldline' => [
+        'title'          => 'Foldline — score your LinkedIn post before you publish | DB23',
+        'description'    => 'Paste a LinkedIn draft and score it against 26 weighted tests from the 2026 feed algorithm — text, image, carousel and video. See where the fold cuts, what costs you reach, and copy a corrected post. Free score, no signup.',
+        'canonical'      => 'https://db23.co.za/foldline/',
+        'og_title'       => 'Foldline — score your LinkedIn post before you publish | DB23',
+        'og_description' => 'Paste a LinkedIn draft and score it against 26 weighted tests from the 2026 feed algorithm — text, image, carousel and video. See where the fold cuts, what costs you reach, and copy a corrected post. Free score, no signup.',
+    ],
+    '/foldline/benchmark' => [
+        'title'          => 'The Foldline Benchmark — LinkedIn v3.0.0 (2026) | DB23',
+        'description'    => 'An open, versioned standard for LinkedIn content quality: 26 weighted tests scoped by format, 3 of them blocking, each with a pass condition, a weight and an evidence grade. Free to read, free to cite.',
+        'canonical'      => 'https://db23.co.za/foldline/benchmark/',
+        'og_title'       => 'The Foldline Benchmark — LinkedIn v3.0.0 (2026) | DB23',
+        'og_description' => 'An open, versioned standard for LinkedIn content quality: 26 weighted tests scoped by format, 3 of them blocking, each with a pass condition, a weight and an evidence grade. Free to read, free to cite.',
+    ],
     '/about' => [
         'title'          => 'About DB23 eCommerce | AI & Digital Services South Africa',
         'description'    => 'DB23 eCommerce is an AI implementation partner helping South African businesses adopt practical AI, automation, modern websites, and digital systems that drive real growth.',
@@ -218,7 +225,7 @@ $pages = [
         'description'    => 'Get in touch with DB23 eCommerce. Book an AI workshop, request a digital services quote, or start a conversation about AI for your South African business.',
         'canonical'      => 'https://db23.co.za/contact/',
         'og_title'       => 'Contact DB23 eCommerce | South Africa',
-        'og_description' => 'Book an AI workshop or discuss digital services with DB23. We respond within one business day.',
+        'og_description' => 'Book an AI workshop or discuss digital services with DB23. We reply within the hour on WhatsApp, business hours.',
     ],
 ];
 
@@ -235,16 +242,6 @@ if ($meta === null) {
             'canonical'      => $slug_canonical,
             'og_title'       => 'DB23 eCommerce Blog',
             'og_description' => 'Practical AI and marketing insights for South African businesses.',
-        ];
-    } elseif (preg_match('#^/work/[^/]+#', $path)) {
-        // Case study slug — dynamic canonical from URL
-        $slug_canonical = 'https://db23.co.za' . rtrim($path, '/') . '/';
-        $meta = [
-            'title'          => 'Case Study | DB23 eCommerce',
-            'description'    => 'Real projects DB23 has built for South African businesses.',
-            'canonical'      => $slug_canonical,
-            'og_title'       => 'Case Study | DB23 eCommerce',
-            'og_description' => 'Real projects DB23 has built for South African businesses.',
         ];
     } else {
         // Unknown path — proper 404 status, self-referencing canonical

@@ -17,9 +17,9 @@ const modules = [
 ];
 
 const packages = [
-    { name: 'Introductory Business AI Workshop', priceZAR: 'From R4,500', priceUSD: 'From $300', features: ['90 mins to 2 hours', 'Practical AI overview', 'Ideal for SME owners', 'Online or in-person', 'Q&A included'], cta: 'Enquire Now', featured: false },
-    { name: 'Practical AI for Teams', priceZAR: 'From R12,500', priceUSD: 'From $700', tag: 'Most Popular', features: ['Half-day workshop', 'Team enablement focus', 'Workflow analysis included', 'Productivity-focused exercises', 'Opportunity mapping'], cta: 'Book Team Workshop', featured: true },
-    { name: 'AI Business Modernization Session', priceZAR: 'Custom Pricing', priceUSD: 'Custom Pricing', features: ['Full-day strategic session', 'Leadership & executive focus', 'AI opportunity mapping', 'Automation recommendations', 'Implementation roadmap'], cta: 'Schedule Strategy Session', featured: false },
+    { name: 'Tier 1 — Introductory Workshop (1 team, up to 6 people)', priceZAR: 'From R4,500', priceUSD: 'From $300', features: ['90 mins to 2 hours', 'Practical AI overview', 'Ideal for SME owners', 'Online or in-person', 'Q&A included'], cta: 'Enquire Now', featured: false },
+    { name: 'Tier 2 — Practical AI for Teams (up to 15 people)', priceZAR: 'From R12,500', priceUSD: 'From $700', tag: 'Most Popular', features: ['Half-day workshop', 'Team enablement focus', 'Workflow analysis included', 'Productivity-focused exercises', 'Opportunity mapping'], cta: 'Book Team Workshop', featured: true },
+    { name: 'Tier 3 — Leadership Modernization Session', priceZAR: 'Custom Pricing', priceUSD: 'Custom Pricing', features: ['Full-day strategic session', 'Leadership & executive focus', 'AI opportunity mapping', 'Automation recommendations', 'Implementation roadmap'], cta: 'Schedule Strategy Session', featured: false },
 ];
 
 const audiences = [
@@ -39,9 +39,10 @@ const faqs = [
     { q: 'What is an AI workshop?', a: 'An AI workshop is a structured, practical session that helps your business understand how AI works and where it creates real value — without needing any technical background. DB23 workshops are focused on business application, not theory.' },
     { q: 'Who should attend an AI business workshop?', a: 'Anyone who makes decisions, manages processes, or leads teams will benefit — owners, managers, marketing teams, sales staff, operations leads, and executive teams.' },
     { q: 'Do we need technical skills to attend?', a: 'No. DB23 explains everything in plain business language with practical examples. The workshops are designed for people who want to understand and use AI — not build it.' },
-    { q: 'How much does an AI workshop cost?', a: 'DB23 introductory virtual workshops start from R4,500 (ZAR). Team workshops start from R12,500 (ZAR). Leadership and full-day strategic sessions are custom-priced based on your specific requirements. International equivalent pricing is provided upon inquiry.' },
+    { q: 'How much does an AI workshop cost?', a: 'There are three tiers. Tier 1, the introductory workshop for one team of up to six people, starts from R4,500. Tier 2, Practical AI for Teams, is a half-day session for up to fifteen people from R12,500. Tier 3, the full-day leadership modernization session, is custom-priced on scope. International equivalent pricing is provided on enquiry.' },
     { q: 'Are AI workshops available online?', a: 'Yes. DB23 delivers workshops online via video call to teams anywhere in South Africa. We also offer in-person sessions at your premises in Cape Town, Johannesburg, Durban and other major centres upon request.' },
-    { q: 'What happens after an AI workshop?', a: 'You receive an opportunity map highlighting your biggest AI and automation opportunities. From there you can implement specific tools, engage DB23 for automation, or continue with further training.' },
+    { q: 'What happens after an AI workshop?', a: 'You receive an opportunity map highlighting your biggest AI and automation opportunities. From there you can implement specific tools yourself, engage DB23 for automation, or move onto a multi-week AI training programme for the wider team.' },
+    { q: 'Is a workshop the same as AI training?', a: 'No. A workshop is one fixed-price session from R4,500 with no follow-up commitment — it is the fastest way to show a team what AI can do for their own work. AI training is a programme: four to eight weeks of live sessions with practice tasks between them, built for teams that need AI in their daily workflow rather than an introduction to it.' },
     { q: 'Are AI workshops worth it for small businesses?', a: 'Yes — especially now. AI tools are accessible and affordable for SMEs. A workshop helps your team understand what\'s possible before spending on tools, making your investment far more targeted.' },
     { q: 'How long does an AI workshop take?', a: 'Introductory sessions run 90 minutes to 2 hours. Team workshops are half-day. Strategic leadership sessions are full-day. Custom durations are available on request.' },
 ];
@@ -77,12 +78,12 @@ export function AIWorkshopsPage() {
     return (
         <PageLayout>
             <SEOHead
-                title="AI Workshops South Africa – Business Training | DB23"
-                description="Practical AI workshops for SA business teams. Hands-on training, real tools, no jargon. Book your session today."
+                title="AI Workshops for SME Owners | From R4,500 | Cape Town & Online"
+                description="Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon."
                 canonical="https://db23.co.za/ai-workshops/"
                 keywords="AI workshops South Africa, business AI workshop, AI training South Africa, corporate AI training South Africa, AI upskilling South Africa"
-                ogTitle="AI Workshops South Africa – Business Training | DB23"
-                ogDescription="Practical AI workshops for SA business teams. Hands-on training, real tools, no jargon. Book your session today."
+                ogTitle="AI Workshops for SME Owners | From R4,500 | Cape Town & Online"
+                ogDescription="Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon."
                 schema={[
                     {
                         "@context": "https://schema.org",
@@ -133,21 +134,21 @@ export function AIWorkshopsPage() {
                     <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mx-auto max-w-4xl text-center">
                         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
                             <Sparkles className="h-4 w-4" aria-hidden="true" />
-                            Flagship Service · Virtual AI Workshops
+                            Flagship Service · One-Off Fixed-Price Sessions
                         </div>
                         <h1 id="workshops-h1" className="mb-6 text-4xl font-black leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl text-balance">
                             AI Workshops for{' '}
                             <span className="bg-gradient-to-r from-accent to-cyan-400 bg-clip-text text-transparent">South African Business Teams</span>
                         </h1>
                         <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-text-muted md:text-xl">
-                            DB23 delivers hands-on AI workshops that help South African business teams understand AI tools, automate workflows, and identify real opportunities — in plain language, no technical background needed.
+DB23 workshops are single fixed-price sessions — from R4,500, 90 minutes to a full day — that get a South African business team using real AI tools in their own workflows. No technical background needed, no ongoing commitment. Need the whole team changing how they work over several weeks? That's an <a href="/ai-training/" className="text-accent underline decoration-accent/40 hover:decoration-accent">AI training programme</a>.
                         </p>
                         <div className="flex flex-col gap-4 sm:flex-row justify-center">
                             <Button href="/#contact" size="lg" className="w-full sm:w-auto">Book Your AI Workshop</Button>
                             <Button href="#workshop-packages" variant="outline" size="lg" className="w-full sm:w-auto">View Packages & Pricing</Button>
                         </div>
                         <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-text-muted">
-                            {['No tech skills required', 'Virtual & online sessions', 'Tailored to your business', 'Nationwide availability'].map(t => (
+                            {['One session, fixed price', 'From R4,500', 'Online or in-person', 'Nationwide availability'].map(t => (
                                 <span key={t} className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" /> {t}</span>
                             ))}
                         </div>

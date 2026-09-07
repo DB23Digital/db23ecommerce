@@ -19,6 +19,10 @@ RewriteRule ^home/?$ / [L,R=301]
 # Requires the live folder to be renamed to aremh-dev/ on next deploy.
 RewriteRule ^arehm-dev/(.*)$ /aremh-dev/$1 [L,R=301]
 
+# Safi Kwanza — index1.html was a leftover dev filename that became the
+# microsite's canonical entry point in Google. Collapse it to the directory.
+RewriteRule ^safik-wanza/index1\.html$ /safik-wanza/ [L,R=301]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
@@ -55,7 +59,7 @@ ErrorDocument 404 /index.php
 # CRAWLABLE (so Googlebot can read this header) but must not be indexed.
 # DO NOT add matching Disallow rules to robots.txt — that would hide the
 # header from Googlebot and freeze the URLs in the index.
-SetEnvIf Request_URI "^/(safik-wanza|arehm-dev|aremh-dev|mar-a-largo|otrum|club-scrub|takeittomarket|kenya)(/|$)" DB23_NOINDEX
+SetEnvIf Request_URI "^/(safik-wanza|arehm-dev|aremh-dev|mar-a-largo|otrum|club-scrub|takeittomarket|kenya|scoliosisbracing|stellenboschchiro|insight2afrika)(/|$)" DB23_NOINDEX
 
 <IfModule mod_headers.c>
     Header always set X-Robots-Tag "noindex" env=DB23_NOINDEX
