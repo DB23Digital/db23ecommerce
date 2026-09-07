@@ -4,6 +4,7 @@ import { ArrowRight, BadgeCheck, Bot, CheckCircle, Headphones, Minus, PhoneCall,
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import { Button } from '../components/ui/Button';
+import { FounderBio } from '../components/FounderBio';
 
 const useCases = [
     { icon: <PhoneCall className="h-6 w-6" />, title: 'AI Voice Receptionist', desc: 'Handle every incoming call professionally 24/7. Your AI receptionist greets callers, answers FAQs, and routes enquiries to the right person — even after hours.', accent: 'text-cyan-300', bg: 'bg-cyan-400/10' },
@@ -251,6 +252,8 @@ export function VoiceAIPage() {
                     </div>
                 </div>
             </section>
+
+            <FounderBio />
 
             {/* CTA */}
             <section className="relative overflow-hidden bg-card/35 py-24 md:py-32">

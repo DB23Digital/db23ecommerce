@@ -3,14 +3,14 @@
 
   <url>
     <loc>https://db23.co.za/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://db23.co.za/ai-workshops/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -23,8 +23,15 @@
   </url>
 
   <url>
+    <loc>https://db23.co.za/ai-automation/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://db23.co.za/ai-training/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -38,14 +45,14 @@
 
   <url>
     <loc>https://db23.co.za/website-design/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://db23.co.za/outsourced-marketing/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -59,14 +66,14 @@
 
   <url>
     <loc>https://db23.co.za/about/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://db23.co.za/contact/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -191,10 +198,17 @@
   </url>
 
   <url>
-    <loc>https://db23.co.za/club-scrub/</loc>
-    <lastmod>2026-06-28</lastmod>
+    <loc>https://db23.co.za/foldline/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://db23.co.za/foldline/benchmark/</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
 
 </urlset>

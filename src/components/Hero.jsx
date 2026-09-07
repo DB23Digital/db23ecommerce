@@ -30,7 +30,7 @@ export function Hero() {
                             className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent"
                         >
                             <Sparkles className="h-4 w-4" aria-hidden="true" />
-                            Practical AI implementation for real businesses
+                            Practical AI implementation · Cape Town &amp; nationwide
                         </Motion.div>
 
                         <Motion.h1
@@ -49,8 +49,9 @@ export function Hero() {
                             transition={{ duration: 0.75, delay: 0.15 }}
                             className="mb-10 max-w-3xl text-lg leading-relaxed text-text-muted md:text-xl"
                         >
-                            DB23 helps businesses understand, adopt, and implement practical AI solutions through
-                            workshops, automation, modern websites, and digital systems designed for real business growth.
+                            DB23 is a Cape Town AI implementation partner helping South African businesses understand,
+                            adopt, and implement practical AI through workshops, automation, modern websites, and digital
+                            systems designed for real business growth.
                         </Motion.p>
 
                         <Motion.div

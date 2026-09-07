@@ -39,12 +39,12 @@ export function OutsourcedMarketingPage() {
     return (
         <PageLayout>
             <SEOHead
-                title="Outsourced Marketing South Africa | DB23"
-                description="Full-service digital marketing team without the overhead of in-house hiring. Built for growing SA businesses."
+                title="Outsourced Marketing Team, South Africa | DB23"
+                description="A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included."
                 canonical="https://db23.co.za/outsourced-marketing/"
                 keywords="outsourced marketing South Africa, fractional marketing team SA, marketing as a service South Africa, outsourced digital team South Africa"
-                ogTitle="Outsourced Marketing South Africa | DB23"
-                ogDescription="Full-service digital marketing team without the overhead of in-house hiring. Built for growing SA businesses."
+                ogTitle="Outsourced Marketing Team, South Africa | DB23"
+                ogDescription="A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included."
                 schema={[
                     {
                         "@context": "https://schema.org",

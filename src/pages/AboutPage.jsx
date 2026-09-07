@@ -177,7 +177,7 @@ export function AboutPage() {
                 <div className="container relative z-10 mx-auto px-4 md:px-8 text-center">
                     <Motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mx-auto max-w-3xl">
                         <h2 className="mb-6 text-4xl font-black leading-tight text-white md:text-5xl">Ready to Work Together?</h2>
-                        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-text-muted">Tell us about your business and goals. We'll recommend the best starting point and respond within one business day.</p>
+                        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-text-muted">Tell us about your business and goals. We'll recommend the best starting point — message us on WhatsApp and we reply within the hour during business hours.</p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <Button href="/contact/" size="lg">Contact Us</Button>
                             <Button href="/ai-workshops/" variant="outline" size="lg">Book an AI Workshop</Button>

@@ -21,6 +21,7 @@ export function Footer() {
                         <ul className="space-y-4">
                             <li><a href="/ai-workshops/" className="text-text-muted transition-colors hover:text-white">AI Workshops</a></li>
                             <li><a href="/voice-ai/" className="text-text-muted transition-colors hover:text-white">Voice AI</a></li>
+                            <li><a href="/ai-automation/" className="text-text-muted transition-colors hover:text-white">AI Automation</a></li>
                             <li><a href="/ai-training/" className="text-text-muted transition-colors hover:text-white">AI Training</a></li>
                             <li><a href="/digital-marketing/" className="text-text-muted transition-colors hover:text-white">Digital Marketing</a></li>
                             <li><a href="/website-design/" className="text-text-muted transition-colors hover:text-white">Website Design</a></li>
@@ -56,6 +57,16 @@ export function Footer() {
                                 <a href="tel:+27836025227" className="hover:text-white transition-colors">+27 83 602 5227</a>
                             </p>
                             <p>
+                                <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">WhatsApp</span>
+                                <a
+                                    href="https://wa.me/27836025227?text=Hi%20DB23%2C%20I%20would%20like%20to%20talk%20about%20"
+                                    rel="noopener"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    Message us — reply within the hour
+                                </a>
+                            </p>
+                            <p>
                                 <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">Email</span>
                                 <a href="mailto:deon@db23.co.za" className="hover:text-white transition-colors">deon@db23.co.za</a>
                             </p>
@@ -66,7 +77,7 @@ export function Footer() {
                 {/* NAP in plain HTML for local SEO crawlability */}
                 <div className="mb-8 rounded-xl border border-white/5 bg-white/[0.02] px-6 py-4 text-sm text-text-muted">
                     <strong className="text-white/70">DB23 eCommerce</strong> &bull;
-                    Tryall Road, Parklands, Cape Town, Western Cape, 7146, South Africa &bull;
+                    Tryall Road, Parklands, Cape Town, Western Cape, 7441, South Africa &bull;
                     <a href="tel:+27836025227" className="hover:text-white transition-colors ml-1">+27 83 602 5227</a> &bull;
                     <a href="mailto:deon@db23.co.za" className="hover:text-white transition-colors ml-1">deon@db23.co.za</a>
                     &bull; <span className="ml-1">AI Workshops · Voice AI · Digital Marketing · Website Design · SEO Services</span>

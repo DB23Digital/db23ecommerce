@@ -6,6 +6,7 @@ import { CurrencyProvider } from './components/CurrencyContext';
 import { HomePage }               from './pages/HomePage';
 import { AIWorkshopsPage }        from './pages/AIWorkshopsPage';
 import { VoiceAIPage }            from './pages/VoiceAIPage';
+import { AIAutomationPage }       from './pages/AIAutomationPage';
 import { AITrainingPage }         from './pages/AITrainingPage';
 import { DigitalMarketingPage }   from './pages/DigitalMarketingPage';
 import { OutsourcedMarketingPage } from './pages/OutsourcedMarketingPage';
@@ -16,6 +17,8 @@ import { ContactPage }            from './pages/ContactPage';
 import { ClubScrubPage }          from './pages/ClubScrubPage';
 import { BlogPage }               from './pages/BlogPage';
 import { BlogPostPage }           from './pages/BlogPostPage';
+import { FoldlinePage }           from './pages/FoldlinePage';
+import { FoldlineBenchmarkPage }  from './pages/FoldlineBenchmarkPage';
 
 export function AppSSR() {
     return (
@@ -26,6 +29,8 @@ export function AppSSR() {
                 <Route path="/ai-workshops/"           element={<AIWorkshopsPage />} />
                 <Route path="/voice-ai"                element={<VoiceAIPage />} />
                 <Route path="/voice-ai/"               element={<VoiceAIPage />} />
+                <Route path="/ai-automation"           element={<AIAutomationPage />} />
+                <Route path="/ai-automation/"          element={<AIAutomationPage />} />
                 <Route path="/ai-training"             element={<AITrainingPage />} />
                 <Route path="/ai-training/"            element={<AITrainingPage />} />
                 <Route path="/digital-marketing"       element={<DigitalMarketingPage />} />
@@ -46,6 +51,10 @@ export function AppSSR() {
                 <Route path="/blog/"                   element={<BlogPage />} />
                 <Route path="/blog/:slug"              element={<BlogPostPage />} />
                 <Route path="/blog/:slug/"             element={<BlogPostPage />} />
+                <Route path="/foldline"                element={<FoldlinePage />} />
+                <Route path="/foldline/"               element={<FoldlinePage />} />
+                <Route path="/foldline/benchmark"      element={<FoldlineBenchmarkPage />} />
+                <Route path="/foldline/benchmark/"     element={<FoldlineBenchmarkPage />} />
                 <Route path="/home"                    element={<Navigate to="/" replace />} />
                 <Route path="/home/"                   element={<Navigate to="/" replace />} />
             </Routes>

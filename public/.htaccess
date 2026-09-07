@@ -11,6 +11,18 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # ── 2. SPA routing — serve existing files/dirs directly ────────────────────
 DirectoryIndex index.php index.html
 
+# Collapse the stray /home/ URL (picked up impressions as a separate page)
+RewriteRule ^home/?$ / [L,R=301]
+
+# AREMH Developments — directory renamed from the misspelled "arehm-dev"
+# to "aremh-dev" (matches the client's real domain, aremhdevelopments.com).
+# Requires the live folder to be renamed to aremh-dev/ on next deploy.
+RewriteRule ^arehm-dev/(.*)$ /aremh-dev/$1 [L,R=301]
+
+# Safi Kwanza — index1.html was a leftover dev filename that became the
+# microsite's canonical entry point in Google. Collapse it to the directory.
+RewriteRule ^safik-wanza/index1\.html$ /safik-wanza/ [L,R=301]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
@@ -40,6 +52,17 @@ ErrorDocument 404 /index.php
     # Content Security Policy
     # Adjust script-src if you add new third-party scripts
     Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com; frame-src https://storage.googleapis.com;"
+</IfModule>
+
+# ── 3b. De-index client microsites ────────────────────────────────────────
+# These are client project sites hosted in the DB23 root. They must remain
+# CRAWLABLE (so Googlebot can read this header) but must not be indexed.
+# DO NOT add matching Disallow rules to robots.txt — that would hide the
+# header from Googlebot and freeze the URLs in the index.
+SetEnvIf Request_URI "^/(safik-wanza|arehm-dev|aremh-dev|mar-a-largo|otrum|club-scrub|takeittomarket|kenya|scoliosisbracing|stellenboschchiro|insight2afrika)(/|$)" DB23_NOINDEX
+
+<IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex" env=DB23_NOINDEX
 </IfModule>
 
 # ── 4. Cache static assets with far-future expiry ─────────────────────────

@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, Clock, ChevronDown, ChevronUp, Sparkles, BookOpen,
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import { useCurrency } from '../components/CurrencyContext';
+import { FounderBio } from '../components/FounderBio';
 
 // Shared FAQ component specifically for the blog posts
 function BlogFAQItem({ question, answer }) {
@@ -1531,7 +1532,8 @@ const postData = {
         content: (
             <>
                 <p className="text-lg leading-relaxed text-text-muted mb-6">
-                    The SA businesses saving the most time with AI in 2026 aren't using fancy custom models. They're automating three workflows with Zapier, Make, and a ChatGPT plugin — and recovering 2–4 hours per employee per week. No developer required.
+                    The SA businesses saving the most time with AI in 2026 aren't using fancy custom models. They're automating three workflows with Zapier, Make, and a ChatGPT plugin — and recovering 2–4 hours per employee per week. No developer required. See our{' '}
+                    <a href="/ai-automation/" className="text-purple-400 hover:underline">AI automation service</a> for a free workflow audit.
                 </p>
                 <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
@@ -2141,6 +2143,8 @@ export function BlogPostPage() {
                     </div>
                 </div>
             </article>
+
+            <FounderBio />
         </PageLayout>
     );
 }

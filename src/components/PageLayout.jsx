@@ -7,6 +7,7 @@ const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'AI Workshops', href: '/ai-workshops/' },
     { label: 'Voice AI', href: '/voice-ai/' },
+    { label: 'AI Automation', href: '/ai-automation/' },
     { label: 'AI Training', href: '/ai-training/' },
     { label: 'Blog', href: '/blog/' },
     { label: 'Work', href: 'https://db23.co.za/#work-showcase' },

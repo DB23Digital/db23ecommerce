@@ -4,6 +4,7 @@ import { ArrowRight, BadgeCheck, Bot, BrainCircuit, BriefcaseBusiness, CheckCirc
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import { Button } from '../components/ui/Button';
+import { FounderBio } from '../components/FounderBio';
 
 const modules = [
     { icon: <BrainCircuit className="h-6 w-6" />, title: 'AI Fundamentals for Business', desc: 'What AI is, how it works, and what it means practically for your business operations, team, and competitive landscape.' },
@@ -26,9 +27,9 @@ const outcomes = [
 ];
 
 const formats = [
-    { icon: <Users className="h-6 w-6" />, title: 'In-Person Training', body: 'We come to your office or venue and deliver hands-on AI training in a collaborative, face-to-face environment across South Africa.', tag: 'Most Engaging' },
-    { icon: <Laptop className="h-6 w-6" />, title: 'Online / Remote Training', body: 'Full AI training sessions delivered via video conference with live tools, screen sharing, and interactive exercises for remote teams.', tag: null },
-    { icon: <BriefcaseBusiness className="h-6 w-6" />, title: 'Hybrid Programme', body: 'A combination of live online sessions and in-person workshops spread over multiple days or weeks for deeper team capability building.', tag: null },
+    { icon: <Users className="h-6 w-6" />, title: '4-Week Team Programme', body: 'One live session a week for four weeks, with role-specific practice tasks between sessions so the tools land in real work, not in a notebook. Delivered in-person at your premises or online.', tag: 'Most Popular' },
+    { icon: <Laptop className="h-6 w-6" />, title: '8-Week Department Programme', body: 'Two tracks running in parallel over eight weeks — one for the people doing the work, one for the managers reviewing it — with a shared adoption review at the halfway mark.', tag: null },
+    { icon: <BriefcaseBusiness className="h-6 w-6" />, title: 'Ongoing Retained Training', body: 'A standing monthly session for teams that have finished a programme: new tools, new workflows, and support for the automations already running in the business.', tag: null },
 ];
 
 const audiences = [
@@ -40,12 +41,12 @@ const audiences = [
 const faqs = [
     { q: 'What is AI training for businesses?', a: 'Business AI training teaches your team how to understand, use, and apply AI tools practically in your daily operations — without needing a technical background. DB23\'s AI training is focused entirely on real business applications.' },
     { q: 'What do teams learn in AI training?', a: 'Teams learn how AI tools work, which tools are most useful for their role, how to automate repetitive tasks, how to use AI for marketing and content, and how to identify AI opportunities in their specific workflows.' },
-    { q: 'How long does AI training take?', a: 'DB23 AI training ranges from 90-minute introductory sessions to full-day programmes. Multi-session programmes spread over several weeks are also available for deeper capability building.' },
+    { q: 'How long does an AI training programme take?', a: 'DB23 AI training runs as a multi-week programme, not a single session. The standard team programme is four weekly sessions; department-wide programmes run over eight weeks with two parallel tracks. Teams that want a one-off session instead should book an AI workshop, which starts from R4,500.' },
+    { q: 'Should we book an AI workshop or an AI training programme?', a: 'Book an AI workshop if you want one fixed-price session to introduce AI to a team — 90 minutes to a full day, from R4,500, no follow-up commitment. Book an AI training programme if you need the whole team using AI in their daily work: multiple sessions over four to eight weeks, practice tasks between them, and a measured adoption review at the end. Most businesses start with a workshop and move to a programme once they know which workflows they want to change.' },
     { q: 'Is AI training suitable for non-technical staff?', a: 'Absolutely. DB23 AI training is built specifically for business people — not developers or engineers. We explain AI in plain language with practical examples that make sense for your team\'s day-to-day work.' },
-    { q: 'What is the difference between AI training and an AI workshop?', a: 'AI workshops are typically one-off, focused sessions exploring AI concepts and opportunities. AI training is a more structured learning programme designed to build practical skills and confidence over time. Both approaches are available through DB23.' },
     { q: 'Can AI training be customised for our industry?', a: 'Yes. DB23 tailors AI training content to your industry, team roles, and specific business challenges. Training for a marketing team looks very different from training for an operations team.' },
     { q: 'What AI tools do you cover in training?', a: 'DB23 training covers a range of practical AI tools including AI writing assistants, image generation, automation platforms, AI customer engagement tools, workflow tools, and voice AI systems — selected based on your team\'s needs.' },
-    { q: 'Does DB23 offer ongoing AI training support?', a: 'Yes. After initial training, DB23 can provide follow-up sessions, implementation support, and ongoing access to new AI tools and techniques as the AI landscape evolves.' },
+    { q: 'Does DB23 offer ongoing AI training support?', a: 'Yes. Programmes can continue as a retained monthly session covering new tools, new workflows, and support for the automations already running in the business.' },
 ];
 
 function FAQItem({ faq, isOpen, onClick }) {
@@ -94,14 +95,14 @@ export function AITrainingPage() {
                         "@type": "Service",
                         "@id": "https://db23.co.za/ai-training/#service",
                         "name": "AI Training Programs for South African Business Teams",
-                        "description": "Business-focused AI training programs for managers, marketing teams, and operational staff. No technical background required.",
+                        "description": "Multi-week AI training programmes for South African business teams — four to eight weeks of live sessions with practice tasks between them. No technical background required.",
                         "provider": { "@id": "https://db23.co.za/#organization" },
                         "serviceType": "AI Business Training",
                         "areaServed": { "@type": "Country", "name": "South Africa" },
                         "offers": {
                             "@type": "Offer",
                             "priceCurrency": "ZAR",
-                            "description": "Custom pricing based on team size, duration and format. Contact for a tailored quote."
+                            "description": "Multi-week team programme, quoted per team on size, number of sessions and format. One-off sessions are priced separately as AI workshops from R4,500."
                         },
                         "url": "https://db23.co.za/ai-training/"
                     }
@@ -115,21 +116,21 @@ export function AITrainingPage() {
                     <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mx-auto max-w-4xl text-center">
                         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
                             <Sparkles className="h-4 w-4" aria-hidden="true" />
-                            AI Training South Africa · Practical & Business-Focused
+                            AI Training South Africa · Multi-Week Team Programmes
                         </div>
                         <h1 id="training-h1" className="mb-6 text-4xl font-black leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl text-balance">
                             Practical AI Training for{' '}
                             <span className="bg-gradient-to-r from-accent to-purple-400 bg-clip-text text-transparent">SA Businesses</span>
                         </h1>
                         <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-text-muted md:text-xl">
-                            DB23 delivers structured AI training programmes for South African business teams — from introductory sessions to advanced leadership strategy. No jargon, no theory overload, just practical skills your team can use from day one.
+                            DB23 runs multi-week AI training programmes for South African business teams — four to eight weeks of live sessions, with role-specific practice tasks between them so the skills stick. Looking for a single fixed-price session instead? That's an <a href="/ai-workshops/" className="text-accent underline decoration-accent/40 hover:decoration-accent">AI workshop, from R4,500</a>.
                         </p>
                         <div className="flex flex-col gap-4 sm:flex-row justify-center">
                             <Button href="/#contact" size="lg" className="w-full sm:w-auto">Enquire About AI Training</Button>
                             <Button href="#training-formats" variant="outline" size="lg" className="w-full sm:w-auto">View Training Formats</Button>
                         </div>
                         <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-text-muted">
-                            {['No tech skills required', 'Tailored to your team', 'In-person or online', 'Across South Africa'].map(t => (
+                            {['4 to 8 weeks, not one session', 'No tech skills required', 'In-person or online', 'Across South Africa'].map(t => (
                                 <span key={t} className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" /> {t}</span>
                             ))}
                         </div>
@@ -184,8 +185,8 @@ export function AITrainingPage() {
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="mx-auto mb-14 max-w-3xl text-center">
                         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">Delivery Options</p>
-                        <h2 id="formats-heading" className="mb-5 text-3xl font-black text-white md:text-5xl">AI Training Formats</h2>
-                        <p className="text-lg text-text-muted">Choose the delivery format that works for your team's location, size, and schedule.</p>
+                        <h2 id="formats-heading" className="mb-5 text-3xl font-black text-white md:text-5xl">Programme Structures</h2>
+                        <p className="text-lg text-text-muted">Every option runs over multiple weeks. Pick the shape that matches your team size and how fast you need the capability in place.</p>
                     </div>
                     <div className="grid gap-6 lg:grid-cols-3">
                         {formats.map(f => (
@@ -235,6 +236,8 @@ export function AITrainingPage() {
                     </div>
                 </div>
             </section>
+
+            <FounderBio />
 
             {/* CTA */}
             <section className="relative overflow-hidden bg-background py-24 md:py-32">

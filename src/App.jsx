@@ -8,6 +8,7 @@ import { HomePage } from './pages/HomePage';
 // Lazy-load all other routes — each gets its own JS chunk
 const AIWorkshopsPage       = lazy(() => import('./pages/AIWorkshopsPage').then(m => ({ default: m.AIWorkshopsPage })));
 const VoiceAIPage           = lazy(() => import('./pages/VoiceAIPage').then(m => ({ default: m.VoiceAIPage })));
+const AIAutomationPage      = lazy(() => import('./pages/AIAutomationPage').then(m => ({ default: m.AIAutomationPage })));
 const AITrainingPage        = lazy(() => import('./pages/AITrainingPage').then(m => ({ default: m.AITrainingPage })));
 const DigitalMarketingPage  = lazy(() => import('./pages/DigitalMarketingPage').then(m => ({ default: m.DigitalMarketingPage })));
 const OutsourcedMarketingPage = lazy(() => import('./pages/OutsourcedMarketingPage').then(m => ({ default: m.OutsourcedMarketingPage })));
@@ -19,6 +20,8 @@ const ProposalPage          = lazy(() => import('./pages/ProposalPage').then(m =
 const BlogPage              = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogPostPage          = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const ClubScrubPage         = lazy(() => import('./pages/ClubScrubPage').then(m => ({ default: m.ClubScrubPage })));
+const FoldlinePage          = lazy(() => import('./pages/FoldlinePage').then(m => ({ default: m.FoldlinePage })));
+const FoldlineBenchmarkPage = lazy(() => import('./pages/FoldlineBenchmarkPage').then(m => ({ default: m.FoldlineBenchmarkPage })));
 
 function PageLoader() {
     return (
@@ -41,6 +44,8 @@ function App() {
                         <Route path="/ai-workshops"            element={<AIWorkshopsPage />} />
                         <Route path="/voice-ai/"               element={<VoiceAIPage />} />
                         <Route path="/voice-ai"                element={<VoiceAIPage />} />
+                        <Route path="/ai-automation/"          element={<AIAutomationPage />} />
+                        <Route path="/ai-automation"           element={<AIAutomationPage />} />
                         <Route path="/ai-training/"            element={<AITrainingPage />} />
                         <Route path="/ai-training"             element={<AITrainingPage />} />
                         <Route path="/digital-marketing/"      element={<DigitalMarketingPage />} />
@@ -62,6 +67,10 @@ function App() {
                         <Route path="/blog/:slug"              element={<BlogPostPage />} />
                         <Route path="/club-scrub/"             element={<ClubScrubPage />} />
                         <Route path="/club-scrub"              element={<ClubScrubPage />} />
+                        <Route path="/foldline/"               element={<FoldlinePage />} />
+                        <Route path="/foldline"                element={<FoldlinePage />} />
+                        <Route path="/foldline/benchmark/"     element={<FoldlineBenchmarkPage />} />
+                        <Route path="/foldline/benchmark"      element={<FoldlineBenchmarkPage />} />
                     </Routes>
                 </Suspense>
             </BrowserRouter>

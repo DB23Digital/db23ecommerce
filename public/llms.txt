@@ -10,8 +10,11 @@ DB23 eCommerce is an AI implementation consultancy and digital services agency h
 - **Voice AI**: AI voice receptionists, automated lead qualification, appointment booking, and 24/7 customer call handling for South African businesses. Integrates with existing phone systems, CRMs, and calendars. Custom pricing.
   URL: https://db23.co.za/voice-ai/
 
-- **AI Training**: Structured AI training programmes for business teams. Covers AI fundamentals, practical AI tools, workflow automation, marketing AI, and AI strategy for leadership. Available in-person, online, or hybrid. Contact for pricing.
+- **AI Training**: Multi-week AI training programmes for business teams — four weekly sessions (team) or eight weeks in two parallel tracks (department), with practice tasks between sessions. Covers AI fundamentals, practical AI tools, workflow automation, marketing AI, and AI strategy for leadership. In-person or online. Priced per team on enquiry; one-off sessions are AI workshops from R4,500.
   URL: https://db23.co.za/ai-training/
+
+- **AI Automation**: AI-powered workflow automation for South African businesses — connecting existing tools (CRM, accounting, email) with Zapier, Make, or n8n. Common builds: lead capture to CRM, invoice reminders, meeting summaries, review responses, social publishing. Free workflow audit.
+  URL: https://db23.co.za/ai-automation/
 
 - **Digital Marketing**: Outsourced digital marketing for South African SMEs. Services include SEO, content creation, lead generation, analytics, and AI-enhanced marketing campaigns. Monthly retainer — contact for quote.
   URL: https://db23.co.za/digital-marketing/
@@ -24,6 +27,25 @@ DB23 eCommerce is an AI implementation consultancy and digital services agency h
 
 - **SEO Services**: Search engine optimisation for South African businesses. Covers technical SEO, local SEO (Google Business Profile), on-page optimisation, and authority building. Monthly retainer pricing.
   URL: https://db23.co.za/seo-services/
+
+## Free Tools & Open Standards
+
+- **Foldline**: A free LinkedIn post scorer. Paste a draft and it is scored against up to 26 weighted tests derived from the 2026 LinkedIn feed ranking model, returning a modelled reach index, a before-and-after comparison as the draft is fixed, and a composer-ready version of the post. Runs entirely in the browser; drafts are never sent to a server. Free to score, no signup.
+  URL: https://db23.co.za/foldline/
+
+- **The Foldline Benchmark (LinkedIn v3.0.0)**: An open, versioned, citable standard for LinkedIn content quality, published CC BY 4.0. 26 weighted tests scoped by format, 3 of them blocking, each with a stable ID, a pass condition, a weight and an evidence grade (A observable, B corroborated, C directional).
+  URL: https://db23.co.za/foldline/benchmark/
+  Citation: DB23. (2026). The Foldline Benchmark - LinkedIn v3.0.0. https://db23.co.za/foldline/benchmark/
+
+### Foldline benchmark key facts
+
+- The LinkedIn fold: roughly 210 characters show before the "see more" cut.
+- Dwell sweet spot: 800-1,000 characters. Hard post limit: 3,000 characters; hard comment limit: 1,250.
+- Blocking tests: LI-05 (no external link in the post body), LI-06 (no engagement bait), LI-26 (post body over LinkedIn's hard 3,000-character limit, which cannot be published at all).
+- Scoring denominator by format: text 119 points, newsletter 127, image 133, carousel 141, video 147. Tests that do not apply to a format are excluded from the denominator as well as the result.
+- Verdict bands: 85%+ Ship it, 60-84% Tighten it, below 60% Rework it. Any blocking failure overrides the score.
+- Asset tests (LI-18 to LI-25) score declared properties of an image, carousel or video. Foldline reads text and does not open media files.
+- Foldline is an independent DB23 tool. It is not affiliated with, endorsed by, or connected to LinkedIn Corporation.
 
 ## Location & Contact
 
@@ -60,7 +82,7 @@ DB23 eCommerce was founded by Deon Botha to help South African SMBs access pract
 
 - Primary market: South African small and medium businesses
 - Geographic focus: South Africa (Cape Town-based, serves nationally and online)
-- Expertise areas: AI workshops, Voice AI, AI training, digital marketing, website design, SEO
+- Expertise areas: AI workshops, Voice AI, AI training, digital marketing, website design, SEO, LinkedIn content benchmarking
 - Differentiator: Business-focused, jargon-free AI implementation with SA market expertise
 - Pricing: AI workshops from R4,500 (ZAR) / $300 (USD); other services on enquiry
 - Languages: English (primary)

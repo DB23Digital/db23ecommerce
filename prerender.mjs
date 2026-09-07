@@ -8,6 +8,7 @@ const routes = [
     { url: '/',                      outDir: 'dist' },
     { url: '/ai-workshops/',         outDir: 'dist/ai-workshops' },
     { url: '/voice-ai/',             outDir: 'dist/voice-ai' },
+    { url: '/ai-automation/',        outDir: 'dist/ai-automation' },
     { url: '/ai-training/',          outDir: 'dist/ai-training' },
     { url: '/digital-marketing/',    outDir: 'dist/digital-marketing' },
     { url: '/website-design/',       outDir: 'dist/website-design' },
@@ -33,6 +34,8 @@ const routes = [
     { url: '/blog/chatgpt-workshop-south-africa/',            outDir: 'dist/blog/chatgpt-workshop-south-africa' },
     { url: '/blog/roi-remote-corporate-ai-training/',         outDir: 'dist/blog/roi-remote-corporate-ai-training' },
     { url: '/blog/chatgpt-business-global-marketing-guide/',  outDir: 'dist/blog/chatgpt-business-global-marketing-guide' },
+    { url: '/foldline/',                                      outDir: 'dist/foldline' },
+    { url: '/foldline/benchmark/',                            outDir: 'dist/foldline/benchmark' },
 ];
 
 const template = fs.readFileSync(path.join(__dirname, 'dist/index.html'), 'utf-8');
