@@ -1,0 +1,58 @@
+# Disable directory listings
+Options -Indexes
+
+# Set the default index file
+DirectoryIndex index.html
+
+# Enable rewrite engine for clean URLs
+RewriteEngine On
+# This site is a subdirectory of db23.co.za, not a domain root. RewriteBase and
+# every redirect target must include /safik-wanza/ or the .html-stripping rules
+# below redirect to the domain root and 404.
+RewriteBase /safik-wanza/
+
+# Force www to resolve to the bare (non-www) domain
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# 301: index1.html -> the directory root. index1.html was a leftover dev
+# filename that Google indexed as this site's entry point.
+RewriteRule ^index1\.html$ /safik-wanza/? [R=301,L]
+
+# 301: /index.html -> /safik-wanza/ (canonical root)
+RewriteCond %{THE_REQUEST} \s/+safik-wanza/index\.html[?\s] [NC]
+RewriteRule ^index\.html$ /safik-wanza/? [R=301,L]
+
+# 301: page.html -> page (drop the .html extension from any browser-visible URL)
+RewriteCond %{THE_REQUEST} \s/+safik-wanza/(.+)\.html[?\s] [NC]
+RewriteRule ^(.+)\.html$ /safik-wanza/$1? [R=301,L]
+
+# If a file request does not have the extension, route it internally to the .html file
+# E.g. /safik-wanza/index1 will serve index1.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+# Long-lived caching for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Explicit Cache-Control header (Expires alone leaves proxies/CDNs without a directive to key off)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|jpe?g|png|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# Custom 404 page
+ErrorDocument 404 /safik-wanza/404.html

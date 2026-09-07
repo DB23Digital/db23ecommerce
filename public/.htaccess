@@ -20,8 +20,14 @@ RewriteRule ^home/?$ / [L,R=301]
 RewriteRule ^arehm-dev/(.*)$ /aremh-dev/$1 [L,R=301]
 
 # Safi Kwanza — index1.html was a leftover dev filename that became the
-# microsite's canonical entry point in Google. Collapse it to the directory.
-RewriteRule ^safik-wanza/index1\.html$ /safik-wanza/ [L,R=301]
+# microsite's canonical entry point in Google. The 301 that collapses it to
+# the directory root CANNOT live here: safik-wanza/ ships its own .htaccess,
+# and Apache does not inherit parent mod_rewrite rules into a child directory
+# — the child's rules replace them outright. A rule for that path written
+# here never runs. It lives in public_html/safik-wanza/.htaccess instead,
+# which also needs RewriteBase /safik-wanza/ or its .html-stripping rules
+# redirect to the domain root and 404. Same applies to any other microsite
+# that carries its own .htaccess.
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
