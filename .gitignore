@@ -25,3 +25,9 @@ dist-ssr
 build.tar.gz
 build.zip
 dev-server.err
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
