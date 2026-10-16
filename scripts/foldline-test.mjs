@@ -5,7 +5,9 @@
  * The React pages render from the same config, so anything asserted here is
  * what the published benchmark page states. */
 import F, { blankState } from '../src/foldline/index.js';
+import { buildDiffColumns } from '../src/foldline/textDiff.js';
 
+const NL = String.fromCharCode(10);
 let pass = 0, fail = 0;
 const is = (label, actual, expected) => {
     const ok = JSON.stringify(actual) === JSON.stringify(expected);
@@ -197,6 +199,28 @@ is('3,001 fails', byId(run({ draft: 'a'.repeat(3001) }), 'LI-26').status, 'fail'
 is('an over-long first comment warns',
     byId(run({ draft: 'A normal post for founders. What would you change?', comment: 'x'.repeat(1300) }), 'LI-26').status, 'warn');
 is('LI-26 offers the trim fix', byId(overLimit, 'LI-26').fix, 'trim');
+
+console.log(NL + 'revision diff (textDiff.js)');
+const same = buildDiffColumns('a b c', 'a b c');
+ok('identical text has no changes', !same.hasChanges);
+
+const changedD = buildDiffColumns('Most posts fail because the idea is weak.', 'Most posts fail because the hook is weak.');
+ok('a real change is detected', changedD.hasChanges);
+is('left reconstructs the original exactly', changedD.leftParts.map((p) => p.text).join(''), 'Most posts fail because the idea is weak.');
+is('right reconstructs the revision exactly', changedD.rightParts.map((p) => p.text).join(''), 'Most posts fail because the hook is weak.');
+ok('the removed word is marked on the left', changedD.leftParts.some((p) => p.cls === 'fl-del' && p.text.includes('idea')));
+ok('the added word is marked on the right', changedD.rightParts.some((p) => p.cls === 'fl-add' && p.text.includes('hook')));
+ok('unchanged text carries no class', changedD.leftParts.some((p) => p.cls === '' && p.text.includes('Most posts')));
+
+const emptied = buildDiffColumns('Something here.', '');
+ok('clearing the draft marks everything removed', emptied.hasChanges && emptied.rightParts.length === 0);
+is('nothing left on the right', emptied.rightParts.join(''), '');
+
+const fromEmpty = buildDiffColumns('', 'Brand new draft.');
+ok('typing into an empty draft marks everything added', fromEmpty.hasChanges && fromEmpty.leftParts.length === 0);
+
+const bothEmpty = buildDiffColumns('', '');
+ok('two empty strings have no changes', !bothEmpty.hasChanges);
 
 console.log('\nvalidation');
 let threw = false;
