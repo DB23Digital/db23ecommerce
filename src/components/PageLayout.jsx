@@ -23,7 +23,7 @@ export function PageLayout({ children }) {
             <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/5 py-4">
                 <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
                     <a href="/" className="flex items-center">
-                        <img src="/DB23%20logo.png" alt="DB23 eCommerce" className="h-10 w-auto" width="120" height="40" />
+                        <img src="/DB23-logo.webp" alt="DB23 eCommerce" className="h-10 w-auto" width="120" height="40" />
                     </a>
 
                     <nav aria-label="Main navigation" className="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">

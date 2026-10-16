@@ -18,18 +18,18 @@ if ($path === '/') $path = '';
 // hand when copy changes.
 $pages = [
     '' => [
-        'title'          => 'AI Workshops & Digital Marketing South Africa | DB23',
-        'description'    => 'DB23 helps South African businesses implement AI, automate marketing, and grow online. AI workshops, Voice AI, SEO and website design.',
+        'title'          => 'DB23 | AI Implementation & Digital Marketing, Cape Town',
+        'description'    => 'Cape Town AI implementation partner for South African businesses: AI workshops, Voice AI receptionists, automation, SEO and websites that bring in enquiries.',
         'canonical'      => 'https://db23.co.za/',
-        'og_title'       => 'AI Workshops & Digital Marketing South Africa | DB23',
-        'og_description' => 'DB23 helps South African businesses implement AI, automate marketing, and grow online. AI workshops, Voice AI, SEO and website design.',
+        'og_title'       => 'DB23 | AI Implementation & Digital Marketing, Cape Town',
+        'og_description' => 'Cape Town AI implementation partner for South African businesses: AI workshops, Voice AI receptionists, automation, SEO and websites that bring in enquiries.',
     ],
     '/ai-workshops' => [
-        'title'          => 'AI Workshops for SME Owners | From R4,500 | Cape Town & Online',
-        'description'    => 'Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon.',
+        'title'          => 'AI Workshops South Africa | Fixed Price from R4,500 | DB23',
+        'description'    => 'One-off AI workshops for SA teams: 90-minute intro from R4,500, half-day team session from R12,500. Online or in Cape Town, built around your own tasks.',
         'canonical'      => 'https://db23.co.za/ai-workshops/',
-        'og_title'       => 'AI Workshops for SME Owners | From R4,500 | Cape Town & Online',
-        'og_description' => 'Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon.',
+        'og_title'       => 'AI Workshops South Africa | Fixed Price from R4,500 | DB23',
+        'og_description' => 'One-off AI workshops for SA teams: 90-minute intro from R4,500, half-day team session from R12,500. Online or in Cape Town, built around your own tasks.',
     ],
     '/voice-ai' => [
         'title'          => 'Voice AI South Africa – AI Receptionists | DB23',
@@ -67,11 +67,11 @@ $pages = [
         'og_description' => 'Modern websites built for clarity, trust and conversion. Part of a broader digital growth system for SA businesses.',
     ],
     '/outsourced-marketing' => [
-        'title'          => 'Outsourced Marketing Team, South Africa | DB23',
-        'description'    => 'A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included.',
+        'title'          => 'Outsourced Marketing Team South Africa | Fixed Retainer | DB23',
+        'description'    => 'Your marketing department on a fixed monthly retainer: strategy, SEO, content and paid, run by a Cape Town team. No lock-in. See what each month includes.',
         'canonical'      => 'https://db23.co.za/outsourced-marketing/',
-        'og_title'       => 'Outsourced Marketing Team, South Africa | DB23',
-        'og_description' => 'A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included.',
+        'og_title'       => 'Outsourced Marketing Team South Africa | Fixed Retainer | DB23',
+        'og_description' => 'Your marketing department on a fixed monthly retainer: strategy, SEO, content and paid, run by a Cape Town team. No lock-in. See what each month includes.',
     ],
     '/seo-services' => [
         'title'          => 'SEO Services South Africa – Rank on Google | DB23',
@@ -198,6 +198,20 @@ $pages = [
         'canonical'      => 'https://db23.co.za/blog/ai-for-smes-south-africa/',
         'og_title'       => 'AI for SMEs in South Africa: Five Practical Starting Points | DB23 Insights',
         'og_description' => 'How South African SMEs are using AI in 2026 — five high-ROI starting points, what each costs, POPIA considerations, and what to avoid in your first 90 days.',
+    ],
+    '/blog/ai-receptionist-medical-practice-south-africa' => [
+        'title'          => 'AI Receptionist for Medical & Dental Practices South Africa (2026) | DB23 Blog',
+        'description'    => 'How SA medical and dental practices use an AI receptionist for bookings and after-hours calls, what it must never do, and the POPIA rules for patient data.',
+        'canonical'      => 'https://db23.co.za/blog/ai-receptionist-medical-practice-south-africa/',
+        'og_title'       => 'AI Receptionist for Medical and Dental Practices in South Africa | DB23 Insights',
+        'og_description' => 'How SA medical and dental practices use an AI receptionist for bookings and after-hours calls, what it must never do, and the POPIA rules for patient data.',
+    ],
+    '/blog/outsourced-marketing-vs-in-house-south-africa' => [
+        'title'          => 'Outsourced Marketing vs In-House Hire South Africa (2026 Costs) | DB23 Blog',
+        'description'    => 'An SA marketing manager costs ~R30,000–R38,000/month before tools and leave. When an outsourced marketing team makes more sense, when a hire does, what to ask.',
+        'canonical'      => 'https://db23.co.za/blog/outsourced-marketing-vs-in-house-south-africa/',
+        'og_title'       => 'Outsourced Marketing vs Hiring In-House in South Africa: The Real Cost | DB23 Insights',
+        'og_description' => 'An SA marketing manager costs ~R30,000–R38,000/month before tools and leave. When an outsourced marketing team makes more sense, when a hire does, what to ask.',
     ],
     '/foldline' => [
         'title'          => 'Foldline — score your LinkedIn post before you publish | DB23',

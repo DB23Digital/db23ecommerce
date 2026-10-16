@@ -150,8 +150,9 @@ const showcaseItems = [
         category: 'Healthcare & Wellness',
         summary:
             'A clean, trust-building website for a Stellenbosch chiropractic practice, presenting treatments, practitioner credibility, and easy appointment booking.',
-        url: 'https://db23.co.za/stellenboschchiro/',
-        image: '/assets/showcase/stellenboschchiro.jpg',
+        url: 'https://stellenboschchiro.co.za/',
+        external: true,
+        image: '/assets/showcase/stellenboschchiro.webp',
         alt: 'Stellenbosch Chiro chiropractic practice website',
     },
     {
@@ -159,8 +160,9 @@ const showcaseItems = [
         category: 'Healthcare & Medical Devices',
         summary:
             'A clinical, patient-focused website for a scoliosis bracing provider, explaining treatment approach, bracing technology, and patient care pathways clearly.',
-        url: 'https://db23.co.za/scoliosisbracing/',
-        image: '/assets/showcase/scoliosisbracing.jpg',
+        url: 'https://scoliosisbracing.co.za/',
+        external: true,
+        image: '/assets/showcase/scoliosisbracing.webp',
         alt: 'Scoliosis Bracing spinal treatment website',
     },
     {
@@ -172,6 +174,25 @@ const showcaseItems = [
         external: true,
         image: '/assets/showcase/apexpetgroup.jpg',
         alt: 'Apex Pet Group corporate pet industry website',
+    },
+    {
+        project: 'Thando Mtunzi',
+        category: 'Personal Brand & AI Storytelling',
+        summary:
+            'An interactive personal-brand portfolio for a Cape Town creative manager. A retro television steps through CRT, plasma, and OLED eras to tell the story of AI arriving in the creative industry, alongside a campaign timeline and client roster.',
+        url: 'https://db23.co.za/thandomtunzi/',
+        image: '/assets/showcase/thandomtunzi.webp',
+        alt: 'Thando Mtunzi interactive creative portfolio website with a retro television hero',
+    },
+    {
+        project: 'WATTSHOT',
+        category: 'Beverage Brand',
+        summary:
+            'A bold brand website for a gin-based cherry shot, with an age gate, flavour and serve storytelling, awards and trade enquiry pages, and a clear route through to the official South African online store.',
+        url: 'https://wattshot.africa',
+        external: true,
+        image: '/assets/showcase/wattshot.webp',
+        alt: 'WATTSHOT gin-based cherry shot brand website',
     },
 ];
 

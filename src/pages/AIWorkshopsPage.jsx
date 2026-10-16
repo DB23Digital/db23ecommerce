@@ -78,12 +78,12 @@ export function AIWorkshopsPage() {
     return (
         <PageLayout>
             <SEOHead
-                title="AI Workshops for SME Owners | From R4,500 | Cape Town & Online"
-                description="Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon."
+                title="AI Workshops South Africa | Fixed Price from R4,500 | DB23"
+                description="One-off AI workshops for SA teams: 90-minute intro from R4,500, half-day team session from R12,500. Online or in Cape Town, built around your own tasks."
                 canonical="https://db23.co.za/ai-workshops/"
                 keywords="AI workshops South Africa, business AI workshop, AI training South Africa, corporate AI training South Africa, AI upskilling South Africa"
-                ogTitle="AI Workshops for SME Owners | From R4,500 | Cape Town & Online"
-                ogDescription="Hands-on AI training for South African business owners and their teams. Half-day workshop from R4,500. Real tools, your own use cases, no jargon."
+                ogTitle="AI Workshops South Africa | Fixed Price from R4,500 | DB23"
+                ogDescription="One-off AI workshops for SA teams: 90-minute intro from R4,500, half-day team session from R12,500. Online or in Cape Town, built around your own tasks."
                 schema={[
                     {
                         "@context": "https://schema.org",

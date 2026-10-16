@@ -164,6 +164,26 @@ const posts = [
         readTime: '6 min read',
         category: 'AI Training',
         tags: ['ChatGPT', 'Workshop', 'South Africa']
+    },
+    {
+        slug: 'ai-receptionist-medical-practice-south-africa',
+        title: 'AI Receptionist for Medical and Dental Practices in South Africa',
+        excerpt: 'How SA medical and dental practices use an AI receptionist for bookings and after-hours calls, what it must never do, and the POPIA rules for patient data.',
+        image: '/assets/blog/ai_receptionist_medical_practice_sa.webp',
+        date: 'October 2, 2026',
+        readTime: '7 min read',
+        category: 'Voice AI',
+        tags: ['AI Receptionist', 'Medical Practices', 'POPIA']
+    },
+    {
+        slug: 'outsourced-marketing-vs-in-house-south-africa',
+        title: 'Outsourced Marketing vs Hiring In-House in South Africa: The Real Cost',
+        excerpt: 'An SA marketing manager costs ~R30,000–R38,000/month before tools and leave. When an outsourced marketing team makes more sense, when a hire does, what to ask.',
+        image: '/assets/blog/outsourced_marketing_vs_in_house_sa.webp',
+        date: 'October 2, 2026',
+        readTime: '7 min read',
+        category: 'Digital Marketing',
+        tags: ['Outsourced Marketing', 'Marketing Team', 'South Africa']
     }
 ];
 

@@ -30,18 +30,18 @@ export function HomePage() {
     return (
         <div className="min-h-screen bg-background text-text-main font-sans selection:bg-accent/30 selection:text-white overflow-x-hidden">
             <SEOHead
-                title="AI Workshops & Digital Marketing South Africa | DB23"
-                description="DB23 helps South African businesses implement AI, automate marketing, and grow online. AI workshops, Voice AI, SEO and website design."
+                title="DB23 | AI Implementation & Digital Marketing, Cape Town"
+                description="Cape Town AI implementation partner for South African businesses: AI workshops, Voice AI receptionists, automation, SEO and websites that bring in enquiries."
                 canonical="https://db23.co.za/"
                 keywords="AI workshops South Africa, AI training South Africa, Voice AI South Africa, digital marketing South Africa, SEO services South Africa"
-                ogTitle="AI Workshops & Digital Marketing South Africa | DB23"
-                ogDescription="DB23 helps South African businesses implement AI, automate marketing, and grow online. AI workshops, Voice AI, SEO and website design."
+                ogTitle="DB23 | AI Implementation & Digital Marketing, Cape Town"
+                ogDescription="Cape Town AI implementation partner for South African businesses: AI workshops, Voice AI receptionists, automation, SEO and websites that bring in enquiries."
             />
 
             <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/5 py-4">
                 <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
                     <a href="/" className="flex items-center">
-                        <img src="/DB23%20logo.png" alt="DB23 eCommerce" className="h-10 w-auto" width="120" height="40" />
+                        <img src="/DB23-logo.webp" alt="DB23 eCommerce" className="h-10 w-auto" width="120" height="40" />
                     </a>
                     <nav aria-label="Main navigation" className="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
                         {navLinks.map(link => (

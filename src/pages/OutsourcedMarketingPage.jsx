@@ -39,12 +39,12 @@ export function OutsourcedMarketingPage() {
     return (
         <PageLayout>
             <SEOHead
-                title="Outsourced Marketing Team, South Africa | DB23"
-                description="A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included."
+                title="Outsourced Marketing Team South Africa | Fixed Retainer | DB23"
+                description="Your marketing department on a fixed monthly retainer: strategy, SEO, content and paid, run by a Cape Town team. No lock-in. See what each month includes."
                 canonical="https://db23.co.za/outsourced-marketing/"
                 keywords="outsourced marketing South Africa, fractional marketing team SA, marketing as a service South Africa, outsourced digital team South Africa"
-                ogTitle="Outsourced Marketing Team, South Africa | DB23"
-                ogDescription="A full marketing team for less than one in-house hire. Strategy, content, SEO and paid, run for growing SA businesses. See what is included."
+                ogTitle="Outsourced Marketing Team South Africa | Fixed Retainer | DB23"
+                ogDescription="Your marketing department on a fixed monthly retainer: strategy, SEO, content and paid, run by a Cape Town team. No lock-in. See what each month includes."
                 schema={[
                     {
                         "@context": "https://schema.org",
@@ -118,7 +118,7 @@ export function OutsourcedMarketingPage() {
                     <div className="mx-auto mb-14 max-w-3xl text-center">
                         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-emerald-400">Why Outsource?</p>
                         <h2 id="benefits-heading" className="mb-5 text-3xl font-black leading-tight text-white md:text-5xl">The Smart Way for SMEs to Scale</h2>
-                        <p className="text-lg leading-relaxed text-text-muted">Building an in-house marketing team is expensive, slow, and hard to manage. Outsourcing gives you immediate access to experts.</p>
+                        <p className="text-lg leading-relaxed text-text-muted">Building an in-house marketing team is expensive, slow, and hard to manage. Outsourcing gives you immediate access to experts. <a href="/blog/outsourced-marketing-vs-in-house-south-africa/" className="text-emerald-400 underline decoration-emerald-400/40 hover:decoration-emerald-400">See the cost comparison</a>.</p>
                     </div>
                     <Motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } }} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                         {benefits.map(b => (
