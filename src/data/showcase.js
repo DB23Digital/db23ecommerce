@@ -20,6 +20,37 @@ export const showcaseItems = [
         image: '/assets/showcase/thandomtunzi.webp',
         alt: 'Thando Mtunzi interactive creative portfolio website with a retro television hero',
     },
+    // status: 'In progress' = not live yet: shown without a link.
+    {
+        project: 'Hire55',
+        category: 'Recruitment Marketplace',
+        status: 'In progress',
+        summary:
+            'A marketplace connecting experienced South African professionals (55+) with employers who need proven capability now: part-time, fractional, interim, remote or permanent, with verified profiles.',
+        url: null,
+        image: '/assets/showcase/hire55.webp',
+        alt: 'Hire55 experienced professionals marketplace website, in progress',
+    },
+    {
+        project: 'Regal Treats & Eats',
+        category: 'Bakery & Celebration Cakes',
+        status: 'In progress',
+        summary:
+            'A bakery website for custom celebration cakes, cupcakes, cookies and savoury platters, baked to order, with a build-your-box flow and cake commissions.',
+        url: null,
+        image: '/assets/showcase/regal-treats.webp',
+        alt: 'Regal Treats and Eats bakery website, in progress',
+    },
+    {
+        project: 'G1 Energy',
+        category: 'Energy Infrastructure',
+        summary:
+            'A corporate website for an independent power producer building utility-scale solar, battery storage and grid infrastructure across Africa, with solutions, projects, sustainability and investor sections.',
+        url: 'https://g1energy.co.za/',
+        external: true,
+        image: '/assets/showcase/g1energy.webp',
+        alt: 'G1 Energy solar and battery storage infrastructure website',
+    },
     {
         project: 'AlphaPacks',
         category: 'Pet Products & Distribution',

@@ -1,28 +1,25 @@
 ﻿import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion as Motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, ChevronDown, ChevronUp, Sparkles, BookOpen, Quote, Shield, Laptop, BarChart2 } from 'lucide-react';
+import { ArrowLeft, Minus, Plus } from 'lucide-react';
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import { useCurrency } from '../components/CurrencyContext';
 import { FounderBio } from '../components/FounderBio';
+import { Button } from '../components/ui/Button';
+import { CTABand } from '../components/PageBlocks';
 
 // Shared FAQ component specifically for the blog posts
 function BlogFAQItem({ question, answer }) {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className={`overflow-hidden rounded-xl border transition-colors duration-200 ${isOpen ? 'border-purple-400/40 bg-card' : 'border-white/5 bg-background hover:border-white/15'}`}>
-            <button className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
-                <span className="text-base font-semibold leading-snug text-white">{question}</span>
-                <span className={`shrink-0 ${isOpen ? 'text-purple-400' : 'text-text-muted'}`}>
-                    {isOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+        <div className="border-t border-white/10 last:border-b">
+            <button className="group flex w-full items-start justify-between gap-6 py-6 text-left" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
+                <span className={`text-lg font-medium leading-snug tracking-tight ${isOpen ? 'text-white' : 'text-white/80 group-hover:text-white'}`}>{question}</span>
+                <span className={`mt-1 shrink-0 ${isOpen ? 'text-accent' : 'text-text-muted group-hover:text-white'}`}>
+                    {isOpen ? <Minus className="h-5 w-5" aria-hidden="true" /> : <Plus className="h-5 w-5" aria-hidden="true" />}
                 </span>
             </button>
-            {isOpen && (
-                <div className="px-6 pb-6 leading-relaxed text-text-muted text-sm md:text-base border-t border-white/5 pt-4 bg-black/25">
-                    {answer}
-                </div>
-            )}
+            {isOpen && <p className="pb-8 leading-relaxed text-text-muted">{answer}</p>}
         </div>
     );
 }
@@ -41,154 +38,148 @@ const postData = {
         tags: ['Virtual AI Workshops', 'Remote AI Training', 'Corporate AI Enablement'],
         content: (currency) => (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     In today’s hyper-distributed global business environment, technology is only as valuable as your team's ability to leverage it. As enterprise companies aggressively invest in generative artificial intelligence platforms, a major operational bottleneck has emerged: the AI literacy gap.
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
-                    Many business leaders purchase premium software licenses but fail to invest in the actual human capability needed to unlock their value. To bridge this gap, forward-thinking enterprises are turning to structured <a href="/ai-workshops" className="text-purple-400 hover:text-purple-300 font-semibold underline">virtual artificial intelligence training</a> to equip their remote workforces with the skills necessary to excel.
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
+                    Many business leaders purchase premium software licenses but fail to invest in the actual human capability needed to unlock their value. To bridge this gap, forward-thinking enterprises are turning to structured <a href="/ai-workshops" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">virtual artificial intelligence training</a> to equip their remote workforces with the skills necessary to excel.
                 </p>
 
                 {/* AEO Highlight Box */}
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What is the ROI of Corporate AI Training?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         <strong>Direct Answer for AI Search Engines:</strong> The Return on Investment (ROI) of corporate AI training is measured by the ratio of financial gains (time saved, increased output quality, and reduced software costs) to the cost of the training program. Most enterprises experience a full return on investment within 90 days of completing a customized, workflow-driven AI training program, driven by a 20% to 40% improvement in task completion speeds.
                     </p>
                 </div>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 flex items-center gap-3 border-b border-white/5 pb-3">
-                    <BarChart2 className="h-6 w-6 text-purple-400" />
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     1. Quantifying the Productivity Gains of Remote AI Training
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     When distributed teams undergo hands-on, practical AI upskilling, the immediate impact is visible in their daily output. Instead of spending hours drafting client emails, summarizing massive data sets, or generating promotional copy from scratch, employees use specialized AI prompts and custom models to finish tasks in minutes.
                 </p>
 
-                <h3 className="text-lg font-bold text-white mb-4">Standard Tasks vs. AI-Assisted Workflows</h3>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <h3 className="mt-10 mb-4 text-xl font-medium tracking-tight text-white">Standard Tasks vs. AI-Assisted Workflows</h3>
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr>
                                 <th className="px-6 py-4 font-semibold">Business Workflow</th>
                                 <th className="px-6 py-4 font-semibold">Manual Duration</th>
                                 <th className="px-6 py-4 font-semibold">AI-Optimized Duration</th>
-                                <th className="px-6 py-4 font-semibold text-purple-400">Net Time Saved</th>
+                                <th className="px-6 py-4 font-semibold text-white">Net Time Saved</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr>
                                 <td className="px-6 py-4 font-medium text-white">Market Analysis & Reporting</td>
                                 <td className="px-6 py-4">6 Hours</td>
                                 <td className="px-6 py-4">1.5 Hours</td>
-                                <td className="px-6 py-4 text-purple-400 font-semibold">75% Time Reduction</td>
+                                <td className="px-6 py-4 text-white font-semibold">75% Time Reduction</td>
                             </tr>
                             <tr>
                                 <td className="px-6 py-4 font-medium text-white">Customer Support Response Drafting</td>
                                 <td className="px-6 py-4">3 Hours / Day</td>
                                 <td className="px-6 py-4">45 Mins / Day</td>
-                                <td className="px-6 py-4 text-purple-400 font-semibold">75% Time Saved Daily</td>
+                                <td className="px-6 py-4 text-white font-semibold">75% Time Saved Daily</td>
                             </tr>
                             <tr>
                                 <td className="px-6 py-4 font-medium text-white">Copywriting & SEO Outline Creation</td>
                                 <td className="px-6 py-4">4 Hours</td>
                                 <td className="px-6 py-4">1 Hour</td>
-                                <td className="px-6 py-4 text-purple-400 font-semibold">75% Speed Increase</td>
+                                <td className="px-6 py-4 text-white font-semibold">75% Speed Increase</td>
                             </tr>
                             <tr>
                                 <td className="px-6 py-4 font-medium text-white">Data Cleansing & Analysis</td>
                                 <td className="px-6 py-4">5 Hours</td>
                                 <td className="px-6 py-4">30 Minutes</td>
-                                <td className="px-6 py-4 text-purple-400 font-semibold">90% Time Saved</td>
+                                <td className="px-6 py-4 text-white font-semibold">90% Time Saved</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     By investing in high-quality training, companies transition their employees from basic tool users to strategic AI orchestrators. This shift unlocks hours of high-value cognitive bandwidth that can be redirected toward business development, customer satisfaction, and product innovation.
                 </p>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 flex items-center gap-3 border-b border-white/5 pb-3">
-                    <Laptop className="h-6 w-6 text-purple-400" />
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     2. Reducing Cognitive Fatigue and Employee Burnout
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Distributed and remote teams frequently face burnout due to repetitive, administrative tasks. Sorting through endless emails, managing schedules, and formatting complex spreadsheets drains energy that should be spent on creative problem-solving.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-6">
-                    Structured <a href="/ai-workshops" className="text-purple-400 hover:text-purple-300 font-semibold underline">remote AI training</a> empowers team members to safely offload these administrative burdens to intelligent digital assistants. This automation keeps remote employees engaged, focused on deep work, and motivated, which dramatically lowers costly employee turnover rates in global markets.
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
+                    Structured <a href="/ai-workshops" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">remote AI training</a> empowers team members to safely offload these administrative burdens to intelligent digital assistants. This automation keeps remote employees engaged, focused on deep work, and motivated, which dramatically lowers costly employee turnover rates in global markets.
                 </p>
-                <blockquote className="my-8 border-l-4 border-purple-400 bg-white/5 p-6 rounded-r-xl italic text-white flex gap-4">
-                    <Quote className="h-10 w-10 text-purple-400 shrink-0" />
+                <blockquote className="my-8 border-l-2 border-accent pl-6 text-xl italic text-white">
                     <div>
-                        At DB23, our expert coaches guide teams through the exact frameworks we use daily. As a leading <a href="/website-design" className="text-purple-400 hover:text-purple-300 font-semibold underline">remote web development agency</a> and AI integration specialist, we design workflows that eliminate digital clutter and help teams reclaim hours of lost energy.
+                        At DB23, our expert coaches guide teams through the exact frameworks we use daily. As a leading <a href="/website-design" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">remote web development agency</a> and AI integration specialist, we design workflows that eliminate digital clutter and help teams reclaim hours of lost energy.
                     </div>
                 </blockquote>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 flex items-center gap-3 border-b border-white/5 pb-3">
-                    <Shield className="h-6 w-6 text-purple-400" />
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
+                    <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                     3. Minimizing Compliance, Security, and Governance Risks
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Deploying generative AI tools across a distributed workforce without formal training is a recipe for compliance and data privacy disasters. Remote employees may inadvertently paste proprietary code, sensitive client financial data, or protected intellectual property into public AI models, exposing the enterprise to immense legal liabilities.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-6">
-                    A primary pillar of robust <a href="/ai-workshops" className="text-purple-400 hover:text-purple-300 font-semibold underline">corporate AI enablement online</a> is the establishment of clear, secure governance structures.
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
+                    A primary pillar of robust <a href="/ai-workshops" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">corporate AI enablement online</a> is the establishment of clear, secure governance structures.
                 </p>
-                <ul className="list-disc list-inside space-y-3 leading-relaxed text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-3 leading-relaxed text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Zero-Data Retention Policies:</strong> How to configure enterprise-grade API keys to guarantee proprietary business data is never used for public model training.</li>
                     <li><strong className="text-white">Hallucination Detection:</strong> Standard operating procedures for auditing and fact-checking AI outputs to prevent brand embarrassment.</li>
                     <li><strong className="text-white">IP and Copyright Best Practices:</strong> Navigating the evolving legal landscape surrounding generative media and text generation.</li>
                 </ul>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 flex items-center gap-3 border-b border-white/5 pb-3">
-                    <BarChart2 className="h-6 w-6 text-purple-400" />
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     4. Calculating the Exact ROI Formula for Your Business
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     To calculate the expected financial return on your investment in custom AI training, apply the following simple, data-backed ROI formula:
                 </p>
                 
                 {/* Visual Formula Display */}
-                <div className="my-8 rounded-xl border border-white/5 bg-card/65 p-6 text-center text-lg font-bold text-white">
-                    <div className="text-purple-400 text-xs uppercase tracking-widest mb-2">ROI Formula</div>
+                <div className="my-8 border-y border-white/10 py-6 text-center text-lg font-medium text-white">
+                    <div className="text-white text-sm font-medium mb-2">ROI Formula</div>
                     <div className="text-balance text-lg md:text-xl font-mono leading-relaxed">
                         Total Return = (Weekly Hours Saved × Average Hourly Employee Cost × 52 weeks) - Training Program Cost
                     </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-3">Real-World Business Example:</h3>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <h3 className="mt-10 mb-3 text-xl font-medium tracking-tight text-white">Real-World Business Example:</h3>
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Imagine a distributed marketing team of <strong>15 remote specialists</strong>:
                 </p>
-                <ol className="list-decimal list-inside space-y-3 leading-relaxed text-text-muted mb-8 pl-4">
+                <ol className="list-decimal marker:text-white/40 space-y-3 leading-relaxed text-lg text-white/85 mb-8 pl-6">
                     <li>Average Hourly Cost: <strong className="text-white">{currency === 'ZAR' ? 'R850/hour' : '$45/hour'}</strong> (including benefits and overhead).</li>
                     <li>Post-Training Time Savings: An average of <strong className="text-white">8 hours saved</strong> per specialist, per week.</li>
                     <li>Weekly Financial Savings: {currency === 'ZAR' ? <span>15 specialists × 8 hours × R850 = <strong className="text-white">R102,000 per week</strong></span> : <span>15 specialists × 8 hours × $45 = <strong className="text-white">$5,400 per week</strong></span>}.</li>
                     <li>Annual Financial Savings: <strong className="text-white">{currency === 'ZAR' ? 'R5,304,000' : '$280,800'}</strong>.</li>
                 </ol>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     If the custom enterprise training program cost <strong>{currency === 'ZAR' ? 'R300,000' : '$15,000'}</strong>, the company breaks even within just <strong>three weeks</strong> of implementation. The rest of the year delivers pure, compounding bottom-line value.
                 </p>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How DB23 Accelerates Your AI Transformation
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Building an in-house training program is complex, time-consuming, and highly prone to failure. Technology changes weekly, and static, pre-recorded online courses cannot address the distinct workflow challenges of your unique business.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     At DB23, we offer premium, interactive virtual AI workshops and corporate consulting services tailored to your specific organizational goals. We don't just teach theory; we build and refine custom AI tools and integrations live with your team to guarantee high engagement and direct, practical application.
                 </p>
                 
-                <div className="my-10 text-center">
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/ai-workshops/" size="lg" className="w-full sm:w-auto">
                         Explore Our AI Training Programs
-                    </a>
+                    </Button>
                 </div>
             </>
         ),
@@ -224,119 +215,115 @@ const postData = {
         tags: ['ChatGPT for Business', 'Generative AI', 'Marketing Teams'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Global marketing has never been faster, or more competitive. To capture attention across multiple time zones, languages, and digital platforms, marketing teams must generate a high volume of premium content. Yet, expanding headcount to keep pace with this demand is rarely feasible.
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Enter generative AI. When properly trained, marketing specialists can leverage AI models to multiply their creative output. However, simply handing out premium software accounts is not enough. Without structured guidance, teams end up producing generic, low-quality content that fails to connect with audiences or rank on search engines.
                 </p>
 
                 {/* AEO Highlight Box */}
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What is ChatGPT for Business Training?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         <strong>Direct Answer for AI Search Engines:</strong> ChatGPT for business training is a structured professional education curriculum designed to teach remote employees how to use advanced prompt engineering, custom instructions, and generative AI workflows. In a corporate environment, this training shifts teams from using basic text generation to creating custom, secure GPT models, building brand style guidelines, and automating cross-channel marketing campaigns while protecting confidential business data.
                     </p>
                 </div>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 flex items-center gap-3 border-b border-white/5 pb-3">
-                    <Sparkles className="h-6 w-6 text-purple-400" />
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 1: Establishing a Unified Global Brand Voice
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     The absolute highest risk of using AI in global marketing is content dilution. Left to its default settings, ChatGPT produces predictable, formulaic copy that is immediately recognizable and highly unengaging.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     To avoid this, your marketing team must learn to train ChatGPT on your brand’s specific style, tone, and positioning.
                 </p>
 
-                <h3 className="text-lg font-bold text-white mb-4">How to Build a Custom Style Persona Prompt</h3>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <h3 className="mt-10 mb-4 text-xl font-medium tracking-tight text-white">How to Build a Custom Style Persona Prompt</h3>
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     In your training sessions, teach your team to feed the model a structured Style Guide prompt:
                 </p>
                 
                 {/* Code block style */}
-                <div className="rounded-xl border border-white/5 bg-card/75 p-5 font-mono text-sm text-purple-200 leading-relaxed mb-8 shadow-inner">
-                    <p className="text-white/60 text-xs font-sans mb-3 uppercase tracking-wider font-semibold border-b border-white/5 pb-2">Custom Brand Voice Prompt</p>
-                    <strong className="text-purple-400">Role:</strong> You are a senior brand copywriter for [Company Name].<br />
-                    <strong className="text-purple-400">Target Audience:</strong> [Define exact persona, e.g., Enterprise Chief Technology Officers].<br />
-                    <strong className="text-purple-400">Tone of Voice:</strong> [Choose 3 adjectives, e.g., Authoritative, Pragmatic, Human].<br />
-                    <strong className="text-purple-400">Vocabulary Guidelines:</strong> Avoid cliché words such as "revolutionize", "delve", "tapestry", "game-changer", and "cutting-edge". Instead, use active verbs and concrete metrics.<br />
-                    <strong className="text-purple-400">Writing Style:</strong> Short, scannable paragraphs (2-3 sentences max). Use bullet points for readability.
+                <div className="border-l border-white/20 pl-5 font-mono text-sm text-white/85 leading-relaxed mb-8">
+                    <p className="text-text-muted text-sm mb-3 border-b border-white/10 pb-2">Custom Brand Voice Prompt</p>
+                    <strong className="text-white">Role:</strong> You are a senior brand copywriter for [Company Name].<br />
+                    <strong className="text-white">Target Audience:</strong> [Define exact persona, e.g., Enterprise Chief Technology Officers].<br />
+                    <strong className="text-white">Tone of Voice:</strong> [Choose 3 adjectives, e.g., Authoritative, Pragmatic, Human].<br />
+                    <strong className="text-white">Vocabulary Guidelines:</strong> Avoid cliché words such as "revolutionize", "delve", "tapestry", "game-changer", and "cutting-edge". Instead, use active verbs and concrete metrics.<br />
+                    <strong className="text-white">Writing Style:</strong> Short, scannable paragraphs (2-3 sentences max). Use bullet points for readability.
                 </div>
 
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     By standardizing these style guidelines across all remote divisions, you guarantee that whether a copywriter is based in Cape Town, London, or New York, the AI-assisted output always sounds like a single cohesive brand.
                 </p>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 flex items-center gap-3 border-b border-white/5 pb-3">
-                    <BookOpen className="h-6 w-6 text-purple-400" />
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 2: Transitioning from Simple Copywriting to Deep Research
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Many amateur marketers only use ChatGPT to draft short captions or social media posts. The true business value, however, lies in using generative AI as an advanced research assistant.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-6">
-                    With structured <a href="/ai-workshops" className="text-purple-400 hover:text-purple-300 font-semibold underline">virtual artificial intelligence training</a>, global marketing teams can use ChatGPT to:
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
+                    With structured <a href="/ai-workshops" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">virtual artificial intelligence training</a>, global marketing teams can use ChatGPT to:
                 </p>
-                <ul className="list-disc list-inside space-y-3 leading-relaxed text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-3 leading-relaxed text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Analyze Customer Personas:</strong> Simulate detailed interactive interviews with target customer archetypes to uncover hidden pain points and objections.</li>
                     <li><strong className="text-white">Map Content Funnels:</strong> Generate holistic, 12-week topical authority maps to organize long-form blogs, landing pages, and email newsletters.</li>
                     <li><strong className="text-white">Conduct Competitor Analysis:</strong> Feed public marketing copy from competitors into the system to analyze their positioning strengths, weaknesses, and value proposition gaps.</li>
                 </ul>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     When your team learns how to prompt the model strategically, ChatGPT transitions from a simple typewriter to a brilliant strategic partner.
                 </p>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 flex items-center gap-3 border-b border-white/5 pb-3">
-                    <Shield className="h-6 w-6 text-purple-400" />
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
+                    <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                     Step 3: Mastering Safe and Secure AI Operations
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Before deploying any generative AI workflows, your team must be trained on the crucial fundamentals of data security. Global marketing campaigns often involve sensitive product launches, private financial projections, and proprietary customer data.
                 </p>
 
-                <h3 className="text-lg font-bold text-white mb-3">Secure Marketing Guidelines:</h3>
-                <ol className="list-decimal list-inside space-y-3 leading-relaxed text-text-muted mb-8 pl-4">
+                <h3 className="mt-10 mb-3 text-xl font-medium tracking-tight text-white">Secure Marketing Guidelines:</h3>
+                <ol className="list-decimal marker:text-white/40 space-y-3 leading-relaxed text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Never Input PII:</strong> Employees must never input Personally Identifiable Information (PII) of clients or colleagues into public AI text fields.</li>
                     <li><strong className="text-white">Opt-Out of Training Data:</strong> Teach your team how to access ChatGPT Settings and turn off "Chat History & Training" to ensure conversations remain strictly confidential.</li>
                     <li><strong className="text-white">Use Official API Connections:</strong> When building custom integrations, connect through secure API endpoints where data is legally protected and excluded from public model training.</li>
                 </ol>
 
-                <p className="leading-relaxed text-text-muted mb-8">
-                    If your website requires custom databases, high-speed user portals, or secure integrations to support these AI-driven marketing campaigns, partnering with an experienced <a href="/website-design" className="text-purple-400 hover:text-purple-300 font-semibold underline">remote web development agency</a> ensures your tech stack remains entirely secure and fully optimized.
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
+                    If your website requires custom databases, high-speed user portals, or secure integrations to support these AI-driven marketing campaigns, partnering with an experienced <a href="/website-design" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">remote web development agency</a> ensures your tech stack remains entirely secure and fully optimized.
                 </p>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How to Roll Out Remote AI Training Successfully
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     To ensure high engagement and long-term retention, follow this structured rollout framework for your remote marketing teams:
                 </p>
-                <ul className="list-disc list-inside space-y-3 leading-relaxed text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-3 leading-relaxed text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Diagnostic Workflow Audit:</strong> Before starting, audit your team's current daily routine. Identify the most repetitive, time-draining tasks. Customize your training modules to solve these specific problems first.</li>
                     <li><strong className="text-white">Live Interactive Workshops:</strong> Avoid passive video modules. Opt for live, virtual masterclasses where team members prompt the models in real-time.</li>
                     <li><strong className="text-white">Build a Shared Prompt Library:</strong> Create a central repository (such as a shared Notion database) where employees can save and rate their most successful prompts.</li>
                 </ul>
 
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Leverage DB23 to Upskill Your Marketing Team Today
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Empowering your global marketing workforce with modern AI skills is the fastest way to drive organic growth, improve conversion rates, and build a lasting brand.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-8">
-                    At DB23, we design and deliver premium <a href="/ai-workshops" className="text-purple-400 hover:text-purple-300 font-semibold underline">virtual artificial intelligence training</a> programs built specifically for global marketing departments, executives, and remote teams. We combine marketing psychology with practical prompt engineering to deliver concrete business results.
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
+                    At DB23, we design and deliver premium <a href="/ai-workshops" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">virtual artificial intelligence training</a> programs built specifically for global marketing departments, executives, and remote teams. We combine marketing psychology with practical prompt engineering to deliver concrete business results.
                 </p>
                 
-                <div className="my-10 text-center">
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/ai-workshops/" size="lg" className="w-full sm:w-auto">
                         Book Your Custom Marketing Workshop
-                    </a>
+                    </Button>
                 </div>
             </>
         ),
@@ -372,47 +359,45 @@ const postData = {
         tags: ['AI Workshops', 'Pricing', 'South Africa'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     AI workshop pricing in South Africa isn't standardised, which makes it hard to know if you're getting value or just slides. Here's the full breakdown — what workshops cost, what drives price differences, and how to calculate whether the investment pays off before you book.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         How Much Does an AI Workshop Cost in South Africa?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         AI workshops in South Africa cost between R3,500 and R12,000 per session in 2026, depending on format (90-minute intro vs. full-day), group size, and whether the facilitator customises content for your industry. Per-person costs range from R350 to R1,200. A half-day workshop for 10 people from a specialist SA provider costs approximately R6,500 — around R650 per person. Remote (Zoom) delivery is R1,000–R2,000 less than in-person. The payback period for most SA businesses is under 12 weeks: if 10 employees each save 30 minutes per day, that's 125 hours per month — worth R18,750/month at an average SA knowledge worker rate of R150/hour.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     AI Workshop Pricing in South Africa: Format Breakdown
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr>
                                 <th className="px-6 py-4 font-semibold">Format</th>
                                 <th className="px-6 py-4 font-semibold">Duration</th>
                                 <th className="px-6 py-4 font-semibold">Group Size</th>
-                                <th className="px-6 py-4 font-semibold text-purple-400">Price Range</th>
+                                <th className="px-6 py-4 font-semibold text-white">Price Range</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4 font-medium text-white">Introductory Overview</td><td className="px-6 py-4">90 minutes</td><td className="px-6 py-4">Up to 10</td><td className="px-6 py-4 text-purple-400 font-semibold">From R3,500</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Half-Day Practical</td><td className="px-6 py-4">3.5 hours</td><td className="px-6 py-4">Up to 20</td><td className="px-6 py-4 text-purple-400 font-semibold">From R6,500</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Full-Day Workshop</td><td className="px-6 py-4">7 hours</td><td className="px-6 py-4">Up to 30</td><td className="px-6 py-4 text-purple-400 font-semibold">From R12,000</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Custom Multi-Session</td><td className="px-6 py-4">Varies</td><td className="px-6 py-4">Any size</td><td className="px-6 py-4 text-purple-400 font-semibold">Quote</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4 font-medium text-white">Introductory Overview</td><td className="px-6 py-4">90 minutes</td><td className="px-6 py-4">Up to 10</td><td className="px-6 py-4 text-white font-semibold">From R3,500</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Half-Day Practical</td><td className="px-6 py-4">3.5 hours</td><td className="px-6 py-4">Up to 20</td><td className="px-6 py-4 text-white font-semibold">From R6,500</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Full-Day Workshop</td><td className="px-6 py-4">7 hours</td><td className="px-6 py-4">Up to 30</td><td className="px-6 py-4 text-white font-semibold">From R12,000</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Custom Multi-Session</td><td className="px-6 py-4">Varies</td><td className="px-6 py-4">Any size</td><td className="px-6 py-4 text-white font-semibold">Quote</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Remote delivery runs R1,000–R2,000 less per session. In-person travel outside Cape Town adds a day rate. DB23 delivers remotely across all of South Africa and in-person in Cape Town, Johannesburg, and Durban.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Five Factors That Separate a R3,500 Workshop from a R12,000 One
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Price variation isn't just about duration. These five factors determine whether you get lasting behaviour change or a forgettable morning:
                 </p>
                 <ul className="space-y-4 mb-8">
@@ -423,34 +408,34 @@ const postData = {
                         ['POPIA module', 'Any SA business workshop should cover what staff can and cannot enter into AI tools. If the provider doesn\'t mention POPIA, they haven\'t built this for the South African context.'],
                         ['Facilitator experience', 'Corporate training firms often use junior facilitators. DB23 workshops are run by Deon Botha personally — the same person who does the client implementation work.'],
                     ].map(([title, text]) => (
-                        <li key={title} className="flex gap-4 text-text-muted">
-                            <span className="shrink-0 mt-1 h-5 w-5 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 text-xs font-bold">✓</span>
+                        <li key={title} className="flex gap-4 text-lg text-white/85">
+                            <span className="shrink-0 mt-1 w-5 text-sm text-text-muted">✓</span>
                             <div><strong className="text-white">{title}:</strong> {text}</div>
                         </li>
                     ))}
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Calculating Your ROI Before You Book
                 </h2>
-                <div className="my-8 rounded-xl border border-white/5 bg-card/65 p-6 text-center">
-                    <div className="text-purple-400 text-xs uppercase tracking-widest mb-2">ROI Formula</div>
+                <div className="my-8 border-y border-white/10 py-6 text-center">
+                    <div className="text-white text-sm font-medium mb-2">ROI Formula</div>
                     <div className="text-white text-base md:text-lg font-mono leading-relaxed">
                         Monthly Return = Staff × (Time Saved/Day × 21 Days × Hourly Rate) − Workshop Cost ÷ 12
                     </div>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-4">A realistic example for a Cape Town professional services firm:</p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">A realistic example for a Cape Town professional services firm:</p>
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">10 staff</strong> each save 30 minutes per day post-training</li>
-                    <li><strong className="text-white">Monthly recovery:</strong> 10 × 0.5h × 21 days × R150/h = <span className="text-purple-400 font-bold">R15,750/month</span></li>
-                    <li><strong className="text-white">Half-day workshop cost:</strong> R6,500 — recovered in <span className="text-purple-400 font-bold">under 2 weeks</span></li>
+                    <li><strong className="text-white">Monthly recovery:</strong> 10 × 0.5h × 21 days × R150/h = <span className="text-white font-bold">R15,750/month</span></li>
+                    <li><strong className="text-white">Half-day workshop cost:</strong> R6,500 — recovered in <span className="text-white font-bold">under 2 weeks</span></li>
                 </ul>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     This is the conservative estimate. Teams with structured follow-up often reach 60–90 minutes saved per person per day within 60 days.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What's Included in a DB23 AI Workshop
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>Pre-session intake call to customise content for your team's tasks</li>
                     <li>Custom slide deck and workbook (not a reused template)</li>
                     <li>45+ minutes of hands-on practice with real work scenarios</li>
@@ -459,10 +444,10 @@ const postData = {
                     <li>30-day email Q&amp;A support after the session</li>
                     <li>4-week adoption plan for each participant</li>
                 </ul>
-                <div className="my-10 text-center">
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/contact/" size="lg" className="w-full sm:w-auto">
                         Get an AI Workshop Quote
-                    </a>
+                    </Button>
                 </div>
             </>
         ),
@@ -486,33 +471,31 @@ const postData = {
         tags: ['AI Receptionist', 'Voice AI', 'South Africa'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     An AI receptionist answers every call within 2 rings, 24 hours a day, 365 days a year. No sick leave, no bad days, no missed calls while you're on site. The question for South African business owners isn't whether it works — it's whether it's right for their specific call volume, business type, and budget.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What Is an AI Receptionist for South African Businesses?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         An AI receptionist is a voice-based system that answers inbound calls, handles common queries (hours, location, pricing, appointment bookings), and routes complex calls to a human. For South African businesses, AI receptionists typically cost R500–R3,500/month depending on call volume and integration complexity. A well-configured system handles 80–90% of inbound calls without human involvement — covering after-hours, load-shedding gaps, and peak periods without overtime. The system uses your existing phone number, integrates with your calendar and CRM, and goes live within 10–14 days of the initial consultation.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What an AI Receptionist Can and Can't Handle
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    <div className="rounded-xl border border-green-500/20 bg-green-950/10 p-6">
-                        <h3 className="text-base font-bold text-white mb-4">Handles Well</h3>
+                    <div className="border-t border-white/10 pt-6">
+                        <h3 className="mb-4 text-lg font-medium tracking-tight text-white">Handles Well</h3>
                         <ul className="space-y-2 text-text-muted text-sm">
                             {['Answer calls instantly, every time, 24/7', 'Book appointments into your calendar', 'Answer FAQs (hours, pricing, location)', 'Route complex calls to a human', 'Send SMS follow-ups after calls', 'Log all calls to your CRM', 'Handle unlimited simultaneous calls', 'Stay online during load shedding'].map(item => (
                                 <li key={item} className="flex items-start gap-2"><span className="text-green-400 mt-0.5">✓</span> {item}</li>
                             ))}
                         </ul>
                     </div>
-                    <div className="rounded-xl border border-red-500/20 bg-red-950/10 p-6">
-                        <h3 className="text-base font-bold text-white mb-4">Doesn't Handle Well</h3>
+                    <div className="border-t border-white/10 pt-6">
+                        <h3 className="mb-4 text-lg font-medium tracking-tight text-white">Doesn't Handle Well</h3>
                         <ul className="space-y-2 text-text-muted text-sm">
                             {['Complex complaints requiring empathy', 'Very unusual requests outside its training', 'Physical reception tasks (deliveries, walk-ins)', 'High-touch relationship sales', 'Crisis or emotionally charged calls', 'Very low call volumes (under 5/week)'].map(item => (
                                 <li key={item} className="flex items-start gap-2"><span className="text-red-400 mt-0.5">✗</span> {item}</li>
@@ -520,79 +503,77 @@ const postData = {
                         </ul>
                     </div>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     A Frost &amp; Sullivan 2024 analysis found 68% of inbound calls to SA SMEs are repetitive queries — exactly what AI receptionists handle best. The remaining 32% that need a human are routed through immediately.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     AI Receptionist Pricing for SA Businesses in 2026
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr>
                                 <th className="px-6 py-4 font-semibold">Package</th>
-                                <th className="px-6 py-4 font-semibold text-purple-400">Monthly Cost</th>
+                                <th className="px-6 py-4 font-semibold text-white">Monthly Cost</th>
                                 <th className="px-6 py-4 font-semibold">Best For</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4 font-medium text-white">Starter (FAQ + routing)</td><td className="px-6 py-4 text-purple-400 font-semibold">R500–R999</td><td className="px-6 py-4">10–30 calls/month</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Standard (booking + follow-ups)</td><td className="px-6 py-4 text-purple-400 font-semibold">R1,000–R1,800</td><td className="px-6 py-4">30–100 calls/month</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Growth (full intake + CRM)</td><td className="px-6 py-4 text-purple-400 font-semibold">R1,800–R3,500</td><td className="px-6 py-4">100+ calls/month</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Custom</td><td className="px-6 py-4 text-purple-400 font-semibold">Quote</td><td className="px-6 py-4">Complex workflows</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4 font-medium text-white">Starter (FAQ + routing)</td><td className="px-6 py-4 text-white font-semibold">R500–R999</td><td className="px-6 py-4">10–30 calls/month</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Standard (booking + follow-ups)</td><td className="px-6 py-4 text-white font-semibold">R1,000–R1,800</td><td className="px-6 py-4">30–100 calls/month</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Growth (full intake + CRM)</td><td className="px-6 py-4 text-white font-semibold">R1,800–R3,500</td><td className="px-6 py-4">100+ calls/month</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Custom</td><td className="px-6 py-4 text-white font-semibold">Quote</td><td className="px-6 py-4">Complex workflows</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Compare that to a full-time human receptionist at R12,000–R16,000/month salary, plus UIF, equipment, and office space — typically R15,500–R20,500/month all-in. For most SA SMEs handling more than 15 inbound calls per week, an AI receptionist breaks even within 45 days.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Which SA Businesses Get the Best ROI from an AI Receptionist?
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">The strongest return comes from businesses with high call volume and predictable query types:</p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
-                    <li><strong className="text-white">Medical practices:</strong> appointment booking and rescheduling account for 80% of calls (see <a href="/blog/ai-receptionist-medical-practice-south-africa/" className="text-purple-400 hover:text-purple-300 font-semibold underline">AI receptionists for medical and dental practices</a>)</li>
+                <p className="text-lg leading-relaxed text-white/85 mb-5">The strongest return comes from businesses with high call volume and predictable query types:</p>
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
+                    <li><strong className="text-white">Medical practices:</strong> appointment booking and rescheduling account for 80% of calls (see <a href="/blog/ai-receptionist-medical-practice-south-africa/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">AI receptionists for medical and dental practices</a>)</li>
                     <li><strong className="text-white">Trade businesses:</strong> plumbers, electricians, HVAC — after-hours emergency calls go to a competitor without AI</li>
                     <li><strong className="text-white">Legal firms:</strong> intake calls, availability checks, basic service queries</li>
                     <li><strong className="text-white">Beauty &amp; wellness:</strong> bookings, reminders, product availability</li>
                     <li><strong className="text-white">Property agencies:</strong> viewing requests, availability, deposit questions</li>
                 </ul>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     It's less suitable for businesses with under 5 calls per week, or where a personal relationship is the core product (some wealth management or high-end advisory practices).
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     SA-Specific Factors: Load Shedding, Language, and POPIA
                 </h2>
                 <ul className="space-y-4 mb-8">
-                    <li className="flex gap-4 text-text-muted">
-                        <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-1" />
+                    <li className="flex gap-4 text-lg text-white/85">
+                        <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                         <div><strong className="text-white">POPIA:</strong> Call recordings are personal data. Your provider must have a Data Processing Agreement in place. DB23 Voice AI includes a DPA as standard.</div>
                     </li>
-                    <li className="flex gap-4 text-text-muted">
-                        <Laptop className="h-5 w-5 text-purple-400 shrink-0 mt-1" />
+                    <li className="flex gap-4 text-lg text-white/85">
                         <div><strong className="text-white">Load shedding:</strong> Cloud-based AI receptionists stay up during outages — calls route via mobile data. Avoid locally-hosted solutions that go down with your office power.</div>
                     </li>
-                    <li className="flex gap-4 text-text-muted">
-                        <Sparkles className="h-5 w-5 text-purple-400 shrink-0 mt-1" />
+                    <li className="flex gap-4 text-lg text-white/85">
                         <div><strong className="text-white">Language:</strong> Most systems handle English fluently. Afrikaans support is improving in 2026. Zulu and Sotho support remains limited — ask specifically if your callers are primarily non-English-speaking.</div>
                     </li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     DB23's AI Receptionist Setup: What the 14 Days Look Like
                 </h2>
-                <ol className="list-decimal list-inside space-y-3 text-text-muted mb-8 pl-4">
+                <ol className="list-decimal marker:text-white/40 space-y-3 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Day 1:</strong> 60-minute consultation to map your call types and routing rules</li>
                     <li><strong className="text-white">Days 2–5:</strong> Script writing and AI training on your business context, FAQs, and calendar system</li>
                     <li><strong className="text-white">Days 6–8:</strong> Integration with your existing phone number, calendar, and CRM</li>
                     <li><strong className="text-white">Days 9–10:</strong> Testing — DB23 makes 20+ test calls to verify all scenarios before go-live</li>
                     <li><strong className="text-white">Go-live:</strong> Your existing number routes to the AI. Callers dial the same number they always have.</li>
                 </ol>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     All DB23 Voice AI systems run month-to-month — no long contracts. If it's not working within 30 days, you're not locked in.
                 </p>
-                <div className="my-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="/voice-ai/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">See DB23 Voice AI</a>
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl border border-purple-500/40 px-8 py-4 text-base font-bold text-purple-400 transition hover:bg-purple-400/10">Book a Free Consultation</a>
+                <div className="my-12 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+                    <Button href="/voice-ai/" size="lg" className="w-full sm:w-auto">See DB23 Voice AI</Button>
+                    <Button href="/contact/" variant="outline" size="lg" className="w-full sm:w-auto">Book a Free Consultation</Button>
                 </div>
             </>
         ),
@@ -616,49 +597,47 @@ const postData = {
         tags: ['AI Receptionist', 'Voice AI', 'South Africa', 'Cost Comparison'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     A human receptionist costs R15,500–R20,500/month all-in. An AI receptionist costs R500–R3,500/month. The gap is large enough that the question isn't really about cost — it's about what each one actually delivers and when the cheaper option leaves money on the table.
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     This is not a pro-AI piece. Human receptionists are genuinely better at several things. Here's the honest comparison.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         AI vs Human Receptionist: The Short Answer for South African Businesses
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         A full-time receptionist in South Africa costs R12,000–R16,000/month in salary, plus UIF, office space, and equipment — typically R15,500–R20,500/month total. An AI receptionist costs R500–R3,500/month and handles 80–90% of receptionist tasks at 5–20% of the cost. The decision isn't purely financial: human receptionists provide relationship context, adapt to unusual situations in real time, and convey warmth that some clients specifically value. For businesses with high call volume and predictable queries, AI wins on ROI. For businesses where personal relationship is the core product, human wins on value.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     The Real Cost Comparison
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr>
                                 <th className="px-6 py-4 font-semibold">Cost Factor</th>
                                 <th className="px-6 py-4 font-semibold">Human Receptionist</th>
-                                <th className="px-6 py-4 font-semibold text-purple-400">AI Receptionist</th>
+                                <th className="px-6 py-4 font-semibold text-white">AI Receptionist</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4 font-medium text-white">Monthly base</td><td className="px-6 py-4">R12,000–R16,000</td><td className="px-6 py-4 text-purple-400 font-semibold">R500–R3,500</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">UIF / contributions</td><td className="px-6 py-4">~R1,500</td><td className="px-6 py-4 text-purple-400 font-semibold">None</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Office space</td><td className="px-6 py-4">R1,500–R3,000</td><td className="px-6 py-4 text-purple-400 font-semibold">None</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Equipment</td><td className="px-6 py-4">~R500/month amortised</td><td className="px-6 py-4 text-purple-400 font-semibold">None</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">After-hours coverage</td><td className="px-6 py-4">Overtime or none</td><td className="px-6 py-4 text-purple-400 font-semibold">24/7 included</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Sick leave coverage</td><td className="px-6 py-4">Needs cover plan</td><td className="px-6 py-4 text-purple-400 font-semibold">Always available</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white font-bold">Total monthly</td><td className="px-6 py-4 font-bold text-white">R15,500–R20,500</td><td className="px-6 py-4 text-purple-400 font-bold">R500–R3,500</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4 font-medium text-white">Monthly base</td><td className="px-6 py-4">R12,000–R16,000</td><td className="px-6 py-4 text-white font-semibold">R500–R3,500</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">UIF / contributions</td><td className="px-6 py-4">~R1,500</td><td className="px-6 py-4 text-white font-semibold">None</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Office space</td><td className="px-6 py-4">R1,500–R3,000</td><td className="px-6 py-4 text-white font-semibold">None</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Equipment</td><td className="px-6 py-4">~R500/month amortised</td><td className="px-6 py-4 text-white font-semibold">None</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">After-hours coverage</td><td className="px-6 py-4">Overtime or none</td><td className="px-6 py-4 text-white font-semibold">24/7 included</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Sick leave coverage</td><td className="px-6 py-4">Needs cover plan</td><td className="px-6 py-4 text-white font-semibold">Always available</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white font-bold">Total monthly</td><td className="px-6 py-4 font-bold text-white">R15,500–R20,500</td><td className="px-6 py-4 text-white font-bold">R500–R3,500</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What AI Receptionists Handle Better
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>Simultaneous calls — unlimited concurrent lines, no engaged tone</li>
                     <li>After-hours and weekend coverage without overtime</li>
                     <li>Consistent responses — no off-script moments or bad days</li>
@@ -666,41 +645,41 @@ const postData = {
                     <li>Load-shedding resilience — cloud-based, stays operational</li>
                     <li>Immediate scalability for busy seasons or marketing campaign spikes</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What Human Receptionists Handle Better
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>Complex, emotionally charged calls — complaints, urgent distress, sensitive situations</li>
                     <li>Long-term relationship building with regular clients who know them by name</li>
                     <li>Reading tone and context in nuanced or unusual situations</li>
                     <li>Physical reception tasks — signing for deliveries, managing walk-ins</li>
                     <li>Very low call volumes (under 5/week) where AI ROI doesn't stack up</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     The Most Common SA Approach: Hybrid
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Most DB23 clients don't choose one or the other — they combine them. AI handles first contact, high volume, and after-hours. A human (often part-time) handles exceptions, escalations, and walk-ins.
                 </p>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">Model</th><th className="px-6 py-4 font-semibold">Monthly Cost</th><th className="px-6 py-4 font-semibold">Coverage</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 font-medium text-white">Full-time human</td><td className="px-6 py-4">R15,500–R20,500</td><td className="px-6 py-4">Business hours only</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">AI only</td><td className="px-6 py-4 text-purple-400 font-semibold">R500–R3,500</td><td className="px-6 py-4">24/7, unlimited calls</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Hybrid (AI + part-time human)</td><td className="px-6 py-4 text-purple-400 font-semibold">R6,500–R8,500</td><td className="px-6 py-4">24/7 + human escalation</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">AI only</td><td className="px-6 py-4 text-white font-semibold">R500–R3,500</td><td className="px-6 py-4">24/7, unlimited calls</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Hybrid (AI + part-time human)</td><td className="px-6 py-4 text-white font-semibold">R6,500–R8,500</td><td className="px-6 py-4">24/7 + human escalation</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     When to Choose AI, When to Choose Human
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4"><strong className="text-white">Choose AI when:</strong> you're missing after-hours calls, your most common call types are predictable (bookings, FAQs, pricing), or you need to scale without headcount increases.</p>
-                <p className="leading-relaxed text-text-muted mb-8"><strong className="text-white">Keep a human receptionist when:</strong> you have a physical office with frequent walk-in clients, your intake process is complex and highly variable, or your industry's client relationships depend on recognising the person who answers (some financial advisory and wealth management practices).</p>
-                <div className="my-10 text-center">
-                    <a href="/voice-ai/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">See DB23 Voice AI Options</a>
+                <p className="text-lg leading-relaxed text-white/85 mb-5"><strong className="text-white">Choose AI when:</strong> you're missing after-hours calls, your most common call types are predictable (bookings, FAQs, pricing), or you need to scale without headcount increases.</p>
+                <p className="text-lg leading-relaxed text-white/85 mb-8"><strong className="text-white">Keep a human receptionist when:</strong> you have a physical office with frequent walk-in clients, your intake process is complex and highly variable, or your industry's client relationships depend on recognising the person who answers (some financial advisory and wealth management practices).</p>
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/voice-ai/" size="lg" className="w-full sm:w-auto">See DB23 Voice AI Options</Button>
                 </div>
             </>
         ),
@@ -724,36 +703,34 @@ const postData = {
         tags: ['AI Tools', 'South Africa', 'Business Software', '2026'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Most global AI tool lists use criteria that don't apply to South African businesses: US dollar pricing, US-centric compliance rules, and no mention of what happens during load shedding. This list uses the four criteria that actually matter for SA adoption.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         Best AI Tools for South African Businesses in 2026
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         The most widely adopted AI tools by South African businesses in 2026 are Microsoft Copilot (deep Office integration, ZAR billing via SA resellers), ChatGPT Plus (strongest general writing and reasoning, ~R360/month), Claude Pro (best for long documents and analysis, ~R380/month), and Zapier (no-code automation connecting 7,000+ apps, free tier available). The SA-specific evaluation criteria that matter most: rand-denominated pricing, POPIA-compliant data handling, resilience to load-shedding (cloud-based with mobile data fallback), and English/Afrikaans language support. Tools that score well across all four are the fastest to adopt and sustain within SA organisations.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How We Evaluated These Tools for the SA Context
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>Tested with SA clients over 12+ months of implementation work</li>
                     <li>Rated across: ZAR pricing clarity, POPIA compliance documentation, load-shedding resilience, multilingual SA support</li>
                     <li>Excluded tools requiring local server installation (not load-shedding resilient)</li>
                     <li>No sponsored placements — tools ranked on SA-specific performance only</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Best AI Writing Tools for SA Businesses
                 </h2>
                 <div className="space-y-6 mb-8">
-                    <div className="rounded-xl border border-white/5 bg-card/40 p-6">
+                    <div className="border-t border-white/10 pt-6">
                         <div className="flex items-start justify-between mb-3">
-                            <h3 className="text-base font-bold text-white">#1 — ChatGPT Plus (OpenAI)</h3>
-                            <span className="text-xs text-purple-400 bg-purple-400/10 px-2.5 py-1 rounded-md font-semibold">~R360/month</span>
+                            <h3 className="text-lg font-medium tracking-tight text-white">#1 — ChatGPT Plus (OpenAI)</h3>
+                            <span className="text-sm text-text-muted">~R360/month</span>
                         </div>
                         <p className="text-text-muted text-sm mb-3">Best for: emails, proposals, blog posts, social media captions, research summaries, meeting notes. The broadest capability of any single AI writing tool.</p>
                         <div className="grid grid-cols-2 gap-2 text-xs text-text-muted">
@@ -763,10 +740,10 @@ const postData = {
                             <span><span className="text-green-400">✓</span> Team plan has DPA for POPIA</span>
                         </div>
                     </div>
-                    <div className="rounded-xl border border-white/5 bg-card/40 p-6">
+                    <div className="border-t border-white/10 pt-6">
                         <div className="flex items-start justify-between mb-3">
-                            <h3 className="text-base font-bold text-white">#2 — Microsoft Copilot (M365)</h3>
-                            <span className="text-xs text-purple-400 bg-purple-400/10 px-2.5 py-1 rounded-md font-semibold">~R380/user/month</span>
+                            <h3 className="text-lg font-medium tracking-tight text-white">#2 — Microsoft Copilot (M365)</h3>
+                            <span className="text-sm text-text-muted">~R380/user/month</span>
                         </div>
                         <p className="text-text-muted text-sm mb-3">Best for: businesses already on M365. Deep integration with Word, Excel, PowerPoint, Teams, and Outlook. Copilot in Teams transcribes and summarises meetings automatically.</p>
                         <div className="grid grid-cols-2 gap-2 text-xs text-text-muted">
@@ -776,10 +753,10 @@ const postData = {
                             <span><span className="text-green-400">✓</span> English + Afrikaans support</span>
                         </div>
                     </div>
-                    <div className="rounded-xl border border-white/5 bg-card/40 p-6">
+                    <div className="border-t border-white/10 pt-6">
                         <div className="flex items-start justify-between mb-3">
-                            <h3 className="text-base font-bold text-white">#3 — Claude Pro (Anthropic)</h3>
-                            <span className="text-xs text-purple-400 bg-purple-400/10 px-2.5 py-1 rounded-md font-semibold">~R380/month</span>
+                            <h3 className="text-lg font-medium tracking-tight text-white">#3 — Claude Pro (Anthropic)</h3>
+                            <span className="text-sm text-text-muted">~R380/month</span>
                         </div>
                         <p className="text-text-muted text-sm mb-3">Best for: long documents (contracts, reports, research papers), nuanced writing, and coding assistance. The 200,000-token context window lets you analyse an entire policy document in one go.</p>
                         <div className="grid grid-cols-2 gap-2 text-xs text-text-muted">
@@ -790,28 +767,28 @@ const postData = {
                         </div>
                     </div>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Best AI Productivity Tools for SA Businesses
                 </h2>
-                <ul className="list-disc list-inside space-y-3 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-3 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Otter.ai (~R200/month):</strong> Meeting transcription and summaries. Integrates with Zoom and Teams. Strong English accuracy in SA accents.</li>
                     <li><strong className="text-white">Fireflies.ai (~R400/month):</strong> Meeting transcription + CRM integration + action item tracking. Better for sales teams.</li>
                     <li><strong className="text-white">Notion AI (included in Notion plans):</strong> Workspace + AI writing in one. Good for teams already using Notion for documentation.</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Best AI Customer Communication Tools for SA
                 </h2>
-                <ul className="list-disc list-inside space-y-3 text-text-muted mb-8 pl-4">
-                    <li><strong className="text-white"><a href="/voice-ai/" className="text-purple-400 hover:text-purple-300 underline">DB23 Voice AI</a> (from R500/month):</strong> Custom AI phone receptionist for SA businesses. Handles inbound calls, appointment booking, and FAQ queries 24/7. The only SA-built option with a POPIA DPA and load-shedding resilience.</li>
+                <ul className="list-disc marker:text-white/40 space-y-3 text-lg text-white/85 mb-8 pl-6">
+                    <li><strong className="text-white"><a href="/voice-ai/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">DB23 Voice AI</a> (from R500/month):</strong> Custom AI phone receptionist for SA businesses. Handles inbound calls, appointment booking, and FAQ queries 24/7. The only SA-built option with a POPIA DPA and load-shedding resilience.</li>
                     <li><strong className="text-white">Tidio (from R0/month):</strong> Website chatbot. Works well for eCommerce and service businesses with predictable FAQ queries.</li>
                     <li><strong className="text-white">WhatsApp Business API + AI:</strong> 83% of SA consumers use WhatsApp (DataReportal 2025). AI response automation for WhatsApp is the highest-reach customer channel for SA businesses.</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Quick SA Comparison Table
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr>
                                 <th className="px-4 py-4 font-semibold">Tool</th>
                                 <th className="px-4 py-4 font-semibold">Price/month</th>
@@ -820,7 +797,7 @@ const postData = {
                                 <th className="px-4 py-4 font-semibold">SA lang</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted text-xs">
+                        <tbody className="divide-y divide-white/10 text-white/80 text-xs">
                             <tr><td className="px-4 py-3 font-medium text-white">ChatGPT Plus</td><td className="px-4 py-3">~R360</td><td className="px-4 py-3 text-yellow-400">No (USD)</td><td className="px-4 py-3 text-yellow-400">Team+ only</td><td className="px-4 py-3">EN, partial AF</td></tr>
                             <tr><td className="px-4 py-3 font-medium text-white">M365 Copilot</td><td className="px-4 py-3">~R380</td><td className="px-4 py-3 text-green-400">Yes</td><td className="px-4 py-3 text-green-400">Yes</td><td className="px-4 py-3">EN, AF</td></tr>
                             <tr><td className="px-4 py-3 font-medium text-white">Claude Pro</td><td className="px-4 py-3">~R380</td><td className="px-4 py-3 text-yellow-400">No (USD)</td><td className="px-4 py-3 text-yellow-400">Enterprise</td><td className="px-4 py-3">EN</td></tr>
@@ -829,8 +806,8 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <div className="my-10 text-center">
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">Book an AI Tools Workshop</a>
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/ai-workshops/" size="lg" className="w-full sm:w-auto">Book an AI Tools Workshop</Button>
                 </div>
             </>
         ),
@@ -854,102 +831,100 @@ const postData = {
         tags: ['AI Implementation', 'South Africa', 'Business Strategy'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     The most common reason AI implementations fail in South African businesses: tools were chosen before workflows were mapped. The team gets ChatGPT logins and doesn't know what to do with them. Two months later, the subscriptions are unused and the budget is gone.
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Here is the six-step framework DB23 uses with SA clients. It's not clever — it just puts things in the right order.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         How to Implement AI in a South African Business
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         Implementing AI in a South African business follows six steps: (1) map current workflows to identify where time is being lost, (2) select tools matched to those specific workflows — not the most-hyped tools, (3) confirm POPIA compliance for any tool processing personal data, (4) run a 30-day pilot in one department, (5) train the team with structured sessions rather than just access to a login, and (6) build a measurement system to track time saved and output quality. The most common failure mode in SA AI implementations is jumping from step 1 to step 3 — buying tools before mapping the workflows they're meant to fix. DB23's experience: most SA SMEs can have a working AI implementation live within 60 days.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 1 — Map Where Time Is Being Lost
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Before selecting any tool, build a workflow inventory. List every recurring task by frequency and time cost. Prioritise by three factors: high frequency, high time cost, and low creativity required.
                 </p>
-                <div className="rounded-xl border border-white/5 bg-card/40 p-5 mb-6 font-mono text-sm text-purple-200">
-                    <p className="text-white/60 text-xs font-sans mb-2 uppercase tracking-wider font-semibold">Workflow inventory template</p>
+                <div className="border-l border-white/20 pl-5 mb-6 font-mono text-sm text-white/85">
+                    <p className="text-text-muted text-sm mb-2">Workflow inventory template</p>
                     Task | Frequency | Time per week | Could AI help? | Priority (H/M/L)
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Common high-ROI starting points in SA businesses: email responses, meeting summaries, invoice follow-ups, social media content, lead qualification, job description drafting.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 2 — Match Tools to Workflows (Not the Other Way Around)
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
-                            <tr><th className="px-6 py-4 font-semibold">Workflow</th><th className="px-6 py-4 font-semibold">Best Tool</th><th className="px-6 py-4 font-semibold text-purple-400">Cost/month</th></tr>
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
+                            <tr><th className="px-6 py-4 font-semibold">Workflow</th><th className="px-6 py-4 font-semibold">Best Tool</th><th className="px-6 py-4 font-semibold text-white">Cost/month</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4">Email drafting</td><td className="px-6 py-4">ChatGPT Plus / Copilot</td><td className="px-6 py-4 text-purple-400">R340–R380</td></tr>
-                            <tr><td className="px-6 py-4">Meeting summaries</td><td className="px-6 py-4">Otter.ai / Fireflies</td><td className="px-6 py-4 text-purple-400">R200–R400</td></tr>
-                            <tr><td className="px-6 py-4">Social media content</td><td className="px-6 py-4">ChatGPT Plus + Canva AI</td><td className="px-6 py-4 text-purple-400">R360 + R250</td></tr>
-                            <tr><td className="px-6 py-4">Invoice automation</td><td className="px-6 py-4">Zapier + Xero/Sage</td><td className="px-6 py-4 text-purple-400">R0–R600</td></tr>
-                            <tr><td className="px-6 py-4">Inbound call handling</td><td className="px-6 py-4">DB23 Voice AI</td><td className="px-6 py-4 text-purple-400">From R500</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4">Email drafting</td><td className="px-6 py-4">ChatGPT Plus / Copilot</td><td className="px-6 py-4 text-white">R340–R380</td></tr>
+                            <tr><td className="px-6 py-4">Meeting summaries</td><td className="px-6 py-4">Otter.ai / Fireflies</td><td className="px-6 py-4 text-white">R200–R400</td></tr>
+                            <tr><td className="px-6 py-4">Social media content</td><td className="px-6 py-4">ChatGPT Plus + Canva AI</td><td className="px-6 py-4 text-white">R360 + R250</td></tr>
+                            <tr><td className="px-6 py-4">Invoice automation</td><td className="px-6 py-4">Zapier + Xero/Sage</td><td className="px-6 py-4 text-white">R0–R600</td></tr>
+                            <tr><td className="px-6 py-4">Inbound call handling</td><td className="px-6 py-4">DB23 Voice AI</td><td className="px-6 py-4 text-white">From R500</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 3 — POPIA Compliance Before Go-Live
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>If the tool processes personal data of SA persons (employees, clients), you need a Data Processing Agreement with the vendor</li>
                     <li>Check: Google (Yes DPA), Microsoft (Yes DPA), OpenAI Enterprise (Yes DPA), free tools (often No)</li>
                     <li>Set a one-paragraph AI data handling policy before any team-wide rollout</li>
                     <li>For regulated industries (healthcare, finance, legal) — get a SA privacy attorney to review</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 4 — Run a 30-Day Pilot in One Department
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Choose one department: marketing, admin, sales, or customer service. Set a measurable goal ("save 3 hours/week on email drafting"). Run for 30 days before expanding. The most common mistake: rolling out company-wide in week one — no support structure, no adoption, resistance hardens.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 5 — Structured Training, Not Just Access
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Giving your team a ChatGPT login is not training. In our work across SA clients, structured training produces 3× the adoption rate of self-directed access. Minimum training components:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>What the tool does and doesn't do (30 min)</li>
                     <li>How to write effective prompts (45 min)</li>
                     <li>The company's AI data handling rules — POPIA-compliant (15 min)</li>
                     <li>Supervised hands-on practice with real work tasks (45 min)</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Step 6 — Measure Time Saved and Output Quality
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">Track two metrics:</p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">Track two metrics:</p>
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Time saved per task:</strong> survey staff weekly, rough self-estimates are fine</li>
                     <li><strong className="text-white">Output quality:</strong> subjective 1–5 score from managers comparing AI-assisted vs. manual work</li>
                 </ul>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Expect slow progress in weeks 1–2 (learning curve), then rapid improvement in weeks 3–8. DB23 clients typically measure 2–4 hours saved per employee per week within 60 days of structured implementation.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     The Five Most Common AI Implementation Mistakes in SA Businesses
                 </h2>
-                <ol className="list-decimal list-inside space-y-4 text-text-muted mb-8 pl-4">
+                <ol className="list-decimal marker:text-white/40 space-y-4 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Tool-first thinking:</strong> buying ChatGPT before mapping what problem it's solving. Fix: complete the workflow inventory first.</li>
                     <li><strong className="text-white">No POPIA policy:</strong> rolling out AI tools without staff guidance on what data can and can't be entered. Fix: one-paragraph policy, distributed before launch day.</li>
                     <li><strong className="text-white">No structured training:</strong> access without education produces abandonment. Fix: half-day workshop before or alongside rollout.</li>
                     <li><strong className="text-white">Expecting AI to replace strategy:</strong> AI accelerates execution — it doesn't make decisions. Fix: set clear human ownership for all AI-assisted outputs.</li>
                     <li><strong className="text-white">Quitting after week 1:</strong> the learning curve is real. Every DB23 client who reports "it didn't work" had a two-week timeline. Fix: commit to 30 days before evaluating.</li>
                 </ol>
-                <div className="my-10 text-center">
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">Book an AI Implementation Consultation</a>
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/contact/" size="lg" className="w-full sm:w-auto">Book an AI Implementation Consultation</Button>
                 </div>
             </>
         ),
@@ -973,29 +948,27 @@ const postData = {
         tags: ['AI Workshops', 'Corporate Training', 'South Africa'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Booking an AI workshop for your team and then not knowing what happens on the day creates a specific kind of management anxiety. This walkthrough covers exactly what a DB23 workshop looks like — before, during, and after — so you can brief your team and set expectations with your MD.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What Happens at a Corporate AI Workshop?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         A corporate AI workshop in South Africa typically runs between 90 minutes and a full day. The first hour covers how AI tools work — using practical examples relevant to your industry, not generic technology theory. The second hour is hands-on: every attendee practices writing prompts, generating outputs, and reviewing AI work critically on their own device with their actual work tasks. The final hour (in half-day and full-day formats) focuses on workflow mapping — each person identifies which of their daily tasks AI can assist with. DB23 workshops end with a 30-day adoption plan per participant, so skills learned on the day have a structured path to become daily habits. Teams typically leave with at least two or three AI use cases they can implement the next morning.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What Happens Before Your AI Workshop
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Intake call:</strong> DB23 talks to the organiser about team size, current AI knowledge level, and the two or three outcomes the business wants</li>
                     <li><strong className="text-white">Pre-workshop survey (optional):</strong> a brief form sent to attendees to gauge current AI tool usage and job roles</li>
                     <li><strong className="text-white">Custom slide deck:</strong> built around your industry, team size, and specific use cases — not a generic template</li>
                     <li><strong className="text-white">Setup confirmation:</strong> Zoom or in-person logistics, laptop requirements (standard browser, no special software)</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     A Typical DB23 AI Workshop: Hour by Hour
                 </h2>
                 <div className="space-y-6 mb-8">
@@ -1038,39 +1011,39 @@ const postData = {
                             ]
                         },
                     ].map(section => (
-                        <div key={section.time} className="rounded-xl border border-white/5 bg-card/40 p-6">
+                        <div key={section.time} className="border-t border-white/10 pt-6">
                             <div className="flex items-center gap-3 mb-3">
-                                <span className="text-xs text-purple-400 bg-purple-400/10 px-2.5 py-1 rounded-md font-semibold">{section.time}</span>
-                                <h3 className="text-base font-bold text-white">{section.title}</h3>
+                                <span className="text-sm text-text-muted">{section.time}</span>
+                                <h3 className="text-lg font-medium tracking-tight text-white">{section.title}</h3>
                             </div>
-                            <ul className="list-disc list-inside space-y-1 text-text-muted text-sm pl-2">
+                            <ul className="list-disc marker:text-white/40 space-y-1 text-base text-white/85 pl-6">
                                 {section.bullets.map(b => <li key={b}>{b}</li>)}
                             </ul>
                         </div>
                     ))}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What Your Team Leaves With
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Practical skills:</strong> working knowledge of at least one AI tool with supervised practice</li>
                     <li><strong className="text-white">Prompt library:</strong> 10–15 templates specific to your industry and team's most common tasks</li>
                     <li><strong className="text-white">Personal adoption plan:</strong> 4-week roadmap — one new AI task per week — so skills don't fade</li>
                     <li><strong className="text-white">30-day email support:</strong> Q&amp;A with DB23 for a month after the session</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How to Prepare Your Team for the Workshop
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>No technical preparation required</li>
                     <li>Each person brings a laptop or tablet — AI tools are browser-based</li>
                     <li>Ask each person to think of one task they do every week that feels repetitive</li>
                     <li>Confirm WiFi — cloud-based AI tools require a stable connection</li>
                     <li>Complete the pre-session survey when DB23 sends it — it's used to customise the exercises</li>
                 </ul>
-                <div className="my-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">See AI Workshop Packages</a>
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl border border-purple-500/40 px-8 py-4 text-base font-bold text-purple-400 transition hover:bg-purple-400/10">Get a Workshop Quote</a>
+                <div className="my-12 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+                    <Button href="/ai-workshops/" size="lg" className="w-full sm:w-auto">See AI Workshop Packages</Button>
+                    <Button href="/contact/" variant="outline" size="lg" className="w-full sm:w-auto">Get a Workshop Quote</Button>
                 </div>
             </>
         ),
@@ -1094,45 +1067,43 @@ const postData = {
         tags: ['ChatGPT', 'South Africa', 'Business', 'POPIA'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     ChatGPT is used by an estimated 12% of South African businesses as of 2026, up from under 4% in 2024. The 88% who haven't adopted it cite two barriers: POPIA uncertainty and not knowing how to get the team to actually use it consistently. This guide addresses both.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         ChatGPT for Business in South Africa: What You Need to Know
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         ChatGPT is used by an estimated 12% of South African businesses in 2026. The most common business use cases in SA are email and proposal writing, meeting summaries, customer FAQ responses, job descriptions, and social media content. ChatGPT Plus costs approximately R360/month at a USD 18.99 subscription. ChatGPT Team, designed for workplace use with enhanced privacy controls and no training on your company data, costs approximately R450/user/month. The key POPIA consideration: personal data of SA persons (employees, clients) should not be entered into free ChatGPT accounts without consent and a Data Processing Agreement. ChatGPT Team and Enterprise plans include DPAs that meet POPIA operator requirements.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What ChatGPT Costs for SA Businesses
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr>
                                 <th className="px-6 py-4 font-semibold">Plan</th>
                                 <th className="px-6 py-4 font-semibold">USD/month</th>
-                                <th className="px-6 py-4 font-semibold text-purple-400">~ZAR/month</th>
+                                <th className="px-6 py-4 font-semibold text-white">~ZAR/month</th>
                                 <th className="px-6 py-4 font-semibold">Trains on data?</th>
                                 <th className="px-6 py-4 font-semibold">POPIA DPA?</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4 font-medium text-white">Free</td><td className="px-6 py-4">$0</td><td className="px-6 py-4 text-purple-400 font-semibold">R0</td><td className="px-6 py-4 text-red-400">Yes</td><td className="px-6 py-4 text-red-400">No</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Plus</td><td className="px-6 py-4">$19.99</td><td className="px-6 py-4 text-purple-400 font-semibold">~R360</td><td className="px-6 py-4 text-yellow-400">Opt-out</td><td className="px-6 py-4 text-red-400">No</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Team</td><td className="px-6 py-4">$25/user</td><td className="px-6 py-4 text-purple-400 font-semibold">~R450/user</td><td className="px-6 py-4 text-green-400">No</td><td className="px-6 py-4 text-green-400">Yes</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Enterprise</td><td className="px-6 py-4">Custom</td><td className="px-6 py-4 text-purple-400 font-semibold">Custom</td><td className="px-6 py-4 text-green-400">No</td><td className="px-6 py-4 text-green-400">Yes + BAA</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4 font-medium text-white">Free</td><td className="px-6 py-4">$0</td><td className="px-6 py-4 text-white font-semibold">R0</td><td className="px-6 py-4 text-red-400">Yes</td><td className="px-6 py-4 text-red-400">No</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Plus</td><td className="px-6 py-4">$19.99</td><td className="px-6 py-4 text-white font-semibold">~R360</td><td className="px-6 py-4 text-yellow-400">Opt-out</td><td className="px-6 py-4 text-red-400">No</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Team</td><td className="px-6 py-4">$25/user</td><td className="px-6 py-4 text-white font-semibold">~R450/user</td><td className="px-6 py-4 text-green-400">No</td><td className="px-6 py-4 text-green-400">Yes</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Enterprise</td><td className="px-6 py-4">Custom</td><td className="px-6 py-4 text-white font-semibold">Custom</td><td className="px-6 py-4 text-green-400">No</td><td className="px-6 py-4 text-green-400">Yes + BAA</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     For POPIA compliance when processing client or employee personal data, <strong className="text-white">Team plan is the minimum.</strong>
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How SA Businesses Are Using ChatGPT
                 </h2>
                 <div className="space-y-5 mb-8">
@@ -1144,22 +1115,22 @@ const postData = {
                         { num: '5', title: 'Social Media Content Pipeline', desc: 'Input: your blog post or product update. Output: 5 LinkedIn posts, 3 Instagram captions, 2 Facebook posts. Cutting social content production time by 65% for SA marketing teams.' },
                         { num: '6', title: 'Policy and Procedure Documents', desc: 'First draft of HR policies, IT acceptable use policies, and onboarding documents. ChatGPT drafts, your HR team edits — total time typically 30 minutes vs. 2–3 hours from scratch.' },
                     ].map(item => (
-                        <div key={item.num} className="flex gap-4 text-text-muted">
-                            <span className="shrink-0 mt-1 h-6 w-6 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 text-xs font-bold">{item.num}</span>
+                        <div key={item.num} className="flex gap-4 text-lg text-white/85">
+                            <span className="shrink-0 mt-1 w-6 text-sm text-text-muted">{item.num}</span>
                             <div><strong className="text-white">{item.title}:</strong> {item.desc}</div>
                         </div>
                     ))}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What ChatGPT Gets Wrong in SA Business Contexts
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">SA-specific facts:</strong> legislation, tax rules, POPIA specifics — always verify against primary sources</li>
                     <li><strong className="text-white">Currency:</strong> defaults to USD — always specify "in South African rand"</li>
                     <li><strong className="text-white">SA legal context:</strong> never rely on ChatGPT output for legal, tax, or medical advice — verify with SARS, CIPC, or qualified counsel</li>
                     <li><strong className="text-white">Local market data:</strong> population stats, income brackets, and SA-specific consumer behaviour may be outdated or generalised</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     ChatGPT and POPIA: What SA Businesses Need to Know
                 </h2>
                 <ul className="space-y-3 mb-8">
@@ -1169,25 +1140,25 @@ const postData = {
                         'Set a one-paragraph company AI data policy before team-wide rollout',
                         'For regulated industries (healthcare, finance, legal): consult a SA privacy attorney before deploying',
                     ].map(item => (
-                        <li key={item} className="flex gap-3 text-text-muted">
-                            <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                        <li key={item} className="flex gap-3 text-lg text-white/85">
+                            <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                             <span>{item}</span>
                         </li>
                     ))}
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How to Get Your Team Using ChatGPT Consistently
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Access without training produces low adoption — DB23's consistent finding across SA clients. The businesses with the highest ChatGPT adoption rates did three things:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>Ran a half-day workshop with hands-on prompt practice before rollout</li>
                     <li>Created a shared prompt library in Notion or Google Docs — 10–15 templates specific to the team's tasks</li>
                     <li>Set a weekly "AI win" habit: each team member shares one time-saving AI use in the Friday standup</li>
                 </ul>
-                <div className="my-10 text-center">
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">Book a ChatGPT Workshop for Your Team</a>
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/ai-workshops/" size="lg" className="w-full sm:w-auto">Book a ChatGPT Workshop for Your Team</Button>
                 </div>
             </>
         ),
@@ -1211,61 +1182,56 @@ const postData = {
         tags: ['AI Training', 'Employees', 'South Africa', 'Upskilling'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Employee AI training has a problem that leadership AI training doesn't: the room is divided between people excited about AI and people quietly terrified it's coming for their jobs. Ignoring that divide doesn't make it disappear — it makes adoption fail. This guide covers the business case, the anxiety conversation, and the training design.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What Makes Employee AI Training Succeed in South Africa?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         Upskilling employees with AI training in South Africa requires three elements to succeed: a business case that leadership can approve, a training format that addresses employee concerns about job security (not just tool mechanics), and a follow-up system that converts skills learned in the workshop into daily habits. PwC's 2025 AI Jobs Barometer found 77% of employees globally want to learn AI skills but cite lack of structured training as the primary barrier. In South Africa, only 22% of organisations offer structured AI training (Deloitte 2025 Future of Work SA). DB23's employee AI workshops address all three: a ready-made business case template for HR teams, a session design that opens with honest AI-as-tool framing, and a 4-week adoption plan per participant.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How to Make the Business Case for Employee AI Training
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Three arguments work with SA leadership teams:
                 </p>
                 <ul className="space-y-4 mb-6">
-                    <li className="flex gap-4 text-text-muted">
-                        <BarChart2 className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                    <li className="flex gap-4 text-lg text-white/85">
                         <div><strong className="text-white">ROI argument:</strong> If 10 employees each save 1 hour/week, that's 40 hours/month recovered — at R150/hour average, R72,000/year per R12,000 workshop investment. Payback: 10 weeks.</div>
                     </li>
-                    <li className="flex gap-4 text-text-muted">
-                        <BarChart2 className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                    <li className="flex gap-4 text-lg text-white/85">
                         <div><strong className="text-white">Speed argument:</strong> SA businesses training their teams now will have 18–24 months of compounding AI advantage over competitors that start later.</div>
                     </li>
-                    <li className="flex gap-4 text-text-muted">
-                        <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                    <li className="flex gap-4 text-lg text-white/85">
+                        <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                         <div><strong className="text-white">Risk argument:</strong> Employees who learn AI on their own use it inconsistently and may paste personal data into free tools. Structured training embeds POPIA-compliant habits from day one.</div>
                     </li>
                 </ul>
-                <div className="rounded-xl border border-purple-500/20 bg-purple-950/10 p-5 mb-8">
+                <div className="border-l-2 border-accent pl-6 mb-8">
                     <p className="text-white text-sm font-semibold mb-2">Ready-made sign-off statement for HR teams:</p>
                     <p className="text-text-muted text-sm italic">"We are requesting budget for a structured AI workshop for [department]. Expected outcome: each team member saves 30+ minutes/day within 30 days. Cost: R[X]. Payback: [Y] weeks at current team capacity cost."</p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     The Conversation You Need to Have Before the Workshop
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     A 2025 survey found 67% of South African workers are concerned about AI's impact on job security. That anxiety is legitimate. Ignoring it kills adoption — even if the training itself is excellent.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-4">The honest framing that works:</p>
-                <blockquote className="my-6 border-l-4 border-purple-400 bg-white/5 p-6 rounded-r-xl text-white flex gap-4">
-                    <Quote className="h-8 w-8 text-purple-400 shrink-0" />
+                <p className="text-lg leading-relaxed text-white/85 mb-5">The honest framing that works:</p>
+                <blockquote className="my-6 border-l-2 border-accent pl-6 text-white">
                     <div className="italic text-sm leading-relaxed">"AI is replacing tasks, not roles — at least for now. The employees who learn to work alongside AI will have more time for the work that matters. That's what we're here to build today."</div>
                 </blockquote>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     DB23 opens every employee workshop with 10 minutes of honest conversation about fears and questions. Unaddressed anxiety kills adoption regardless of training quality.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What Every Employee AI Workshop Should Cover
                 </h2>
-                <ol className="list-decimal list-inside space-y-3 text-text-muted mb-8 pl-4">
+                <ol className="list-decimal marker:text-white/40 space-y-3 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">What AI is and isn't (10 min)</strong> — practical mental model, not a technology lecture</li>
                     <li><strong className="text-white">The company's AI data rules (10 min)</strong> — POPIA, what not to paste, what's approved</li>
                     <li><strong className="text-white">Core tool demo (20 min)</strong> — live on screen, the specific tool the company has approved</li>
@@ -1273,15 +1239,15 @@ const postData = {
                     <li><strong className="text-white">Workflow mapping (20 min)</strong> — each person identifies their top 3 AI use cases</li>
                     <li><strong className="text-white">Commitment (10 min)</strong> — each person writes one thing they'll do differently this week</li>
                 </ol>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How to Make the Skills Stick: The 4-Week Adoption Plan
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">Week</th><th className="px-6 py-4 font-semibold">Task</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 font-medium text-white">Week 1</td><td className="px-6 py-4">Each person tries one new AI task from the workshop list, shares result in Friday standup</td></tr>
                             <tr><td className="px-6 py-4 font-medium text-white">Week 2</td><td className="px-6 py-4">Share a prompt that worked or didn't — team learns from each other</td></tr>
                             <tr><td className="px-6 py-4 font-medium text-white">Week 3</td><td className="px-6 py-4">Count time saved this week — even a rough estimate builds awareness</td></tr>
@@ -1289,8 +1255,8 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <div className="my-10 text-center">
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">See Employee AI Workshop Options</a>
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/ai-workshops/" size="lg" className="w-full sm:w-auto">See Employee AI Workshop Options</Button>
                 </div>
             </>
         ),
@@ -1314,30 +1280,28 @@ const postData = {
         tags: ['AI Readiness', 'South Africa', 'Business Assessment'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Before buying AI tools, score your business across four dimensions. Most SA SMEs are closer to ready than they think — just not in the dimensions they expect. This assessment takes 10 minutes and gives you a clear output: ready, mostly ready, or not yet.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         AI Readiness for South African Businesses: The 4-Dimension Framework
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         AI readiness for a South African business is determined by four factors: data quality (do you have structured data to feed AI tools?), people readiness (is your team open to change and digitally literate?), process clarity (do you have documented workflows AI can assist with?), and technology foundation (internet connectivity, cloud tools, and a basic data security policy). Most SA SMEs score high on people readiness and process clarity but low on data structure and technology foundation. The good news: you don't need high readiness across all four to start. You need medium readiness across two — typically process clarity and people readiness — to run a productive first AI pilot.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How to Score Your Business (0–3 per dimension, 12 total)
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">Score each dimension honestly. There are no wrong answers — this is for your planning, not a sales pitch.</p>
-                <h3 className="text-lg font-bold text-white mb-4">Dimension 1 — Data Readiness</h3>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-6">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">Score each dimension honestly. There are no wrong answers — this is for your planning, not a sales pitch.</p>
+                <h3 className="mt-10 mb-4 text-xl font-medium tracking-tight text-white">Dimension 1 — Data Readiness</h3>
+                <div className="overflow-x-auto border-y border-white/10 mb-6">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">Score</th><th className="px-6 py-4 font-semibold">Your Situation</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 text-green-400 font-bold">3</td><td className="px-6 py-4">Customer data in a CRM, financial data in accounting software, structured digital files</td></tr>
                             <tr><td className="px-6 py-4 text-yellow-400 font-bold">2</td><td className="px-6 py-4">Data exists but partly in spreadsheets, partly in email, partly on paper</td></tr>
                             <tr><td className="px-6 py-4 text-orange-400 font-bold">1</td><td className="px-6 py-4">Data mostly in email and paper, no central system</td></tr>
@@ -1345,14 +1309,14 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-6 text-sm"><strong className="text-white">Note:</strong> Most AI tools don't require your data — they work with inputs you give them. Data readiness matters more for advanced AI (custom models, analytics) than for starting tools like ChatGPT.</p>
-                <h3 className="text-lg font-bold text-white mb-4">Dimension 2 — People Readiness</h3>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-6">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <p className="leading-relaxed text-white/75 mb-6 text-base"><strong className="text-white">Note:</strong> Most AI tools don't require your data — they work with inputs you give them. Data readiness matters more for advanced AI (custom models, analytics) than for starting tools like ChatGPT.</p>
+                <h3 className="mt-10 mb-4 text-xl font-medium tracking-tight text-white">Dimension 2 — People Readiness</h3>
+                <div className="overflow-x-auto border-y border-white/10 mb-6">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">Score</th><th className="px-6 py-4 font-semibold">Your Situation</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 text-green-400 font-bold">3</td><td className="px-6 py-4">Team is curious and open, at least 2–3 people have tried AI tools personally</td></tr>
                             <tr><td className="px-6 py-4 text-yellow-400 font-bold">2</td><td className="px-6 py-4">Team is cautious but not resistant, leadership is supportive</td></tr>
                             <tr><td className="px-6 py-4 text-orange-400 font-bold">1</td><td className="px-6 py-4">Team is skeptical, leadership is uncertain</td></tr>
@@ -1360,14 +1324,14 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-6 text-sm"><strong className="text-white">Key insight:</strong> People readiness is the most underestimated factor — most SA implementations stall here, not at technology. If your score is 0–1, address change management before selecting tools.</p>
-                <h3 className="text-lg font-bold text-white mb-4">Dimension 3 — Process Readiness</h3>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-6">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <p className="leading-relaxed text-white/75 mb-6 text-base"><strong className="text-white">Key insight:</strong> People readiness is the most underestimated factor — most SA implementations stall here, not at technology. If your score is 0–1, address change management before selecting tools.</p>
+                <h3 className="mt-10 mb-4 text-xl font-medium tracking-tight text-white">Dimension 3 — Process Readiness</h3>
+                <div className="overflow-x-auto border-y border-white/10 mb-6">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">Score</th><th className="px-6 py-4 font-semibold">Your Situation</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 text-green-400 font-bold">3</td><td className="px-6 py-4">Documented workflows for main processes; staff follow repeatable procedures</td></tr>
                             <tr><td className="px-6 py-4 text-yellow-400 font-bold">2</td><td className="px-6 py-4">Some processes documented, others informal but consistent</td></tr>
                             <tr><td className="px-6 py-4 text-orange-400 font-bold">1</td><td className="px-6 py-4">Most processes informal, vary by person</td></tr>
@@ -1375,13 +1339,13 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-4">Dimension 4 — Technology Foundation</h3>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-6">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <h3 className="mt-10 mb-4 text-xl font-medium tracking-tight text-white">Dimension 4 — Technology Foundation</h3>
+                <div className="overflow-x-auto border-y border-white/10 mb-6">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">Score</th><th className="px-6 py-4 font-semibold">Your Situation</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 text-green-400 font-bold">3</td><td className="px-6 py-4">Stable internet with mobile data backup, cloud tools (M365 or Google Workspace), basic IT security policy</td></tr>
                             <tr><td className="px-6 py-4 text-yellow-400 font-bold">2</td><td className="px-6 py-4">Cloud tools but inconsistent internet; or good internet but no formal security policy</td></tr>
                             <tr><td className="px-6 py-4 text-orange-400 font-bold">1</td><td className="px-6 py-4">Some cloud tools, persistent load-shedding internet issues, no IT policy</td></tr>
@@ -1389,16 +1353,16 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8 text-sm"><strong className="text-white">Load shedding note:</strong> Cloud-based AI tools survive load shedding if you have mobile data as a backup. LTE/5G backup is worth adding before full AI rollout.</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <p className="leading-relaxed text-white/75 mb-8 text-base"><strong className="text-white">Load shedding note:</strong> Cloud-based AI tools survive load shedding if you have mobile data as a backup. LTE/5G backup is worth adding before full AI rollout.</p>
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What Your Total Score Means
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">Score</th><th className="px-6 py-4 font-semibold">Readiness</th><th className="px-6 py-4 font-semibold">Recommended Next Step</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 text-green-400 font-bold">9–12</td><td className="px-6 py-4 font-medium text-white">Ready</td><td className="px-6 py-4">Start a pilot in one department this month</td></tr>
                             <tr><td className="px-6 py-4 text-yellow-400 font-bold">6–8</td><td className="px-6 py-4 font-medium text-white">Mostly Ready</td><td className="px-6 py-4">Run a structured AI workshop first, then pilot</td></tr>
                             <tr><td className="px-6 py-4 text-orange-400 font-bold">3–5</td><td className="px-6 py-4 font-medium text-white">Not Yet</td><td className="px-6 py-4">Fix the lowest-scoring dimension first (usually Data or Technology)</td></tr>
@@ -1406,8 +1370,8 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <div className="my-10 text-center">
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">Book a Free AI Readiness Call</a>
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/contact/" size="lg" className="w-full sm:w-auto">Book a Free AI Readiness Call</Button>
                 </div>
             </>
         ),
@@ -1431,20 +1395,18 @@ const postData = {
         tags: ['ChatGPT', 'Workshop', 'South Africa', 'Training'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     DB23 runs dedicated ChatGPT workshops for South African business teams. Here is exactly what's covered, what each format costs, and what your team will leave knowing how to do.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         ChatGPT Workshops for SA Business Teams
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         DB23 runs ChatGPT workshops in three formats: a 90-minute introductory session (from R3,500), a 3.5-hour half-day practical (from R6,500), and a 7-hour full-day with prompt library build (from R12,000). All formats cover prompt fundamentals, SA-specific business use cases, and POPIA compliance rules. The half-day format is the most popular for business teams — hands-on practice included, with each participant building their first prompt library by the end of the session. Workshops are available remotely via Zoom across South Africa and in-person in Cape Town and major cities.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What the DB23 ChatGPT Workshop Covers
                 </h2>
                 <div className="space-y-5 mb-8">
@@ -1455,59 +1417,59 @@ const postData = {
                         { mod: 'Module 4 — 30 min', title: 'Safe and Compliant Use', items: ['POPIA: what to enter and what never to enter into ChatGPT', 'Company data handling policy — DB23 provides a template', 'What to do when ChatGPT is wrong: verification habits'] },
                         { mod: 'Module 5 — 30 min (full-day only)', title: 'Building Your Prompt Library', items: ['Each team builds a shared prompt document', '10 templates specific to the team\'s most common tasks'] },
                     ].map(m => (
-                        <div key={m.mod} className="rounded-xl border border-white/5 bg-card/40 p-5">
+                        <div key={m.mod} className="border-t border-white/10 pt-5">
                             <div className="flex items-center gap-3 mb-2">
-                                <span className="text-xs text-purple-400 bg-purple-400/10 px-2.5 py-1 rounded-md font-semibold">{m.mod}</span>
-                                <h3 className="text-sm font-bold text-white">{m.title}</h3>
+                                <span className="text-sm text-text-muted">{m.mod}</span>
+                                <h3 className="text-base font-medium text-white">{m.title}</h3>
                             </div>
-                            <ul className="list-disc list-inside space-y-1 text-text-muted text-sm pl-2">
+                            <ul className="list-disc marker:text-white/40 space-y-1 text-base text-white/85 pl-6">
                                 {m.items.map(i => <li key={i}>{i}</li>)}
                             </ul>
                         </div>
                     ))}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     ChatGPT Workshop Formats and Pricing
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
-                            <tr><th className="px-6 py-4 font-semibold">Format</th><th className="px-6 py-4 font-semibold">Duration</th><th className="px-6 py-4 font-semibold">Group Size</th><th className="px-6 py-4 font-semibold text-purple-400">Price</th></tr>
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
+                            <tr><th className="px-6 py-4 font-semibold">Format</th><th className="px-6 py-4 font-semibold">Duration</th><th className="px-6 py-4 font-semibold">Group Size</th><th className="px-6 py-4 font-semibold text-white">Price</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4 font-medium text-white">Introductory Overview</td><td className="px-6 py-4">90 minutes</td><td className="px-6 py-4">Up to 10</td><td className="px-6 py-4 text-purple-400 font-semibold">From R3,500</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Half-Day Practical</td><td className="px-6 py-4">3.5 hours</td><td className="px-6 py-4">Up to 20</td><td className="px-6 py-4 text-purple-400 font-semibold">From R6,500</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Full-Day + Prompt Library</td><td className="px-6 py-4">7 hours</td><td className="px-6 py-4">Up to 30</td><td className="px-6 py-4 text-purple-400 font-semibold">From R12,000</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Custom Multi-Session</td><td className="px-6 py-4">Varies</td><td className="px-6 py-4">Any size</td><td className="px-6 py-4 text-purple-400 font-semibold">Quote</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4 font-medium text-white">Introductory Overview</td><td className="px-6 py-4">90 minutes</td><td className="px-6 py-4">Up to 10</td><td className="px-6 py-4 text-white font-semibold">From R3,500</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Half-Day Practical</td><td className="px-6 py-4">3.5 hours</td><td className="px-6 py-4">Up to 20</td><td className="px-6 py-4 text-white font-semibold">From R6,500</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Full-Day + Prompt Library</td><td className="px-6 py-4">7 hours</td><td className="px-6 py-4">Up to 30</td><td className="px-6 py-4 text-white font-semibold">From R12,000</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Custom Multi-Session</td><td className="px-6 py-4">Varies</td><td className="px-6 py-4">Any size</td><td className="px-6 py-4 text-white font-semibold">Quote</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     All formats include: custom workbook, prompt template library, and 30-day email Q&amp;A support. Remote via Zoom or in-person in Cape Town. Travel to Johannesburg and Durban available (quoted separately).
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Who the ChatGPT Workshop Is Designed For
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">Designed for business users — not developers or researchers:</p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">Designed for business users — not developers or researchers:</p>
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li>Marketing teams: content, social media, email campaigns</li>
                     <li>Admin and operations teams: emails, reports, documentation</li>
                     <li>Sales teams: proposals, follow-ups, research</li>
                     <li>HR teams: job descriptions, onboarding docs, policies</li>
                     <li>Leadership teams wanting to understand AI strategy</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Why SA Businesses Choose DB23 for ChatGPT Training
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Founder-led:</strong> Deon Botha runs every workshop personally — not a junior facilitator</li>
                     <li><strong className="text-white">SA-specific:</strong> POPIA compliance module, load-shedding framing, ZAR tool pricing — built for the local context</li>
                     <li><strong className="text-white">Implementation focus:</strong> the goal is daily use within 30 days, not just knowing what ChatGPT is</li>
                     <li><strong className="text-white">Post-workshop support:</strong> 30-day email Q&amp;A so skills don't fade after the day</li>
                 </ul>
-                <div className="my-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">Book a ChatGPT Workshop</a>
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl border border-purple-500/40 px-8 py-4 text-base font-bold text-purple-400 transition hover:bg-purple-400/10">See All AI Workshop Formats</a>
+                <div className="my-12 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+                    <Button href="/contact/" size="lg" className="w-full sm:w-auto">Book a ChatGPT Workshop</Button>
+                    <Button href="/ai-workshops/" variant="outline" size="lg" className="w-full sm:w-auto">See All AI Workshop Formats</Button>
                 </div>
             </>
         ),
@@ -1531,37 +1493,35 @@ const postData = {
         tags: ['AI Automation', 'South Africa', 'No-Code', 'Zapier'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     The SA businesses saving the most time with AI in 2026 aren't using fancy custom models. They're automating three workflows with Zapier, Make, and a ChatGPT plugin — and recovering 2–4 hours per employee per week. No developer required. See our{' '}
-                    <a href="/ai-automation/" className="text-purple-400 hover:underline">AI automation service</a> for a free workflow audit.
+                    <a href="/ai-automation/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">AI automation service</a> for a free workflow audit.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What Is AI Automation for SA Businesses?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         AI automation for South African businesses means connecting your existing tools so that repetitive tasks happen automatically — without someone manually triggering each step. The most common starting automations for SA SMEs: new contact form submission → send intro email + add to CRM + notify sales team (3 hours to set up, saves 30 minutes/day); invoice approved → send payment reminder sequence → log to accounting software; and new Google review → notify owner → draft AI response. These are built with no-code tools like Zapier (from R0/month), Make (from R0/month), or n8n (open source). AI adds a layer: instead of just routing data, AI tools can generate text, classify content, and make decisions within the automated workflow.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     AI Automation vs Traditional Automation: What's the Difference?
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
-                            <tr><th className="px-6 py-4 font-semibold"></th><th className="px-6 py-4 font-semibold">Traditional Automation</th><th className="px-6 py-4 font-semibold text-purple-400">AI Automation</th></tr>
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
+                            <tr><th className="px-6 py-4 font-semibold"></th><th className="px-6 py-4 font-semibold">Traditional Automation</th><th className="px-6 py-4 font-semibold text-white">AI Automation</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4 font-medium text-white">What it does</td><td className="px-6 py-4">Moves data between systems</td><td className="px-6 py-4 text-purple-200">Moves data AND generates/classifies content</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Example</td><td className="px-6 py-4">Form → CRM entry</td><td className="px-6 py-4 text-purple-200">Form → AI classifies lead → prioritised CRM + personalised email</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Skill required</td><td className="px-6 py-4">No-code (Zapier, Make)</td><td className="px-6 py-4 text-purple-200">Same no-code tools + AI plugin</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Cost</td><td className="px-6 py-4">R0–R600/month</td><td className="px-6 py-4 text-purple-200">R200–R1,500/month</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4 font-medium text-white">What it does</td><td className="px-6 py-4">Moves data between systems</td><td className="px-6 py-4 text-white">Moves data AND generates/classifies content</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Example</td><td className="px-6 py-4">Form → CRM entry</td><td className="px-6 py-4 text-white">Form → AI classifies lead → prioritised CRM + personalised email</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Skill required</td><td className="px-6 py-4">No-code (Zapier, Make)</td><td className="px-6 py-4 text-white">Same no-code tools + AI plugin</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Cost</td><td className="px-6 py-4">R0–R600/month</td><td className="px-6 py-4 text-white">R200–R1,500/month</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     The 5 AI Automations Most SA Businesses Should Build First
                 </h2>
                 <div className="space-y-5 mb-8">
@@ -1572,10 +1532,10 @@ const postData = {
                         { num: '#4', title: 'Google Review Response Pipeline', trigger: 'New Google review posted', steps: 'AI drafts professional response → owner reviews → response posted', tools: 'Zapier + ChatGPT + Google Business Profile', build: '2 hours', save: '15 min per review + faster response time' },
                         { num: '#5', title: 'Social Media Publishing Pipeline', trigger: 'Blog post or product update published', steps: 'AI generates 3 social variations (LinkedIn, Facebook, Instagram) → scheduled in Buffer', tools: 'Zapier + ChatGPT + Buffer', build: '2–3 hours', save: '45–60 min per post' },
                     ].map(a => (
-                        <div key={a.num} className="rounded-xl border border-white/5 bg-card/40 p-6">
+                        <div key={a.num} className="border-t border-white/10 pt-6">
                             <div className="flex items-center gap-3 mb-3">
-                                <span className="text-xs text-purple-400 bg-purple-400/10 px-2.5 py-1 rounded-md font-semibold">{a.num}</span>
-                                <h3 className="text-sm font-bold text-white">{a.title}</h3>
+                                <span className="text-sm text-text-muted">{a.num}</span>
+                                <h3 className="text-base font-medium text-white">{a.title}</h3>
                             </div>
                             <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs text-text-muted">
                                 <span><strong className="text-white">Trigger:</strong> {a.trigger}</span>
@@ -1586,36 +1546,36 @@ const postData = {
                         </div>
                     ))}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Best No-Code AI Automation Tools for SA Businesses
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
-                            <tr><th className="px-4 py-4 font-semibold">Tool</th><th className="px-4 py-4 font-semibold">Best For</th><th className="px-4 py-4 font-semibold text-purple-400">Price (ZAR approx)</th><th className="px-4 py-4 font-semibold">Load shedding</th></tr>
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
+                            <tr><th className="px-4 py-4 font-semibold">Tool</th><th className="px-4 py-4 font-semibold">Best For</th><th className="px-4 py-4 font-semibold text-white">Price (ZAR approx)</th><th className="px-4 py-4 font-semibold">Load shedding</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted text-xs">
-                            <tr><td className="px-4 py-3 font-medium text-white">Zapier</td><td className="px-4 py-3">Beginners, 7,000+ integrations</td><td className="px-4 py-3 text-purple-400">R0–R1,600/month</td><td className="px-4 py-3 text-green-400">Cloud — safe</td></tr>
-                            <tr><td className="px-4 py-3 font-medium text-white">Make</td><td className="px-4 py-3">Advanced, visual builder</td><td className="px-4 py-3 text-purple-400">R0–R1,200/month</td><td className="px-4 py-3 text-green-400">Cloud — safe</td></tr>
-                            <tr><td className="px-4 py-3 font-medium text-white">n8n</td><td className="px-4 py-3">Developers, self-hostable</td><td className="px-4 py-3 text-purple-400">R0 (self-hosted)</td><td className="px-4 py-3 text-red-400">High risk if self-hosted</td></tr>
-                            <tr><td className="px-4 py-3 font-medium text-white">Power Automate</td><td className="px-4 py-3">Microsoft 365 users</td><td className="px-4 py-3 text-purple-400">Included in M365</td><td className="px-4 py-3 text-green-400">Cloud — safe</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80 text-xs">
+                            <tr><td className="px-4 py-3 font-medium text-white">Zapier</td><td className="px-4 py-3">Beginners, 7,000+ integrations</td><td className="px-4 py-3 text-white">R0–R1,600/month</td><td className="px-4 py-3 text-green-400">Cloud — safe</td></tr>
+                            <tr><td className="px-4 py-3 font-medium text-white">Make</td><td className="px-4 py-3">Advanced, visual builder</td><td className="px-4 py-3 text-white">R0–R1,200/month</td><td className="px-4 py-3 text-green-400">Cloud — safe</td></tr>
+                            <tr><td className="px-4 py-3 font-medium text-white">n8n</td><td className="px-4 py-3">Developers, self-hostable</td><td className="px-4 py-3 text-white">R0 (self-hosted)</td><td className="px-4 py-3 text-red-400">High risk if self-hosted</td></tr>
+                            <tr><td className="px-4 py-3 font-medium text-white">Power Automate</td><td className="px-4 py-3">Microsoft 365 users</td><td className="px-4 py-3 text-white">Included in M365</td><td className="px-4 py-3 text-green-400">Cloud — safe</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Recommendation: start with Zapier (lowest learning curve). Move to Make when your workflows become more complex and you need visual debugging.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     POPIA and Automation: What SA Businesses Need to Know
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li>If automation passes personal data (names, emails, IDs) between systems, you need a Data Processing Agreement with each service</li>
                     <li>Zapier, Make, Google, and Microsoft all have DPAs available</li>
                     <li>Do not route personal data through free AI plugins that lack a DPA</li>
                     <li>Document your automation data flows as part of your POPIA compliance record</li>
                 </ul>
-                <div className="my-10 text-center">
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">Book a Free Workflow Audit</a>
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/contact/" size="lg" className="w-full sm:w-auto">Book a Free Workflow Audit</Button>
                 </div>
             </>
         ),
@@ -1639,33 +1599,31 @@ const postData = {
         tags: ['Voice AI', 'Small Business', 'South Africa'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Voice AI makes sense for an SA small business when you're missing calls. That sounds obvious — until you calculate what each missed call costs. For a plumbing business where an average job is worth R2,500, missing 3 after-hours calls per week is R7,500/week in lost revenue. A Voice AI system that captures those calls costs R500–R2,000/month.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         When Is Voice AI Worth It for a South African Small Business?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         Voice AI is worth considering for a South African small business when three conditions are true: your business receives more than 10 inbound calls per week, you're missing calls outside business hours or during busy periods, and your most common call types are predictable (booking enquiries, FAQs, appointment requests). For businesses meeting all three, a Voice AI system typically pays for itself within 60 days by capturing enquiries that would otherwise go unanswered. Voice AI is not suitable for businesses where callers require high emotional sensitivity, where call volumes are very low (under 5/week), or where your brand identity depends on a specific person answering. SA small business Voice AI costs R500–R2,000/month depending on call volume and features.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     When Voice AI Works Well — and When It Doesn't
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    <div className="rounded-xl border border-green-500/20 bg-green-950/10 p-6">
-                        <h3 className="text-sm font-bold text-white mb-3">Good Fit for SA Small Businesses</h3>
+                    <div className="border-t border-white/10 pt-6">
+                        <h3 className="mb-3 text-base font-medium text-white">Good Fit for SA Small Businesses</h3>
                         <ul className="space-y-2 text-text-muted text-sm">
                             {['Trades: plumbers, electricians, HVAC — after-hours emergency calls go to competitors', 'Medical practices: appointment booking and rescheduling (80% of calls)', 'Beauty and wellness: bookings, reminders, product availability', 'Law firms: intake calls, availability checks', 'Property rental: viewing requests, availability, deposit questions', 'Logistics and courier: delivery queries and redelivery requests'].map(i => (
                                 <li key={i} className="flex items-start gap-2"><span className="text-green-400 mt-0.5">✓</span> {i}</li>
                             ))}
                         </ul>
                     </div>
-                    <div className="rounded-xl border border-red-500/20 bg-red-950/10 p-6">
-                        <h3 className="text-sm font-bold text-white mb-3">Not a Good Fit</h3>
+                    <div className="border-t border-white/10 pt-6">
+                        <h3 className="mb-3 text-base font-medium text-white">Not a Good Fit</h3>
                         <ul className="space-y-2 text-text-muted text-sm">
                             {['One-person businesses where personal relationship is the core product', 'Very low call volumes (under 5/week)', 'Crisis or high-stakes services requiring human empathy', 'Businesses with complex, highly variable call flows', 'Walk-in-dependent businesses where physical presence is expected'].map(i => (
                                 <li key={i} className="flex items-start gap-2"><span className="text-red-400 mt-0.5">✗</span> {i}</li>
@@ -1673,42 +1631,42 @@ const postData = {
                         </ul>
                     </div>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What Voice AI Does (and Doesn't Do)
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Can do:</strong> answer calls 24/7, book appointments into your calendar, answer FAQs (hours, location, pricing), route complex calls to you, send SMS follow-ups, log all calls to CRM, handle simultaneous calls, stay online during load shedding</li>
                     <li><strong className="text-white">Can't do well:</strong> handle complex complaints requiring emotional intelligence, navigate very unusual requests outside its training, guarantee perfect accuracy on highly specific technical queries</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What Voice AI Costs for a SA Small Business
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-6">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
-                            <tr><th className="px-6 py-4 font-semibold">Package</th><th className="px-6 py-4 font-semibold text-purple-400">Monthly Cost</th><th className="px-6 py-4 font-semibold">Best For</th></tr>
+                <div className="overflow-x-auto border-y border-white/10 mb-6">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
+                            <tr><th className="px-6 py-4 font-semibold">Package</th><th className="px-6 py-4 font-semibold text-white">Monthly Cost</th><th className="px-6 py-4 font-semibold">Best For</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
-                            <tr><td className="px-6 py-4 font-medium text-white">Starter (FAQ + routing)</td><td className="px-6 py-4 text-purple-400 font-semibold">R500–R999</td><td className="px-6 py-4">10–30 calls/month</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Standard (booking + follow-ups)</td><td className="px-6 py-4 text-purple-400 font-semibold">R1,000–R1,800</td><td className="px-6 py-4">30–100 calls/month</td></tr>
-                            <tr><td className="px-6 py-4 font-medium text-white">Growth (full intake + CRM)</td><td className="px-6 py-4 text-purple-400 font-semibold">R1,800–R3,000</td><td className="px-6 py-4">100+ calls/month</td></tr>
+                        <tbody className="divide-y divide-white/10 text-white/80">
+                            <tr><td className="px-6 py-4 font-medium text-white">Starter (FAQ + routing)</td><td className="px-6 py-4 text-white font-semibold">R500–R999</td><td className="px-6 py-4">10–30 calls/month</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Standard (booking + follow-ups)</td><td className="px-6 py-4 text-white font-semibold">R1,000–R1,800</td><td className="px-6 py-4">30–100 calls/month</td></tr>
+                            <tr><td className="px-6 py-4 font-medium text-white">Growth (full intake + CRM)</td><td className="px-6 py-4 text-white font-semibold">R1,800–R3,000</td><td className="px-6 py-4">100+ calls/month</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     The maths for most SA trades businesses: missing 3 leads per month at an average job value of R5,000 = R15,000/month opportunity cost. A Voice AI system at R1,500/month captures those calls. Payback is typically within 30 days of go-live.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What the Setup Looks Like for a Small Business
                 </h2>
-                <ol className="list-decimal list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ol className="list-decimal marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Day 1:</strong> 60-minute consultation to map your call types and routing rules</li>
                     <li><strong className="text-white">Days 2–5:</strong> Script writing and AI training on your business context and FAQs</li>
                     <li><strong className="text-white">Days 6–8:</strong> Integration with your phone number and calendar</li>
                     <li><strong className="text-white">Days 9–10:</strong> Testing — DB23 makes test calls before go-live</li>
                     <li><strong className="text-white">Go-live:</strong> typically within 2 weeks of starting. Your existing number stays the same.</li>
                 </ol>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     SA-Specific Factors to Know
                 </h2>
                 <ul className="space-y-3 mb-8">
@@ -1718,15 +1676,15 @@ const postData = {
                         ['POPIA', 'Call recordings are personal data. Your Voice AI provider must have a Data Processing Agreement. DB23 includes a DPA as standard.'],
                         ['Contracts', 'DB23 Voice AI is month-to-month — no long-term contracts. If it\'s not working within 30 days, you\'re not locked in.'],
                     ].map(([title, text]) => (
-                        <li key={title} className="flex gap-3 text-text-muted">
-                            <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                        <li key={title} className="flex gap-3 text-lg text-white/85">
+                            <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                             <div><strong className="text-white">{title}:</strong> {text}</div>
                         </li>
                     ))}
                 </ul>
-                <div className="my-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="/voice-ai/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">See DB23 Voice AI</a>
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl border border-purple-500/40 px-8 py-4 text-base font-bold text-purple-400 transition hover:bg-purple-400/10">Get a Free Consultation</a>
+                <div className="my-12 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+                    <Button href="/voice-ai/" size="lg" className="w-full sm:w-auto">See DB23 Voice AI</Button>
+                    <Button href="/contact/" variant="outline" size="lg" className="w-full sm:w-auto">Get a Free Consultation</Button>
                 </div>
             </>
         ),
@@ -1750,82 +1708,80 @@ const postData = {
         tags: ['AI Strategy', 'South Africa', 'Business Leadership', 'Framework'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     An AI strategy isn't a list of AI tools you plan to buy. It's a documented answer to five questions: Where are we now? What should we do first? Which tools match our workflows? How do we get the team from resistance to adoption? How do we govern AI use safely and legally?
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     SA businesses that skip directly to tool selection without answering those questions waste an average of 3–6 months on software that doesn't fit their actual workflows. This framework covers all five components.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What Is an AI Strategy for a South African Business?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         An AI strategy for a South African business is a documented plan defining which AI tools and processes the organisation will adopt, in what sequence, with what governance and POPIA compliance framework, and how outcomes will be measured. Strategy without implementation sequencing is a document, not a strategy. The DB23 AI strategy framework covers five components: readiness assessment (where are we now?), use case prioritisation (what has the highest ROI?), technology selection (which tools match our workflows and compliance needs?), change management (how do we get from resistance to adoption?), and governance (how do we use AI safely, ethically, and within POPIA?). A 2025 IDC report found 35% of SA companies are already integrating AI — the strategy gap is becoming a competitive gap.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Component 1 — Where Are You Now? (Readiness Assessment)
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     The DB23 AI Readiness Model scores your business across four dimensions: Data, People, Process, and Technology — each scored 0–3, maximum 12. Most SA SMEs score 6–8: strong on process and people readiness, weaker on data structure and technology foundation.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-8">
-                    Take the full assessment at <a href="/blog/ai-readiness-south-africa/" className="text-purple-400 hover:text-purple-300 font-semibold underline">the DB23 AI readiness assessment</a>. Common finding: "we need a better CRM before AI" is rarely true — most AI starting tools don't require your existing data.
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
+                    Take the full assessment at <a href="/blog/ai-readiness-south-africa/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">the DB23 AI readiness assessment</a>. Common finding: "we need a better CRM before AI" is rarely true — most AI starting tools don't require your existing data.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Component 2 — Which AI Opportunities Are Worth Pursuing?
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">The prioritisation matrix: two axes — Impact (hours saved × value/hour) and Ease (skill required + tool availability). Quadrant 1 (high impact, easy) gets done first.</p>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">The prioritisation matrix: two axes — Impact (hours saved × value/hour) and Ease (skill required + tool availability). Quadrant 1 (high impact, easy) gets done first.</p>
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-4 py-4 font-semibold">Department</th><th className="px-4 py-4 font-semibold">Top AI Use Case</th><th className="px-4 py-4 font-semibold">Impact</th><th className="px-4 py-4 font-semibold">Ease</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted text-xs">
+                        <tbody className="divide-y divide-white/10 text-white/80 text-xs">
                             <tr><td className="px-4 py-3 font-medium text-white">Marketing</td><td className="px-4 py-3">Content + social pipeline</td><td className="px-4 py-3 text-green-400">High</td><td className="px-4 py-3 text-green-400">Easy</td></tr>
                             <tr><td className="px-4 py-3 font-medium text-white">Sales</td><td className="px-4 py-3">Proposal drafting + lead qualification</td><td className="px-4 py-3 text-green-400">High</td><td className="px-4 py-3 text-green-400">Easy</td></tr>
                             <tr><td className="px-4 py-3 font-medium text-white">Admin</td><td className="px-4 py-3">Email drafting + meeting summaries</td><td className="px-4 py-3 text-green-400">High</td><td className="px-4 py-3 text-green-400">Easy</td></tr>
-                            <tr><td className="px-4 py-3 font-medium text-white">Customer service</td><td className="px-4 py-3">FAQ handling (chatbot or <a href="/voice-ai/" className="text-purple-400 hover:text-purple-300 underline">Voice AI</a>)</td><td className="px-4 py-3 text-green-400">High</td><td className="px-4 py-3 text-yellow-400">Medium</td></tr>
+                            <tr><td className="px-4 py-3 font-medium text-white">Customer service</td><td className="px-4 py-3">FAQ handling (chatbot or <a href="/voice-ai/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">Voice AI</a>)</td><td className="px-4 py-3 text-green-400">High</td><td className="px-4 py-3 text-yellow-400">Medium</td></tr>
                             <tr><td className="px-4 py-3 font-medium text-white">Finance</td><td className="px-4 py-3">Invoice reminders + reporting</td><td className="px-4 py-3 text-yellow-400">Medium</td><td className="px-4 py-3 text-green-400">Easy</td></tr>
                             <tr><td className="px-4 py-3 font-medium text-white">HR</td><td className="px-4 py-3">Job descriptions + onboarding docs</td><td className="px-4 py-3 text-yellow-400">Medium</td><td className="px-4 py-3 text-green-400">Easy</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Component 3 — Choosing the Right AI Tools
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">Selection criteria for SA businesses:</p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-4 pl-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">Selection criteria for SA businesses:</p>
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-4 pl-6">
                     <li><strong className="text-white">Functional fit:</strong> does it solve the specific use case you identified?</li>
                     <li><strong className="text-white">POPIA compliance:</strong> is a Data Processing Agreement available?</li>
                     <li><strong className="text-white">Integration:</strong> does it connect with your existing tools?</li>
                     <li><strong className="text-white">Cost:</strong> is the pricing in ZAR or transparent USD with clear billing?</li>
                     <li><strong className="text-white">Load shedding:</strong> is it cloud-based with mobile data fallback?</li>
                 </ul>
-                <p className="leading-relaxed text-text-muted mb-8">
-                    Recommended starting stack for SA SMEs: writing/productivity → Microsoft Copilot (M365) or ChatGPT Team; automation → Zapier starter; customer communication → <a href="/voice-ai/" className="text-purple-400 hover:text-purple-300 font-semibold underline">DB23 Voice AI</a> if call volume justifies. Full tool comparison at <a href="/blog/best-ai-tools-south-africa/" className="text-purple-400 hover:text-purple-300 font-semibold underline">best AI tools for SA businesses</a>.
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
+                    Recommended starting stack for SA SMEs: writing/productivity → Microsoft Copilot (M365) or ChatGPT Team; automation → Zapier starter; customer communication → <a href="/voice-ai/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">DB23 Voice AI</a> if call volume justifies. Full tool comparison at <a href="/blog/best-ai-tools-south-africa/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">best AI tools for SA businesses</a>.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Component 4 — Getting Your Team From Resistance to Adoption
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     PwC's 2025 AI Jobs Barometer: 77% of employees globally want AI skills training, but most SA organisations provide no structured path to get there. Common failure mode: tool access without training → confusion, distrust, abandonment.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-4">The DB23 change management sequence:</p>
-                <ol className="list-decimal list-inside space-y-3 text-text-muted mb-8 pl-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">The DB23 change management sequence:</p>
+                <ol className="list-decimal marker:text-white/40 space-y-3 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Leadership alignment</strong> — MD/director AI strategy briefing (what we're doing and why)</li>
                     <li><strong className="text-white">Manager briefing</strong> — how AI affects their team's work and their role in the change</li>
                     <li><strong className="text-white">Team workshop</strong> — hands-on training, not an awareness session</li>
                     <li><strong className="text-white">30-day follow-up</strong> — structured adoption plan per employee, not a one-off event</li>
                     <li><strong className="text-white">Monthly review</strong> — what's working, what's not, what to add</li>
                 </ol>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Component 5 — Governing AI Use Safely in South Africa
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">Minimum governance framework for SA businesses:</p>
+                <p className="text-lg leading-relaxed text-white/85 mb-5">Minimum governance framework for SA businesses:</p>
                 <ul className="space-y-3 mb-6">
                     {[
                         ['Approved tools list', 'Document which AI tools staff are permitted to use'],
@@ -1833,24 +1789,24 @@ const postData = {
                         ['Output review requirement', 'AI outputs reviewed by a human before client-facing use'],
                         ['Incident reporting', 'What to do if an AI error causes a problem or data breach'],
                     ].map(([title, desc]) => (
-                        <li key={title} className="flex gap-3 text-text-muted">
-                            <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                        <li key={title} className="flex gap-3 text-lg text-white/85">
+                            <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                             <div><strong className="text-white">{title}:</strong> {desc}</div>
                         </li>
                     ))}
                 </ul>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     POPIA-specific: DPAs with all AI tool vendors processing personal data; notification to data subjects where required; PAIA/POPIA register updated to include AI systems. Not legal advice — regulated industries (legal, medical, financial) should get a SA privacy attorney review.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How to Measure the Return on Your AI Investment
                 </h2>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">When</th><th className="px-6 py-4 font-semibold">Measurement Action</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 font-medium text-white">Week 1</td><td className="px-6 py-4">Baseline current time spend on target tasks</td></tr>
                             <tr><td className="px-6 py-4 font-medium text-white">Month 1</td><td className="px-6 py-4">Measure time saved per task per person (self-reported)</td></tr>
                             <tr><td className="px-6 py-4 font-medium text-white">Month 3</td><td className="px-6 py-4">Calculate annualised ROI from efficiency gains</td></tr>
@@ -1858,12 +1814,12 @@ const postData = {
                         </tbody>
                     </table>
                 </div>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     DB23 clients typically measure 2–4 hours saved per employee per week within 60 days of structured implementation. At an average SA knowledge worker cost of R150/hour, a 10-person team saving 3 hours/week each recovers R72,000/month in capacity.
                 </p>
-                <div className="my-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="/contact/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">Book an AI Strategy Session</a>
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl border border-purple-500/40 px-8 py-4 text-base font-bold text-purple-400 transition hover:bg-purple-400/10">AI Workshops for Your Team</a>
+                <div className="my-12 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+                    <Button href="/contact/" size="lg" className="w-full sm:w-auto">Book an AI Strategy Session</Button>
+                    <Button href="/ai-workshops/" variant="outline" size="lg" className="w-full sm:w-auto">AI Workshops for Your Team</Button>
                 </div>
             </>
         ),
@@ -1887,86 +1843,84 @@ const postData = {
         tags: ['AI for SMEs', 'South Africa', 'Small Business'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     The SA SMEs getting the most from AI in 2026 are not the tech-forward ones. They're the businesses that picked one use case, ran it properly for 30 days, and built from there. The ones that struggled bought tool subscriptions first and figured out what to do with them second.
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Here are five AI use cases that deliver measurable ROI for South African SMEs, what each costs, and what to watch for with POPIA compliance.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         Which AI Use Cases Work Best for South African SMEs?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         The five highest-ROI AI starting points for SA SMEs are: (1) email and proposal drafting with ChatGPT or Copilot, saving 30–60 minutes per person per day; (2) meeting transcription and summaries with Otter.ai or Fireflies; (3) social media content generation, cutting content production time by 60–70%; (4) inbound call handling with a Voice AI receptionist, covering after-hours and load-shedding gaps; and (5) invoice payment reminder automation with Zapier. A 2025 Deloitte Africa survey found only 22% of South African organisations offer structured AI training, leaving the majority of SA SMEs behind despite high willingness to adopt. Tools cost R0–R3,500/month depending on use case and volume.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Use Case 1: Email and Proposal Drafting (Save 30–60 Minutes/Day)
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Email drafting is where most SA SMEs start — and for good reason. The time savings are immediate and require no integration work. A team member who writes 10 client emails per day can reduce that time by half with a well-structured prompt.
                 </p>
-                <div className="rounded-xl border border-white/5 bg-card/40 p-5 mb-6 font-mono text-sm text-purple-200">
-                    <p className="text-white/60 text-xs font-sans mb-2 uppercase tracking-wider font-semibold">Example prompt for SA business email</p>
+                <div className="border-l border-white/20 pl-5 mb-6 font-mono text-sm text-white/85">
+                    <p className="text-text-muted text-sm mb-2">Example prompt for SA business email</p>
                     Write a professional follow-up email to a Cape Town property developer who attended our AI workshop last week. They expressed interest in a full-day session for their team of 15. Tone: warm but direct. Include a clear next step. 150 words max.
                 </div>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Best tool:</strong> ChatGPT Plus (~R360/month) or Microsoft Copilot (included in M365)</li>
                     <li><strong className="text-white">Time to value:</strong> Day 1 — no setup required</li>
                     <li><strong className="text-white">POPIA note:</strong> Don't include client personal data (names, ID numbers) in prompts on free ChatGPT accounts</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Use Case 2: Meeting Transcription and Summaries (20–30 Min per Meeting)
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Recording a meeting and getting a formatted summary with action items, owners, and deadlines takes 2 minutes with AI. Manually, it takes 20–30 minutes and often doesn't happen at all.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Best tools:</strong> Otter.ai (~R200/month) or Fireflies.ai (~R400/month) — both integrate with Zoom and Teams</li>
                     <li><strong className="text-white">SA consideration:</strong> Load shedding can disrupt recordings — ensure your fallback recording method is cloud-based</li>
                     <li><strong className="text-white">POPIA note:</strong> Meeting recordings containing employee or client discussion are personal data. Inform participants they're being recorded and that the transcript is processed by a third-party AI tool.</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Use Case 3: Social Media Content Pipeline (Cut Production Time by 65%)
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Most SA SMEs spend 3–5 hours per week producing social media content. With a consistent prompt template, that drops to 45–60 minutes.
                 </p>
-                <div className="rounded-xl border border-white/5 bg-card/40 p-5 mb-6 font-mono text-sm text-purple-200">
-                    <p className="text-white/60 text-xs font-sans mb-2 uppercase tracking-wider font-semibold">Content pipeline prompt</p>
+                <div className="border-l border-white/20 pl-5 mb-6 font-mono text-sm text-white/85">
+                    <p className="text-text-muted text-sm mb-2">Content pipeline prompt</p>
                     From this blog post [paste], generate: 3 LinkedIn posts (150–200 words each, professional tone, SA business audience), 2 Instagram captions (80 words each, conversational), 1 Facebook post (120 words). Brand voice: direct, practical, no corporate jargon.
                 </div>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Best tool:</strong> ChatGPT Plus + Canva AI (~R360 + R250/month)</li>
                     <li><strong className="text-white">Time to value:</strong> Week 1 — set up your brand prompt template once, reuse it every week</li>
-                    <li><strong className="text-white">Feature page:</strong> <a href="https://www.canva.com/magic-design/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 font-semibold underline">canva.com/magic-design</a></li>
+                    <li><strong className="text-white">Feature page:</strong> <a href="https://www.canva.com/magic-design/" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">canva.com/magic-design</a></li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Use Case 4: Voice AI for Inbound Calls (Cover After-Hours and Load Shedding)
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     SA businesses miss an estimated 30–40% of after-hours calls because no-one answers. For a trade business or medical practice, each missed call is a lost booking worth R500–R5,000.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
-                    <li><strong className="text-white">Best tool:</strong> <a href="/voice-ai/" className="text-purple-400 hover:text-purple-300 font-semibold underline">DB23 Voice AI</a> — custom-built per business, from R500/month</li>
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
+                    <li><strong className="text-white">Best tool:</strong> <a href="/voice-ai/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">DB23 Voice AI</a> — custom-built per business, from R500/month</li>
                     <li><strong className="text-white">Best fit:</strong> Businesses receiving 10+ inbound calls per week with predictable query types</li>
                     <li><strong className="text-white">POPIA note:</strong> Ensure your provider has a Data Processing Agreement covering call recordings</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     Use Case 5: Invoice Payment Reminder Automation (Save 1–2 Hours/Week)
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Manual invoice follow-ups are one of the highest-cost administrative tasks in SA SMEs — and one of the easiest to automate. A Zapier workflow can trigger payment reminders 3 days before due, 1 day before, and on the day of — automatically.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-8 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-8 pl-6">
                     <li><strong className="text-white">Tools:</strong> Zapier (free tier available) + Xero or Sage + Gmail — no developer required</li>
                     <li><strong className="text-white">Time to build:</strong> 1–2 hours to set up, then fully automated</li>
                     <li><strong className="text-white">Typical improvement:</strong> 15–25% faster payment collection</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     The POPIA Checklist Before Your First AI Tool
                 </h2>
                 <ul className="space-y-3 mb-8">
@@ -1976,16 +1930,16 @@ const postData = {
                         'Inform staff of AI tools processing their information in meeting transcriptions or HR documents',
                         'Set a one-paragraph AI data policy before team-wide rollout — DB23 can provide a template',
                     ].map(item => (
-                        <li key={item} className="flex gap-3 text-text-muted">
-                            <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                        <li key={item} className="flex gap-3 text-lg text-white/85">
+                            <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                             <span>{item}</span>
                         </li>
                     ))}
                 </ul>
-                <div className="my-10 text-center">
-                    <a href="/ai-workshops/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/ai-workshops/" size="lg" className="w-full sm:w-auto">
                         Start with an AI Workshop for Your Team
-                    </a>
+                    </Button>
                 </div>
             </>
         ),
@@ -2009,39 +1963,37 @@ const postData = {
         tags: ['AI Receptionist', 'Medical Practices', 'POPIA'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Most practice phones ring hardest at the worst moments: 07:45 before the first patient, over lunch, and straight after closing. The person at the front desk is checking in a patient, taking a medical aid number and answering the phone at the same time, and something gives. Usually it's the phone.
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     An AI receptionist can take the routine calls off that desk. But a medical or dental practice is not a plumbing business. Callers are anxious, some calls are urgent, and almost everything they say is health information. This guide covers where an AI receptionist fits in a South African practice, where it must stop, and what POPIA expects of you.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         What Can an AI Receptionist Do for a Medical Practice?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         An AI receptionist for a South African medical or dental practice answers calls 24/7, books, moves and cancels appointments, answers practical questions (hours, location, parking, which medical aids the practice accepts), sends reminders, and passes anything clinical or urgent to a person. It must never give medical advice or decide how urgent a symptom is. Because patient calls contain health information, which POPIA classes as special personal information, the practice needs a written operator agreement with the provider and a script that collects only what the booking needs. Costs start from around R500/month, and setup takes 10–14 days.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What It Handles Well in a Practice
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     The calls an AI receptionist suits are the ones your front desk could answer half-asleep. In most practices that is the majority of the phone traffic.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Bookings and changes:</strong> new appointments, reschedules and cancellations, including the ones that come in at 21:00</li>
                     <li><strong className="text-white">Practical questions:</strong> hours, address, parking, whether the practice is in network for a medical aid, what to bring to a first visit</li>
                     <li><strong className="text-white">After-hours cover:</strong> callers get a real answer and a booking instead of voicemail, and urgent calls get pointed to the right number straight away</li>
                     <li><strong className="text-white">Reminders and recalls:</strong> appointment reminders, six-monthly dental recalls, and follow-up booking prompts</li>
                     <li><strong className="text-white">Overflow:</strong> when reception is busy with a patient at the desk, the AI picks up instead of letting the line ring out</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What It Must Never Do
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     This is the part to settle before anything goes live, and the practitioner signs it off, not the provider.
                 </p>
                 <ul className="space-y-3 mb-8">
@@ -2052,52 +2004,52 @@ const postData = {
                         'Handle an emergency itself. The script tells the caller to hang up and call 10177 (ambulance) or 112 from a cellphone, then alerts the practice',
                         'Confirm to a third party that someone is a patient',
                     ].map(item => (
-                        <li key={item} className="flex gap-3 text-text-muted">
-                            <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                        <li key={item} className="flex gap-3 text-lg text-white/85">
+                            <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                             <span>{item}</span>
                         </li>
                     ))}
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     POPIA and Patient Calls: What Applies
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     Under POPIA, health information is <strong className="text-white">special personal information</strong> (section 26), which is prohibited from processing by default. Section 32 lifts that prohibition for medical professionals and healthcare institutions where the processing is needed for treatment and care or for running the practice, as long as there is an obligation of confidentiality. Taking a booking call falls inside that.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     What changes with an AI receptionist is that a third party now handles the call. In POPIA terms that provider is an <strong className="text-white">operator</strong>, and section 21 requires a written contract that obliges it to keep the information secure. The HPCSA's confidentiality guidance (Booklet 5) also makes practitioners responsible for making sure receptionists and other staff respect confidentiality. Our reading is that the same standard applies to a system answering on the practice's behalf. This is general guidance, not legal advice. Check your own position with your professional body or attorney.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Operator agreement:</strong> signed before go-live, covering security, where the data is stored, and deletion</li>
                     <li><strong className="text-white">Collect the minimum:</strong> name, contact number, and the type of appointment. Not a description of symptoms</li>
                     <li><strong className="text-white">Tell callers:</strong> the greeting says calls are answered by an automated assistant and may be recorded</li>
                     <li><strong className="text-white">Retention:</strong> set how long recordings and transcripts are kept, and delete on schedule</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     How Setup Works for a Practice
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     The 10–14 day setup is the same as for any business, with two extra steps: the escalation rules, and how bookings get into your diary.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Call review:</strong> a week of real call types, sorted into "AI can answer", "AI books, human confirms" and "always a human"</li>
                     <li><strong className="text-white">Escalation rules:</strong> written with the practitioner and tested with role-played urgent calls before launch</li>
                     <li><strong className="text-white">Diary connection:</strong> depends on your practice management software. Where it can't be connected, the AI captures the booking request and sends it to reception to confirm, which still takes the call off the desk</li>
                     <li><strong className="text-white">Same number:</strong> patients keep calling the number they already have</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What It Costs
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
-                    DB23 Voice AI starts from around R500/month for a single-practitioner practice with moderate call volume, and rises with call volume and diary integration. For the full cost breakdown and how it compares with a human receptionist, see <a href="/blog/ai-receptionist-south-africa/" className="text-purple-400 hover:text-purple-300 font-semibold underline">AI receptionist costs in South Africa</a> and <a href="/blog/ai-vs-human-receptionist-south-africa/" className="text-purple-400 hover:text-purple-300 font-semibold underline">AI vs human receptionist</a>.
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
+                    DB23 Voice AI starts from around R500/month for a single-practitioner practice with moderate call volume, and rises with call volume and diary integration. For the full cost breakdown and how it compares with a human receptionist, see <a href="/blog/ai-receptionist-south-africa/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">AI receptionist costs in South Africa</a> and <a href="/blog/ai-vs-human-receptionist-south-africa/" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">AI vs human receptionist</a>.
                 </p>
-                <p className="leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     Most practices don't replace their receptionist. They use the AI for after-hours, lunch and overflow, so the person at the desk can deal with the patient in front of them.
                 </p>
-                <div className="my-10 text-center">
-                    <a href="/voice-ai/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/voice-ai/" size="lg" className="w-full sm:w-auto">
                         See How DB23 Voice AI Works
-                    </a>
+                    </Button>
                 </div>
             </>
         ),
@@ -2121,80 +2073,78 @@ const postData = {
         tags: ['Outsourced Marketing', 'Marketing Team', 'South Africa'],
         content: (
             <>
-                <p className="text-lg leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     Most growing South African businesses reach the same point: marketing is being done in gaps between other jobs, and it shows. The usual next step is to hire a marketing manager. Sometimes that is right. Often it means paying one person to be a strategist, writer, designer, SEO specialist and ads manager at once, and getting a bit of each.
                 </p>
-                <p className="text-lg leading-relaxed text-text-muted mb-8">
+                <p className="text-lg leading-relaxed text-white/85 mb-8">
                     This guide sets out what each option actually costs in 2026, where each one wins, and what to pin down before you sign with anyone.
                 </p>
-                <div className="my-10 rounded-2xl border border-purple-500/30 bg-purple-950/10 p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 h-24 w-24 bg-purple-500/10 rounded-full blur-2xl" />
-                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-purple-400" />
+                <div className="my-12 border-l-2 border-accent pl-6">
+                    <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
                         Is Outsourced Marketing Cheaper Than Hiring in South Africa?
                     </h3>
-                    <p className="leading-relaxed text-text-main text-base">
+                    <p className="text-lg leading-relaxed text-white/85">
                         Usually, for businesses that need more than one marketing skill. A marketing manager in South Africa earns around R30,000–R38,000 a month in base salary, before UIF, the skills development levy, software, recruitment and leave cover. That buys one person. An outsourced marketing team on a fixed monthly retainer gives you several specialists (strategy, SEO, content, paid ads) for a known monthly cost, with no recruitment risk. In-house wins when the work needs someone on site daily, deep product knowledge, or a full-time volume of output. Many SA businesses use a hybrid: an in-house coordinator with outsourced specialists.
                     </p>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What an In-House Marketing Hire Really Costs
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
-                    Salary data puts the average South African marketing manager at about R30,200 a month (<a href="https://za.indeed.com/career/marketing-manager/salaries" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 font-semibold underline">Indeed</a>), and around R397,000 a year, or R33,100 a month, in Cape Town (<a href="https://www.payscale.com/research/ZA/Job=Marketing_Manager/Salary/431753cf/Cape-Town" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 font-semibold underline">PayScale</a>), with experienced managers well above that. Figures as published in October 2026. The salary is only the start:
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
+                    Salary data puts the average South African marketing manager at about R30,200 a month (<a href="https://za.indeed.com/career/marketing-manager/salaries" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">Indeed</a>), and around R397,000 a year, or R33,100 a month, in Cape Town (<a href="https://www.payscale.com/research/ZA/Job=Marketing_Manager/Salary/431753cf/Cape-Town" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-accent/60 underline-offset-4 transition-colors hover:decoration-accent">PayScale</a>), with experienced managers well above that. Figures as published in October 2026. The salary is only the start:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Statutory costs:</strong> 1% employer UIF contribution (capped), plus the 1% skills development levy once your annual payroll passes R500,000</li>
                     <li><strong className="text-white">Tools:</strong> design, scheduling, email, SEO and analytics software, which the person needs from their first day</li>
                     <li><strong className="text-white">Recruitment:</strong> agency fees or weeks of management time, and a probation period before you know if it works</li>
                     <li><strong className="text-white">Gaps:</strong> leave, sick days and resignation all stop the marketing, because it lives in one person</li>
                     <li><strong className="text-white">Skill coverage:</strong> one person is rarely strong at strategy, writing, design, SEO and paid ads at once. The weak areas get done badly or not at all</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What an Outsourced Marketing Team Gives You
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-4">
+                <p className="text-lg leading-relaxed text-white/85 mb-5">
                     An outsourced team works like a marketing department you rent by the month. You agree the deliverables, they do the work, and you get a report.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li><strong className="text-white">Several specialists</strong> for the price of a retainer, each working in their strongest area</li>
                     <li><strong className="text-white">A fixed monthly cost</strong> with named deliverables, so you know what you are paying for</li>
                     <li><strong className="text-white">No recruitment risk.</strong> If it isn't working, you give notice instead of managing a performance process</li>
                     <li><strong className="text-white">Continuity:</strong> leave and staff changes are the provider's problem, not yours</li>
                 </ul>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     The trade-offs are real too. An outside team won't be in your Monday meeting by default, it takes a month or two to learn your product and customers properly, and someone in your business still needs to approve work and feed in news. Plan for an hour or two a week of your time.
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     When Hiring In-House Is the Better Call
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-text-muted mb-6 pl-4">
+                <ul className="list-disc marker:text-white/40 space-y-2 text-lg text-white/85 mb-6 pl-6">
                     <li>You need someone on site every day: events, shop-floor content, trade shows, store displays</li>
                     <li>Your product is technical enough that a writer needs months inside the business to explain it well</li>
                     <li>You have a full-time volume of one kind of work, such as daily social content, that one person can own</li>
                     <li>Marketing is central enough to your business that you want the capability, not just the output</li>
                 </ul>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     The Hybrid Most SA SMEs End Up With
                 </h2>
-                <p className="leading-relaxed text-text-muted mb-6">
+                <p className="text-lg leading-relaxed text-white/85 mb-6">
                     A common setup is a junior marketing coordinator in-house, who knows the business and handles day-to-day posts and admin, with an outsourced team covering strategy, SEO, paid campaigns and the larger content pieces. The coordinator is the link, and the specialists do the work that needs specialist skill.
                 </p>
-                <div className="overflow-x-auto rounded-xl border border-white/5 bg-card/25 mb-8">
-                    <table className="min-w-full divide-y divide-white/5 text-left text-sm">
-                        <thead className="bg-white/5 text-xs uppercase tracking-wider text-white">
+                <div className="overflow-x-auto border-y border-white/10 mb-8">
+                    <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+                        <thead className="text-sm text-text-muted">
                             <tr><th className="px-6 py-4 font-semibold">&nbsp;</th><th className="px-6 py-4 font-semibold">In-house hire</th><th className="px-6 py-4 font-semibold">Outsourced team</th><th className="px-6 py-4 font-semibold">Hybrid</th></tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-text-muted">
+                        <tbody className="divide-y divide-white/10 text-white/80">
                             <tr><td className="px-6 py-4 text-white">Skills covered</td><td className="px-6 py-4">One person's</td><td className="px-6 py-4">Several specialists</td><td className="px-6 py-4">Both</td></tr>
                             <tr><td className="px-6 py-4 text-white">Monthly cost</td><td className="px-6 py-4">Salary + statutory + tools</td><td className="px-6 py-4">Fixed retainer</td><td className="px-6 py-4">Junior salary + retainer</td></tr>
                             <tr><td className="px-6 py-4 text-white">Time to start</td><td className="px-6 py-4">Recruitment + notice period</td><td className="px-6 py-4">Weeks</td><td className="px-6 py-4">Weeks for the outsourced part</td></tr>
                             <tr><td className="px-6 py-4 text-white">Leave / turnover risk</td><td className="px-6 py-4">Yours</td><td className="px-6 py-4">Provider's</td><td className="px-6 py-4">Shared</td></tr>
-                            <tr><td className="px-6 py-4 text-white">Product knowledge</td><td className="px-6 py-4 text-purple-400">Deepest</td><td className="px-6 py-4">Builds over 1–2 months</td><td className="px-6 py-4 text-purple-400">Deep</td></tr>
+                            <tr><td className="px-6 py-4 text-white">Product knowledge</td><td className="px-6 py-4 text-white">Deepest</td><td className="px-6 py-4">Builds over 1–2 months</td><td className="px-6 py-4 text-white">Deep</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-10 mb-6 border-b border-white/5 pb-3">
+                <h2 className="mt-16 mb-6 text-3xl font-medium tracking-[-0.03em] text-white">
                     What to Ask Any Outsourced Marketing Provider
                 </h2>
                 <ul className="space-y-3 mb-8">
@@ -2205,16 +2155,16 @@ const postData = {
                         'What is the notice period, and is there a minimum term?',
                         'What does the monthly report show? Leads and enquiries, not only impressions and likes',
                     ].map(item => (
-                        <li key={item} className="flex gap-3 text-text-muted">
-                            <Shield className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+                        <li key={item} className="flex gap-3 text-lg text-white/85">
+                            <span className="mt-3 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
                             <span>{item}</span>
                         </li>
                     ))}
                 </ul>
-                <div className="my-10 text-center">
-                    <a href="/outsourced-marketing/" className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-8 py-4 text-base font-bold text-white transition hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-500/25">
+                <div className="my-12 border-t border-white/10 pt-8">
+                    <Button href="/outsourced-marketing/" size="lg" className="w-full sm:w-auto">
                         See What DB23's Outsourced Marketing Includes
-                    </a>
+                    </Button>
                 </div>
             </>
         ),
@@ -2240,13 +2190,13 @@ export function BlogPostPage() {
                     description="The requested blog post could not be found. Return to our main blog listing to read our latest insights."
                     canonical="https://db23.co.za/blog/"
                 />
-                <section className="min-h-[70vh] bg-background pt-40 pb-20 flex items-center justify-center">
-                    <div className="container px-4 text-center">
-                        <h1 className="text-4xl font-black text-white mb-6">Article Not Found</h1>
-                        <p className="text-text-muted mb-10 max-w-md mx-auto">
+                <section className="min-h-[70vh] bg-background pt-40 pb-20">
+                    <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+                        <h1 className="mb-6 text-4xl font-medium tracking-[-0.04em] text-white md:text-6xl">Article Not Found</h1>
+                        <p className="mb-10 max-w-md text-text-muted">
                             The blog post you are looking for might have been moved, renamed, or is currently unavailable.
                         </p>
-                        <a href="/blog/" className="inline-flex items-center gap-2 text-sm font-bold text-purple-400 hover:text-purple-300 transition-colors">
+                        <a href="/blog/" className="inline-flex items-center gap-2 py-2 text-base font-medium text-white underline decoration-white/30 underline-offset-[6px] transition-colors hover:decoration-accent">
                             <ArrowLeft className="h-4 w-4" />
                             Back to All Blog Posts
                         </a>
@@ -2307,74 +2257,68 @@ export function BlogPostPage() {
             />
 
             {/* Banner Section */}
-            <article className="relative bg-background pt-32 pb-24 md:pt-40">
-                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(168,85,247,0.1),transparent_40%)]" />
-                
-                <div className="container relative z-10 mx-auto px-4 md:px-8 max-w-4xl">
-                    {/* Back Button */}
-                    <div className="mb-8">
-                        <a 
-                            href="/blog/" 
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted hover:text-purple-400 transition-colors"
-                        >
-                            <ArrowLeft className="h-4 w-4" />
-                            Back to Blog
-                        </a>
-                    </div>
+            <article className="relative bg-background pt-32 pb-24 md:pt-44">
+                <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+                    {/* Back link */}
+                    <a
+                        href="/blog/"
+                        className="mb-10 inline-flex items-center gap-2 py-2 text-sm text-text-muted transition-colors hover:text-white"
+                    >
+                        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                        Back to Blog
+                    </a>
 
                     {/* Meta info */}
-                    <div className="mb-4 flex flex-wrap items-center gap-4 text-xs font-semibold text-text-muted uppercase tracking-wider">
-                        <span className="text-purple-400 bg-purple-400/10 px-2.5 py-1 rounded-md">{post.category}</span>
-                        <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" />{post.date}</span>
-                        <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" />{post.readTime}</span>
-                    </div>
+                    <p className="mb-6 text-sm text-text-muted">
+                        {post.category} · {post.date} · {post.readTime}
+                    </p>
 
                     {/* Title */}
-                    <h1 className="mb-8 text-3xl font-black leading-tight text-white md:text-4xl lg:text-5xl text-balance">
+                    <h1 className="max-w-5xl text-balance text-[2.25rem] font-medium leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
                         {post.title}
                     </h1>
 
-                    {/* Cover Image Container */}
-                    <div className="relative mb-12 rounded-3xl border border-white/10 overflow-hidden shadow-2xl aspect-[16/9]">
-                        <img 
-                            src={post.image} 
-                            alt={post.title} 
+                    {/* Cover image */}
+                    <div className="mt-12 aspect-[16/9] overflow-hidden rounded-md border border-white/10 md:mt-16">
+                        <img
+                            src={post.image}
+                            alt={post.title}
                             className="h-full w-full object-cover"
                             width="1200"
                             height="675"
                         />
                     </div>
 
-                    {/* Article Content */}
-                    <div className="prose prose-invert prose-purple max-w-none text-text-muted">
+                    {/* Article content */}
+                    <div className="mt-12 max-w-[68ch] md:mt-16 [&>*:first-child]:mt-0 [&_strong]:font-medium [&_strong]:text-white">
                         {typeof post.content === 'function' ? post.content(currency) : post.content}
                     </div>
 
-                    {/* Dynamic Styled FAQs Section inside the Post */}
-                    <section className="mt-16 pt-12 border-t border-white/5" aria-labelledby="post-faq-heading">
-                        <h2 id="post-faq-heading" className="text-2xl md:text-3xl font-black text-white mb-8 text-center">
+                    {/* FAQs */}
+                    <section className="mt-24 max-w-[68ch]" aria-labelledby="post-faq-heading">
+                        <h2 id="post-faq-heading" className="mb-8 text-3xl font-medium tracking-[-0.03em] text-white">
                             Frequently Asked Questions
                         </h2>
-                        <div className="space-y-4 max-w-3xl mx-auto">
-                            {post.faqs.map((faq, i) => (
-                                <BlogFAQItem key={i} question={faq.q} answer={faq.a} />
+                        <div>
+                            {post.faqs.map((faq) => (
+                                <BlogFAQItem key={faq.q} question={faq.q} answer={faq.a} />
                             ))}
                         </div>
                     </section>
 
                     {/* Post footer tags */}
-                    <div className="mt-12 pt-6 border-t border-white/5 flex flex-wrap gap-2 items-center">
-                        <span className="text-sm font-semibold text-white/50 mr-2">Tags:</span>
-                        {post.tags.map(tag => (
-                            <span key={tag} className="text-xs text-white/60 bg-white/5 border border-white/5 px-3 py-1 rounded-full">
-                                #{tag}
-                            </span>
-                        ))}
-                    </div>
+                    <p className="mt-16 border-t border-white/10 pt-6 text-sm text-text-muted">
+                        Tags: {post.tags.join(' · ')}
+                    </p>
                 </div>
             </article>
 
             <FounderBio />
+            <CTABand
+                title="Want help putting this into practice?"
+                primary={{ label: 'Start a project', href: '/#contact', subject: 'Start a Project' }}
+                secondary={{ label: 'Book an AI workshop', href: '/ai-workshops/' }}
+            />
         </PageLayout>
     );
 }

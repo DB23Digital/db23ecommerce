@@ -17,24 +17,28 @@ function selectContactSubject(subject) {
 }
 
 function WorkCard({ item, eager, className = '', onFocus }) {
+    const live = Boolean(item.url);
+    // Hosted client microsites carry X-Robots-Tag: noindex, so every
+    // showcase link is nofollow — none should collect crawl equity.
+    const Tag = live ? 'a' : 'div';
+    const linkProps = live
+        ? {
+              href: item.url,
+              target: '_blank',
+              rel: 'nofollow noopener noreferrer',
+              onFocus,
+              'aria-label': `${item.project}, ${item.category}. Opens the live site.`,
+          }
+        : {};
     return (
-        // Hosted client microsites carry X-Robots-Tag: noindex, so every
-        // showcase link is nofollow — none should collect crawl equity.
-        <a
-            href={item.url}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            onFocus={onFocus}
-            aria-label={`${item.project}, ${item.category}. Opens the live site.`}
-            className={`group block shrink-0 focus:outline-none ${className}`}
-        >
+        <Tag {...linkProps} className={`group block shrink-0 focus:outline-none ${className}`}>
             <div className="overflow-hidden rounded-md border border-white/15 bg-card shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)] transition-colors group-hover:border-accent/60 group-focus-visible:border-accent">
                 <div className="flex h-7 items-center gap-3 border-b border-white/10 bg-[#1a1d1b] px-3">
                     <span className="flex gap-1" aria-hidden="true">
                         <span className="h-2 w-2 rounded-full bg-white/15" />
                         <span className="h-2 w-2 rounded-full bg-white/15" />
                     </span>
-                    <span className="truncate text-[0.65rem] text-white/45">{hostOf(item.url)}</span>
+                    <span className="truncate text-[0.65rem] text-white/45">{live ? hostOf(item.url) : 'Coming soon'}</span>
                 </div>
                 <div className="aspect-[16/10] overflow-hidden bg-card">
                     <img
@@ -55,16 +59,22 @@ function WorkCard({ item, eager, className = '', onFocus }) {
                     </h3>
                     <p className="mt-1 text-sm text-text-muted">{item.category}</p>
                 </div>
-                <ArrowUpRight
-                    className="mt-1 h-5 w-5 shrink-0 text-text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-                    aria-hidden="true"
-                />
+                {live ? (
+                    <ArrowUpRight
+                        className="mt-1 h-5 w-5 shrink-0 text-text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                        aria-hidden="true"
+                    />
+                ) : (
+                    <span className="mt-1 shrink-0 rounded-[3px] border border-accent/50 px-2 py-0.5 text-xs text-accent">
+                        {item.status}
+                    </span>
+                )}
             </div>
-        </a>
+        </Tag>
     );
 }
 
-function Heading({ count, compact = false }) {
+function Heading({ items, compact = false }) {
     return (
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
@@ -81,7 +91,8 @@ function Heading({ count, compact = false }) {
                     and more. Each one built to communicate clearly, earn trust, and bring in enquiries.
                 </p>
             </div>
-            <p className="text-sm text-text-muted lg:col-span-3 lg:col-start-10 lg:text-right">{count} live projects</p>
+            <p className="text-sm text-text-muted lg:col-span-3 lg:col-start-10 lg:text-right">{items.filter((i) => i.url).length} live projects
+                {items.some((i) => !i.url) && `, ${items.filter((i) => !i.url).length} in progress`}</p>
         </div>
     );
 }
@@ -189,7 +200,7 @@ export function SelectedWork({ limit }) {
                         className={`${pinned ? 'sticky top-0 h-screen' : ''} flex flex-col justify-center overflow-hidden pt-24 pb-10`}
                     >
                         <div className="mx-auto mb-10 w-full max-w-[1400px] px-8">
-                            <Heading count={items.length} compact />
+                            <Heading items={items} compact />
                         </div>
 
                         <Motion.ul
@@ -226,7 +237,7 @@ export function SelectedWork({ limit }) {
     return (
         <section id="work-showcase" className="relative bg-background py-24" aria-labelledby="work-showcase-heading">
             <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-                <Heading count={items.length} />
+                <Heading items={items} />
             </div>
             <ul className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-4 px-4 pb-4 [scrollbar-width:none] md:scroll-px-8 md:px-8">
                 {items.map((item, i) => (
