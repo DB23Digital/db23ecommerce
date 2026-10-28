@@ -9,45 +9,43 @@ function selectContactSubject(subject) {
 
 export function BottomCTA() {
     return (
-        <section className="relative overflow-hidden bg-card/35 py-24 md:py-32">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.18),transparent_36%)]" />
-            <div className="container relative z-10 mx-auto px-4 md:px-8">
-                <Motion.div
-                    initial={{ opacity: 0, y: 22 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mx-auto max-w-4xl text-center"
+        <section className="relative overflow-hidden border-t border-white/10 bg-background py-28 md:py-44" aria-labelledby="closing-heading">
+            <div className="grain pointer-events-none absolute inset-0" aria-hidden="true" />
+            <Motion.div
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="relative mx-auto max-w-[1400px] px-4 text-center md:px-8"
+            >
+                <h2
+                    id="closing-heading"
+                    className="mx-auto max-w-5xl text-balance text-5xl font-medium leading-[0.98] tracking-[-0.045em] text-white md:text-8xl"
                 >
-                    <h2 className="mb-6 text-4xl font-black leading-tight text-white md:text-6xl">
-                        Ready to Modernize Your Business?
-                    </h2>
-                    <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-text-muted md:text-xl">
-                        From AI workshops and automation to premium websites and digital systems, DB23 helps businesses
-                        implement practical technology solutions that support real growth.
-                    </p>
+                    Ready to be found, and to use AI properly?
+                </h2>
+                <p className="mx-auto mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-text-muted">
+                    Websites, hosting, search visibility and AI strategy for small businesses, from one Cape Town team.
+                </p>
 
-                    <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                        <Button
-                            href="#contact"
-                            size="lg"
-                            className="w-full sm:w-auto"
-                            onClick={() => selectContactSubject('AI Workshop')}
-                        >
-                            Book an AI Workshop
-                        </Button>
-                        <Button
-                            href="#contact"
-                            variant="outline"
-                            size="lg"
-                            className="w-full sm:w-auto"
-                            onClick={() => selectContactSubject('Start a Project')}
-                        >
-                            Start a Project
-                        </Button>
-                    </div>
-                </Motion.div>
-            </div>
+                <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
+                    <Button
+                        href="#contact"
+                        size="lg"
+                        className="w-full sm:w-auto"
+                        onClick={() => selectContactSubject('Start a Project')}
+                    >
+                        Start a project
+                    </Button>
+                    <a
+                        href="#contact"
+                        className="py-3 text-base font-medium text-white underline decoration-white/30 underline-offset-[6px] hover:decoration-accent"
+                        onClick={() => selectContactSubject('AI Workshop')}
+                    >
+                        Book an AI workshop
+                    </a>
+                </div>
+            </Motion.div>
         </section>
     );
 }

@@ -120,7 +120,7 @@ export function ProposalPage() {
                         </p>
                         <a 
                             href="mailto:deon@db23.co.za?subject=Proposal accepted for both websites" 
-                            className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-10 py-5 text-lg font-semibold text-white transition hover:bg-accent-hover hover:scale-105"
+                            className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-10 py-5 text-lg font-semibold text-ink transition hover:bg-accent-hover hover:scale-105"
                         >
                             Accept Proposal <ArrowRight className="w-5 h-5" />
                         </a>

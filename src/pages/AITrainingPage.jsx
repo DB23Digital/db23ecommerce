@@ -191,7 +191,7 @@ export function AITrainingPage() {
                     <div className="grid gap-6 lg:grid-cols-3">
                         {formats.map(f => (
                             <article key={f.title} className="relative rounded-3xl border border-white/10 bg-background/70 p-7 transition hover:-translate-y-1 hover:border-accent/45">
-                                {f.tag && <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">{f.tag}</span>}
+                                {f.tag && <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-widest text-ink">{f.tag}</span>}
                                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">{f.icon}</div>
                                 <h3 className="mb-3 text-xl font-bold text-white">{f.title}</h3>
                                 <p className="leading-relaxed text-text-muted">{f.body}</p>

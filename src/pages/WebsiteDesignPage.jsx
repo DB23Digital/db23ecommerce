@@ -20,7 +20,7 @@ const faqs = [
     { q: 'How long does it take to build a website?', a: 'A standard 5-page business website usually takes 3 to 5 days from the initial kickoff to launch, provided we have all the necessary branding assets and information from you.' },
     { q: 'Do you offer eCommerce website design?', a: 'Yes. We build robust eCommerce platforms using Shopify or WooCommerce, fully integrated with global payment gateways like Stripe and PayPal, as well as localized gateways based on your target market.' },
     { q: 'Will I be able to update the website myself?', a: 'Yes. We build sites with user-friendly Content Management Systems (CMS) and provide remote training so your team can easily update text, add blog posts, or change images without needing a developer.' },
-    { q: 'Do you provide website hosting?', a: 'We work with your existing hosting providers, or we can recommend reliable, secure global hosting providers if you need one.' },
+    { q: 'Do you provide website hosting?', a: 'Yes, or we can work with your existing host. Our hosted plan starts at R999 a month and includes hosting, SEO, AEO and GEO, and a monthly report. If you keep your own hosting, the same SEO, AEO, GEO and reporting on your domain starts at R799 a month. Prices include VAT.' },
     { q: 'What happens after the website goes live?', a: 'We submit your new site to Google, ensure all tracking (Analytics, Tag Manager) is working, and offer ongoing website maintenance retainers to help your site grow.' },
 ];
 

@@ -18,11 +18,11 @@ if ($path === '/') $path = '';
 // hand when copy changes.
 $pages = [
     '' => [
-        'title'          => 'DB23 | AI Implementation & Digital Marketing, Cape Town',
-        'description'    => 'Cape Town AI implementation partner for South African businesses: AI workshops, Voice AI receptionists, automation, SEO and websites that bring in enquiries.',
+        'title'          => 'DB23 | Website Design, SEO & AI Workshops, Cape Town',
+        'description'    => 'Website design, hosting, SEO and AI search visibility for South African small businesses, plus practical AI workshops and strategy. Based in Cape Town.',
         'canonical'      => 'https://db23.co.za/',
-        'og_title'       => 'DB23 | AI Implementation & Digital Marketing, Cape Town',
-        'og_description' => 'Cape Town AI implementation partner for South African businesses: AI workshops, Voice AI receptionists, automation, SEO and websites that bring in enquiries.',
+        'og_title'       => 'DB23 | Website Design, SEO & AI Workshops, Cape Town',
+        'og_description' => 'Website design, hosting, SEO and AI search visibility for South African small businesses, plus practical AI workshops and strategy. Based in Cape Town.',
     ],
     '/ai-workshops' => [
         'title'          => 'AI Workshops South Africa | Fixed Price from R4,500 | DB23',

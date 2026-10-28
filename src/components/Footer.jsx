@@ -1,97 +1,115 @@
 import React from 'react';
 import { CurrencySelector } from './ui/CurrencySelector';
 
+const explore = [
+    { label: 'Website Design', href: '/website-design/' },
+    { label: 'Hosting & Care', href: '/#hosting' },
+    { label: 'SEO, AEO & GEO', href: '/seo-services/' },
+    { label: 'AI Workshops', href: '/ai-workshops/' },
+    { label: 'AI Training', href: '/ai-training/' },
+    { label: 'Blog', href: '/blog/' },
+];
+
+// Not core services any more, but still live pages: keep them linked.
+const implementations = [
+    { label: 'Voice AI', href: '/voice-ai/' },
+    { label: 'AI Automation', href: '/ai-automation/' },
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'Outsourced Marketing', href: '/outsourced-marketing/' },
+];
+
+const company = [
+    { label: 'About DB23', href: '/about/' },
+    { label: 'Work', href: '/#work-showcase' },
+    { label: 'Before & After', href: '/#plain-english-ai' },
+    { label: 'Contact Us', href: '/contact/' },
+    { label: 'Book a Workshop', href: '/#contact' },
+];
+
+const linkClass = 'text-text-muted transition-colors hover:text-white';
+
 export function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="border-t border-white/5 bg-background pt-20 pb-10">
-            <div className="container mx-auto px-4 md:px-8">
-                <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-5">
-                    <div className="md:col-span-2">
-                        <h3 className="mb-4 text-2xl font-black tracking-tight text-white">DB23 eCommerce</h3>
-                        <p className="mb-6 max-w-md text-text-muted">
-                            DB23 helps businesses practically understand and implement AI while building modern digital
-                            systems that support real business growth.
+        <footer className="relative overflow-hidden border-t border-white/10 bg-background pb-10 pt-20">
+            <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+                <div className="mb-20 grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-12">
+                    <div className="col-span-2 md:col-span-4">
+                        <p className="max-w-sm text-pretty text-lg leading-relaxed text-white">
+                            DB23 designs, hosts and optimises websites for small businesses, and helps teams put AI to work
+                            through practical workshops and strategy.
                         </p>
                     </div>
 
-                    <div>
-                        <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">Explore</h4>
-                        <ul className="space-y-4">
-                            <li><a href="/ai-workshops/" className="text-text-muted transition-colors hover:text-white">AI Workshops</a></li>
-                            <li><a href="/voice-ai/" className="text-text-muted transition-colors hover:text-white">Voice AI</a></li>
-                            <li><a href="/ai-automation/" className="text-text-muted transition-colors hover:text-white">AI Automation</a></li>
-                            <li><a href="/ai-training/" className="text-text-muted transition-colors hover:text-white">AI Training</a></li>
-                            <li><a href="/digital-marketing/" className="text-text-muted transition-colors hover:text-white">Digital Marketing</a></li>
-                            <li><a href="/website-design/" className="text-text-muted transition-colors hover:text-white">Website Design</a></li>
-                            <li><a href="/outsourced-marketing/" className="text-text-muted transition-colors hover:text-white">Outsourced Marketing</a></li>
-                            <li><a href="/seo-services/" className="text-text-muted transition-colors hover:text-white">SEO Services</a></li>
-                            <li><a href="/blog/" className="text-text-muted transition-colors hover:text-white">Blog</a></li>
+                    <div className="md:col-span-3 md:col-start-6">
+                        <h2 className="mb-5 text-sm text-white">Services</h2>
+                        <ul className="space-y-3 text-sm">
+                            {explore.map((l) => (
+                                <li key={l.href}><a href={l.href} className={linkClass}>{l.label}</a></li>
+                            ))}
+                        </ul>
+                        <h2 className="mb-4 mt-10 text-sm text-white">We also implement</h2>
+                        <ul className="space-y-3 text-sm">
+                            {implementations.map((l) => (
+                                <li key={l.href}><a href={l.href} className={linkClass}>{l.label}</a></li>
+                            ))}
                         </ul>
                     </div>
 
-                    <div>
-                        <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">Company</h4>
-                        <ul className="mb-8 space-y-4">
-                            <li><a href="/about/" className="text-text-muted transition-colors hover:text-white">About DB23</a></li>
-                            <li><a href="/#plain-english-ai" className="text-text-muted transition-colors hover:text-white">AI in Plain English</a></li>
-                            <li><a href="/contact/" className="text-text-muted transition-colors hover:text-white">Contact Us</a></li>
-                            <li><a href="/#contact" className="text-text-muted transition-colors hover:text-white">Book a Workshop</a></li>
+                    <div className="md:col-span-2">
+                        <h2 className="mb-5 text-sm text-white">Company</h2>
+                        <ul className="space-y-3 text-sm">
+                            {company.map((l) => (
+                                <li key={l.href}><a href={l.href} className={linkClass}>{l.label}</a></li>
+                            ))}
                         </ul>
                     </div>
 
-                    <div>
-                        <h4 className="mb-6 text-sm font-semibold uppercase tracking-wider text-white">Contact</h4>
-                        <address className="not-italic space-y-4 text-text-muted text-sm">
+                    <div className="col-span-2 md:col-span-3">
+                        <h2 className="mb-5 text-sm text-white">Contact</h2>
+                        <address className="space-y-3 text-sm not-italic text-text-muted">
+                            <p>Cape Town, Western Cape, South Africa</p>
+                            <p><a href="tel:+27836025227" className={linkClass}>+27 83 602 5227</a></p>
                             <p>
-                                <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">Business</span>
-                                DB23 eCommerce
-                            </p>
-                            <p>
-                                <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">Location</span>
-                                Cape Town, Western Cape,<br />South Africa
-                            </p>
-                            <p>
-                                <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">Phone</span>
-                                <a href="tel:+27836025227" className="hover:text-white transition-colors">+27 83 602 5227</a>
-                            </p>
-                            <p>
-                                <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">WhatsApp</span>
                                 <a
                                     href="https://wa.me/27836025227?text=Hi%20DB23%2C%20I%20would%20like%20to%20talk%20about%20"
                                     rel="noopener"
-                                    className="hover:text-white transition-colors"
+                                    className={linkClass}
                                 >
-                                    Message us — reply within the hour
+                                    WhatsApp: reply within the hour
                                 </a>
                             </p>
-                            <p>
-                                <span className="block text-white/60 text-xs uppercase tracking-widest mb-1">Email</span>
-                                <a href="mailto:deon@db23.co.za" className="hover:text-white transition-colors">deon@db23.co.za</a>
-                            </p>
+                            <p><a href="mailto:deon@db23.co.za" className={linkClass}>deon@db23.co.za</a></p>
                         </address>
                     </div>
                 </div>
 
                 {/* NAP in plain HTML for local SEO crawlability */}
-                <div className="mb-8 rounded-xl border border-white/5 bg-white/[0.02] px-6 py-4 text-sm text-text-muted">
-                    <strong className="text-white/70">DB23 eCommerce</strong> &bull;
+                <p className="mb-10 border-t border-white/10 pt-8 text-xs leading-relaxed text-text-muted">
+                    <strong className="font-medium text-white/80">DB23 eCommerce</strong> &bull;
                     Tryall Road, Parklands, Cape Town, Western Cape, 7441, South Africa &bull;
-                    <a href="tel:+27836025227" className="hover:text-white transition-colors ml-1">+27 83 602 5227</a> &bull;
-                    <a href="mailto:deon@db23.co.za" className="hover:text-white transition-colors ml-1">deon@db23.co.za</a>
-                    &bull; <span className="ml-1">AI Workshops · Voice AI · Digital Marketing · Website Design · SEO Services</span>
-                </div>
+                    <a href="tel:+27836025227" className="ml-1 hover:text-white">+27 83 602 5227</a> &bull;
+                    <a href="mailto:deon@db23.co.za" className="ml-1 hover:text-white">deon@db23.co.za</a>
+                    &bull; <span className="ml-1">Website Design · Hosting · SEO, AEO &amp; GEO · AI Workshops &amp; Strategy</span>
+                </p>
 
-                <div className="flex flex-col items-center justify-between border-t border-white/5 pt-8 text-sm text-text-muted md:flex-row">
+                <div className="flex flex-col gap-4 text-sm text-text-muted md:flex-row md:items-center md:justify-between">
                     <p>&copy; {currentYear} DB23 eCommerce. All rights reserved.</p>
-                    <div className="mt-4 md:mt-0 flex items-center gap-4 flex-wrap justify-center">
+                    <div className="flex flex-wrap items-center gap-4">
                         <CurrencySelector />
-                        <span className="hidden sm:inline">|</span>
-                        <span>AI Workshops &bull; Automation &bull; Digital Systems</span>
+                        <span>Websites &bull; Search &bull; AI Strategy</span>
                     </div>
                 </div>
             </div>
+
+            {/* Oversized wordmark, cropped by the footer edge */}
+            <p
+                className="pointer-events-none mt-12 select-none text-center text-[34vw] font-semibold leading-[0.72] tracking-[-0.07em] text-white/[0.04] md:-mb-[4vw] md:text-[28vw]"
+                aria-hidden="true"
+            >
+                DB23
+            </p>
         </footer>
     );
 }

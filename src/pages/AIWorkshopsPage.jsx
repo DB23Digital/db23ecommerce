@@ -200,7 +200,7 @@ DB23 workshops are single fixed-price sessions — from R4,500, 90 minutes to a 
                     <div className="grid gap-6 lg:grid-cols-3">
                         {packages.map(pkg => (
                             <article key={pkg.name} className={`relative flex flex-col rounded-3xl border p-7 ${pkg.featured ? 'border-accent bg-accent/10 shadow-2xl shadow-accent/10' : 'border-white/10 bg-card/70'}`}>
-                                {pkg.tag && <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">{pkg.tag}</span>}
+                                {pkg.tag && <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-widest text-ink">{pkg.tag}</span>}
                                 <h3 className="mb-4 max-w-[16rem] text-2xl font-bold text-white">{pkg.name}</h3>
                                 <p className="mb-7 text-2xl font-black text-accent">{currency === 'ZAR' ? pkg.priceZAR : pkg.priceUSD}</p>
                                 <ul className="mb-8 flex-1 space-y-3">

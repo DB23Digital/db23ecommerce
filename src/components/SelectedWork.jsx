@@ -1,342 +1,176 @@
-import React from 'react';
-import { motion as Motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion as Motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { showcaseItems } from '../data/showcase';
 
-const showcaseItems = [
-    {
-        project: 'Safi Kwanza Resort',
-        category: 'Travel & Hospitality',
-        summary:
-            'An elegant and modern luxury resort website along the Kwanza River, featuring immersive safari storytelling, architectural design presentation, and 5-star booking integration.',
-        url: 'https://db23.co.za/safik-wanza/',
-        image: '/assets/showcase/safi-kwanza.jpg',
-        alt: 'Safi Kwanza Resort luxury riverside holiday destination website',
-    },
-    {
-        project: 'Have & Share',
-        category: 'Business Coaching',
-        summary:
-            'A premium business coaching and personal development website designed to communicate authority, transformation, and professional growth through elegant branding and clear service positioning.',
-        url: 'https://haveandshare.co.za',
-        external: true,
-        image: '/assets/showcase/haveandshare.webp',
-        alt: 'Have and Share business coaching website landing page',
-    },
-    {
-        project: 'Insight2Afrika',
-        category: 'Travel & Safaris',
-        summary:
-            'A luxury African safari and travel website built around immersive destination storytelling, curated travel experiences, and high-end visual presentation.',
-        url: 'https://insight2afrika.com/',
-        external: true,
-        image: '/assets/showcase/insight2afrika.webp',
-        alt: 'Insight2Afrika luxury African safari website landing page',
-    },
-    {
-        project: 'Living Atlas',
-        category: 'Travel & Safaris',
-        summary:
-            'An interactive African destination atlas built for Insight2Afrika, mapping regions, wildlife, and travel experiences into an immersive, story-driven exploration tool.',
-        url: 'https://db23.co.za/insight2afrika/living-atlas/index.html',
-        image: '/assets/showcase/living-atlas.jpg',
-        alt: 'Living Atlas interactive African destination map website',
-    },
-    {
-        project: 'Expedition Desk',
-        category: 'Travel & Safaris',
-        summary:
-            'A bespoke safari trip-planning tool for Insight2Afrika, helping travel consultants build, compare, and present tailored African expedition itineraries.',
-        url: 'https://db23.co.za/insight2afrika/expedition-desk/index.html',
-        image: '/assets/showcase/expedition-desk.jpg',
-        alt: 'Expedition Desk safari trip planning tool website',
-    },
-    {
-        project: 'RTM Travel',
-        category: 'Corporate Travel',
-        summary:
-            'A modern corporate travel management website positioning RTM as a trusted travel coordination partner for business travel, executive support, reporting, and logistics management.',
-        url: 'https://rtmtravel.co.za',
-        external: true,
-        image: '/assets/showcase/rtmtravel.webp',
-        alt: 'RTM Travel corporate travel management website',
-    },
-    {
-        project: 'SkillsPassport',
-        category: 'Education & Career Guidance',
-        summary:
-            'A comprehensive South African career guidance platform helping learners, schools, parents, sponsors, and employers navigate subject choices, career pathways, and future opportunities.',
-        url: 'https://skillspassportsa.co.za',
-        external: true,
-        image: '/assets/showcase/skillspassport.webp',
-        alt: 'SkillsPassport career guidance platform website',
-    },
-    {
-        project: 'Otrum',
-        category: 'Pool Technology',
-        summary:
-            'A high-tech product landing page for an intelligent swimming pool cleaning and navigation device using premium visuals, technical storytelling, and modern feature presentation.',
-        url: 'https://db23.co.za/otrum/',
-        image: '/assets/showcase/otrum.webp',
-        alt: 'Otrum intelligent swimming pool cleaning device landing page',
-    },
-    {
-        project: 'Mud Busters',
-        category: 'Sports Equipment Cleaning',
-        summary:
-            'A sports equipment cleaning and sanitization brand website focused on hygiene, restoration, and convenience for athletes, schools, sports clubs, and parents.',
-        url: 'https://mudbusters.co.za',
-        external: true,
-        image: '/assets/showcase/mudbusters.webp',
-        alt: 'Mud Busters sports equipment cleaning website',
-    },
-    {
-        project: 'Club Scrub',
-        category: 'Sports Industry',
-        summary:
-            'A conversion-focused sports gear cleaning landing page featuring service packages, process explanations, FAQs, pricing structures, and booking-driven calls to action.',
-        url: 'https://db23.co.za/club-scrub/',
-        image: '/assets/showcase/clubscrub.webp',
-        alt: 'Club Scrub sports gear cleaning service website',
-    },
-    {
-        project: 'Farmina Store Training',
-        category: 'Education & Training',
-        summary:
-            'An interactive education and product training platform helping retail staff better understand product benefits, improve customer conversations, and support more informed in-store recommendations.',
-        url: 'https://farmina-store-training.vercel.app/',
-        external: true,
-        image: '/assets/showcase/farmina-store-training.webp',
-        alt: 'Farmina Store Training education platform website',
-    },
-    {
-        project: 'Take It To Market',
-        category: 'Outsourced Marketing & AI Services',
-        summary:
-            'A high-tech digital growth platform helping small and medium businesses with outsourced marketing, AI-powered customer engagement, website modernization, automation, lead generation, and digital support services.',
-        url: 'https://db23.co.za/takeittomarket/',
-        image: '/assets/showcase/take-it-to-market.webp',
-        alt: 'Take It To Market outsourced marketing and AI services website',
-    },
-    {
-        project: 'Mar a Largo',
-        category: 'Lifestyle Estate Living',
-        summary:
-            'A polished lifestyle estate website presenting Mar a Largo through premium coastal living, estate positioning, visual storytelling, and clear property-focused calls to action.',
-        url: 'https://db23.co.za/mar-a-largo/index.html',
-        image: '/assets/showcase/mar-a-largo.webp',
-        alt: 'Mar a Largo lifestyle estate living website',
-    },
-    {
-        project: 'AREMH Developments',
-        category: 'Engineering & Construction',
-        summary:
-            'A premium civil construction and industrial real estate website designed with a tactical drafting theme, interactive geographic D3 globe hub navigation, inline HTML5 media popups, and robust cPanel integrated leasing proposals.',
-        url: 'https://db23.co.za/aremh-dev/',
-        image: '/assets/showcase/aremh-dev.webp',
-        alt: 'AREMH Developments engineering and civil construction website',
-    },
-    {
-        project: 'Fire Detection SA',
-        category: 'Industrial Safety',
-        summary:
-            'A reliable fire detection and suppression systems website that positions industrial safety solutions clearly for commercial, manufacturing, and infrastructure clients.',
-        url: 'https://fire-detection.co.za/',
-        external: true,
-        image: '/assets/showcase/fire-detection.webp',
-        alt: 'Fire Detection SA industrial fire safety systems website',
-    },
-    {
-        project: 'Stellenbosch Chiro',
-        category: 'Healthcare & Wellness',
-        summary:
-            'A clean, trust-building website for a Stellenbosch chiropractic practice, presenting treatments, practitioner credibility, and easy appointment booking.',
-        url: 'https://stellenboschchiro.co.za/',
-        external: true,
-        image: '/assets/showcase/stellenboschchiro.webp',
-        alt: 'Stellenbosch Chiro chiropractic practice website',
-    },
-    {
-        project: 'Scoliosis Bracing',
-        category: 'Healthcare & Medical Devices',
-        summary:
-            'A clinical, patient-focused website for a scoliosis bracing provider, explaining treatment approach, bracing technology, and patient care pathways clearly.',
-        url: 'https://scoliosisbracing.co.za/',
-        external: true,
-        image: '/assets/showcase/scoliosisbracing.webp',
-        alt: 'Scoliosis Bracing spinal treatment website',
-    },
-    {
-        project: 'Apex Pet Group',
-        category: 'Pet Industry',
-        summary:
-            'A corporate group website for Apex Pet Group, unifying brand presence, product lines, and business positioning across the pet industry.',
-        url: 'https://apexpetgroup.co.za',
-        external: true,
-        image: '/assets/showcase/apexpetgroup.jpg',
-        alt: 'Apex Pet Group corporate pet industry website',
-    },
-    {
-        project: 'Thando Mtunzi',
-        category: 'Personal Brand & AI Storytelling',
-        summary:
-            'An interactive personal-brand portfolio for a Cape Town creative manager. A retro television steps through CRT, plasma, and OLED eras to tell the story of AI arriving in the creative industry, alongside a campaign timeline and client roster.',
-        url: 'https://db23.co.za/thandomtunzi/',
-        image: '/assets/showcase/thandomtunzi.webp',
-        alt: 'Thando Mtunzi interactive creative portfolio website with a retro television hero',
-    },
-    {
-        project: 'WATTSHOT',
-        category: 'Beverage Brand',
-        summary:
-            'A bold brand website for a gin-based cherry shot, with an age gate, flavour and serve storytelling, awards and trade enquiry pages, and a clear route through to the official South African online store.',
-        url: 'https://wattshot.africa',
-        external: true,
-        image: '/assets/showcase/wattshot.webp',
-        alt: 'WATTSHOT gin-based cherry shot brand website',
-    },
+function hostOf(url) {
+    try {
+        return new URL(url).host.replace(/^www\./, '');
+    } catch {
+        return url;
+    }
+}
+
+function BrowserFrame({ item, className = '', eager = false }) {
+    return (
+        <div className={`overflow-hidden rounded-md border border-white/15 bg-card shadow-[0_30px_60px_-15px_rgba(0,0,0,0.75)] ${className}`}>
+            <div className="flex h-7 items-center gap-3 border-b border-white/10 bg-[#1a1d1b] px-3">
+                <span className="flex gap-1" aria-hidden="true">
+                    <span className="h-2 w-2 rounded-full bg-white/15" />
+                    <span className="h-2 w-2 rounded-full bg-white/15" />
+                </span>
+                <span className="truncate text-[0.65rem] text-white/45">{hostOf(item.url)}</span>
+            </div>
+            <div className="aspect-[16/10] bg-card">
+                <img
+                    src={item.image}
+                    alt={item.alt}
+                    width="1200"
+                    height="750"
+                    loading={eager ? 'eager' : 'lazy'}
+                    decoding="async"
+                    className="h-full w-full object-cover object-top"
+                />
+            </div>
+        </div>
+    );
+}
+
+// Fan positions for the opener, desktop only. x/y in %, r in degrees, depth drives parallax.
+const fanLayout = [
+    { x: 2, y: 18, w: 34, r: -4, depth: 0.6, z: 1 },
+    { x: 24, y: 4, w: 36, r: 2, depth: 1, z: 3 },
+    { x: 50, y: 14, w: 34, r: -2, depth: 0.75, z: 2 },
+    { x: 70, y: 0, w: 32, r: 4, depth: 0.5, z: 1 },
+    { x: 38, y: 40, w: 30, r: -1, depth: 1.2, z: 4 },
 ];
 
-
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.08,
-        },
-    },
-};
-
-const card = {
-    hidden: { opacity: 0, y: 26 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.55,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-};
+function FanFrame({ item, layout, progress }) {
+    const y = useTransform(progress, [0, 1], [80 * layout.depth, -120 * layout.depth]);
+    return (
+        <Motion.div
+            style={{ y, left: `${layout.x}%`, top: `${layout.y}%`, width: `${layout.w}%`, rotate: layout.r, zIndex: layout.z }}
+            className="absolute"
+        >
+            <BrowserFrame item={item} />
+        </Motion.div>
+    );
+}
 
 export function SelectedWork({ limit }) {
     const items = limit ? showcaseItems.slice(0, limit) : showcaseItems;
+    const fanItems = items.slice(0, Math.min(5, items.length));
+    const [preview, setPreview] = useState(0);
+    const openerRef = useRef(null);
+    const { scrollYProgress } = useScroll({ target: openerRef, offset: ['start end', 'end start'] });
+
     return (
         <section
             id="work-showcase"
-            className="relative overflow-hidden bg-gradient-to-b from-background via-[#0b1020] to-background py-24 md:py-32"
+            className="relative overflow-x-clip bg-background py-24 md:py-32"
             aria-labelledby="work-showcase-heading"
         >
-            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_18%_12%,rgba(59,130,246,0.18),transparent_32%),radial-gradient(circle_at_88%_18%,rgba(34,211,238,0.12),transparent_28%)]" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
-            <div className="container relative z-10 mx-auto px-4 md:px-8">
-                <div className="mb-14 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.55fr)] lg:items-end">
-                    <div className="max-w-4xl">
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-                            <a href="https://db23.co.za/#work-showcase" className="hover:underline">Work Showcase</a>
-                        </p>
-                        <h2 id="work-showcase-heading" className="mb-5 max-w-4xl text-3xl font-bold text-white md:text-5xl">
-                            Modern digital systems across multiple business verticals
-                        </h2>
-                        <p className="max-w-3xl text-lg leading-relaxed text-text-muted">
-                            DB23 builds practical, conversion-focused digital experiences for businesses across coaching,
-                            travel, education, sport, product innovation, AI services, estate living, and professional services.
-                            Each project is designed to communicate clearly, build trust, and support measurable business growth.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
-                        {[
-                            ['100+', 'Projects'],
-                            ['8+', 'Verticals'],
-                            ['AI', 'Ready'],
-                        ].map(([value, label]) => (
-                            <div key={label} className="text-center">
-                                <div className="text-2xl font-black text-white">{value}</div>
-                                <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-text-muted">{label}</div>
-                            </div>
-                        ))}
-                    </div>
+            {/* Opener: fanned live sites, headline bottom-left */}
+            <div ref={openerRef} className="relative mx-auto max-w-[1400px] px-4 md:px-8">
+                <div className="relative hidden h-[620px] lg:block" aria-hidden="true">
+                    {fanItems.map((item, i) => (
+                        <FanFrame key={item.project} item={item} layout={fanLayout[i]} progress={scrollYProgress} />
+                    ))}
+                    <div className="absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-background via-background/85 to-transparent" />
                 </div>
 
-                <Motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-                >
-                    {items.map((item) => (
-                        <Motion.article
-                            key={item.project}
-                            variants={card}
-                            className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] shadow-2xl shadow-black/20 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-accent/55 hover:shadow-accent/10"
+                <div className="relative z-20 grid gap-8 lg:-mt-48 lg:grid-cols-12">
+                    <div className="lg:col-span-8">
+                        <h2
+                            id="work-showcase-heading"
+                            className="text-balance text-[2.6rem] font-medium leading-[1] tracking-[-0.04em] text-white md:text-7xl"
                         >
-                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-accent/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                            <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-card">
-                                <img
-                                    src={item.image}
-                                    alt={item.alt}
-                                    width="1200"
-                                    height="760"
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                                    onError={(e) => {
-                                        e.currentTarget.style.display = 'none';
-                                        e.currentTarget.parentElement.classList.add('flex', 'items-center', 'justify-center');
-                                        const placeholder = document.createElement('div');
-                                        placeholder.className = 'text-text-muted text-sm font-medium opacity-40';
-                                        placeholder.textContent = item.project;
-                                        e.currentTarget.parentElement.appendChild(placeholder);
-                                    }}
-                                />
-                                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                            </div>
+                            Websites that work as hard as you do.
+                        </h2>
+                        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-text-muted">
+                            Conversion-focused sites across coaching, travel, education, sport, healthcare, product
+                            innovation and estate living. Each one is built to communicate clearly, earn trust, and bring in
+                            enquiries.
+                        </p>
+                    </div>
+                    <p className="text-sm text-text-muted lg:col-span-3 lg:col-start-10 lg:self-end lg:text-right">
+                        {items.length} live projects below.
+                    </p>
+                </div>
 
-                            <div className="relative flex flex-1 flex-col p-6">
-                                <span className="mb-4 w-fit rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-widest text-accent">
-                                    {item.category}
-                                </span>
-                                <h3 className="mb-3 text-xl font-bold text-white">{item.project}</h3>
-                                <p className="mb-6 flex-1 text-sm leading-relaxed text-text-muted">{item.summary}</p>
+                {/* Mobile: swipeable frames */}
+                <div
+                    className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] lg:hidden"
+                    aria-hidden="true"
+                >
+                    {fanItems.map((item, i) => (
+                        <BrowserFrame key={item.project} item={item} eager={i === 0} className="w-[82%] shrink-0 snap-start sm:w-[60%]" />
+                    ))}
+                </div>
+            </div>
+
+            {/* Index: archive rows with a sticky preview on desktop */}
+            <div id="work-index" className="mx-auto mt-16 max-w-[1400px] px-4 md:mt-24 md:px-8">
+                <div className="grid gap-10 lg:grid-cols-12">
+                    <ul className="lg:col-span-7">
+                        {items.map((item, i) => (
+                            <li key={item.project} className="border-t border-white/10 last:border-b">
                                 {/* Hosted client microsites carry X-Robots-Tag: noindex, so every
                                     showcase link is nofollow — none should collect crawl equity. */}
                                 <a
                                     href={item.url}
                                     target="_blank"
                                     rel="nofollow noopener noreferrer"
-                                    className="inline-flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition hover:border-accent/50 hover:bg-accent/15 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
-                                    aria-label={`View ${item.project} project`}
+                                    onMouseEnter={() => setPreview(i)}
+                                    onFocus={() => setPreview(i)}
+                                    className={`group grid grid-cols-[4.5rem_1fr_auto] items-center gap-4 py-5 transition-colors sm:grid-cols-[1fr_auto_auto] sm:gap-8 md:py-6 ${
+                                        preview === i ? 'lg:text-white' : 'lg:text-white/60'
+                                    }`}
+                                    aria-label={`${item.project}, ${item.category}. Opens the live site.`}
                                 >
-                                    View Project
-                                    <ArrowUpRight className="h-4 w-4 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                                    <img
+                                        src={item.image}
+                                        alt=""
+                                        width="144"
+                                        height="90"
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="aspect-[16/10] w-full rounded-sm object-cover object-top sm:hidden"
+                                    />
+                                    <span className="text-xl font-medium tracking-tight text-white transition-colors group-hover:text-accent md:text-3xl">
+                                        {item.project}
+                                    </span>
+                                    <span className="hidden text-sm text-text-muted sm:block">{item.category}</span>
+                                    <ArrowUpRight className="h-5 w-5 text-text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true" />
                                 </a>
-                            </div>
-                        </Motion.article>
-                    ))}
-                </Motion.div>
+                            </li>
+                        ))}
+                    </ul>
 
-                <div className="mt-16 border-t border-white/10 pt-12 md:mt-20">
-                    <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-                        <div className="max-w-3xl">
-                            <h3 className="mb-4 text-3xl font-black leading-tight text-white md:text-4xl">
-                                Want your business to feel this clear and modern online?
-                            </h3>
-                            <p className="text-lg leading-relaxed text-text-muted">
-                                From AI workshops and automation to premium websites and digital systems, DB23 helps businesses
-                                turn practical technology ideas into real commercial value.
-                            </p>
+                    <div className="hidden lg:col-span-5 lg:block">
+                        <div className="sticky top-28">
+                            <BrowserFrame item={items[preview]} />
+                            <p className="mt-5 text-sm text-text-muted">{items[preview].category}</p>
+                            <p className="mt-2 text-pretty leading-relaxed text-white/85">{items[preview].summary}</p>
                         </div>
-                        <a
-                            href="#contact"
-                            className="inline-flex h-14 items-center justify-center gap-3 rounded-md bg-accent px-8 text-base font-semibold text-white shadow-lg shadow-accent/20 transition hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
-                        >
-                            Start a Project
-                            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                        </a>
                     </div>
+                </div>
+
+                <div className="mt-20 grid gap-8 md:grid-cols-12 md:items-end">
+                    <p className="text-balance text-3xl font-medium leading-tight tracking-[-0.03em] text-white md:col-span-8 md:text-4xl">
+                        Want your business to feel this clear and modern online?
+                    </p>
+                    <a
+                        href="#contact"
+                        onClick={() => {
+                            window.sessionStorage.setItem('db23-contact-subject', 'Start a Project');
+                            window.dispatchEvent(new CustomEvent('db23-contact-subject', { detail: { subject: 'Start a Project' } }));
+                        }}
+                        className="group inline-flex h-14 items-center justify-center gap-3 rounded-[3px] bg-accent px-8 text-base font-semibold text-ink transition-colors hover:bg-accent-hover md:col-span-4 md:justify-self-end"
+                    >
+                        Start a project
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </a>
                 </div>
             </div>
         </section>

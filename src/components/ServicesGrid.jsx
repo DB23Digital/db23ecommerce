@@ -1,109 +1,131 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import { ArrowRight, Bot, Gauge, Headphones, MonitorSmartphone, PhoneCall, Workflow } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+
+function selectContactSubject(subject) {
+    window.sessionStorage.setItem('db23-contact-subject', subject);
+    window.dispatchEvent(new CustomEvent('db23-contact-subject', { detail: { subject } }));
+}
 
 const solutions = [
     {
-        id: 'ai-automation',
-        icon: <Bot className="h-7 w-7" />,
-        eyebrow: 'Solution Group 1',
-        title: 'AI & Automation',
+        id: 'website-design',
+        title: 'Website design',
         description:
-            'Practical AI systems that reduce manual work, improve customer response, and connect the tools your business already uses.',
-        items: ['AI voice receptionists', 'AI customer engagement', 'Workflow automation', 'AI integrations', 'Lead qualification systems'],
-        accent: 'text-cyan-300',
-        iconBg: 'bg-cyan-400/10',
-        border: 'hover:border-cyan-300/45',
+            'Modern, mobile-first websites that make your business clearer, more credible, and easier to contact. Built to bring in enquiries, not just to look good.',
+        items: ['Business websites', 'Landing pages', 'Redesigns', 'Conversion-focused copy and layout'],
+        links: [{ label: 'Website design', href: '/website-design/' }],
     },
     {
-        id: 'digital-growth',
-        icon: <MonitorSmartphone className="h-7 w-7" />,
-        eyebrow: 'Solution Group 2',
-        title: 'Digital Growth Systems',
+        id: 'hosting',
+        title: 'Hosting & care',
         description:
-            'Modern digital experiences designed to make your business clearer, more credible, and easier for customers to engage with.',
-        items: ['Websites', 'Landing pages', 'UX optimization', 'Conversion systems', 'Modern digital experiences'],
-        accent: 'text-accent',
-        iconBg: 'bg-accent/10',
-        border: 'hover:border-accent/45',
+            'One monthly plan keeps your site online and getting found. We host it for you, or work on your existing hosting, and every plan includes SEO, AEO and GEO with a monthly report.',
+        plans: [
+            { name: 'Hosted by DB23', price: 'From R999', note: 'Hosting, SEO, AEO & GEO, monthly reporting' },
+            { name: 'On your own hosting', price: 'From R799', note: 'You pay your hosting. We do SEO, AEO & GEO and reporting on your domain' },
+        ],
+        links: [{ label: 'Ask about a plan', href: '#contact', subject: 'Hosting & SEO plan' }],
     },
     {
-        id: 'outsourced-support',
-        icon: <Headphones className="h-7 w-7" />,
-        eyebrow: 'Solution Group 3',
-        title: 'Outsourced Digital Support',
+        id: 'search',
+        title: 'SEO, AEO & GEO',
         description:
-            'Ongoing digital capability for businesses that need consistent support without building a full internal digital team.',
-        items: ['Outsourced marketing', 'AI-assisted support', 'Content systems', 'Digital operations', 'Ongoing optimization'],
-        accent: 'text-emerald-300',
-        iconBg: 'bg-emerald-400/10',
-        border: 'hover:border-emerald-300/45',
+            'Get found wherever customers search: on Google, in AI Overviews, and in tools like ChatGPT and Perplexity. AI search runs on the same fundamentals as SEO, so we get those right first.',
+        items: ['Technical SEO', 'Local search', 'Content that answers real questions', 'AI search visibility'],
+        links: [
+            { label: 'SEO services', href: '/seo-services/' },
+            { label: 'Read the blog', href: '/blog/' },
+        ],
     },
-];
-
-const capabilities = [
-    { label: 'Voice AI', icon: <PhoneCall className="h-4 w-4" /> },
-    { label: 'Automation', icon: <Workflow className="h-4 w-4" /> },
-    { label: 'Digital Systems', icon: <Gauge className="h-4 w-4" /> },
+    {
+        id: 'ai-strategy',
+        title: 'AI workshops & strategy',
+        description:
+            'Practical AI for small businesses. Hands-on workshops that get your team using AI tools properly, and strategy sessions that turn AI interest into a short, sensible plan.',
+        items: ['Team workshops', 'Leadership strategy sessions', 'AI opportunity mapping', 'Implementation guidance'],
+        links: [
+            { label: 'AI workshops', href: '/ai-workshops/' },
+            { label: 'AI training', href: '/ai-training/' },
+        ],
+    },
 ];
 
 export function ServicesGrid() {
     return (
-        <section className="relative bg-background py-24 md:py-32" id="solutions" aria-labelledby="solutions-heading">
-            <div className="container mx-auto px-4 md:px-8">
-                <div className="mb-14 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.55fr)] lg:items-end">
-                    <div className="max-w-4xl">
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">Solutions</p>
-                        <h2 id="solutions-heading" className="mb-5 text-3xl font-black leading-tight text-white md:text-5xl">
-                            Business Modernization Solutions
-                        </h2>
-                        <p className="text-lg leading-relaxed text-text-muted">
-                            DB23 helps businesses move from disconnected tools and manual processes into clear, modern
-                            digital systems that support growth, customer service, marketing, and operations.
-                        </p>
-                    </div>
-
-                    <div className="grid gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                        {capabilities.map((item) => (
-                            <div key={item.label} className="flex items-center gap-3 rounded-xl bg-background/70 px-4 py-3">
-                                <span className="text-accent">{item.icon}</span>
-                                <span className="text-sm font-semibold text-white">{item.label}</span>
-                            </div>
-                        ))}
-                    </div>
+        <section className="relative bg-background py-24 md:py-36" id="solutions" aria-labelledby="solutions-heading">
+            <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+                <div className="mb-16 grid gap-8 md:grid-cols-12">
+                    <h2
+                        id="solutions-heading"
+                        className="text-balance text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-white md:col-span-7 md:text-6xl"
+                    >
+                        Four services, done properly.
+                    </h2>
+                    <p className="text-pretty text-lg leading-relaxed text-text-muted md:col-span-4 md:col-start-9 md:self-end">
+                        A small business needs a website that works, a place for it to live, a way to be found, and a clear
+                        idea of where AI fits. That is what we do.
+                    </p>
                 </div>
 
-                <Motion.div
-                    variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.12 } } }}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="grid gap-6 lg:grid-cols-3"
-                >
-                    {solutions.map((solution) => (
+                <div>
+                    {solutions.map((solution, i) => (
                         <Motion.article
                             key={solution.id}
                             id={solution.id}
-                            variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55 } } }}
-                            className={`flex h-full flex-col rounded-3xl border border-white/10 bg-card/70 p-8 transition duration-300 hover:-translate-y-1 ${solution.border}`}
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-10% 0px' }}
+                            transition={{ duration: 0.7, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                            className="group grid gap-6 border-t border-white/10 py-10 transition-colors md:grid-cols-12 md:gap-8 md:py-14"
                         >
-                            <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${solution.iconBg} ${solution.accent}`}>
-                                {solution.icon}
+                            <h3 className="text-3xl font-medium tracking-[-0.03em] text-white transition-colors group-hover:text-accent md:col-span-5 md:text-5xl">
+                                {solution.title}
+                            </h3>
+                            <div className="md:col-span-6 md:col-start-7">
+                                <p className="mb-6 text-pretty text-lg leading-relaxed text-text-muted">{solution.description}</p>
+                                {solution.items && (
+                                    <p className="mb-8 text-sm leading-relaxed text-white/80">
+                                        {solution.items.join(' / ')}
+                                    </p>
+                                )}
+                                {solution.plans && (
+                                    <div className="mb-8">
+                                        <dl className="grid border-t border-white/10 sm:grid-cols-2">
+                                            {solution.plans.map((plan, p) => (
+                                                <div
+                                                    key={plan.name}
+                                                    className={`border-b border-white/10 py-5 sm:border-b-0 ${p > 0 ? 'sm:border-l sm:pl-6' : 'sm:pr-6'}`}
+                                                >
+                                                    <dt className="text-sm text-text-muted">{plan.name}</dt>
+                                                    <dd className="mt-1 text-3xl font-medium tracking-[-0.03em] text-white">
+                                                        {plan.price}
+                                                        <span className="text-base text-text-muted"> /month</span>
+                                                    </dd>
+                                                    <dd className="mt-2 text-sm leading-relaxed text-white/80">{plan.note}</dd>
+                                                </div>
+                                            ))}
+                                        </dl>
+                                        <p className="mt-3 text-xs text-text-muted">Prices include VAT.</p>
+                                    </div>
+                                )}
+                                <div className="flex flex-wrap gap-x-8 gap-y-3">
+                                    {solution.links.map((link) => (
+                                        <a
+                                            key={link.href}
+                                            href={link.href}
+                                            onClick={link.subject ? () => selectContactSubject(link.subject) : undefined}
+                                            className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-white underline decoration-white/25 underline-offset-[6px] transition-colors hover:decoration-accent"
+                                        >
+                                            {link.label}
+                                            <ArrowUpRight className="h-4 w-4 text-accent transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" aria-hidden="true" />
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
-                            <p className={`mb-3 text-xs font-bold uppercase tracking-widest ${solution.accent}`}>{solution.eyebrow}</p>
-                            <h3 className="mb-4 text-2xl font-bold text-white">{solution.title}</h3>
-                            <p className="mb-7 flex-1 leading-relaxed text-text-muted">{solution.description}</p>
-                            <ul className="space-y-3">
-                                {solution.items.map((item) => (
-                                    <li key={item} className="flex items-center gap-3 text-sm text-white/78">
-                                        <ArrowRight className={`h-4 w-4 shrink-0 ${solution.accent}`} aria-hidden="true" />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
                         </Motion.article>
                     ))}
-                </Motion.div>
+                </div>
             </div>
         </section>
     );

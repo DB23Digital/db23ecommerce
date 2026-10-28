@@ -4,7 +4,7 @@ import { Button } from './ui/Button';
 
 const DEFAULT_SUBJECT = 'Website Contact Form';
 
-export function ContactForm() {
+export function ContactForm({ withDetails = false }) {
     const [subject, setSubject] = useState(DEFAULT_SUBJECT);
     const [status, setStatus] = useState({ type: 'idle', message: '' });
 
@@ -55,126 +55,116 @@ export function ContactForm() {
         }
     };
 
-    if (status.type === 'success') {
+    const fieldClass =
+        'w-full rounded-none border-0 border-b border-white/20 bg-transparent px-0 py-3 text-lg text-white placeholder:text-white/30 transition-colors focus:border-accent focus:outline-none focus:ring-0';
+
+    const body = status.type === 'success' ? (
+        <Motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="border-t border-white/10 pt-10"
+            role="status"
+        >
+            <h2 className="mb-4 text-3xl font-medium tracking-tight text-white">Thank you for your enquiry.</h2>
+            <p className="mb-8 text-text-muted">
+                We have received your message and will get back to you with a practical next step shortly.
+            </p>
+            <Button href="/" variant="outline">Back to the home page</Button>
+        </Motion.div>
+    ) : (
+        <form className="space-y-8" onSubmit={handleSubmit}>
+            <input type="hidden" name="subject" value={subject} />
+
+            <p className="text-sm text-text-muted">
+                Enquiry type: <span className="font-medium text-accent">{subject}</span>
+            </p>
+
+            <div>
+                <label htmlFor="name" className="block text-sm text-text-muted">Full name</label>
+                <input type="text" id="name" name="name" autoComplete="name" className={fieldClass} placeholder="Your name" required />
+            </div>
+
+            <div>
+                <label htmlFor="email" className="block text-sm text-text-muted">Email address</label>
+                <input type="email" id="email" name="email" autoComplete="email" className={fieldClass} placeholder="you@company.co.za" required />
+            </div>
+
+            <div>
+                <label htmlFor="message" className="block text-sm text-text-muted">How can we help?</label>
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    className={`${fieldClass} resize-none`}
+                    placeholder="What would you like to improve, automate or modernise?"
+                    required
+                ></textarea>
+            </div>
+
+            {status.message && (
+                <p
+                    role={status.type === 'error' ? 'alert' : 'status'}
+                    className={`text-sm font-medium ${status.type === 'error' ? 'text-red-300' : 'text-text-muted'}`}
+                >
+                    {status.message}
+                </p>
+            )}
+
+            <Button type="submit" className="w-full sm:w-auto" size="lg" disabled={status.type === 'loading'}>
+                {status.type === 'loading' ? 'Sending…' : 'Send message'}
+            </Button>
+        </form>
+    );
+
+    if (!withDetails) {
         return (
-            <section className="py-24 bg-background border-y border-white/5" id="contact">
-                <div className="container mx-auto px-4 md:px-8 text-center max-w-xl">
-                    <Motion.div 
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="bg-card p-12 rounded-3xl border border-white/5"
-                    >
-                        <div className="w-16 h-16 bg-emerald-400/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <h2 className="text-3xl font-bold text-white mb-4">Thank you for your enquiry!</h2>
-                        <p className="text-text-muted mb-8">
-                            We have received your message and will get back to you with a practical next step shortly.
-                        </p>
-                        <Button href="/" size="lg" className="w-full sm:w-auto">
-                            Return to Home Page
-                        </Button>
-                    </Motion.div>
-                </div>
+            <section className="py-12" id="contact">
+                <div className="mx-auto max-w-xl">{body}</div>
             </section>
         );
     }
 
     return (
-        <section className="py-24 bg-background border-y border-white/5" id="contact">
-            <div className="container mx-auto px-4 md:px-8">
-                <div className="max-w-xl mx-auto">
-                    <div className="text-center mb-10">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Let&apos;s talk business modernization.</h2>
-                        <p className="text-text-muted">
-                            Tell us what you want to improve, automate, or modernize. We&apos;ll get back to you with a practical next step.
-                        </p>
-                    </div>
+        <section className="border-t border-white/10 bg-background py-24 md:py-32" id="contact" aria-labelledby="contact-heading">
+            <div className="mx-auto grid max-w-[1400px] gap-16 px-4 md:px-8 lg:grid-cols-12">
+                <div className="lg:col-span-5">
+                    <h2 id="contact-heading" className="text-balance text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-white md:text-5xl">
+                        Let&apos;s talk about your business.
+                    </h2>
+                    <p className="mt-6 max-w-md text-pretty text-text-muted">
+                        Tell us what you want to improve, automate, or modernise. We&apos;ll get back to you with a practical
+                        next step.
+                    </p>
 
-                    <Motion.form
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-6 bg-card p-8 rounded-3xl border border-white/5"
-                        onSubmit={handleSubmit}
-                    >
-                        <input type="hidden" name="subject" value={subject} />
-
-                        <div className="rounded-lg border border-accent/20 bg-accent/10 px-4 py-3 text-sm font-semibold text-white">
-                            Enquiry type: <span className="text-accent">{subject}</span>
+                    <dl className="mt-12 space-y-6">
+                        <div>
+                            <dt className="text-sm text-text-muted">WhatsApp</dt>
+                            <dd>
+                                <a
+                                    href="https://wa.me/27836025227?text=Hi%20DB23%2C%20I%20would%20like%20to%20talk%20about%20"
+                                    rel="noopener"
+                                    className="text-xl font-medium text-white underline decoration-white/25 underline-offset-[6px] hover:decoration-accent"
+                                >
+                                    Message us, reply within the hour
+                                </a>
+                            </dd>
                         </div>
-
-                        <div className="space-y-2">
-                            <label htmlFor="name" className="block text-sm font-medium text-white/80">Full Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                className="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
-                                placeholder="Jack Black"
-                                required
-                            />
+                        <div>
+                            <dt className="text-sm text-text-muted">Phone</dt>
+                            <dd>
+                                <a href="tel:+27836025227" className="text-xl font-medium text-white hover:text-accent">+27 83 602 5227</a>
+                            </dd>
                         </div>
-
-                        <div className="space-y-2">
-                            <label htmlFor="email" className="block text-sm font-medium text-white/80">Email Address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
-                                placeholder="john@example.com"
-                                required
-                            />
+                        <div>
+                            <dt className="text-sm text-text-muted">Email</dt>
+                            <dd>
+                                <a href="mailto:deon@db23.co.za" className="text-xl font-medium text-white hover:text-accent">deon@db23.co.za</a>
+                            </dd>
                         </div>
-
-                        <div className="space-y-2">
-                            <label htmlFor="message" className="block text-sm font-medium text-white/80">How can we help?</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="4"
-                                className="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors resize-none"
-                                placeholder="Tell us about your project goals..."
-                                required
-                            ></textarea>
-                        </div>
-
-                        {status.message && (
-                            <p
-                                className={`text-sm font-medium ${
-                                    status.type === 'success'
-                                        ? 'text-emerald-400'
-                                        : status.type === 'error'
-                                            ? 'text-red-300'
-                                            : 'text-text-muted'
-                                }`}
-                            >
-                                {status.message}
-                            </p>
-                        )}
-
-                        <Button type="submit" className="w-full" size="lg" disabled={status.type === 'loading'}>
-                            {status.type === 'loading' ? 'Sending...' : 'Send Message'}
-                        </Button>
-                    </Motion.form>
-
-                    <div className="mt-8 rounded-2xl overflow-hidden" style={{ height: '360px' }}>
-                        <iframe
-                            src="https://storage.googleapis.com/maps-solutions-9wahyfg264/address-selection/flzc/address-selection.html"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            title="DB23 eCommerce — Tryall Road, Parklands, Cape Town"
-                            aria-label="Map showing DB23 eCommerce location in Parklands, Cape Town"
-                        />
-                    </div>
+                    </dl>
                 </div>
+
+                <div className="lg:col-span-6 lg:col-start-7">{body}</div>
             </div>
         </section>
     );
