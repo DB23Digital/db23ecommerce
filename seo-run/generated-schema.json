@@ -1,0 +1,53 @@
+{
+  "_note": "Snippets for the fixes in 03-SCHEMA-REPORT.md. Values in <angle brackets> must come from Deon. Nothing here has been applied to the site.",
+  "localBusiness_geo_fix": {
+    "_note": "OpenStreetMap street-centreline approximation for Tryall Road, Parklands (about 16 km from the current pin). Replace with the pin on the Google Business Profile before using.",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -33.79269,
+      "longitude": 18.49951
+    }
+  },
+  "localBusiness_priceRange_fix": {
+    "priceRange": "<R / RR / RRR style value, or remove the property>"
+  },
+  "service_offer_fix": {
+    "_options": "Remove the offers property entirely, or use a real published price:",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "ZAR",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "<published monthly price>",
+        "priceCurrency": "ZAR",
+        "unitText": "per month"
+      }
+    }
+  },
+  "article_author_fix": {
+    "author": {
+      "@type": "Person",
+      "name": "Deon Botha",
+      "url": "https://db23.co.za/about/",
+      "sameAs": [
+        "https://www.linkedin.com/in/deon-botha-skillspassport/"
+      ],
+      "worksFor": {
+        "@id": "https://db23.co.za/#organization"
+      }
+    }
+  },
+  "blog_index_optional": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://db23.co.za/blog/#collection",
+    "url": "https://db23.co.za/blog/",
+    "name": "AI & Digital Business Insights | DB23 Blog",
+    "isPartOf": {
+      "@id": "https://db23.co.za/#website"
+    },
+    "publisher": {
+      "@id": "https://db23.co.za/#organization"
+    }
+  }
+}
