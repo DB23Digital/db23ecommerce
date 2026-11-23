@@ -36,6 +36,8 @@ export function Footer() {
                         <ul className="mb-8 space-y-4">
                             <li><a href="/about/" className="text-text-muted transition-colors hover:text-white">About DB23</a></li>
                             <li><a href="/#plain-english-ai" className="text-text-muted transition-colors hover:text-white">AI in Plain English</a></li>
+                            <li><a href="/ai-academy/" className="text-text-muted transition-colors hover:text-white">Free AI Academy</a></li>
+                            <li><a href="/prompt-library/" className="text-text-muted transition-colors hover:text-white">Free AI Prompt Library</a></li>
                             <li><a href="/contact/" className="text-text-muted transition-colors hover:text-white">Contact Us</a></li>
                             <li><a href="/#contact" className="text-text-muted transition-colors hover:text-white">Book a Workshop</a></li>
                         </ul>
