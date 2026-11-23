@@ -20,6 +20,15 @@ export const showcaseItems = [
         image: '/assets/showcase/thandomtunzi.webp',
         alt: 'Thando Mtunzi interactive creative portfolio website with a retro television hero',
     },
+    {
+        project: 'Fire LED Sens',
+        category: 'Product Launch & 3D Showcase',
+        summary:
+            'A scroll-driven product site for Fire LED Sens, a smoke detector tester from Fire Detection & Engineering Solutions. A 3D model of the tester opens up as you scroll to show how it reaches the detector, makes real smoke, watches the fire LED and logs the result.',
+        url: 'https://db23.co.za/fireledsens/',
+        image: '/assets/showcase/fireledsens.webp',
+        alt: 'Fire LED Sens smoke detector tester product website with a 3D model of the tester',
+    },
     // status: 'In progress' = not live yet: shown without a link.
     {
         project: 'Hire55',
