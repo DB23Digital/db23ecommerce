@@ -14,6 +14,7 @@ import { PlainEnglishAI } from '../components/PlainEnglishAI';
 import { SEOHead } from '../components/SEOHead';
 import { SiteHeader } from '../components/SiteHeader';
 import { ImplementationExample } from '../components/ImplementationExample';
+import { FreeAIResources } from '../components/FreeAIResources';
 
 export function HomePage() {
     return (
@@ -34,6 +35,7 @@ export function HomePage() {
                     <Hero />
                     <PlainEnglishAI />
                     <ServicesGrid />
+                    <FreeAIResources />
                     <SelectedWork />
                     <AITraining />
                     <ImplementationExample />

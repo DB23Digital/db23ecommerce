@@ -1,5 +1,6 @@
 import React from 'react';
 import { CurrencySelector } from './ui/CurrencySelector';
+import { aiResources } from '../data/aiResources';
 
 const explore = [
     { label: 'Website Design', href: '/website-design/' },
@@ -42,7 +43,7 @@ export function Footer() {
                         </p>
                     </div>
 
-                    <div className="md:col-span-3 md:col-start-6">
+                    <div className="md:col-span-3 md:col-start-5">
                         <h2 className="mb-5 text-sm text-white">Services</h2>
                         <ul className="space-y-3 text-sm">
                             {explore.map((l) => (
@@ -62,6 +63,12 @@ export function Footer() {
                         <ul className="space-y-3 text-sm">
                             {company.map((l) => (
                                 <li key={l.href}><a href={l.href} className={linkClass}>{l.label}</a></li>
+                            ))}
+                        </ul>
+                        <h2 className="mb-4 mt-10 text-sm text-white">Free AI Resources</h2>
+                        <ul className="space-y-3 text-sm">
+                            {aiResources.map((r) => (
+                                <li key={r.href}><a href={r.href} className={linkClass}>{r.name}</a></li>
                             ))}
                         </ul>
                     </div>
