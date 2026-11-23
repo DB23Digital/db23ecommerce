@@ -21,6 +21,7 @@ const navLinks = [
     { label: 'Voice AI', href: '/voice-ai/' },
     { label: 'AI Training', href: '/ai-training/' },
     { label: 'Work', href: 'https://db23.co.za/#work-showcase' },
+    { label: 'Free AI Resources', href: '#free-ai-resources' },
     { label: 'Contact', href: '#contact' },
 ];
 
@@ -43,7 +44,7 @@ export function HomePage() {
                     <a href="/" className="flex items-center">
                         <img src="/DB23%20logo.png" alt="DB23 eCommerce" className="h-10 w-auto" width="120" height="40" />
                     </a>
-                    <nav aria-label="Main navigation" className="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+                    <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-medium text-text-muted">
                         {navLinks.map(link => (
                             <a key={link.href} href={link.href} className="hover:text-white transition-colors">
                                 {link.label}
@@ -51,11 +52,11 @@ export function HomePage() {
                         ))}
                     </nav>
                     <div className="flex items-center gap-4">
-                        <a href="/ai-workshops/" className="hidden md:inline-flex text-sm font-semibold hover:text-accent transition-colors">
+                        <a href="/ai-workshops/" className="hidden lg:inline-flex text-sm font-semibold hover:text-accent transition-colors">
                             Book AI Workshop
                         </a>
                         <button
-                            className="md:hidden text-text-muted hover:text-white"
+                            className="lg:hidden text-text-muted hover:text-white"
                             onClick={() => setMobileOpen(!mobileOpen)}
                             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                         >
@@ -64,7 +65,7 @@ export function HomePage() {
                     </div>
                 </div>
                 {mobileOpen && (
-                    <div className="md:hidden border-t border-white/5 bg-background/95 backdrop-blur-md px-4 pb-6 pt-4">
+                    <div className="lg:hidden border-t border-white/5 bg-background/95 backdrop-blur-md px-4 pb-6 pt-4">
                         <nav className="flex flex-col gap-4">
                             {navLinks.map(link => (
                                 <a key={link.href} href={link.href} className="text-sm font-medium text-text-muted hover:text-white transition-colors py-1" onClick={() => setMobileOpen(false)}>
@@ -86,6 +87,30 @@ export function HomePage() {
                 <Features />
                 <WhyChooseUs />
                 <PlainEnglishAI />
+                <section id="free-ai-resources" aria-labelledby="free-ai-resources-heading" className="scroll-mt-28 border-y border-white/10 bg-card/40 py-16 md:py-20">
+                    <div className="container mx-auto px-4 md:px-8">
+                        <div className="mb-8 max-w-3xl">
+                            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-blue-300">Free learning from DB23</p>
+                            <h2 id="free-ai-resources-heading" className="mb-4 text-3xl font-black tracking-tight text-white md:text-4xl">Understand AI. Then put it to work.</h2>
+                            <p className="text-base leading-relaxed text-text-muted md:text-lg">Clear explanations when you are starting out, plus practical prompts and templates when you are ready to try something yourself. Free to explore—no sign-up needed.</p>
+                        </div>
+                        <div className="grid gap-5 md:grid-cols-2">
+                            <article className="flex flex-col rounded-2xl border border-white/10 bg-card p-6 md:p-8">
+                                <p className="mb-3 text-xs font-bold uppercase tracking-widest text-blue-300">Learn the fundamentals</p>
+                                <h3 className="mb-3 text-2xl font-extrabold text-white">DB23 AI Academy</h3>
+                                <p className="mb-6 flex-1 text-sm leading-relaxed text-text-muted">Follow illustrated lessons from beginner concepts through business AI, tools and coding agents. Look up unfamiliar terms in the searchable glossary.</p>
+                                <a href="/ai-academy/" className="inline-flex min-h-11 items-center justify-center self-start rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white transition hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300">Explore the AI Academy →</a>
+                            </article>
+                            <article className="flex flex-col rounded-2xl border border-white/10 bg-card p-6 md:p-8">
+                                <p className="mb-3 text-xs font-bold uppercase tracking-widest text-blue-300">Try a practical task</p>
+                                <h3 className="mb-3 text-2xl font-extrabold text-white">DB23 AI Prompt Library</h3>
+                                <p className="mb-6 flex-1 text-sm leading-relaxed text-text-muted">Browse clear, copyable prompts for marketing, websites, creative work and coding projects. Every template explains what to customise and what to check.</p>
+                                <a href="/prompt-library/" className="inline-flex min-h-11 items-center justify-center self-start rounded-lg border border-white/30 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300">Explore the Prompt Library →</a>
+                            </article>
+                        </div>
+                        <p className="mt-7 text-sm text-text-muted">Have a real business challenge? <a href="/contact/" className="font-semibold text-white underline underline-offset-4 hover:text-blue-300">Talk to DB23 about training, strategy or implementation.</a></p>
+                    </div>
+                </section>
                 <SelectedWork />
                 <VideoReady />
                 <FAQ />
