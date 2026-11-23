@@ -34,6 +34,8 @@ const routes = [
     { url: '/blog/chatgpt-workshop-south-africa/',            outDir: 'dist/blog/chatgpt-workshop-south-africa' },
     { url: '/blog/roi-remote-corporate-ai-training/',         outDir: 'dist/blog/roi-remote-corporate-ai-training' },
     { url: '/blog/chatgpt-business-global-marketing-guide/',  outDir: 'dist/blog/chatgpt-business-global-marketing-guide' },
+    { url: '/blog/ai-receptionist-medical-practice-south-africa/', outDir: 'dist/blog/ai-receptionist-medical-practice-south-africa' },
+    { url: '/blog/outsourced-marketing-vs-in-house-south-africa/', outDir: 'dist/blog/outsourced-marketing-vs-in-house-south-africa' },
     { url: '/foldline/',                                      outDir: 'dist/foldline' },
     { url: '/foldline/benchmark/',                            outDir: 'dist/foldline/benchmark' },
 ];

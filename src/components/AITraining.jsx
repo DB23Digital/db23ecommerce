@@ -1,15 +1,6 @@
 import React from 'react';
-import { motion as Motion } from 'framer-motion';
-import {
-    Bot,
-    BrainCircuit,
-    BriefcaseBusiness,
-    CheckCircle,
-    Megaphone,
-    Sparkles,
-    Users,
-    Workflow,
-} from 'lucide-react';
+import { motion as Motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { Button } from './ui/Button';
 
 function selectContactSubject(subject) {
@@ -17,141 +8,116 @@ function selectContactSubject(subject) {
     window.dispatchEvent(new CustomEvent('db23-contact-subject', { detail: { subject } }));
 }
 
-const workshopFeatures = [
-    {
-        icon: <BrainCircuit className="h-6 w-6" />,
-        title: 'AI Fundamentals',
-        description: 'Understanding AI in practical business environments.',
-    },
-    {
-        icon: <Users className="h-6 w-6" />,
-        title: 'AI Tools for Teams',
-        description: 'Learning modern AI tools productively.',
-    },
-    {
-        icon: <Workflow className="h-6 w-6" />,
-        title: 'Workflow Automation',
-        description: 'Identifying repetitive tasks that can be automated.',
-    },
-    {
-        icon: <Megaphone className="h-6 w-6" />,
-        title: 'Marketing & Content AI',
-        description: 'Using AI to improve communication and marketing efficiency.',
-    },
-    {
-        icon: <Bot className="h-6 w-6" />,
-        title: 'AI Customer Engagement',
-        description: 'Voice AI, chat systems, and automated lead handling.',
-    },
-    {
-        icon: <BriefcaseBusiness className="h-6 w-6" />,
-        title: 'Business Modernization',
-        description: 'How AI integrates into modern operational systems.',
-    },
+const workshopTopics = [
+    { title: 'AI Fundamentals', description: 'Understanding AI in practical business environments.' },
+    { title: 'AI Tools for Teams', description: 'Learning modern AI tools productively.' },
+    { title: 'Workflow Automation', description: 'Identifying repetitive tasks that can be automated.' },
+    { title: 'Marketing & Content AI', description: 'Using AI to improve communication and marketing efficiency.' },
+    { title: 'AI for Customers', description: 'Where chat, voice and lead handling can help, with real examples.' },
+    { title: 'AI Strategy', description: 'Choosing the few AI moves that are worth it for your business.' },
 ];
 
 const workshopPackages = [
     {
         name: 'Introductory Business AI Workshop',
-        price: 'Starting from R4,500',
+        price: 'From R4,500',
         subject: 'Introductory Business AI Workshop',
-        cta: 'Enquire Now',
+        cta: 'Enquire now',
         features: ['90 mins to 2 hours', 'Introductory practical AI session', 'Ideal for SMEs', 'Online or in-person'],
     },
     {
         name: 'Practical AI for Teams',
-        price: 'Starting from R12,500',
+        price: 'From R12,500',
         subject: 'Practical AI for Teams',
-        cta: 'Book Team Workshop',
+        cta: 'Book team workshop',
         featured: true,
         features: ['Half-day workshop', 'Team enablement', 'Workflow analysis', 'Productivity-focused'],
     },
     {
-        name: 'AI Business Modernization Session',
-        price: 'Custom Pricing',
+        name: 'AI Business Modernisation Session',
+        price: 'Custom pricing',
         subject: 'AI Business Modernization Session',
-        cta: 'Schedule Strategy Session',
+        cta: 'Schedule strategy session',
         features: ['Full-day strategic session', 'Leadership-focused', 'AI opportunity mapping', 'Automation recommendations'],
     },
 ];
 
 export function AITraining() {
-    return (
-        <section
-            className="relative overflow-hidden bg-card/35 py-24 md:py-32"
-            id="ai-workshops"
-            aria-labelledby="ai-workshops-heading"
-        >
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_86%_12%,rgba(20,184,166,0.14),transparent_32%)]" />
+    const photoRef = useRef(null);
+    const { scrollYProgress } = useScroll({ target: photoRef, offset: ['start end', 'end start'] });
+    const drift = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
-            <div className="container relative z-10 mx-auto px-4 md:px-8">
-                <div className="mx-auto mb-14 max-w-4xl text-center">
-                    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
-                        <Sparkles className="h-4 w-4" aria-hidden="true" />
-                        Flagship offer
-                    </div>
-                    <h2 id="ai-workshops-heading" className="mb-6 text-3xl font-black leading-tight text-white md:text-5xl">
-                        Practical AI Workshops for Modern Businesses
+    return (
+        <section className="relative bg-background" id="ai-workshops" aria-labelledby="ai-workshops-heading">
+            {/* Full-bleed photo opener */}
+            <div ref={photoRef} className="relative h-[78vh] min-h-[520px] overflow-hidden md:h-[88vh]">
+                <Motion.img
+                    style={{ y: drift }}
+                    src="/assets/showcase/boardroom-workshop.webp"
+                    alt="Deon Botha leading an AI business modernisation workshop in a boardroom"
+                    loading="lazy"
+                    decoding="async"
+                    width="1600"
+                    height="900"
+                    className="absolute inset-x-0 top-[-8%] h-[116%] w-full object-cover grayscale-[35%]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
+                <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-4 pb-14 md:px-8 md:pb-20">
+                    <p className="mb-6 text-sm text-white/70">AI workshops &amp; strategy · Run in person by Deon Botha</p>
+                    <h2
+                        id="ai-workshops-heading"
+                        className="max-w-4xl text-balance text-[2.6rem] font-medium leading-[1] tracking-[-0.04em] text-white md:text-7xl"
+                    >
+                        Practical AI workshops and strategy for small businesses.
                     </h2>
-                    <p className="mx-auto max-w-3xl text-lg leading-relaxed text-text-muted">
-                        AI is changing how businesses operate, market, communicate, and grow. DB23 delivers practical
-                        workshops designed to help teams understand AI tools, improve workflows, reduce repetitive tasks,
-                        and identify real-world opportunities for automation and growth.
+                    <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-white/75">
+                        Hands-on workshops get your team using AI tools properly. Strategy sessions help owners and
+                        leadership decide where AI fits, what to try first, and what to leave alone.
                     </p>
                 </div>
+            </div>
 
-                <Motion.div
-                    variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } }}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="mb-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-                >
-                    {workshopFeatures.map((feature) => (
-                        <Motion.article
-                            key={feature.title}
-                            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.45 } } }}
-                            className="rounded-2xl border border-white/10 bg-background/70 p-6 transition hover:-translate-y-1 hover:border-accent/45 hover:bg-background"
-                        >
-                            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                                {feature.icon}
+            <div className="mx-auto max-w-[1400px] px-4 py-20 md:px-8 md:py-28">
+                {/* Topics */}
+                <div className="mb-24 grid gap-10 md:grid-cols-12">
+                    <h3 className="text-2xl font-medium tracking-tight text-white md:col-span-3">What teams cover</h3>
+                    <dl className="grid gap-x-10 sm:grid-cols-2 md:col-span-9 lg:grid-cols-3">
+                        {workshopTopics.map((topic) => (
+                            <div key={topic.title} className="border-t border-white/10 py-6">
+                                <dt className="mb-2 font-medium text-white">{topic.title}</dt>
+                                <dd className="text-sm leading-relaxed text-text-muted">{topic.description}</dd>
                             </div>
-                            <h3 className="mb-2 text-xl font-bold text-white">{feature.title}</h3>
-                            <p className="text-sm leading-relaxed text-text-muted">{feature.description}</p>
-                        </Motion.article>
-                    ))}
-                </Motion.div>
+                        ))}
+                    </dl>
+                </div>
 
-                <div className="grid gap-6 lg:grid-cols-3">
-                    {workshopPackages.map((pkg) => (
+                {/* Packages as a ruled table, not cards */}
+                <div className="grid border-t border-white/10 lg:grid-cols-3">
+                    {workshopPackages.map((pkg, i) => (
                         <article
                             key={pkg.name}
-                            className={`relative flex flex-col rounded-3xl border p-7 ${
-                                pkg.featured
-                                    ? 'border-accent bg-accent/10 shadow-2xl shadow-accent/10'
-                                    : 'border-white/10 bg-background/75'
-                            }`}
+                            className={`relative flex flex-col border-b border-white/10 py-10 lg:border-b-0 lg:px-8 lg:py-12 ${
+                                i > 0 ? 'lg:border-l' : 'lg:pl-0'
+                            } ${pkg.featured ? 'lg:bg-white/[0.02]' : ''}`}
                         >
                             {pkg.featured && (
-                                <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
-                                    Popular
-                                </span>
+                                <span className="absolute inset-x-0 top-0 h-[3px] bg-accent lg:-top-px" aria-hidden="true" />
                             )}
-                            <h3 className="mb-4 max-w-[16rem] text-2xl font-bold text-white">{pkg.name}</h3>
-                            <p className="mb-7 text-2xl font-black text-accent">{pkg.price}</p>
-                            <ul className="mb-8 flex-1 space-y-3">
+                            <p className="mb-4 h-5 text-sm text-accent">{pkg.featured ? 'Popular' : ''}</p>
+                            <h3 className="mb-3 max-w-[18rem] text-2xl font-medium tracking-tight text-white">{pkg.name}</h3>
+                            <p className="mb-8 text-4xl font-medium tracking-[-0.03em] text-white">{pkg.price}</p>
+                            <ul className="mb-10 flex-1 space-y-2.5">
                                 {pkg.features.map((item) => (
-                                    <li key={item} className="flex gap-3 text-sm text-white/80">
-                                        <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" aria-hidden="true" />
-                                        <span>{item}</span>
+                                    <li key={item} className="flex gap-3 text-sm text-text-muted">
+                                        <span className="mt-2 h-px w-3 shrink-0 bg-white/40" aria-hidden="true" />
+                                        {item}
                                     </li>
                                 ))}
                             </ul>
                             <Button
                                 href="#contact"
                                 variant={pkg.featured ? 'primary' : 'outline'}
-                                className="w-full"
+                                className="w-full sm:w-auto lg:w-full"
                                 onClick={() => selectContactSubject(pkg.subject)}
                             >
                                 {pkg.cta}
@@ -159,6 +125,12 @@ export function AITraining() {
                         </article>
                     ))}
                 </div>
+                <p className="mt-8 text-sm text-text-muted">
+                    Prices in ZAR.{' '}
+                    <a href="/ai-workshops/" className="text-white underline decoration-white/25 underline-offset-4 hover:decoration-accent">
+                        Full workshop details
+                    </a>
+                </p>
             </div>
         </section>
     );

@@ -1,12 +1,14 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
 import F, { blankState, SAMPLES, DEFAULT_PLATFORM } from '../foldline';
+import { buildDiffColumns } from '../foldline/textDiff';
 import '../foldline/foldline.css';
 
 const PLATFORM = DEFAULT_PLATFORM;
 const def = F.platform(PLATFORM);
 const STORE = `foldline:baseline:${PLATFORM}`;
+const DRAFT_STORE = `foldline:draft:${PLATFORM}`;
 const MARK = { pass: '✓', warn: '!', fail: '✕' };
 const STATUS_WORD = { pass: 'pass', warn: 'warn', fail: 'fail' };
 
@@ -23,6 +25,15 @@ const RATIO = { portrait45: '4 / 5', square: '1 / 1', vertical916: '9 / 16', lan
 
 const signed = (n) => `${n > 0 ? '+' : n < 0 ? '−' : '±'}${Math.abs(n)}`;
 const tone = (t) => `var(--fl-${t})`;
+
+/* The scoring baseline (F.baseline) is engine-owned and knows nothing about
+   raw text. The original draft/comment are a page-level concern layered on
+   top, purely for the side-by-side revision view below. */
+const makeBaseline = (result, state) => ({
+    ...F.baseline(result, state),
+    originalDraft: state.draft,
+    originalComment: state.comment,
+});
 
 /* ------------------------------------------------------------------ */
 
@@ -144,6 +155,58 @@ function BeforeAfter({ diff, result, onReset }) {
     );
 }
 
+function DiffColumns({ oldText, newText, compact }) {
+    const { leftParts, rightParts } = useMemo(() => buildDiffColumns(oldText, newText), [oldText, newText]);
+    return (
+        <div className={`fl-diff${compact ? ' fl-diff-compact' : ''}`}>
+            <div className="fl-diff-col">
+                <h5>Original</h5>
+                <div className="fl-diff-text">
+                    {leftParts.map((p) => (p.cls
+                        ? <span className={p.cls} key={p.key}>{p.text}</span>
+                        : <React.Fragment key={p.key}>{p.text}</React.Fragment>))}
+                </div>
+            </div>
+            <div className="fl-diff-col">
+                <h5>Revised</h5>
+                <div className="fl-diff-text">
+                    {rightParts.map((p) => (p.cls
+                        ? <span className={p.cls} key={p.key}>{p.text}</span>
+                        : <React.Fragment key={p.key}>{p.text}</React.Fragment>))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* Side-by-side view of the draft as pasted vs. as it stands now. Diffed
+   against the same baseline the score panel above uses, so "reset baseline"
+   resets both at once. Lives inside the locked report — the corrected text
+   is exactly what the paid unlock sells. */
+function Revision({ baseline, draft, comment }) {
+    if (!baseline) return null;
+
+    const draftChanged = baseline.originalDraft !== draft;
+    const commentChanged = (baseline.originalComment || '') !== (comment || '');
+
+    return (
+        <div className="fl-grp">
+            <div className="fl-grp-head"><h4>Your revision</h4></div>
+            {draftChanged ? (
+                <DiffColumns oldText={baseline.originalDraft} newText={draft} />
+            ) : (
+                <p className="fl-small fl-muted">Apply a fix below to see exactly what changed, side by side.</p>
+            )}
+            {commentChanged && (baseline.originalComment || comment) && (
+                <div style={{ marginTop: 16 }}>
+                    <p className="fl-small fl-muted" style={{ marginBottom: 6 }}>First comment</p>
+                    <DiffColumns oldText={baseline.originalComment} newText={comment} compact />
+                </div>
+            )}
+        </div>
+    );
+}
+
 /* ------------------------------------------------------------------ */
 
 export function FoldlinePage() {
@@ -167,24 +230,65 @@ export function FoldlinePage() {
         } catch { /* private mode, blocked storage */ }
     }, []);
 
-    /* Restoring a stored baseline is a genuine subscribe-to-an-external-system
+    /* Restoring persisted state is a genuine subscribe-to-an-external-system
        case: localStorage is browser-only, so it cannot be read during render or
-       during the static prerender without breaking hydration. It runs once. */
+       during the static prerender without breaking hydration. It runs once.
+
+       Two things are restored, together: the baseline (what "before" means for
+       the score and revision panels) and the live draft/comment the user was
+       actually typing. Earlier this only restored the baseline, so a refresh
+       silently reset the textarea to the demo sample while keeping an old
+       baseline pointed at unrelated text underneath it — numbers that looked
+       merely odd before now show up as a diff against the wrong post entirely. */
+    const restored = useRef(false);
     useEffect(() => {
+        /* React 18/19 StrictMode deliberately mounts, unmounts and remounts a
+           component in development to surface effects that aren't safe to run
+           twice. This one writes to the same store the persist-effect below
+           reads from, so a second invocation would restore whatever that
+           effect's stale first-render write just clobbered, not the real
+           saved draft. The guard makes the real restore happen exactly once
+           per mount, in dev and production alike. */
+        if (restored.current) return;
+        restored.current = true;
         try {
             const raw = window.localStorage.getItem(STORE);
-            if (!raw) return;
-            const b = JSON.parse(raw);
-            // eslint-disable-next-line react-hooks/set-state-in-effect -- restoring persisted state from an external store on mount; runs once
-            if (b && b.version === def.version) setBaseline(b);
+            if (raw) {
+                const b = JSON.parse(raw);
+                // eslint-disable-next-line react-hooks/set-state-in-effect -- restoring persisted state from an external store on mount; runs once
+                if (b && b.version === def.version) setBaseline(b);
+            }
+        } catch { /* private mode, blocked storage */ }
+        try {
+            const rawDraft = window.localStorage.getItem(DRAFT_STORE);
+            if (rawDraft) {
+                const d = JSON.parse(rawDraft);
+                if (d && typeof d.draft === 'string') {
+                    setState((s) => ({ ...s, draft: d.draft, comment: d.comment || '' }));
+                }
+            }
         } catch { /* private mode, blocked storage */ }
     }, []);
+
+    /* Keep the live draft/comment mirrored to localStorage as the user types,
+       so a refresh restores actual in-progress work rather than resetting to
+       the demo sample. Writing, not reading, so it needs no state-in-effect
+       guard — it never calls setState. */
+    useEffect(() => {
+        try {
+            if (state.draft || state.comment) {
+                window.localStorage.setItem(DRAFT_STORE, JSON.stringify({ draft: state.draft, comment: state.comment }));
+            } else {
+                window.localStorage.removeItem(DRAFT_STORE);
+            }
+        } catch { /* private mode, blocked storage */ }
+    }, [state.draft, state.comment]);
 
     /* The baseline is the draft as it stood before the first change — captured
        on that change rather than in an effect, so there is no cascading render
        and the comparison is against what the user actually started with. */
     const markBaseline = () => {
-        if (!baseline && result.context.words) persist(F.baseline(result, state));
+        if (!baseline && result.context.words) persist(makeBaseline(result, state));
     };
 
     const set = (patch) => { markBaseline(); setState((s) => ({ ...s, ...patch })); };
@@ -590,7 +694,7 @@ export function FoldlinePage() {
                                     )}
                                 </div>
 
-                                <BeforeAfter diff={diff} result={result} onReset={() => persist(F.baseline(result, state))} />
+                                <BeforeAfter diff={diff} result={result} onReset={() => persist(makeBaseline(result, state))} />
 
                                 <div className={`fl-card fl-pad-lg fl-lock${unlocked ? '' : ' is-locked'}`}>
                                     {!unlocked && (
@@ -627,6 +731,8 @@ export function FoldlinePage() {
                                                 </div>
                                             )) : <p className="fl-small fl-muted">Paste a draft to see the breakdown.</p>}
                                         </div>
+
+                                        <Revision baseline={baseline} draft={state.draft} comment={state.comment} />
 
                                         {result.groups.map((g) => (
                                             <div className="fl-grp" key={g.id}>
@@ -749,9 +855,10 @@ export function FoldlinePage() {
                                 ['Why does my carousel score out of a different number to my text post?', <>Because eight of the twenty-six tests only apply to the asset. A text post is scored out of 119 points, a carousel out of 141, a video out of 147 &mdash; tests that do not apply are dropped from the denominator as well as the result, so the percentage stays comparable. A text post is never marked down for lacking burned-in captions.</>],
                                 ['Can Foldline actually see my image or video?', <>No. It reads text. The asset tests score what you declare &mdash; that captions are burned in, that the cover slide carries the claim, that the alt text is written. They are stated intentions, and the report labels them that way. The one thing it does read is your alt text, which is also the only part of the asset the ranking model reads.</>],
                                 ['Will the copied post keep its formatting on LinkedIn?', <>That is what the copy button is for. The composer takes plain text only, so before copying, Foldline strips markdown that would show up literally, converts <code>- </code> bullets to real &bull; characters, removes any unresolved <code>[rewrite:]</code> markers left over from a fix, collapses runs of blank lines, deletes invisible non-breaking and zero-width characters, and writes to the clipboard as plain text so no styling rides along. It tells you everything it changed.</>],
+                                ['Can I see exactly what a fix changed?', <>Yes. Once unlocked, the report shows your original draft next to the revised one — removed words struck through on the left, added words highlighted on the right. It updates after every fix, and the same view covers the first comment if that changed too.</>],
                                 ['Why is a link in the post body such a big deal?', <>Because it sends the reader off-platform, and the feed is built to keep them on it. Published estimates for the penalty range from roughly a fifth to about half of median reach. Foldline treats it as blocking and shows the fix: strip it from the body, signpost &ldquo;link in the comments&rdquo;, and park the URL in your own first comment the moment you publish.</>],
                                 ['Is this affiliated with LinkedIn?', <>No. Foldline is an independent tool built by DB23 in Cape Town. It is not affiliated with, endorsed by, or connected to LinkedIn Corporation, and it does not connect to your account, read your analytics, or post on your behalf. You paste text; it scores text.</>],
-                                ['Do you store my drafts?', <>No. Scoring runs entirely in your browser &mdash; nothing is sent to a server. Only your baseline score is kept, in your own browser&rsquo;s local storage, so the before-and-after survives a refresh.</>],
+                                ['Do you store my drafts?', <>No. Scoring runs entirely in your browser &mdash; nothing is sent to a server. Only your original draft and your baseline score are kept, in your own browser&rsquo;s local storage, so the before-and-after — including the side-by-side revision — survives a refresh.</>],
                             ].map(([q, a, open]) => (
                                 <details key={q} open={open || undefined}>
                                     <summary>{q}</summary>

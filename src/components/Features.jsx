@@ -1,74 +1,58 @@
-import React from 'react';
-import { motion as Motion } from 'framer-motion';
-import { Compass, Rocket, Search, Settings2 } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion as Motion, useScroll, useSpring } from 'framer-motion';
 
 const processSteps = [
-    {
-        number: '01',
-        icon: <Search className="h-6 w-6" />,
-        title: 'Discover',
-        body: 'Understanding your business and identifying opportunities.',
-    },
-    {
-        number: '02',
-        icon: <Compass className="h-6 w-6" />,
-        title: 'Strategize',
-        body: 'Planning practical AI and digital systems.',
-    },
-    {
-        number: '03',
-        icon: <Settings2 className="h-6 w-6" />,
-        title: 'Build & Implement',
-        body: 'Designing, automating, and deploying solutions.',
-    },
-    {
-        number: '04',
-        icon: <Rocket className="h-6 w-6" />,
-        title: 'Support & Scale',
-        body: 'Continuous optimization and improvement.',
-    },
+    { title: 'Discover', body: 'Understanding your business and identifying opportunities.' },
+    { title: 'Strategise', body: 'Planning practical AI and digital systems.' },
+    { title: 'Build & implement', body: 'Designing, automating, and deploying solutions.' },
+    { title: 'Support & scale', body: 'Continuous optimisation and improvement.' },
 ];
 
 export function Features() {
+    const trackRef = useRef(null);
+    const { scrollYProgress } = useScroll({ target: trackRef, offset: ['start 85%', 'end 55%'] });
+    const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+
     return (
-        <section className="relative overflow-hidden bg-card/35 py-24 md:py-32" id="process" aria-labelledby="process-heading">
-            <div className="absolute inset-y-0 left-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-            <div className="container relative z-10 mx-auto px-4 md:px-8">
-                <div className="mx-auto mb-16 max-w-3xl text-center">
-                    <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">How We Work</p>
-                    <h2 id="process-heading" className="mb-5 text-3xl font-black leading-tight text-white md:text-5xl">
-                        From workshop insight to practical implementation
+        <section className="relative bg-background py-24 md:py-36" id="process" aria-labelledby="process-heading">
+            <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+                <div className="mb-16 grid gap-8 md:mb-24 md:grid-cols-12">
+                    <h2
+                        id="process-heading"
+                        className="text-balance text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-white md:col-span-7 md:text-6xl"
+                    >
+                        From workshop insight to working systems.
                     </h2>
-                    <p className="text-lg leading-relaxed text-text-muted">
-                        We keep the process clear, collaborative, and commercially focused so AI becomes useful in your
+                    <p className="text-pretty text-lg leading-relaxed text-text-muted md:col-span-4 md:col-start-9 md:self-end">
+                        We keep the process clear, collaborative, and commercially focused, so AI becomes useful in your
                         business instead of another abstract technology conversation.
                     </p>
                 </div>
 
-                <Motion.div
-                    variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.12 } } }}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="grid gap-5 md:grid-cols-2 xl:grid-cols-4"
-                >
-                    {processSteps.map((step) => (
-                        <Motion.article
-                            key={step.number}
-                            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                            className="rounded-3xl border border-white/10 bg-background/80 p-7 transition hover:-translate-y-1 hover:border-accent/45"
-                        >
-                            <div className="mb-8 flex items-center justify-between">
-                                <span className="text-4xl font-black text-white/10">{step.number}</span>
-                                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                                    {step.icon}
-                                </span>
-                            </div>
-                            <h3 className="mb-3 text-2xl font-bold text-white">{step.title}</h3>
-                            <p className="leading-relaxed text-text-muted">{step.body}</p>
-                        </Motion.article>
-                    ))}
-                </Motion.div>
+                <div ref={trackRef} className="relative">
+                    {/* Rail fills as you scroll: horizontal on desktop, vertical on mobile */}
+                    <div className="absolute left-0 top-0 hidden h-px w-full bg-white/10 md:block" aria-hidden="true">
+                        <Motion.div style={{ scaleX: progress }} className="h-full origin-left bg-accent" />
+                    </div>
+                    <div className="absolute left-0 top-0 h-full w-px bg-white/10 md:hidden" aria-hidden="true">
+                        <Motion.div style={{ scaleY: progress }} className="h-full w-full origin-top bg-accent" />
+                    </div>
+
+                    <ol className="grid gap-12 pl-8 md:grid-cols-4 md:gap-8 md:pl-0 md:pt-12">
+                        {processSteps.map((step, i) => (
+                            <Motion.li
+                                key={step.title}
+                                initial={{ opacity: 0, y: 16 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-10% 0px' }}
+                                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                                <h3 className="mb-3 text-2xl font-medium tracking-tight text-white md:text-3xl">{step.title}</h3>
+                                <p className="max-w-xs leading-relaxed text-text-muted">{step.body}</p>
+                            </Motion.li>
+                        ))}
+                    </ol>
+                </div>
             </div>
         </section>
     );

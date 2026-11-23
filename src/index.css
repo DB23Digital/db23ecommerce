@@ -1,15 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #1d4ed8; /* Blue-700 — passes WCAG AA contrast on dark bg */
-  --color-accent-hover: #1e40af;
-  
-  --color-background: #09090b; /* Very dark gray almost black */
-  --color-card: #18181b;       /* Slightly lighter gray */
-  --color-card-hover: #27272a; /* Even lighter gray */
-  
-  --color-text-main: #fafafa;
-  --color-text-muted: #a1a1aa;
+  /* Signal vermilion. Use ink text on it: white on #ff4f1f is only 3.3:1. */
+  --color-accent: #ff4f1f;
+  --color-accent-hover: #ff6a3d;
+  --color-accent-deep: #b3300a; /* vermilion for text on paper, 5:1 */
+
+  --color-background: #0b0d0c; /* ink */
+  --color-card: #151816;
+  --color-card-hover: #1e2220;
+
+  --color-ink: #0b0d0c;
+  --color-paper: #e8eae6;
+
+  --color-text-main: #e8eae6;
+  --color-text-muted: #a3a9a4;
+
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Base resets */
@@ -17,15 +26,62 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-text-main);
-  /* Apply Google font later, but standard sans-serif for now */
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fixed header clearance for in-page anchors */
+[id] {
+  scroll-margin-top: 5rem;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Faint film grain over ink sections. Inline SVG, no request. */
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+  }
+
+  /* Hairline grid for the paper section */
+  .paper-grid {
+    background-image:
+      linear-gradient(to right, rgb(11 13 12 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(11 13 12 / 0.06) 1px, transparent 1px);
+    background-size: 96px 96px;
+  }
+}
+
+/* Receptionist demo typing dots */
+@keyframes db23-typing {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-2px); }
+}
+
+.typing-dot {
+  animation: db23-typing 1.1s infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-dot { animation: none; opacity: 0.6; }
 }

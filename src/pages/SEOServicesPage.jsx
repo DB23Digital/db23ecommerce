@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
-import { motion as Motion } from 'framer-motion';
-import { ArrowRight, BarChart, CheckCircle, FileText, MapPin, Minus, Plus, Search, Sparkles, TrendingUp } from 'lucide-react';
+import React from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { SEOHead } from '../components/SEOHead';
-import { Button } from '../components/ui/Button';
+import { CTABand, FeatureRows, PageFAQ, PageHero, PriceTable, Section } from '../components/PageBlocks';
+
 
 const seoPillars = [
-    { icon: <MapPin className="h-6 w-6" />, title: 'Local SEO (Google Maps)', desc: 'Dominate the "near me" searches. We optimise your Google Business Profile so you show up in the local map pack for South African searchers.' },
-    { icon: <Search className="h-6 w-6" />, title: 'Technical SEO', desc: 'We fix the under-the-hood issues: site speed, mobile usability, indexability, and schema markup so Google loves crawling your site.' },
-    { icon: <FileText className="h-6 w-6" />, title: 'On-Page Content', desc: 'Keyword-optimised landing pages, perfectly structured headings (H1/H2), and compelling meta descriptions that drive high click-through rates.' },
-    { icon: <TrendingUp className="h-6 w-6" />, title: 'Authority & Link Building', desc: 'Safe, high-quality backlink acquisition strategies to increase your domain authority and push your site above older competitors.' },
+    { title: 'Local SEO (Google Maps)', body: 'Dominate the "near me" searches. We optimise your Google Business Profile so you show up in the local map pack for South African searchers.' },
+    { title: 'Technical SEO', body: 'We fix the under-the-hood issues: site speed, mobile usability, indexability, and schema markup so Google loves crawling your site.' },
+    { title: 'On-page content', body: 'Keyword-optimised landing pages, perfectly structured headings (H1/H2), and compelling meta descriptions that drive high click-through rates.' },
+    { title: 'Authority & link building', body: 'Safe, high-quality backlink acquisition strategies to increase your domain authority and push your site above older competitors.' },
+];
+
+const plans = [
+    {
+        name: 'Hosted by DB23',
+        price: 'From R999',
+        period: '/month',
+        features: ['Hosting', 'SEO, AEO & GEO', 'Monthly reporting'],
+        cta: 'Ask about a plan',
+        href: '/#contact',
+        subject: 'Hosting & SEO plan',
+        featured: true,
+    },
+    {
+        name: 'On your own hosting',
+        price: 'From R799',
+        period: '/month',
+        features: ['You pay your hosting provider', 'SEO, AEO & GEO on your domain', 'Monthly reporting'],
+        cta: 'Ask about a plan',
+        href: '/#contact',
+        subject: 'Hosting & SEO plan',
+    },
 ];
 
 const faqs = [
@@ -21,21 +42,7 @@ const faqs = [
     { q: 'How do you measure SEO success?', a: 'We look past just rankings. We measure organic traffic growth, engagement rates, and most importantly, the number of actual leads/conversions generated from organic search.' },
 ];
 
-function FAQItem({ faq, isOpen, onClick }) {
-    return (
-        <div className={`overflow-hidden rounded-xl border transition-colors duration-200 ${isOpen ? 'border-cyan-400/40 bg-card' : 'border-white/5 bg-background hover:border-white/15'}`}>
-            <button className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left" onClick={onClick} aria-expanded={isOpen}>
-                <span className="text-base font-semibold leading-snug text-white">{faq.q}</span>
-                <span className={`shrink-0 ${isOpen ? 'text-cyan-400' : 'text-text-muted'}`}>{isOpen ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}</span>
-            </button>
-            {isOpen && <p className="px-6 pb-6 leading-relaxed text-text-muted">{faq.a}</p>}
-        </div>
-    );
-}
-
 export function SEOServicesPage() {
-    const [openFaq, setOpenFaq] = useState(0);
-
     return (
         <PageLayout>
             <SEOHead
@@ -72,95 +79,53 @@ export function SEOServicesPage() {
                         "provider": { "@id": "https://db23.co.za/#organization" },
                         "serviceType": "Search Engine Optimisation",
                         "areaServed": { "@type": "Country", "name": "South Africa" },
-                        "offers": {
-                            "@type": "Offer",
-                            "priceCurrency": "ZAR",
-                            "description": "Monthly retainer-based pricing. Free audit available. Contact for a tailored quote."
-                        },
+                        "offers": [
+                            {
+                                "@type": "Offer",
+                                "name": "Hosted by DB23",
+                                "description": "Hosting, SEO, AEO & GEO, and monthly reporting. Price includes VAT.",
+                                "priceSpecification": { "@type": "UnitPriceSpecification", "minPrice": 999, "priceCurrency": "ZAR", "unitText": "MONTH", "valueAddedTaxIncluded": true }
+                            },
+                            {
+                                "@type": "Offer",
+                                "name": "On your own hosting",
+                                "description": "SEO, AEO & GEO and monthly reporting on your domain. Price includes VAT.",
+                                "priceSpecification": { "@type": "UnitPriceSpecification", "minPrice": 799, "priceCurrency": "ZAR", "unitText": "MONTH", "valueAddedTaxIncluded": true }
+                            }
+                        ],
                         "url": "https://db23.co.za/seo-services/"
                     }
                 ]}
             />
 
-            {/* Hero */}
-            <section className="relative min-h-[85vh] overflow-hidden bg-background pt-32 pb-20 md:pt-44" aria-labelledby="hero-h1">
-                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_80%_20%,rgba(6,182,212,0.15),transparent_40%),radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.15),transparent_40%)]" />
-                <div className="container relative z-10 mx-auto px-4 md:px-8">
-                    <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-                        <Motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="order-2 lg:order-1">
-                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-400">
-                                <Sparkles className="h-4 w-4" aria-hidden="true" />
-                                SEO Services South Africa
-                            </div>
-                            <h1 id="hero-h1" className="mb-6 text-4xl font-black leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl text-balance">
-                                SEO Services for{' '}
-                                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">South African Businesses</span>
-                            </h1>
-                            <p className="mb-10 text-lg leading-relaxed text-text-muted md:text-xl max-w-xl">
-                                When South Africans search for your services on Google, are you showing up? We provide technical and content-driven SEO strategies that push your website to the top of the results.
-                            </p>
-                            <div className="flex flex-col gap-4 sm:flex-row">
-                                <Button href="/#contact" size="lg" className="w-full sm:w-auto">Request a Free SEO Audit</Button>
-                                <Button href="#pillars" variant="outline" size="lg" className="w-full sm:w-auto">Our SEO Process</Button>
-                            </div>
-                        </Motion.div>
-                        <Motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative order-1 lg:order-2">
-                            <div className="absolute -inset-4 rounded-[2rem] bg-cyan-400/10 blur-3xl" />
-                            <img src="/hero-seo-services.webp" alt="Abstract search algorithms and upward ranking charts" className="relative rounded-3xl border border-white/10 shadow-2xl w-full h-auto object-cover aspect-[4/3] sm:aspect-video lg:aspect-square" width="800" height="800" fetchpriority="high" />
-                        </Motion.div>
-                    </div>
-                </div>
-            </section>
 
-            {/* Pillars */}
-            <section id="pillars" className="bg-card/35 py-24 md:py-32" aria-labelledby="pillars-heading">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="mx-auto mb-14 max-w-3xl text-center">
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-cyan-400">The 4 Pillars of SEO</p>
-                        <h2 id="pillars-heading" className="mb-5 text-3xl font-black leading-tight text-white md:text-5xl">How We Get You to Page 1</h2>
-                        <p className="text-lg leading-relaxed text-text-muted">SEO isn't magic. It's the consistent application of technical best practices, high-quality content, and digital authority.</p>
-                    </div>
-                    <Motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } }} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                        {seoPillars.map(p => (
-                            <Motion.article key={p.title} variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.45 } } }} className="rounded-2xl border border-white/10 bg-background/70 p-6 transition hover:-translate-y-1 hover:border-cyan-400/45">
-                                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-400">{p.icon}</div>
-                                <h3 className="mb-2 text-xl font-bold text-white">{p.title}</h3>
-                                <p className="text-sm leading-relaxed text-text-muted">{p.desc}</p>
-                            </Motion.article>
-                        ))}
-                    </Motion.div>
-                </div>
-            </section>
+            <PageHero
+                eyebrow="SEO services · South Africa"
+                title="SEO services for South African businesses."
+                intro="When South Africans search for your services on Google, are you showing up? We provide technical and content-driven SEO strategies that push your website to the top of the results."
+                primary={{ label: 'Request a free SEO audit', href: '/#contact' }}
+                secondary={{ label: 'Our SEO process', href: '#pillars' }}
+            />
 
-            {/* Audit CTA */}
-            <section className="bg-background py-24 md:py-32" aria-labelledby="audit-heading">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-900/40 to-blue-900/20 p-8 md:p-12 lg:p-16 text-center">
-                        <h2 id="audit-heading" className="mb-5 text-3xl font-black text-white md:text-4xl">Not sure why your site isn't ranking?</h2>
-                        <p className="mx-auto mb-8 max-w-2xl text-lg text-text-muted">
-                            Let us run a comprehensive technical and content audit on your website. We'll identify exactly what's holding you back and give you a clear roadmap to fix it. No commitment required.
-                        </p>
-                        <Button href="/#contact" size="lg" className="bg-white text-black hover:bg-gray-200">Request Your Free Audit</Button>
-                    </div>
-                </div>
-            </section>
+            <Section
+                id="pillars"
+                title="How we get you to page 1."
+                intro="SEO isn't magic. It's the consistent application of technical best practices, high-quality content, and digital authority."
+            >
+                <FeatureRows items={seoPillars} />
+            </Section>
 
-            {/* FAQ */}
-            <section className="bg-card/35 py-24 md:py-32" aria-labelledby="faq-heading">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="mx-auto max-w-3xl">
-                        <div className="mb-12 text-center">
-                            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-cyan-400">FAQ</p>
-                            <h2 id="faq-heading" className="mb-5 text-3xl font-black text-white md:text-5xl">SEO Questions</h2>
-                        </div>
-                        <div className="space-y-3">
-                            {faqs.map((faq, i) => (
-                                <FAQItem key={faq.q} faq={faq} isOpen={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? null : i)} />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Section id="plans" title="Plans that include SEO, AEO & GEO.">
+                <PriceTable plans={plans} note="Prices include VAT." />
+            </Section>
+
+            <PageFAQ faqs={faqs.map((f) => ({ q: f.q, a: f.a }))} title="SEO questions." />
+
+            <CTABand
+                title="Not sure why your site isn't ranking?"
+                body="Let us run a comprehensive technical and content audit on your website. We'll identify exactly what's holding you back and give you a clear roadmap to fix it. No commitment required."
+                primary={{ label: 'Request your free audit', href: '/#contact' }}
+            />
         </PageLayout>
     );
 }

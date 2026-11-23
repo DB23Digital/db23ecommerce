@@ -1,323 +1,253 @@
-import React from 'react';
-import { motion as Motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion as Motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { showcaseItems } from '../data/showcase';
 
-const showcaseItems = [
-    {
-        project: 'Safi Kwanza Resort',
-        category: 'Travel & Hospitality',
-        summary:
-            'An elegant and modern luxury resort website along the Kwanza River, featuring immersive safari storytelling, architectural design presentation, and 5-star booking integration.',
-        url: 'https://db23.co.za/safik-wanza/',
-        image: '/assets/showcase/safi-kwanza.jpg',
-        alt: 'Safi Kwanza Resort luxury riverside holiday destination website',
-    },
-    {
-        project: 'Have & Share',
-        category: 'Business Coaching',
-        summary:
-            'A premium business coaching and personal development website designed to communicate authority, transformation, and professional growth through elegant branding and clear service positioning.',
-        url: 'https://haveandshare.co.za',
-        external: true,
-        image: '/assets/showcase/haveandshare.webp',
-        alt: 'Have and Share business coaching website landing page',
-    },
-    {
-        project: 'Insight2Afrika',
-        category: 'Travel & Safaris',
-        summary:
-            'A luxury African safari and travel website built around immersive destination storytelling, curated travel experiences, and high-end visual presentation.',
-        url: 'https://insight2afrika.com/',
-        external: true,
-        image: '/assets/showcase/insight2afrika.webp',
-        alt: 'Insight2Afrika luxury African safari website landing page',
-    },
-    {
-        project: 'Living Atlas',
-        category: 'Travel & Safaris',
-        summary:
-            'An interactive African destination atlas built for Insight2Afrika, mapping regions, wildlife, and travel experiences into an immersive, story-driven exploration tool.',
-        url: 'https://db23.co.za/insight2afrika/living-atlas/index.html',
-        image: '/assets/showcase/living-atlas.jpg',
-        alt: 'Living Atlas interactive African destination map website',
-    },
-    {
-        project: 'Expedition Desk',
-        category: 'Travel & Safaris',
-        summary:
-            'A bespoke safari trip-planning tool for Insight2Afrika, helping travel consultants build, compare, and present tailored African expedition itineraries.',
-        url: 'https://db23.co.za/insight2afrika/expedition-desk/index.html',
-        image: '/assets/showcase/expedition-desk.jpg',
-        alt: 'Expedition Desk safari trip planning tool website',
-    },
-    {
-        project: 'RTM Travel',
-        category: 'Corporate Travel',
-        summary:
-            'A modern corporate travel management website positioning RTM as a trusted travel coordination partner for business travel, executive support, reporting, and logistics management.',
-        url: 'https://rtmtravel.co.za',
-        external: true,
-        image: '/assets/showcase/rtmtravel.webp',
-        alt: 'RTM Travel corporate travel management website',
-    },
-    {
-        project: 'SkillsPassport',
-        category: 'Education & Career Guidance',
-        summary:
-            'A comprehensive South African career guidance platform helping learners, schools, parents, sponsors, and employers navigate subject choices, career pathways, and future opportunities.',
-        url: 'https://skillspassportsa.co.za',
-        external: true,
-        image: '/assets/showcase/skillspassport.webp',
-        alt: 'SkillsPassport career guidance platform website',
-    },
-    {
-        project: 'Otrum',
-        category: 'Pool Technology',
-        summary:
-            'A high-tech product landing page for an intelligent swimming pool cleaning and navigation device using premium visuals, technical storytelling, and modern feature presentation.',
-        url: 'https://db23.co.za/otrum/',
-        image: '/assets/showcase/otrum.webp',
-        alt: 'Otrum intelligent swimming pool cleaning device landing page',
-    },
-    {
-        project: 'Mud Busters',
-        category: 'Sports Equipment Cleaning',
-        summary:
-            'A sports equipment cleaning and sanitization brand website focused on hygiene, restoration, and convenience for athletes, schools, sports clubs, and parents.',
-        url: 'https://mudbusters.co.za',
-        external: true,
-        image: '/assets/showcase/mudbusters.webp',
-        alt: 'Mud Busters sports equipment cleaning website',
-    },
-    {
-        project: 'Club Scrub',
-        category: 'Sports Industry',
-        summary:
-            'A conversion-focused sports gear cleaning landing page featuring service packages, process explanations, FAQs, pricing structures, and booking-driven calls to action.',
-        url: 'https://db23.co.za/club-scrub/',
-        image: '/assets/showcase/clubscrub.webp',
-        alt: 'Club Scrub sports gear cleaning service website',
-    },
-    {
-        project: 'Farmina Store Training',
-        category: 'Education & Training',
-        summary:
-            'An interactive education and product training platform helping retail staff better understand product benefits, improve customer conversations, and support more informed in-store recommendations.',
-        url: 'https://farmina-store-training.vercel.app/',
-        external: true,
-        image: '/assets/showcase/farmina-store-training.webp',
-        alt: 'Farmina Store Training education platform website',
-    },
-    {
-        project: 'Take It To Market',
-        category: 'Outsourced Marketing & AI Services',
-        summary:
-            'A high-tech digital growth platform helping small and medium businesses with outsourced marketing, AI-powered customer engagement, website modernization, automation, lead generation, and digital support services.',
-        url: 'https://db23.co.za/takeittomarket/',
-        image: '/assets/showcase/take-it-to-market.webp',
-        alt: 'Take It To Market outsourced marketing and AI services website',
-    },
-    {
-        project: 'Mar a Largo',
-        category: 'Lifestyle Estate Living',
-        summary:
-            'A polished lifestyle estate website presenting Mar a Largo through premium coastal living, estate positioning, visual storytelling, and clear property-focused calls to action.',
-        url: 'https://db23.co.za/mar-a-largo/index.html',
-        image: '/assets/showcase/mar-a-largo.webp',
-        alt: 'Mar a Largo lifestyle estate living website',
-    },
-    {
-        project: 'AREMH Developments',
-        category: 'Engineering & Construction',
-        summary:
-            'A premium civil construction and industrial real estate website designed with a tactical drafting theme, interactive geographic D3 globe hub navigation, inline HTML5 media popups, and robust cPanel integrated leasing proposals.',
-        url: 'https://db23.co.za/aremh-dev/',
-        image: '/assets/showcase/aremh-dev.webp',
-        alt: 'AREMH Developments engineering and civil construction website',
-    },
-    {
-        project: 'Fire Detection SA',
-        category: 'Industrial Safety',
-        summary:
-            'A reliable fire detection and suppression systems website that positions industrial safety solutions clearly for commercial, manufacturing, and infrastructure clients.',
-        url: 'https://fire-detection.co.za/',
-        external: true,
-        image: '/assets/showcase/fire-detection.webp',
-        alt: 'Fire Detection SA industrial fire safety systems website',
-    },
-    {
-        project: 'Stellenbosch Chiro',
-        category: 'Healthcare & Wellness',
-        summary:
-            'A clean, trust-building website for a Stellenbosch chiropractic practice, presenting treatments, practitioner credibility, and easy appointment booking.',
-        url: 'https://db23.co.za/stellenboschchiro/',
-        image: '/assets/showcase/stellenboschchiro.jpg',
-        alt: 'Stellenbosch Chiro chiropractic practice website',
-    },
-    {
-        project: 'Scoliosis Bracing',
-        category: 'Healthcare & Medical Devices',
-        summary:
-            'A clinical, patient-focused website for a scoliosis bracing provider, explaining treatment approach, bracing technology, and patient care pathways clearly.',
-        url: 'https://db23.co.za/scoliosisbracing/',
-        image: '/assets/showcase/scoliosisbracing.jpg',
-        alt: 'Scoliosis Bracing spinal treatment website',
-    },
-    {
-        project: 'Apex Pet Group',
-        category: 'Pet Industry',
-        summary:
-            'A corporate group website for Apex Pet Group, unifying brand presence, product lines, and business positioning across the pet industry.',
-        url: 'https://apexpetgroup.co.za',
-        external: true,
-        image: '/assets/showcase/apexpetgroup.jpg',
-        alt: 'Apex Pet Group corporate pet industry website',
-    },
-];
+function hostOf(url) {
+    try {
+        return new URL(url).host.replace(/^www\./, '');
+    } catch {
+        return url;
+    }
+}
 
+function selectContactSubject(subject) {
+    window.sessionStorage.setItem('db23-contact-subject', subject);
+    window.dispatchEvent(new CustomEvent('db23-contact-subject', { detail: { subject } }));
+}
 
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.08,
-        },
-    },
-};
+function WorkCard({ item, eager, className = '', onFocus }) {
+    const live = Boolean(item.url);
+    // Hosted client microsites carry X-Robots-Tag: noindex, so every
+    // showcase link is nofollow — none should collect crawl equity.
+    const Tag = live ? 'a' : 'div';
+    const linkProps = live
+        ? {
+              href: item.url,
+              target: '_blank',
+              rel: 'nofollow noopener noreferrer',
+              onFocus,
+              'aria-label': `${item.project}, ${item.category}. Opens the live site.`,
+          }
+        : {};
+    return (
+        <Tag {...linkProps} className={`group block shrink-0 focus:outline-none ${className}`}>
+            <div className="overflow-hidden rounded-md border border-white/15 bg-card shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)] transition-colors group-hover:border-accent/60 group-focus-visible:border-accent">
+                <div className="flex h-7 items-center gap-3 border-b border-white/10 bg-[#1a1d1b] px-3">
+                    <span className="flex gap-1" aria-hidden="true">
+                        <span className="h-2 w-2 rounded-full bg-white/15" />
+                        <span className="h-2 w-2 rounded-full bg-white/15" />
+                    </span>
+                    <span className="truncate text-[0.65rem] text-white/45">{live ? hostOf(item.url) : 'Coming soon'}</span>
+                </div>
+                <div className="aspect-[16/10] overflow-hidden bg-card">
+                    <img
+                        src={item.image}
+                        alt={item.alt}
+                        width="1200"
+                        height="750"
+                        loading={eager ? 'eager' : 'lazy'}
+                        decoding="async"
+                        className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                    />
+                </div>
+            </div>
+            <div className="mt-5 flex items-start justify-between gap-4">
+                <div>
+                    <h3 className="text-xl font-medium tracking-tight text-white transition-colors group-hover:text-accent md:text-2xl">
+                        {item.project}
+                    </h3>
+                    <p className="mt-1 text-sm text-text-muted">{item.category}</p>
+                </div>
+                {live ? (
+                    <ArrowUpRight
+                        className="mt-1 h-5 w-5 shrink-0 text-text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                        aria-hidden="true"
+                    />
+                ) : (
+                    <span className="mt-1 shrink-0 rounded-[3px] border border-accent/50 px-2 py-0.5 text-xs text-accent">
+                        {item.status}
+                    </span>
+                )}
+            </div>
+        </Tag>
+    );
+}
 
-const card = {
-    hidden: { opacity: 0, y: 26 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.55,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-};
+function Heading({ items, compact = false }) {
+    return (
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+                <h2
+                    id="work-showcase-heading"
+                    className={`text-balance font-medium leading-[1] tracking-[-0.04em] text-white ${
+                        compact ? 'text-[2.6rem] md:text-6xl' : 'text-[2.6rem] md:text-7xl'
+                    }`}
+                >
+                    Websites that work as hard as you do.
+                </h2>
+                <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-text-muted">
+                    Conversion-focused sites for small businesses across education, healthcare, travel, pet care, property
+                    and more. Each one built to communicate clearly, earn trust, and bring in enquiries.
+                </p>
+            </div>
+            <p className="text-sm text-text-muted lg:col-span-3 lg:col-start-10 lg:text-right">{items.filter((i) => i.url).length} live projects
+                {items.some((i) => !i.url) && `, ${items.filter((i) => !i.url).length} in progress`}</p>
+        </div>
+    );
+}
 
 export function SelectedWork({ limit }) {
     const items = limit ? showcaseItems.slice(0, limit) : showcaseItems;
-    return (
-        <section
-            id="work-showcase"
-            className="relative overflow-hidden bg-gradient-to-b from-background via-[#0b1020] to-background py-24 md:py-32"
-            aria-labelledby="work-showcase-heading"
-        >
-            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_18%_12%,rgba(59,130,246,0.18),transparent_32%),radial-gradient(circle_at_88%_18%,rgba(34,211,238,0.12),transparent_28%)]" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+    const reduceMotion = useReducedMotion();
+    const sectionRef = useRef(null);
+    const trackRef = useRef(null);
+    const viewportRef = useRef(null);
+    // Pin only on wide screens with motion allowed; phones get a native swipe row.
+    const [wide, setWide] = useState(false);
+    const [distance, setDistance] = useState(0);
 
-            <div className="container relative z-10 mx-auto px-4 md:px-8">
-                <div className="mb-14 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.55fr)] lg:items-end">
-                    <div className="max-w-4xl">
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-                            <a href="https://db23.co.za/#work-showcase" className="hover:underline">Work Showcase</a>
-                        </p>
-                        <h2 id="work-showcase-heading" className="mb-5 max-w-4xl text-3xl font-bold text-white md:text-5xl">
-                            Modern digital systems across multiple business verticals
-                        </h2>
-                        <p className="max-w-3xl text-lg leading-relaxed text-text-muted">
-                            DB23 builds practical, conversion-focused digital experiences for businesses across coaching,
-                            travel, education, sport, product innovation, AI services, estate living, and professional services.
-                            Each project is designed to communicate clearly, build trust, and support measurable business growth.
-                        </p>
-                    </div>
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const update = () => setWide(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
 
-                    <div className="grid grid-cols-3 gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
-                        {[
-                            ['100+', 'Projects'],
-                            ['8+', 'Verticals'],
-                            ['AI', 'Ready'],
-                        ].map(([value, label]) => (
-                            <div key={label} className="text-center">
-                                <div className="text-2xl font-black text-white">{value}</div>
-                                <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-text-muted">{label}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+    const pinned = wide && !reduceMotion && distance > 0;
 
-                <Motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-                >
-                    {items.map((item) => (
-                        <Motion.article
-                            key={item.project}
-                            variants={card}
-                            className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] shadow-2xl shadow-black/20 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-accent/55 hover:shadow-accent/10"
-                        >
-                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-accent/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                            <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-card">
-                                <img
-                                    src={item.image}
-                                    alt={item.alt}
-                                    width="1200"
-                                    height="760"
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                                    onError={(e) => {
-                                        e.currentTarget.style.display = 'none';
-                                        e.currentTarget.parentElement.classList.add('flex', 'items-center', 'justify-center');
-                                        const placeholder = document.createElement('div');
-                                        placeholder.className = 'text-text-muted text-sm font-medium opacity-40';
-                                        placeholder.textContent = item.project;
-                                        e.currentTarget.parentElement.appendChild(placeholder);
-                                    }}
-                                />
-                                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                            </div>
+    // Horizontal overflow of the track = how far the pinned section must scroll.
+    useEffect(() => {
+        if (!wide || reduceMotion) return undefined;
+        const measure = () => {
+            const track = trackRef.current;
+            if (track) setDistance(Math.max(0, track.scrollWidth - window.innerWidth));
+        };
+        measure();
+        const ro = new ResizeObserver(measure);
+        if (trackRef.current) ro.observe(trackRef.current);
+        window.addEventListener('resize', measure);
+        return () => {
+            ro.disconnect();
+            window.removeEventListener('resize', measure);
+        };
+    }, [wide, reduceMotion, items.length]);
 
-                            <div className="relative flex flex-1 flex-col p-6">
-                                <span className="mb-4 w-fit rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-widest text-accent">
-                                    {item.category}
-                                </span>
-                                <h3 className="mb-3 text-xl font-bold text-white">{item.project}</h3>
-                                <p className="mb-6 flex-1 text-sm leading-relaxed text-text-muted">{item.summary}</p>
-                                {/* Hosted client microsites carry X-Robots-Tag: noindex, so every
-                                    showcase link is nofollow — none should collect crawl equity. */}
-                                <a
-                                    href={item.url}
-                                    target="_blank"
-                                    rel="nofollow noopener noreferrer"
-                                    className="inline-flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition hover:border-accent/50 hover:bg-accent/15 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
-                                    aria-label={`View ${item.project} project`}
-                                >
-                                    View Project
-                                    <ArrowUpRight className="h-4 w-4 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                                </a>
-                            </div>
-                        </Motion.article>
-                    ))}
-                </Motion.div>
+    // Progress through the pinned section, measured live. useScroll caches the
+    // target's offsets, which go stale once the section grows to fit the track.
+    const progress = useMotionValue(0);
+    useEffect(() => {
+        if (!pinned) return undefined;
+        let frame = 0;
+        const read = () => {
+            frame = 0;
+            const el = sectionRef.current;
+            if (!el) return;
+            const span = el.offsetHeight - window.innerHeight;
+            const p = span > 0 ? -el.getBoundingClientRect().top / span : 0;
+            progress.set(Math.min(1, Math.max(0, p)));
+        };
+        const onScroll = () => {
+            if (!frame) frame = requestAnimationFrame(read);
+        };
+        read();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        return () => {
+            cancelAnimationFrame(frame);
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        };
+    }, [pinned, distance, progress]);
 
-                <div className="mt-16 border-t border-white/10 pt-12 md:mt-20">
-                    <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-                        <div className="max-w-3xl">
-                            <h3 className="mb-4 text-3xl font-black leading-tight text-white md:text-4xl">
-                                Want your business to feel this clear and modern online?
-                            </h3>
-                            <p className="text-lg leading-relaxed text-text-muted">
-                                From AI workshops and automation to premium websites and digital systems, DB23 helps businesses
-                                turn practical technology ideas into real commercial value.
-                            </p>
+    const x = useTransform(progress, [0, 1], [0, -distance]);
+    const bar = useSpring(progress, { stiffness: 140, damping: 30 });
+
+    // Keyboard focus on an off-screen card: scroll the page to where that card sits in view.
+    const focusCard = (e) => {
+        if (!pinned) return;
+        if (viewportRef.current) viewportRef.current.scrollLeft = 0;
+        const section = sectionRef.current;
+        const card = e.currentTarget;
+        const target = Math.min(distance, Math.max(0, card.offsetLeft - window.innerWidth * 0.2));
+        const top = section.getBoundingClientRect().top + window.scrollY + target;
+        window.scrollTo({ top, behavior: 'auto' });
+    };
+
+    const closing = (
+        <div className="mx-auto mt-20 grid max-w-[1400px] gap-8 px-4 md:grid-cols-12 md:items-end md:px-8">
+            <p className="text-balance text-3xl font-medium leading-tight tracking-[-0.03em] text-white md:col-span-8 md:text-4xl">
+                Want your business to feel this clear and modern online?
+            </p>
+            <a
+                href="#contact"
+                onClick={() => selectContactSubject('Start a Project')}
+                className="group inline-flex h-14 items-center justify-center gap-3 rounded-[3px] bg-accent px-8 text-base font-semibold text-ink transition-colors hover:bg-accent-hover md:col-span-4 md:justify-self-end"
+            >
+                Start a project
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </a>
+        </div>
+    );
+
+    if (wide && !reduceMotion) {
+        return (
+            <section id="work-showcase" className="relative bg-background pb-24 md:pb-32" aria-labelledby="work-showcase-heading">
+                <div ref={sectionRef} className="relative" style={{ height: pinned ? `calc(100vh + ${distance}px)` : 'auto' }}>
+                    <div
+                        ref={viewportRef}
+                        className={`${pinned ? 'sticky top-0 h-screen' : ''} flex flex-col justify-center overflow-hidden pt-24 pb-10`}
+                    >
+                        <div className="mx-auto mb-10 w-full max-w-[1400px] px-8">
+                            <Heading items={items} compact />
                         </div>
-                        <a
-                            href="#contact"
-                            className="inline-flex h-14 items-center justify-center gap-3 rounded-md bg-accent px-8 text-base font-semibold text-white shadow-lg shadow-accent/20 transition hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+
+                        <Motion.ul
+                            ref={trackRef}
+                            style={{ x: pinned ? x : 0 }}
+                            className="flex w-max gap-10 pl-[max(2rem,calc((100vw-1400px)/2+2rem))] pr-[8vw]"
                         >
-                            Start a Project
-                            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                        </a>
+                            {items.map((item, i) => (
+                                <li key={item.project}>
+                                    <WorkCard
+                                        item={item}
+                                        eager={i < 3}
+                                        onFocus={focusCard}
+                                        className="w-[min(36vw,calc((100vh-330px)*1.45))]"
+                                    />
+                                </li>
+                            ))}
+                        </Motion.ul>
+
+                        {pinned && (
+                            <div className="mx-auto mt-10 w-full max-w-[1400px] px-8" aria-hidden="true">
+                                <div className="h-px w-full bg-white/10">
+                                    <Motion.div style={{ scaleX: bar }} className="h-full origin-left bg-accent" />
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
+                {closing}
+            </section>
+        );
+    }
+
+    return (
+        <section id="work-showcase" className="relative bg-background py-24" aria-labelledby="work-showcase-heading">
+            <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+                <Heading items={items} />
             </div>
+            <ul className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-4 px-4 pb-4 [scrollbar-width:none] md:scroll-px-8 md:px-8">
+                {items.map((item, i) => (
+                    <li key={item.project} className="snap-start">
+                        <WorkCard item={item} eager={i === 0} className="w-[80vw] sm:w-[58vw] md:w-[44vw]" />
+                    </li>
+                ))}
+            </ul>
+            <p className="mx-auto mt-4 max-w-[1400px] px-4 text-sm text-text-muted md:px-8">Swipe to see more.</p>
+            {closing}
         </section>
     );
 }

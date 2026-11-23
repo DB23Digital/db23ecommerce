@@ -19,24 +19,29 @@ const faqs = [
             'Many workshops naturally lead into opportunity mapping, workflow automation, AI customer engagement, website improvements, digital systems planning, or ongoing modernization support. You can stop at the workshop or continue into implementation.',
     },
     {
-        question: 'Can DB23 build the automations and systems too?',
+        question: 'Can DB23 implement the AI ideas from a workshop?',
         answer:
-            'Yes. DB23 can help design and implement AI voice agents, customer engagement systems, workflow automations, lead qualification processes, modern websites, and digital growth systems.',
+            'Yes, where it makes sense. Our core services are websites, hosting, SEO and AI workshops and strategy, but when a session turns up a clear win we can help implement it. An AI receptionist that answers enquiries and books appointments is a common example.',
     },
     {
         question: 'Is this only for large companies?',
         answer:
-            'No. The workshops and implementation services are especially useful for small and medium businesses that need practical technology advantages without hiring a large internal digital or AI team.',
+            'No. Everything we do is aimed at small businesses that need a strong online presence and practical AI know-how without hiring an internal digital or AI team.',
     },
     {
-        question: 'Do you still build websites?',
+        question: 'What do you include in website design?',
         answer:
-            'Yes. Websites are still part of the DB23 offering, but they are positioned as modern digital systems rather than isolated brochures. We focus on clarity, trust, conversion, and integration with broader business workflows.',
+            'A modern, mobile-first website built around clarity, trust and enquiries, with the SEO groundwork done from the start. We can also host and look after the site once it is live.',
     },
     {
-        question: 'What does AI automation usually include?',
+        question: 'Do you host websites, and what does it cost?',
         answer:
-            'It can include lead routing, follow-up messages, appointment handling, CRM updates, report generation, content support, customer response systems, and tool integrations. The exact solution depends on your workflows.',
+            'Yes. Our hosted plan starts at R999 a month and includes hosting, SEO, AEO and GEO, and a monthly report. If you prefer to keep your own hosting, we work on your domain and the same SEO, AEO, GEO and reporting starts at R799 a month, with you paying your hosting provider directly. Prices include VAT.',
+    },
+    {
+        question: 'What are AEO and GEO?',
+        answer:
+            'Answer engine optimisation (AEO) and generative engine optimisation (GEO) are about showing up in AI answers, such as Google AI Overviews, ChatGPT and Perplexity. They rest on the same foundations as good SEO: a fast, crawlable site, clear answers to real questions, and a business that is easy to verify. We do those well first.',
     },
     {
         question: 'Where is DB23 based?',
@@ -45,35 +50,40 @@ const faqs = [
     },
 ];
 
-function FAQItem({ faq, isOpen, onClick }) {
+function FAQItem({ faq, index, isOpen, onClick }) {
     return (
-        <div
-            className={`overflow-hidden rounded-xl border transition-colors duration-200 ${
-                isOpen ? 'border-accent/40 bg-card' : 'border-white/5 bg-background hover:border-white/15'
-            }`}
-        >
-            <button
-                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                onClick={onClick}
-                aria-expanded={isOpen}
-            >
-                <span className="text-base font-semibold leading-snug text-white">{faq.question}</span>
-                <span className={`shrink-0 transition-colors ${isOpen ? 'text-accent' : 'text-text-muted'}`}>
-                    {isOpen ? <Minus className="h-5 w-5" aria-hidden="true" /> : <Plus className="h-5 w-5" aria-hidden="true" />}
-                </span>
-            </button>
+        <div className="border-t border-white/10">
+            <h3>
+                <button
+                    id={`faq-q-${index}`}
+                    className="group flex w-full items-start justify-between gap-6 py-6 text-left"
+                    onClick={onClick}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-a-${index}`}
+                >
+                    <span className={`text-lg font-medium leading-snug tracking-tight transition-colors md:text-xl ${isOpen ? 'text-white' : 'text-white/80 group-hover:text-white'}`}>
+                        {faq.question}
+                    </span>
+                    <span className={`mt-1 shrink-0 transition-colors ${isOpen ? 'text-accent' : 'text-text-muted group-hover:text-white'}`}>
+                        {isOpen ? <Minus className="h-5 w-5" aria-hidden="true" /> : <Plus className="h-5 w-5" aria-hidden="true" />}
+                    </span>
+                </button>
+            </h3>
 
             <AnimatePresence initial={false}>
                 {isOpen && (
                     <Motion.div
                         key="answer"
+                        id={`faq-a-${index}`}
+                        role="region"
+                        aria-labelledby={`faq-q-${index}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                     >
-                        <p className="px-6 pb-6 leading-relaxed text-text-muted">{faq.answer}</p>
+                        <p className="max-w-2xl pb-8 leading-relaxed text-text-muted">{faq.answer}</p>
                     </Motion.div>
                 )}
             </AnimatePresence>
@@ -85,39 +95,32 @@ export function FAQ() {
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
-        <section className="bg-background py-24" id="faq" aria-labelledby="faq-heading">
-            <div className="container mx-auto px-4 md:px-8">
-                <div className="mx-auto max-w-3xl">
-                    <div className="mb-14 text-center">
-                        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">FAQ</p>
-                        <h2 id="faq-heading" className="mb-5 text-3xl font-bold text-white md:text-5xl">
+        <section className="border-t border-white/10 bg-background py-24 md:py-36" id="faq" aria-labelledby="faq-heading">
+            <div className="mx-auto grid max-w-[1400px] gap-12 px-4 md:px-8 lg:grid-cols-12">
+                <div className="lg:col-span-4">
+                    <div className="lg:sticky lg:top-28">
+                        <h2
+                            id="faq-heading"
+                            className="text-balance text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-white md:text-5xl"
+                        >
                             AI workshops and implementation, explained simply.
                         </h2>
-                        <p className="text-lg text-text-muted">
+                        <p className="mt-6 text-text-muted">
                             Everything you need to know about working with DB23, in plain language.
                         </p>
                     </div>
+                </div>
 
-                    <Motion.div
-                        variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.07 } } }}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, margin: '-60px' }}
-                        className="space-y-3"
-                    >
-                        {faqs.map((faq, index) => (
-                            <Motion.div
-                                key={faq.question}
-                                variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                            >
-                                <FAQItem
-                                    faq={faq}
-                                    isOpen={openIndex === index}
-                                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                />
-                            </Motion.div>
-                        ))}
-                    </Motion.div>
+                <div className="border-b border-white/10 lg:col-span-7 lg:col-start-6">
+                    {faqs.map((faq, index) => (
+                        <FAQItem
+                            key={faq.question}
+                            faq={faq}
+                            index={index}
+                            isOpen={openIndex === index}
+                            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                        />
+                    ))}
                 </div>
             </div>
         </section>

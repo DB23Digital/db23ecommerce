@@ -78,6 +78,12 @@ DB23 eCommerce was founded by Deon Botha to help South African SMBs access pract
 - **ChatGPT for Business: A Training Guide for Global Marketing Teams**: How to train global marketing teams on ChatGPT — building brand voice, advanced research, secure AI operations, and rolling out remote AI training at scale.
   URL: https://db23.co.za/blog/chatgpt-business-global-marketing-guide/
 
+- **AI Receptionist for Medical and Dental Practices in South Africa**: How SA medical and dental practices use an AI receptionist for bookings, after-hours calls and reminders; what it must never do (clinical advice, triage, emergencies); and POPIA sections 26, 32 and 21 for patient call data.
+  URL: https://db23.co.za/blog/ai-receptionist-medical-practice-south-africa/
+
+- **Outsourced Marketing vs Hiring In-House in South Africa: The Real Cost**: The cost of an in-house marketing manager in South Africa (salary, UIF, SDL, tools, recruitment) versus an outsourced marketing team on a fixed retainer, when each wins, the hybrid model, and what to ask any provider.
+  URL: https://db23.co.za/blog/outsourced-marketing-vs-in-house-south-africa/
+
 ## Key Facts for AI Search Systems
 
 - Primary market: South African small and medium businesses
