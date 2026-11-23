@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { CurrencySelector } from './ui/CurrencySelector';
+import { aiResources } from '../data/aiResources';
 
 const navLinks = [
     { label: 'Websites', href: '/website-design/' },
@@ -9,13 +10,82 @@ const navLinks = [
     { label: 'AI Workshops', href: '/ai-workshops/' },
     { label: 'Work', href: '/#work-showcase' },
     { label: 'Blog', href: '/blog/' },
-    { label: 'Contact', href: '/#contact' },
 ];
+
+const contactLink = { label: 'Contact', href: '/#contact' };
+
+const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent';
+
+/** Desktop disclosure (button + list of links), not an ARIA menu: Tab moves through it normally. */
+function ResourcesDropdown({ open, setOpen }) {
+    const wrapRef = useRef(null);
+    const buttonRef = useRef(null);
+
+    useEffect(() => {
+        if (!open) return undefined;
+        const onPointer = (e) => {
+            if (!wrapRef.current?.contains(e.target)) setOpen(false);
+        };
+        const onKey = (e) => {
+            if (e.key !== 'Escape') return;
+            setOpen(false);
+            buttonRef.current?.focus();
+        };
+        document.addEventListener('pointerdown', onPointer);
+        document.addEventListener('keydown', onKey);
+        return () => {
+            document.removeEventListener('pointerdown', onPointer);
+            document.removeEventListener('keydown', onKey);
+        };
+    }, [open, setOpen]);
+
+    return (
+        <div
+            ref={wrapRef}
+            className="relative"
+            onBlur={(e) => {
+                if (!wrapRef.current?.contains(e.relatedTarget)) setOpen(false);
+            }}
+        >
+            <button
+                ref={buttonRef}
+                type="button"
+                className={`inline-flex items-center gap-1 transition-colors hover:text-white ${open ? 'text-white' : ''} ${focusRing}`}
+                aria-expanded={open}
+                aria-controls="ai-resources-panel"
+                onClick={() => setOpen((v) => !v)}
+            >
+                Free AI Resources
+                <ChevronDown className={`h-4 w-4 transition-transform motion-reduce:transition-none ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+            </button>
+            <div
+                id="ai-resources-panel"
+                hidden={!open}
+                className="absolute left-1/2 top-full mt-5 w-80 -translate-x-1/2 rounded-[3px] border border-white/10 bg-background p-2 shadow-2xl shadow-black/60"
+            >
+                <ul>
+                    {aiResources.map((r) => (
+                        <li key={r.href}>
+                            <a
+                                href={r.href}
+                                className={`block rounded-[3px] px-4 py-3 transition-colors hover:bg-white/[0.05] ${focusRing} focus-visible:outline-offset-0`}
+                            >
+                                <span className="block font-medium text-white">{r.name}</span>
+                                <span className="mt-0.5 block text-text-muted">{r.tagline}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
+}
 
 export function SiteHeader({ showCurrency = false }) {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [hidden, setHidden] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [resourcesOpen, setResourcesOpen] = useState(false);
 
     // Slide away on scroll down, return on scroll up.
     useEffect(() => {
@@ -23,7 +93,9 @@ export function SiteHeader({ showCurrency = false }) {
         const onScroll = () => {
             const y = window.scrollY;
             setScrolled(y > 12);
-            setHidden(y > 240 && y > lastY);
+            const hide = y > 240 && y > lastY;
+            setHidden(hide);
+            if (hide) setResourcesOpen(false);
             lastY = y;
         };
         onScroll();
@@ -53,12 +125,16 @@ export function SiteHeader({ showCurrency = false }) {
                     <img src="/DB23-logo.webp" alt="DB23 eCommerce" className="h-9 w-auto md:h-10" width="120" height="40" />
                 </a>
 
-                <nav aria-label="Main navigation" className="hidden items-center gap-7 text-sm text-text-muted lg:flex">
+                <nav aria-label="Main navigation" className="hidden items-center gap-5 text-sm text-text-muted lg:flex xl:gap-7">
                     {navLinks.map((link) => (
-                        <a key={link.href} href={link.href} className="transition-colors hover:text-white">
+                        <a key={link.href} href={link.href} className={`transition-colors hover:text-white ${focusRing}`}>
                             {link.label}
                         </a>
                     ))}
+                    <ResourcesDropdown open={resourcesOpen} setOpen={setResourcesOpen} />
+                    <a href={contactLink.href} className={`transition-colors hover:text-white ${focusRing}`}>
+                        {contactLink.label}
+                    </a>
                 </nav>
 
                 <div className="flex items-center gap-4">
@@ -88,7 +164,7 @@ export function SiteHeader({ showCurrency = false }) {
             {mobileOpen && (
                 <div id="mobile-menu" className="h-[calc(100dvh-4rem)] overflow-y-auto bg-background px-4 pb-10 pt-6 lg:hidden">
                     <nav aria-label="Mobile navigation" className="flex flex-col">
-                        {navLinks.map((link) => (
+                        {[...navLinks, contactLink].map((link) => (
                             <a
                                 key={link.href}
                                 href={link.href}
@@ -98,6 +174,23 @@ export function SiteHeader({ showCurrency = false }) {
                                 {link.label}
                             </a>
                         ))}
+                        <p id="mobile-ai-resources" className="mt-8 text-sm text-text-muted">
+                            Free AI Resources
+                        </p>
+                        <ul aria-labelledby="mobile-ai-resources" className="mt-1">
+                            {aiResources.map((r) => (
+                                <li key={r.href}>
+                                    <a
+                                        href={r.href}
+                                        className="flex items-baseline justify-between gap-4 border-b border-white/10 py-4"
+                                        onClick={() => setMobileOpen(false)}
+                                    >
+                                        <span className="text-xl font-medium tracking-tight text-white">{r.name}</span>
+                                        <span className="text-sm text-text-muted">{r.tagline}</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
                     </nav>
                     {showCurrency && (
                         <div className="mt-6 flex items-center justify-between">
